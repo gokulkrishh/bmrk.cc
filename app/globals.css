@@ -73,4 +73,18 @@
   body {
     @apply bg-background text-foreground;
   }
+  textarea {
+    @apply block resize-none border-none;
+  }
+}
+
+@layer utilities {
+  .hidden-scrollbar::-webkit-scrollbar {
+    @apply hidden;
+  }
+
+  .hidden-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

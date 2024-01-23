@@ -1,20 +1,24 @@
 {
-	"singleQuote": true,
-	"trailingComma": "es5",
-	"bracketSpacing": true,
-	"semi": true,
-	"tabWidth": 2,
-	"useTabs": false,
-	"plugins": ["prettier-plugin-tailwindcss", "@trivago/prettier-plugin-sort-imports"],
-	"importOrder": [
-		"^(react/(.*)$)|^(react$)",
-		"^(next/(.*)$)|^(next$)",
-		"<THIRD_PARTY_MODULES>",
-		"^@/components/(.*)$|^@/components/(.*)$",
-		"^@/lib/(.*)$",
-		"^[./]"
-	],
-	"importOrderSeparation": true,
-	"importOrderSortSpecifiers": true,
-	"importOrderGroupNamespaceSpecifiers": true
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "semi": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "plugins": [
+    "prettier-plugin-tailwindcss",
+    "@trivago/prettier-plugin-sort-imports"
+  ],
+  "importOrder": [
+    "^(react/(.*)$)|^(react$)",
+    "^(next/(.*)$)|^(next$)",
+    "<THIRD_PARTY_MODULES>",
+    "^components/(.*)$|^components/(.*)$",
+    "^lib/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderGroupNamespaceSpecifiers": true
 }
