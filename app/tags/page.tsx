@@ -1,10 +1,9 @@
-import CardSkeleton from 'components/card/skeleton';
 import Header from 'components/header';
 
-export default function Loading() {
+export default async function Page() {
   return (
     <>
-      <Header headerText="Settings" />
+      <Header headerText="Tags" />
       <div className="min-h-dvh border-r border-neutral-200"></div>
     </>
   );

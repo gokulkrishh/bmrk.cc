@@ -1,7 +1,6 @@
 import { getBookmarksWithFilter } from 'app/actions/bookmarks';
-import { Bookmark, BookmarkModified } from 'types/data';
+import { BookmarkModified } from 'types/data';
 
-import AddBookmarkInput from 'components/bookmark/add-input';
 import Card from 'components/card';
 import Header from 'components/header';
 
@@ -12,7 +11,7 @@ export default async function Page() {
     <>
       <Header headerText="Favorites" />
       <div className="min-h-dvh border-r border-neutral-200">
-        {bookmarks?.map((bookmark: BookmarkModified) => (
+        {bookmarks.map((bookmark: BookmarkModified) => (
           <Card key={bookmark.id} data={bookmark} />
         ))}
       </div>

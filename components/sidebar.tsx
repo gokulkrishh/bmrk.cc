@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Home, Settings } from 'lucide-react';
+import { Home, Settings, StarIcon, Tags } from 'lucide-react';
 
 import { cn } from 'lib/utils';
 
@@ -40,8 +40,17 @@ export default function Sidebar() {
           <Home className="w-6 h-6" />
         </NavLink>
         <Search />
+        <NavLink
+          className="max-sm:order-4"
+          href={'/favorites'}
+          title="Favorites"
+        >
+          <StarIcon className="w-6 h-6" />
+        </NavLink>
+        <NavLink className="max-sm:order-4" href={'/tags'} title="Tags">
+          <Tags className="w-6 h-6" />
+        </NavLink>
         <AddIcon className="max-sm:order-3 mt-2" />
-        <SettingsLink className="hidden max-sm:flex mt-0" />
       </div>
       <div className="hidden sm:flex sm:flex-col items-center max-sm:gap-6 max-sm:ml-4 gap-3 sm:mb-4">
         <Profile />

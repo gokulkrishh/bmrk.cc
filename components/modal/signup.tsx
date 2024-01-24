@@ -63,7 +63,10 @@ export default function SignupModal({ open, onHide }: SignupModalProp) {
         redirectTo: `${process?.env?.NEXT_PUBLIC_SITE_URL}/auth/callback`,
       },
     });
-    setTimeout(() => setLoading(false), 2000);
+    setTimeout(() => {
+      setLoading(false);
+      onHide(true);
+    }, 2000);
   };
 
   return (

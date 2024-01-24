@@ -36,7 +36,8 @@ export const AuthProvider = (props: any) => {
     return () => {
       authListener?.unsubscribe();
     };
-  }, [router, supabase.auth]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const value = useMemo(() => {
     return { user, supabase };

@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { unstable_noStore as noStore, revalidatePath } from 'next/cache';
 
 import { Bookmark, BookmarkInsert } from 'types/data';
 
@@ -17,6 +17,7 @@ export type BookmarkModifiedType = Bookmark & {
 };
 
 export const getBookmarks = async () => {
+  noStore();
   const user = await getUser();
   if (!user) {
     return [];
@@ -42,6 +43,7 @@ type getBookmarkType = {
 };
 
 export const getBookmarksWithFilter = async ({ is_fav }: getBookmarkType) => {
+  noStore();
   const user = await getUser();
   if (!user) {
     return [];

@@ -13,6 +13,7 @@ export default function Header({ headerText }: { headerText?: string }) {
       <div className="flex items-center">
         <Link href="/" className="active:opacity-85 ml-2 block sm:hidden">
           <Image
+            priority={true}
             alt="logo"
             src="/icons/icon.svg"
             width={55}

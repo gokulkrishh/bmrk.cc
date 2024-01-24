@@ -11,7 +11,13 @@ import Loader from 'components/loader';
 
 import { cn, isValidUrl } from 'lib/utils';
 
-export default function AddBookmarkInput() {
+export default function AddBookmarkInput({
+  className,
+  onDone,
+}: {
+  className?: string;
+  onDone?: () => void;
+}) {
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -35,13 +41,15 @@ export default function AddBookmarkInput() {
       toast.error(`Unable to add bookmark, try again.`);
     } finally {
       setLoading(false);
+      onDone?.();
     }
   };
 
   return (
     <div
       className={cn(
-        'h-24 flex flex-col px-1 border-neutral-200 border-r border-b'
+        'h-24 flex flex-col px-1 border-neutral-200 border-r border-b',
+        className
       )}
     >
       <form
@@ -54,7 +62,7 @@ export default function AddBookmarkInput() {
         <div className="flex flex-col items-center justify-center w-full">
           <input
             className={cn(
-              `mt-4 bg-transparent w-full px-2 border-none outline-none placeholder:text-stone-500 text-lg font-normal`
+              `mt-4 bg-transparent w-full px-2 pb-1 border-none outline-none placeholder:text-stone-500 text-lg font-normal`
             )}
             type="url"
             pattern="https?://.+"

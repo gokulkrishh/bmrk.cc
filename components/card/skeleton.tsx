@@ -14,7 +14,7 @@ export default function CardSkeleton() {
         <div className="flex justify-between">
           <div className="group items-start justify-between flex-col py-2 gap-1 flex hover:bg-neutral-50 text-black sm:w-[calc(100%-60px)] max-sm:w-[calc(100%-80px)]">
             <Skeleton className="relative mt-0.5 w-24 h-2.5 items-center inline-flex text-sm text-[14px] bg-neutral-300 " />
-            <Skeleton className="text-neutral-500 mt-1 text-sm line-clamp-2 w-80 h-8 bg-neutral-300 " />
+            <Skeleton className="text-neutral-500 mt-1 text-sm line-clamp-2 md:w-80 w-40 h-8 bg-neutral-300 " />
           </div>
         </div>
         <Skeleton className="rounded-2xl border border-neutral-200 mb-3 my-2 object-cover w-[calc(100%-16px)] max-w-[350px] h-[176px] bg-neutral-300 " />

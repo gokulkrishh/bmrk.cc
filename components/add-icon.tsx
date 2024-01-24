@@ -7,6 +7,7 @@ import { Plus } from 'lucide-react';
 import { cn } from 'lib/utils';
 
 import { useAuth } from './context/auth';
+import AddBookmark from './modal/bookmark';
 import SignupModal from './modal/signup';
 import { Dialog, DialogContent } from './ui/dialog';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
@@ -38,11 +39,7 @@ export default function AddIcon({ className }: { className?: string }) {
       </button>
 
       {user ? (
-        <Dialog open={open} onOpenChange={() => setOpen(false)}>
-          <DialogContent className="sm:max-w-md pt-10 px-2 py-2">
-            Add new bookmark
-          </DialogContent>
-        </Dialog>
+        <AddBookmark open={open} setOpen={setOpen} />
       ) : (
         <SignupModal open={open} onHide={setOpen} />
       )}
