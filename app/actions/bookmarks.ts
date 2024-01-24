@@ -2,9 +2,9 @@
 
 import { unstable_noStore as noStore, revalidatePath } from 'next/cache';
 
-import { Bookmark, BookmarkInsert } from 'types/data';
-
 import createSupabaseServerClient from 'lib/supabase/server';
+
+import { Bookmark, BookmarkInsert, BookmarkUpdate, Tag } from 'types/data';
 
 import { getUser } from './user';
 
@@ -74,10 +74,10 @@ export const createBookmark = async (bookmark: BookmarkInsert) => {
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase
     .from('bookmarks')
-    .insert({ ...bookmark, user_id: user.id } as BookmarkInsert);
+    .insert({ ...bookmark, user_id: user.id, tag_ids: [] } as BookmarkInsert);
 
   if (error) {
-    return new Error('Unable to create new bookmark.');
+    return new Error('Unable to create a new bookmark.');
   }
   revalidatePath('/');
 };
@@ -120,6 +120,27 @@ export const addToFav = async (
 
   if (error) {
     return new Error('Unable to add to fav.');
+  }
+  revalidatePath('/');
+};
+
+export const addTagToBookmark = async (
+  id: Bookmark['id'],
+  tag_ids: Tag['id'][]
+) => {
+  const user = await getUser();
+  if (!user) {
+    return new Error('User is not authenticated.');
+  }
+
+  const supabase = await createSupabaseServerClient();
+  const { error } = await supabase
+    .from('bookmarks')
+    .update({ tag_ids })
+    .eq('id', id)
+    .eq('user_id', user.id);
+  if (error) {
+    return new Error('Unable to add tag.');
   }
   revalidatePath('/');
 };

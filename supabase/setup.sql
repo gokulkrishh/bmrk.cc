@@ -47,8 +47,7 @@ create table
     metadata json,
     user_id uuid references users on delete cascade not null,
     is_fav boolean default false,
-    tag_ids text[],
-    notes text,
+    tag_ids bigint[] default [],
     created_at timestamp with time zone default current_timestamp not null,
     updated_at timestamp with time zone default current_timestamp not null
   );
@@ -67,7 +66,6 @@ create table
     id bigint primary key generated always as identity,
     name text,
     user_id uuid references users on delete cascade not null,
-    bookmark_ids text[],
     created_at timestamp with time zone default current_timestamp not null,
     updated_at timestamp with time zone default current_timestamp not null
   );

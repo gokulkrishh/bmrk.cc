@@ -17,7 +17,7 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
 
   return (
     <Link
-      className="group w-[calc(100%-16px)] max-h-[180px] mb-3 my-2"
+      className="group w-[calc(100%-16px)] max-h-[185px] mb-3 my-2"
       target="_blank"
       rel="noopener"
       href={data.url}

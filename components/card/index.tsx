@@ -1,4 +1,4 @@
-import { BookmarkModified } from 'types/data';
+import { BookmarkModified, Tag } from 'types/data';
 
 import CardActions from './actions';
 import CardDate from './date';
@@ -7,7 +7,12 @@ import CardMedia from './media';
 import CardMenu from './menu';
 import CardTimeline from './timeline';
 
-export default function Card({ data }: { data: BookmarkModified }) {
+type CardProps = {
+  data: BookmarkModified;
+  tags: Tag[];
+};
+
+export default function Card({ data, tags }: CardProps) {
   return (
     <div className="justify-between group gap-3 flex hover:bg-neutral-50 text-black w-full">
       <CardDate data={data} />
@@ -18,7 +23,7 @@ export default function Card({ data }: { data: BookmarkModified }) {
           <CardMenu id={data.id} url={data.url} />
         </div>
         <CardMedia data={data} />
-        <CardActions data={data} />
+        <CardActions tags={tags} data={data} />
       </div>
     </div>
   );

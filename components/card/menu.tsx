@@ -22,12 +22,12 @@ export default function CardMenu({ url, id }: CardMenuProps) {
   return (
     <div className="pr-2">
       <DropdownMenu>
-        <DropdownMenuTrigger className="cursor-pointer h-7 mt-1 flex items-center justify-center w-7 rounded-full hover:bg-blue-100 outline-none focus:border focus:bg-blue-100 shrink-0">
-          <MoreIcon className="fill-neutral-500 h-4 w-4" />
+        <DropdownMenuTrigger className="cursor-pointer h-9 w-9 mt-1 flex items-center justify-center rounded-full hover:bg-neutral-200 outline-none focus:border-none focus:outline-none active:bg-neutral-200 shrink-0">
+          <MoreIcon className="fill-neutral-500 h-4 w-4 " />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-2 min-w-40">
           <DropdownMenuItem>
-            <Edit className="h-4 w-4 mr-2.5" /> Edit
+            <Edit className="h-4 w-4  mr-2.5" /> Edit
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => {
@@ -35,10 +35,10 @@ export default function CardMenu({ url, id }: CardMenuProps) {
               toast.success('Link copied.');
             }}
           >
-            <LinkIcon className="h-4 w-4 mr-2.5" /> Copy link
+            <LinkIcon className="h-4 w-4  mr-2.5" /> Copy link
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <RotateCcw className="h-4 w-4 mr-2.5" /> Refresh
+            <RotateCcw className="h-4 w-4  mr-2.5" /> Refresh
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={async () => {
@@ -46,7 +46,7 @@ export default function CardMenu({ url, id }: CardMenuProps) {
             }}
             className="!text-red-600 focus:bg-red-100"
           >
-            <Trash className="h-4 w-4 mr-2.5" /> Delete
+            <Trash className="h-4 w-4  mr-2.5" /> Delete
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

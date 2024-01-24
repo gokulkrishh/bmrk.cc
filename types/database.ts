@@ -16,8 +16,7 @@ export interface Database {
           id: number;
           is_fav: boolean | null;
           metadata: Json | null;
-          notes: string | null;
-          tag_ids: string[] | null;
+          tag_ids: number[];
           title: string | null;
           updated_at: string;
           url: string;
@@ -29,8 +28,7 @@ export interface Database {
           id?: never;
           is_fav?: boolean | null;
           metadata?: Json | null;
-          notes?: string | null;
-          tag_ids?: string[] | null;
+          tag_ids: number[];
           title?: string | null;
           updated_at?: string;
           url: string;
@@ -42,8 +40,7 @@ export interface Database {
           id?: never;
           is_fav?: boolean | null;
           metadata?: Json | null;
-          notes?: string | null;
-          tag_ids?: string[] | null;
+          tag_ids?: number[];
           title?: string | null;
           updated_at?: string;
           url?: string;
@@ -61,7 +58,6 @@ export interface Database {
       };
       tags: {
         Row: {
-          bookmark_ids: string[] | null;
           created_at: string;
           id: number;
           name: string | null;
@@ -69,7 +65,6 @@ export interface Database {
           user_id: string;
         };
         Insert: {
-          bookmark_ids?: string[] | null;
           created_at?: string;
           id?: never;
           name?: string | null;
@@ -77,7 +72,6 @@ export interface Database {
           user_id: string;
         };
         Update: {
-          bookmark_ids?: string[] | null;
           created_at?: string;
           id?: never;
           name?: string | null;
