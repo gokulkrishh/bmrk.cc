@@ -12,7 +12,9 @@ export default function CardInfo({ data }: { data: Bookmark }) {
       prefetch={false}
       className="group items-start justify-between flex-col py-2 gap-1 flex hover:bg-neutral-50 text-black w-[calc(100%-60px)]"
     >
-      <p className="relative items-center inline-flex text-sm">{data.title}</p>
+      <p className="relative items-center inline-flex text-[15px]">
+        {data.title}
+      </p>
       <p
         className="text-neutral-500 text-sm line-clamp-3"
         title={data.description ?? ''}

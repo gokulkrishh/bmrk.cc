@@ -1,11 +1,27 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Home, Search, Settings, StarIcon } from 'lucide-react';
+import { Home, Settings } from 'lucide-react';
+
+import { cn } from 'lib/utils';
 
 import AddIcon from './add-icon';
 import NavLink from './nav-link';
 import Profile from './profile';
+import Search from './search';
+
+const SettingsLink = ({ className }: { className?: string }) => (
+  <NavLink
+    className={cn(
+      `rounded-xl max-sm:hidden mt-2 p-2.5 transition-colors hover:bg-neutral-200 order-5`,
+      className
+    )}
+    href="/settings"
+    title="Settings"
+  >
+    <Settings className="w-6 h-6" />
+  </NavLink>
+);
 
 export default function Sidebar() {
   return (
@@ -23,25 +39,13 @@ export default function Sidebar() {
         <NavLink href={'/'} title="Home">
           <Home className="w-6 h-6" />
         </NavLink>
-        <NavLink href={'/search'} title="Search">
-          <Search className="w-6 h-6" />
-        </NavLink>
-        <NavLink href={'/favorites'} title="Favorites">
-          <StarIcon className="w-6 h-6" />
-        </NavLink>
-
-        <AddIcon />
+        <Search />
+        <AddIcon className="max-sm:order-3 mt-2" />
+        <SettingsLink className="hidden max-sm:flex mt-0" />
       </div>
-
       <div className="hidden sm:flex sm:flex-col items-center max-sm:gap-6 max-sm:ml-4 gap-3 sm:mb-4">
         <Profile />
-        <NavLink
-          className="rounded-xl max-sm:hidden mt-2 p-2.5 transition-colors hover:bg-neutral-200 order-5"
-          href="/settings"
-          title="Settings"
-        >
-          <Settings className="w-6 h-6" />
-        </NavLink>
+        <SettingsLink />
       </div>
     </nav>
   );

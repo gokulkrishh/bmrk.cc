@@ -41,7 +41,7 @@ export default function Profile({ className }: { className?: string }) {
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-2">
-          <DropdownMenuItem>
+          <DropdownMenuItem className="hidden max-sm:block">
             <Link className="flex items-center" href="/settings">
               <Settings className="h-4 w-4 mr-2.5" /> Settings
             </Link>

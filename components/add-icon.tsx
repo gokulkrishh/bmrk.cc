@@ -4,12 +4,14 @@ import { useState } from 'react';
 
 import { Plus } from 'lucide-react';
 
+import { cn } from 'lib/utils';
+
 import { useAuth } from './context/auth';
 import SignupModal from './modal/signup';
 import { Dialog, DialogContent } from './ui/dialog';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
-export default function AddIcon() {
+export default function AddIcon({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
 
@@ -17,7 +19,10 @@ export default function AddIcon() {
     <div>
       <button
         onClick={() => setOpen(true)}
-        className="rounded-full flex justify-center p-2.5 max-sm:p-3.5 text-white bg-blue-600 hover:bg-blue-500"
+        className={cn(
+          'rounded-full flex justify-center p-2.5 max-sm:p-3.5 text-white bg-blue-600 hover:bg-blue-500',
+          className
+        )}
       >
         <Tooltip>
           <TooltipTrigger asChild>
@@ -25,7 +30,7 @@ export default function AddIcon() {
           </TooltipTrigger>
           <TooltipContent side="right" className="flex items-center ml-4">
             Add{' '}
-            <kbd className="pointer-events-none ml-1.5 border inline-flex h-4 select-none items-center gap-1 rounded  px-1 font-mono text-[10px] font-medium text-neutral-300 opacity-100">
+            <kbd className="pointer-events-none ml-1.5 border border-black inline-flex h-4 select-none items-center gap-1 rounded  px-1 font-mono text-[10px] font-medium text-black opacity-100">
               A
             </kbd>
           </TooltipContent>

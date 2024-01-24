@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
+import { Bookmark } from 'lucide-react';
+
 import { AuthProvider } from 'components/context/auth';
+import { BookmarkProvider } from 'components/context/bookmarks';
 import Sidebar from 'components/sidebar';
 import { Toaster } from 'components/ui/sonner';
 import { TooltipProvider } from 'components/ui/tooltip';
@@ -55,14 +58,16 @@ export default async function RootLayout({
     <html lang="en" className="h-full">
       <body className={`${inter.className} flex h-full bg-white`}>
         <AuthProvider user={user}>
-          <div className="max-w-[600px] m-auto flex h-full w-full">
-            <TooltipProvider delayDuration={200}>
-              <Sidebar />
-              <main className="flex sm:ml-[69px] max-sm:pb-[69px] flex-col w-full min-h-[100vh] ">
-                {children}
-              </main>
-            </TooltipProvider>
-          </div>
+          <BookmarkProvider>
+            <div className="max-w-[600px] m-auto flex h-full w-full">
+              <TooltipProvider delayDuration={200}>
+                <Sidebar />
+                <main className="flex sm:ml-[69px] max-sm:pb-[69px] flex-col w-full min-h-[100vh] ">
+                  {children}
+                </main>
+              </TooltipProvider>
+            </div>
+          </BookmarkProvider>
         </AuthProvider>
         <Toaster />
       </body>

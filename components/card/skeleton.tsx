@@ -17,7 +17,7 @@ export default function CardSkeleton() {
             <Skeleton className="text-neutral-500 mt-1 text-sm line-clamp-2 w-80 h-8 bg-neutral-300 " />
           </div>
         </div>
-        <Skeleton className="rounded-2xl border border-neutral-200 mb-3 my-2 object-cover md:max-w-[420px] max-sm:max-w-[260px] md:h-[180px] w-full max-sm:h-[130px] bg-neutral-300 " />
+        <Skeleton className="rounded-2xl border border-neutral-200 mb-3 my-2 object-cover w-[calc(100%-16px)] max-w-[350px] h-[176px] bg-neutral-300 " />
         <div className="justify-between flex items-center">
           <div className="tracking-wide text-neutral-500 text-xs gap-2 flex" />
           <div className="flex mb-1 h-8" />

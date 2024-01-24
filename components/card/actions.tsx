@@ -1,6 +1,7 @@
 'use client';
 
 import { StarFilledIcon, StarIcon } from '@radix-ui/react-icons';
+import { addToFav } from 'app/actions/bookmarks';
 import { useFormStatus } from 'react-dom';
 import { BookmarkModified } from 'types/data';
 
@@ -37,7 +38,12 @@ export default function CardActions({ data }: { data: BookmarkModified }) {
         <AddTag />
       </div>
       <div className="flex">
-        <form className="self-end" action={() => {}}>
+        <form
+          className="self-end"
+          action={async () => {
+            await addToFav(data.id, !data.is_fav);
+          }}
+        >
           <FavButtonIcon is_fav={is_fav} />
         </form>
       </div>

@@ -17,11 +17,43 @@ export type BookmarkModifiedType = Bookmark & {
 };
 
 export const getBookmarks = async () => {
+  const user = await getUser();
+  if (!user) {
+    return new Error('User is not authenticated.');
+  }
+
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('bookmarks')
     .select('*')
     .order('created_at', { ascending: false })
+    .eq('user_id', user.id)
+    .returns<BookmarkModifiedType[]>();
+
+  if (error) {
+    return [];
+  }
+
+  return data;
+};
+
+type getBookmarkType = {
+  is_fav: Bookmark['is_fav'];
+};
+
+export const getBookmarksWithFilter = async ({ is_fav }: getBookmarkType) => {
+  const user = await getUser();
+  if (!user) {
+    return new Error('User is not authenticated.');
+  }
+
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from('bookmarks')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .eq('is_fav', Boolean(is_fav))
+    .eq('user_id', user.id)
     .returns<BookmarkModifiedType[]>();
 
   if (error) {
@@ -34,7 +66,7 @@ export const getBookmarks = async () => {
 export const createBookmark = async (bookmark: BookmarkInsert) => {
   const user = await getUser();
   if (!user) {
-    return new Error('User is nor authenticated.');
+    return new Error('User is not authenticated.');
   }
 
   const supabase = await createSupabaseServerClient();
@@ -51,7 +83,7 @@ export const createBookmark = async (bookmark: BookmarkInsert) => {
 export const deleteBookmark = async (id: Bookmark['id']) => {
   const user = await getUser();
   if (!user) {
-    return new Error('User is nor authenticated.');
+    return new Error('User is not authenticated.');
   }
 
   const supabase = await createSupabaseServerClient();
@@ -65,5 +97,27 @@ export const deleteBookmark = async (id: Bookmark['id']) => {
     return new Error('Unable to delete the bookmark.');
   }
 
+  revalidatePath('/');
+};
+
+export const addToFav = async (
+  id: Bookmark['id'],
+  isFav: Bookmark['is_fav']
+) => {
+  const user = await getUser();
+  if (!user) {
+    return new Error('User is not authenticated.');
+  }
+
+  const supabase = await createSupabaseServerClient();
+  const { error } = await supabase
+    .from('bookmarks')
+    .update({ is_fav: isFav })
+    .eq('user_id', user.id)
+    .eq('id', id);
+
+  if (error) {
+    return new Error('Unable to add to fav.');
+  }
   revalidatePath('/');
 };
