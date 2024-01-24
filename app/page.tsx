@@ -11,13 +11,13 @@ export default async function Page() {
 
   return (
     <>
-      <Header />
+      {/* <Header />
       <AddBookmarkInput />
       <div className="min-h-dvh border-r border-neutral-200">
         {bookmarks.map((bookmark: BookmarkModified) => (
           <Card key={bookmark.id} data={bookmark} />
         ))}
-      </div>
+      </div> */}
     </>
   );
 }
