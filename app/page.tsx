@@ -22,20 +22,24 @@ export default async function Page() {
       <Header />
       <AddBookmarkInput />
       <div className="h-full border-r border-neutral-200 pb-24">
-        {Object.values(groupedBookmarks).map(
-          (bookmarksData: BookmarkModified[], index: number) => (
-            <div
-              className={cn(`flex flex-col w-full`, {
-                'border-b border-neutral-200': bookmarks.length > 1,
-              })}
-              key={index}
-            >
-              {bookmarksData.reverse().map((bookmark: BookmarkModified) => (
-                <Card key={bookmark.id} tags={tags} data={bookmark} />
-              ))}
-            </div>
-          )
-        )}
+        {Object.keys(groupedBookmarks)
+          .reverse()
+          .map((groupKey: any, index: number) => {
+            const bookmarksData: BookmarkModified[] =
+              groupedBookmarks[groupKey];
+            return (
+              <div
+                className={cn(`flex flex-col w-full`, {
+                  'border-b border-neutral-200': bookmarks.length > 1,
+                })}
+                key={index}
+              >
+                {bookmarksData.reverse().map((bookmark: BookmarkModified) => (
+                  <Card key={bookmark.id} tags={tags} data={bookmark} />
+                ))}
+              </div>
+            );
+          })}
       </div>
     </>
   );

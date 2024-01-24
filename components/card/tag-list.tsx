@@ -77,7 +77,7 @@ export default function TagList({ data, tags }: TagListProps) {
         }}
         placeholder="Search tags"
       />
-      <CommandList className="h-56 overflow-y-auto">
+      <CommandList className="max-h-56 overflow-y-auto">
         <CommandGroup heading="All tags">
           {tags
             ?.sort((a: any, b: any) => a?.name?.localeCompare(b?.name))
