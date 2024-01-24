@@ -54,7 +54,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className={`${inter.className} flex h-full bg-white`}>
-        {/* <AuthProvider user={user}>
+        <AuthProvider user={user}>
           <div className="max-w-[600px] m-auto flex h-full w-full">
             <TooltipProvider delayDuration={200}>
               <Sidebar />
@@ -64,7 +64,7 @@ export default async function RootLayout({
             </TooltipProvider>
           </div>
         </AuthProvider>
-        <Toaster /> */}
+        <Toaster />
       </body>
     </html>
   );
