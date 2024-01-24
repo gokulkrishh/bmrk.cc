@@ -19,7 +19,7 @@ export type BookmarkModifiedType = Bookmark & {
 export const getBookmarks = async () => {
   const user = await getUser();
   if (!user) {
-    return new Error('User is not authenticated.');
+    return [];
   }
 
   const supabase = await createSupabaseServerClient();
@@ -44,7 +44,7 @@ type getBookmarkType = {
 export const getBookmarksWithFilter = async ({ is_fav }: getBookmarkType) => {
   const user = await getUser();
   if (!user) {
-    return new Error('User is not authenticated.');
+    return [];
   }
 
   const supabase = await createSupabaseServerClient();
