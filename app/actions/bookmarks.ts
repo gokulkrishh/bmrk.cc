@@ -144,3 +144,24 @@ export const addTagToBookmark = async (
   }
   revalidatePath('/');
 };
+
+export const refreshBookmark = async (
+  id: Bookmark['id'],
+  payload: BookmarkUpdate
+) => {
+  const user = await getUser();
+  if (!user) {
+    return new Error('User is not authenticated.');
+  }
+  const supabase = await createSupabaseServerClient();
+  const { error } = await supabase
+    .from('bookmarks')
+    .update({ ...payload })
+    .eq('id', id)
+    .eq('user_id', user.id);
+
+  if (error) {
+    return new Error('Unable to refresh bookmark.');
+  }
+  revalidatePath('/');
+};

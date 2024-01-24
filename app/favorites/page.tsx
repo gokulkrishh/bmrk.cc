@@ -13,7 +13,7 @@ export default async function Page() {
   return (
     <>
       <Header headerText="Favorites" />
-      <div className="min-h-dvh border-r border-neutral-200">
+      <div className="min-h-dvh border-r border-neutral-200 pb-24">
         {bookmarks.map((bookmark: BookmarkModified) => (
           <Card tags={tags} key={bookmark.id} data={bookmark} />
         ))}

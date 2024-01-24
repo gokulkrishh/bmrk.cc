@@ -37,7 +37,9 @@ export const createTag = async (tag: TagInsert) => {
   const { error, data } = await supabase
     .from('tags')
     .upsert({ ...tag, user_id: user.id })
+    .eq('user_id', user.id)
     .select();
+
   if (error) {
     return new Error('Unable to create a tag.');
   }

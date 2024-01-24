@@ -25,6 +25,7 @@ type TagListProps = {
 
 export default function TagList({ data, tags }: TagListProps) {
   const [searchText, setSearchText] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const onCreate = async () => {
     const payload = {
@@ -32,6 +33,7 @@ export default function TagList({ data, tags }: TagListProps) {
     } as TagInsert;
 
     try {
+      setLoading(true);
       const [tagData]: any = await createTag(payload);
       const tag_ids = [...(data.tag_ids ?? []), tagData.id];
       await addTagToBookmark(data.id, tag_ids);
@@ -39,10 +41,13 @@ export default function TagList({ data, tags }: TagListProps) {
       setSearchText('');
     } catch (error) {
       toast.error('Unable to create tag. Try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   const onUpdate = async (id: Tag['id']) => {
+    setLoading(true);
     let isChecked = null;
     const tag_ids = [...(data.tag_ids ?? [])];
     const index = tag_ids.indexOf(id);
@@ -58,6 +63,8 @@ export default function TagList({ data, tags }: TagListProps) {
       toast.success(`Tag is ${isChecked ? 'removed' : `added`}.`);
     } catch {
       toast.error(`Unable to ${isChecked ? 'remove' : `add tag`}. Try again.`);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -70,37 +77,41 @@ export default function TagList({ data, tags }: TagListProps) {
         }}
         placeholder="Search tags"
       />
-      <CommandList className="h-68 overflow-y-auto">
+      <CommandList className="h-56 overflow-y-auto">
         <CommandGroup heading="All tags">
-          {tags?.map((tag: Tag) => {
-            const isChecked = data.tag_ids?.includes(tag.id);
-            return (
-              <CommandItem
-                key={tag.id}
-                onSelect={async () => {
-                  await onUpdate(tag.id);
-                }}
-              >
-                <div
-                  className={cn(
-                    'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
-                    isChecked
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-white text-tranparent'
-                  )}
+          {tags
+            ?.sort((a: any, b: any) => a?.name?.localeCompare(b?.name))
+            ?.map((tag: Tag) => {
+              const isChecked = data.tag_ids?.includes(tag.id);
+              return (
+                <CommandItem
+                  disabled={loading}
+                  key={tag.id}
+                  onSelect={async () => {
+                    await onUpdate(tag.id);
+                  }}
                 >
-                  {isChecked ? <CheckIcon className={cn('h-4 w-4')} /> : null}
-                </div>
-                {tag.name}
-              </CommandItem>
-            );
-          })}
+                  <div
+                    className={cn(
+                      'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
+                      isChecked
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-white text-tranparent'
+                    )}
+                  >
+                    {isChecked ? <CheckIcon className={cn('h-4 w-4')} /> : null}
+                  </div>
+                  {tag.name}
+                </CommandItem>
+              );
+            })}
         </CommandGroup>
       </CommandList>
       {searchText.length ? (
         <CommandList>
           <CommandGroup heading="Click to create">
             <CommandItem
+              disabled={loading}
               className="flex justify-between cursor-pointer"
               onSelect={async () => {
                 await onCreate();

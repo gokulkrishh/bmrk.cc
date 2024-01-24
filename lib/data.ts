@@ -1,11 +1,17 @@
-import { Tag } from 'types/data';
+import groupBy from 'object.groupby';
 
-// export const groupBy = (tags: Tag[], key: Tag['id']) => {
-//   return tags.reduce(
-//     (acc, tag) => {
-//       acc[tag[key] as any] = tag;
-//       return acc;
-//     },
-//     {} as Record<string, Tag>
-//   );
-// };
+import { Bookmark, Tag } from 'types/data';
+
+export const groupByKey = (data: any, key: string) => {
+  return data.reduce(
+    (acc: any, datum: any) => {
+      acc[datum[key]] = datum;
+      return acc;
+    },
+    {} as Record<string, Tag>
+  );
+};
+
+export const groupByDate = (data: any) => {
+  return groupBy(data, ({ created_at }: any) => new Date(created_at).getDate());
+};

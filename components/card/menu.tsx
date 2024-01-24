@@ -1,9 +1,12 @@
 'use client';
 
-import { deleteBookmark } from 'app/actions/bookmarks';
+import { useState } from 'react';
+
 import { Edit, LinkIcon, RotateCcw, Trash } from 'lucide-react';
 import { toast } from 'sonner';
-import { BookmarkModified } from 'types/data';
+
+import { deleteBookmark, refreshBookmark } from 'app/actions/bookmarks';
+import { getOg } from 'app/actions/og';
 
 import { MoreIcon } from 'components/icons';
 import {
@@ -13,23 +16,65 @@ import {
   DropdownMenuTrigger,
 } from 'components/ui/dropdown-menu';
 
+import {
+  BookmarkInsertModified,
+  BookmarkModified,
+  BookmarkUpdate,
+} from 'types/data';
+
 type CardMenuProps = {
   id: BookmarkModified['id'];
   url: BookmarkModified['url'];
 };
 
 export default function CardMenu({ url, id }: CardMenuProps) {
+  const [loading, setLoading] = useState(false);
+
+  const onRefresh = async () => {
+    try {
+      setLoading(true);
+      const ogData = await getOg(url);
+      const payload: BookmarkUpdate = {
+        description: ogData.description,
+        title: ogData.title,
+        metadata: {
+          ogImageUrl: ogData['og:image'] ?? '',
+          twitterImageUrl: ogData['og:twitter'] ?? '',
+        },
+      };
+      await refreshBookmark(id, payload);
+      toast.success('Bookmark refreshed.');
+    } catch {
+      toast.error('Unable to refresh, try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onDelete = async () => {
+    try {
+      setLoading(true);
+      await deleteBookmark(id);
+      toast.success('Bookmark is deleted.');
+    } catch {
+      toast.error('Unable to delete, try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="pr-2">
       <DropdownMenu>
         <DropdownMenuTrigger className="cursor-pointer h-9 w-9 mt-1 flex items-center justify-center rounded-full hover:bg-neutral-200 outline-none focus:border-none focus:outline-none active:bg-neutral-200 shrink-0">
-          <MoreIcon className="fill-neutral-500 h-4 w-4 " />
+          <MoreIcon className="fill-neutral-600 h-4 w-4 " />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-2 min-w-40">
-          <DropdownMenuItem>
+          <DropdownMenuItem disabled={loading}>
             <Edit className="h-4 w-4  mr-2.5" /> Edit
           </DropdownMenuItem>
           <DropdownMenuItem
+            disabled={loading}
             onClick={() => {
               navigator.clipboard.writeText(url);
               toast.success('Link copied.');
@@ -37,12 +82,18 @@ export default function CardMenu({ url, id }: CardMenuProps) {
           >
             <LinkIcon className="h-4 w-4  mr-2.5" /> Copy link
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem
+            disabled={loading}
+            onClick={async () => {
+              await onRefresh();
+            }}
+          >
             <RotateCcw className="h-4 w-4  mr-2.5" /> Refresh
           </DropdownMenuItem>
           <DropdownMenuItem
+            disabled={loading}
             onClick={async () => {
-              await deleteBookmark(id);
+              await onDelete();
             }}
             className="!text-red-600 focus:bg-red-100"
           >

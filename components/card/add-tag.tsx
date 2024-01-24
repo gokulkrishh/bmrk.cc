@@ -27,7 +27,7 @@ export default function AddTag({
       <PopoverTrigger asChild>
         <button
           className={cn(
-            `flex items-center justify-center gap-1 rounded-full w-9 h-9 hover:bg-blue-100 active:bg-blue-100`,
+            `flex items-center justify-center gap-1 rounded-full shrink-0 w-9 h-9 hover:bg-blue-100 active:bg-blue-100`,
             { '!opacity-100': open }
           )}
         >

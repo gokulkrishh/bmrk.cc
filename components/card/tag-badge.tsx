@@ -13,8 +13,9 @@ export default function TagBadge({
 }) {
   const bookmarkTagIds = data.tag_ids;
   return (
-    <div className="flex gap-y-1.5 items-center overflow-x-scroll max-sm:max-w-[230px] max-w-[350px] w-full hidden-scrollbar">
+    <div className="flex gap-y-1.5 items-center overflow-x-scroll max-sm:max-w-[200px] max-w-[350px] w-full hidden-scrollbar">
       {tags
+        .sort((a: any, b: any) => a?.name?.localeCompare(b?.name))
         .filter((tag) => bookmarkTagIds?.includes(tag.id))
         .map(({ id, name }) => (
           <Link
