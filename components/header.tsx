@@ -14,7 +14,7 @@ export default function Header() {
         <Link href="/" className="active:opacity-85 ml-2 block sm:hidden">
           <Image
             alt="logo"
-            src="/images/icons/icon.svg"
+            src="/icons/icon.svg"
             width={55}
             height={55}
             style={{

@@ -3,11 +3,10 @@
 import { useState } from 'react';
 
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { DialogDescription } from '@radix-ui/react-dialog';
 import { createBrowserClient } from '@supabase/ssr';
-import Icon from 'public/images/icons/icon.svg';
+import Icon from 'public/icons/icon.svg';
 
 import { GoogleIcon } from 'components/icons';
 import Loader from 'components/loader';

@@ -14,7 +14,7 @@ export default function Sidebar() {
         <Link href="/" className="active:opacity-85 mt-2 mb-2 hidden sm:block">
           <Image
             alt="logo"
-            src="/images/icons/icon.svg"
+            src="/icons/icon.svg"
             width={44}
             height={44}
             style={{ maxWidth: '100%', height: 'auto' }}

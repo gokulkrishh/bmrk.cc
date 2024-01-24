@@ -22,18 +22,18 @@ export const metadata: Metadata = {
     title,
     description,
     creator: '@gokul_i',
-    images: ['/images/open-graph.jpg'],
+    images: ['/open-graph.jpg'],
   },
   openGraph: {
     type: 'website',
     title,
     description,
-    images: ['/images/open-graph.jpg'],
+    images: ['/open-graph.jpg'],
   },
   icons: {
-    icon: '/images/icons/icon.svg',
-    shortcut: '/images/icons/icon.svg',
-    apple: '/images/icons/apple-touch-icon.png',
+    icon: '/icons/icon.svg',
+    shortcut: '/icons/icon.svg',
+    apple: '/icons/apple-touch-icon.png',
   },
 };
 
