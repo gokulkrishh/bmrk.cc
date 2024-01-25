@@ -174,13 +174,13 @@ export const getBookmarksWithFilter = async (tagName: string) => {
 
   return data
     .filter((datum) => {
-      const hasTag = datum.bookmarks_tags.find((bt) =>
+      const hasTag = datum.bookmarks_tags.find((bt: any) =>
         bt.tags.name?.includes(tagName)
       );
       return hasTag;
     })
     .map((datum) => ({
       ...datum,
-      bookmarks_tags: datum.bookmarks_tags.map((bt) => bt.tags.id),
+      bookmarks_tags: datum.bookmarks_tags.map((bt: any) => bt.tags.id),
     }));
 };
