@@ -14,55 +14,33 @@ export type BookmarkModifiedType = Bookmark & {
     twitterImageUrl: string;
     ogImageUrl: string;
   };
+  bookmarks_tags: { [key: string]: Tag }[];
 };
 
 export const getBookmarks = async () => {
-  noStore();
-  const user = await getUser();
-  if (!user) {
-    return [];
-  }
-
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('bookmarks')
-    .select('*')
+    .select(
+      `*, bookmarks_tags (
+        tags!inner (id)
+      )`
+    )
     .order('created_at', { ascending: false })
-    .eq('user_id', user.id)
     .returns<BookmarkModifiedType[]>();
 
   if (error) {
     return [];
   }
 
-  return data;
+  return data.map((datum) => ({
+    ...datum,
+    bookmarks_tags: datum.bookmarks_tags.map((bt) => bt.tags.id),
+  }));
 };
 
 type getBookmarkType = {
   is_fav: Bookmark['is_fav'];
-};
-
-export const getBookmarksWithFilter = async ({ is_fav }: getBookmarkType) => {
-  noStore();
-  const user = await getUser();
-  if (!user) {
-    return [];
-  }
-
-  const supabase = await createSupabaseServerClient();
-  const { data, error } = await supabase
-    .from('bookmarks')
-    .select('*')
-    .order('created_at', { ascending: false })
-    .eq('is_fav', Boolean(is_fav))
-    .eq('user_id', user.id)
-    .returns<BookmarkModifiedType[]>();
-
-  if (error) {
-    return [];
-  }
-
-  return data;
 };
 
 export const createBookmark = async (bookmark: BookmarkInsert) => {
@@ -74,7 +52,7 @@ export const createBookmark = async (bookmark: BookmarkInsert) => {
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase
     .from('bookmarks')
-    .insert({ ...bookmark, user_id: user.id, tag_ids: [] } as BookmarkInsert);
+    .insert({ ...bookmark, user_id: user.id } as BookmarkInsert);
 
   if (error) {
     return new Error('Unable to create a new bookmark.');
@@ -124,27 +102,6 @@ export const addToFav = async (
   revalidatePath('/');
 };
 
-export const addTagToBookmark = async (
-  id: Bookmark['id'],
-  tag_ids: Tag['id'][]
-) => {
-  const user = await getUser();
-  if (!user) {
-    return new Error('User is not authenticated.');
-  }
-
-  const supabase = await createSupabaseServerClient();
-  const { error } = await supabase
-    .from('bookmarks')
-    .update({ tag_ids })
-    .eq('id', id)
-    .eq('user_id', user.id);
-  if (error) {
-    return new Error('Unable to add tag.');
-  }
-  revalidatePath('/');
-};
-
 export const refreshBookmark = async (
   id: Bookmark['id'],
   payload: BookmarkUpdate
@@ -164,4 +121,66 @@ export const refreshBookmark = async (
     return new Error('Unable to refresh bookmark.');
   }
   revalidatePath('/');
+};
+
+export const getAllFavBookmarks = async () => {
+  const user = await getUser();
+  if (!user) {
+    return [];
+  }
+
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from('bookmarks')
+    .select(
+      `*, bookmarks_tags (
+        tags!inner (id)
+      )`
+    )
+    .order('created_at', { ascending: false })
+    .eq('is_fav', true)
+    .eq('user_id', user.id)
+    .returns<BookmarkModifiedType[]>();
+
+  if (error) {
+    return [];
+  }
+
+  return data;
+};
+
+export const getBookmarksWithFilter = async (tagName: string) => {
+  const user = await getUser();
+  if (!user) {
+    return [];
+  }
+
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase
+    .from('bookmarks')
+    .select(
+      `*, bookmarks_tags (
+        tags!inner (id,name)
+      )`
+    )
+    .order('created_at', { ascending: false })
+    .eq('user_id', user.id)
+    .returns<BookmarkModifiedType[]>();
+
+  if (error) {
+    return [];
+  }
+
+  return data
+    .filter((datum) => {
+      const hasTag = datum.bookmarks_tags.find((bt) =>
+        bt.tags.name?.includes(tagName)
+      );
+      return hasTag;
+    })
+    .map((datum) => ({
+      ...datum,
+      bookmarks_tags: datum.bookmarks_tags.map((bt) => bt.tags.id),
+    }));
 };

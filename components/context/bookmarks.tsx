@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 import { getBookmarks } from 'app/actions/bookmarks';
+
 import { BookmarkModified } from 'types/data';
 
 const BookmarkContext = createContext(null);
@@ -20,8 +21,8 @@ export const BookmarkProvider = (props: BookmarkContextProptype) => {
     const getAllBookmarks = async () => {
       setLoading(true);
       const data = await getBookmarks();
-      setBookmarks(data as BookmarkModified[]);
       setLoading(false);
+      setBookmarks(data as BookmarkModified[]);
     };
 
     getAllBookmarks();

@@ -9,6 +9,46 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      bookmarks_tags: {
+        Row: {
+          bookmark_id: number;
+          tag_id: number;
+          user_id: string;
+        };
+        Insert: {
+          bookmark_id: number;
+          tag_id: number;
+          user_id: string;
+        };
+        Update: {
+          bookmark_id?: number;
+          tag_id?: number;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'bookmarks_tags_bookmark_id_fkey';
+            columns: ['bookmark_id'];
+            isOneToOne: false;
+            referencedRelation: 'bookmarks';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'bookmarks_tags_tag_id_fkey';
+            columns: ['tag_id'];
+            isOneToOne: false;
+            referencedRelation: 'tags';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'bookmarks_tags_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       bookmarks: {
         Row: {
           created_at: string;
@@ -16,7 +56,7 @@ export interface Database {
           id: number;
           is_fav: boolean | null;
           metadata: Json | null;
-          tag_ids: number[];
+          tag_ids: number[] | null;
           title: string | null;
           updated_at: string;
           url: string;
@@ -28,7 +68,7 @@ export interface Database {
           id?: never;
           is_fav?: boolean | null;
           metadata?: Json | null;
-          tag_ids: number[];
+          tag_ids?: number[] | null;
           title?: string | null;
           updated_at?: string;
           url: string;
@@ -40,7 +80,7 @@ export interface Database {
           id?: never;
           is_fav?: boolean | null;
           metadata?: Json | null;
-          tag_ids?: number[];
+          tag_ids?: number[] | null;
           title?: string | null;
           updated_at?: string;
           url?: string;

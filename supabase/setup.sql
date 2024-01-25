@@ -1,9 +1,10 @@
 -- Drop existing tables, functions, and triggers if they exist
 drop trigger if exists on_auth_user_created on auth.users;
 drop function if exists handle_new_user;
-drop table if exists tags;
-drop table if exists bookmarks;
-drop table if exists users;
+drop table if exists bookmarks_tags cascade;
+drop table if exists tags cascade;
+drop table if exists bookmarks cascade;
+drop table if exists users cascade;
 
 -- Create a table for public users
 create table users (
@@ -47,7 +48,6 @@ create table
     metadata json,
     user_id uuid references users on delete cascade not null,
     is_fav boolean default false,
-    tag_ids bigint[] default [],
     created_at timestamp with time zone default current_timestamp not null,
     updated_at timestamp with time zone default current_timestamp not null
   );
@@ -76,4 +76,21 @@ alter table tags
   enable row level security;
 
 create policy "Allow operations for authenticated users only" on tags
+  for all using (auth.uid () = user_id);
+
+
+create table
+  bookmarks_tags (
+    bookmark_id bigint not null references bookmarks (id),
+    tag_id bigint not null references tags (id),
+    user_id uuid not null references  users (id),
+    primary key (bookmark_id, tag_id)
+  );
+
+-- Set up Row Level Security (RLS)
+-- See https://supabase.com/docs/guides/auth/row-level-security for more details.
+alter table bookmarks_tags
+  enable row level security;
+
+create policy "Allow operations for authenticated users only" on bookmarks_tags
   for all using (auth.uid () = user_id);

@@ -95,7 +95,7 @@ export default function CardMenu({ url, id }: CardMenuProps) {
             onClick={async () => {
               await onDelete();
             }}
-            className="!text-red-600 focus:bg-red-100"
+            className="!text-red-600 focus:bg-red-100 active:bg-red-100"
           >
             <Trash className="h-4 w-4  mr-2.5" /> Delete
           </DropdownMenuItem>

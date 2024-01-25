@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
+import { StarFilledIcon } from '@radix-ui/react-icons';
 import { Command as CommandPrimitive } from 'cmdk';
-import { Bookmark } from 'types/data';
 
 import CardAvatar from 'components/card/avatar';
 import { useBookmarks } from 'components/context/bookmarks';
@@ -16,6 +16,8 @@ import {
   CommandItem,
   CommandList,
 } from 'components/ui/command';
+
+import { Bookmark } from 'types/data';
 
 type SearchCommandProps = {
   open: boolean;
@@ -62,7 +64,7 @@ export default function SearchCommand({ open, setOpen }: SearchCommandProps) {
         {result.length === 0 && search.length ? (
           <CommandEmpty>No results found.</CommandEmpty>
         ) : null}
-        <CommandGroup heading="Bookmarks">
+        <CommandGroup heading="All Bookmarks">
           {loading ? (
             <CommandPrimitive.Loading>
               <div className="flex justify-center mt-2 mb-6">
@@ -73,7 +75,7 @@ export default function SearchCommand({ open, setOpen }: SearchCommandProps) {
           {result.map((bookmark: Bookmark) => (
             <CommandItem
               className="flex flex-col items-start w-full"
-              onClick={() => {
+              onSelect={() => {
                 openBookmark(bookmark.url);
               }}
               key={bookmark.id}
@@ -92,9 +94,12 @@ export default function SearchCommand({ open, setOpen }: SearchCommandProps) {
                 />{' '}
                 <div className="flex flex-col">
                   <p className="relative -top-0.5">{bookmark.title}</p>
-                  <span className="text-xs mt-0.5 text-neutral-500">
+                  <div className="text-xs flex items-center mt-0.5 text-neutral-600">
+                    {bookmark.is_fav ? (
+                      <StarFilledIcon className="!h-3 !w-3 -ml-1 text-yellow-500 mr-1" />
+                    ) : null}
                     {new URL(bookmark.url)?.hostname?.replace('www.', '')}
-                  </span>
+                  </div>
                 </div>
               </Link>
             </CommandItem>

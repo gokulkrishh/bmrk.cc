@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { CheckIcon } from '@radix-ui/react-icons';
 import { CommandList } from 'cmdk';
 import { toast } from 'sonner';
 
-import { addTagToBookmark } from 'app/actions/bookmarks';
-import { createTag } from 'app/actions/tags';
+import { addTagToBookmark, createTag } from 'app/actions/tags';
 
 import {
   Command,
@@ -14,18 +13,20 @@ import {
   CommandItem,
 } from 'components/ui/command';
 
+import { groupByKey } from 'lib/data';
 import { cn } from 'lib/utils';
 
-import { Bookmark, Tag, TagInsert } from 'types/data';
+import { Bookmark, BookmarkModified, Tag, TagInsert } from 'types/data';
 
 type TagListProps = {
-  data: Bookmark;
+  data: BookmarkModified;
   tags: Tag[];
 };
 
 export default function TagList({ data, tags }: TagListProps) {
   const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(false);
+  const groupByTagName = useMemo(() => groupByKey(tags, 'name'), [tags]);
 
   const onCreate = async () => {
     const payload = {
@@ -34,10 +35,8 @@ export default function TagList({ data, tags }: TagListProps) {
 
     try {
       setLoading(true);
-      const [tagData]: any = await createTag(payload);
-      const tag_ids = [...(data.tag_ids ?? []), tagData.id];
-      await addTagToBookmark(data.id, tag_ids);
-      toast.success('Tag created and added to bookmark.');
+      await createTag(data.id, payload);
+      toast.success('Tag is added to bookmark.');
       setSearchText('');
     } catch (error) {
       toast.error('Unable to create tag. Try again.');
@@ -46,23 +45,14 @@ export default function TagList({ data, tags }: TagListProps) {
     }
   };
 
-  const onUpdate = async (id: Tag['id']) => {
+  const onUpdate = async (id: Tag['id'], isChecked: boolean) => {
     setLoading(true);
-    let isChecked = null;
-    const tag_ids = [...(data.tag_ids ?? [])];
-    const index = tag_ids.indexOf(id);
-    if (index > -1) {
-      isChecked = true;
-      tag_ids.splice(index, 1);
-    } else {
-      isChecked = false;
-      tag_ids.push(id);
-    }
+
     try {
-      await addTagToBookmark(data.id, tag_ids);
-      toast.success(`Tag is ${isChecked ? 'removed' : `added`}.`);
+      await addTagToBookmark(data.id, id, isChecked);
+      toast.success(`Tag is ${!isChecked ? 'removed' : `added`}.`);
     } catch {
-      toast.error(`Unable to ${isChecked ? 'remove' : `add tag`}. Try again.`);
+      toast.error(`Unable to ${!isChecked ? 'remove' : `add tag`}. Try again.`);
     } finally {
       setLoading(false);
     }
@@ -75,39 +65,47 @@ export default function TagList({ data, tags }: TagListProps) {
         onValueChange={(value: string) => {
           setSearchText(value);
         }}
-        placeholder="Search tags"
+        placeholder="Create or Search tags"
       />
       <CommandList className="max-h-56 overflow-y-auto">
-        <CommandGroup heading="All tags">
-          {tags
-            ?.sort((a: any, b: any) => a?.name?.localeCompare(b?.name))
-            ?.map((tag: Tag) => {
-              const isChecked = data.tag_ids?.includes(tag.id);
-              return (
-                <CommandItem
-                  disabled={loading}
-                  key={tag.id}
-                  onSelect={async () => {
-                    await onUpdate(tag.id);
-                  }}
-                >
-                  <div
-                    className={cn(
-                      'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
-                      isChecked
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-white text-tranparent'
-                    )}
+        {tags.length ? (
+          <CommandGroup heading="All tags">
+            {tags
+              .sort((a: any, b: any) => a?.name?.localeCompare(b?.name))
+              .map((tag: Tag) => {
+                const isChecked = data?.bookmarks_tags?.includes(tag.id);
+                return (
+                  <CommandItem
+                    disabled={loading}
+                    key={tag.id}
+                    onSelect={async () => {
+                      await onUpdate(tag.id, isChecked);
+                    }}
                   >
-                    {isChecked ? <CheckIcon className={cn('h-4 w-4')} /> : null}
-                  </div>
-                  {tag.name}
-                </CommandItem>
-              );
-            })}
-        </CommandGroup>
+                    <div
+                      className={cn(
+                        'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-blue-600',
+                        isChecked
+                          ? 'bg-blue-600 text-primary-foreground'
+                          : 'bg-white text-tranparent'
+                      )}
+                    >
+                      {isChecked ? (
+                        <CheckIcon className={cn('h-4 w-4')} />
+                      ) : null}
+                    </div>
+                    {tag.name}
+                  </CommandItem>
+                );
+              })}
+          </CommandGroup>
+        ) : (
+          <CommandItem className="text-sm flex justify-center">
+            No data.
+          </CommandItem>
+        )}
       </CommandList>
-      {searchText.length ? (
+      {searchText.length && !groupByTagName[searchText] ? (
         <CommandList>
           <CommandGroup heading="Click to create">
             <CommandItem

@@ -11,6 +11,7 @@ export type BookmarkModified = Bookmark & {
     twitterImageUrl: string;
     ogImageUrl: string;
   };
+  bookmarks_tags: Tag['id'][];
 };
 export type BookmarkInsertModified = BookmarkInsert & {
   metadata: {

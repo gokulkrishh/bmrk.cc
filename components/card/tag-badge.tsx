@@ -11,7 +11,7 @@ export default function TagBadge({
   data: BookmarkModified;
   tags: Tag[];
 }) {
-  const bookmarkTagIds = data.tag_ids;
+  const bookmarkTagIds = data.bookmarks_tags;
   return (
     <div className="flex gap-y-1.5 items-center overflow-x-scroll max-sm:max-w-[200px] max-w-[350px] w-full hidden-scrollbar">
       {tags

@@ -6,7 +6,7 @@ import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover';
 
 import { cn } from 'lib/utils';
 
-import { Bookmark, Tag } from 'types/data';
+import { BookmarkModified, Tag } from 'types/data';
 
 import TagList from './tag-list';
 
@@ -14,7 +14,7 @@ export default function AddTag({
   data,
   tags,
 }: {
-  data: Bookmark;
+  data: BookmarkModified;
   tags: Tag[];
 }) {
   const [open, setOpen] = useState(false);

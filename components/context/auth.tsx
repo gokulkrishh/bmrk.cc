@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
-import { useRouter } from 'next/navigation';
+import { permanentRedirect, useRouter } from 'next/navigation';
 
 import createSupabaseBrowserClient from 'lib/supabase/client';
 
