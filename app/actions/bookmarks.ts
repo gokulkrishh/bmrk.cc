@@ -54,7 +54,7 @@ export const createBookmark = async (bookmark: BookmarkInsert) => {
   if (error) {
     return new Error('Unable to create a new bookmark.');
   }
-  revalidatePath('/');
+  revalidatePath('/', 'page');
 };
 
 export const deleteBookmark = async (id: Bookmark['id']) => {
@@ -64,6 +64,17 @@ export const deleteBookmark = async (id: Bookmark['id']) => {
   }
 
   const supabase = await createSupabaseServerClient();
+
+  const { error: bookmarkError } = await supabase
+    .from('bookmarks_tags')
+    .delete()
+    .eq('bookmark_id', id)
+    .eq('user_id', user.id);
+
+  if (bookmarkError) {
+    return new Error('Unable to delete the bookmark.');
+  }
+
   const { error } = await supabase
     .from('bookmarks')
     .delete()
@@ -74,7 +85,7 @@ export const deleteBookmark = async (id: Bookmark['id']) => {
     return new Error('Unable to delete the bookmark.');
   }
 
-  revalidatePath('/');
+  revalidatePath('/', 'page');
 };
 
 export const addToFav = async (
@@ -90,7 +101,7 @@ export const addToFav = async (
   if (error) {
     return new Error('Unable to add to fav.');
   }
-  revalidatePath('/');
+  revalidatePath('/', 'page');
 };
 
 export const refreshBookmark = async (

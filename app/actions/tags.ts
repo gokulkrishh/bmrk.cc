@@ -47,7 +47,7 @@ export const createTag = async (id: Bookmark['id'], tag: TagInsert) => {
     return new Error('Unable to add tag to the bookmark.');
   }
 
-  revalidatePath('/');
+  revalidatePath('/', 'page');
 };
 
 export const addTagToBookmark = async (
