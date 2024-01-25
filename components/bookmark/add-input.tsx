@@ -2,14 +2,16 @@
 
 import { useState } from 'react';
 
+import { toast } from 'sonner';
+
 import { createBookmark } from 'app/actions/bookmarks';
 import { OgResponse, getOg } from 'app/actions/og';
-import { toast } from 'sonner';
-import { BookmarkInsertModified } from 'types/data';
 
 import Loader from 'components/loader';
 
 import { cn, isValidUrl } from 'lib/utils';
+
+import { BookmarkInsertModified } from 'types/data';
 
 export default function AddBookmarkInput({
   className,
