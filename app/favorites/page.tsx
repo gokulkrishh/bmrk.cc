@@ -24,22 +24,17 @@ export default async function Page() {
             const bookmarksData: BookmarkModifiedType[] =
               groupedBookmarks[groupKey];
             return (
-              <div
-                className={cn(`flex flex-col w-full`, {
-                  'border-b border-neutral-200': bookmarks.length > 1,
-                })}
-                key={index}
-              >
-                {bookmarksData
-                  .reverse()
-                  .map((bookmark: BookmarkModifiedType, index: number) => (
+              <div className={cn(`flex flex-col w-full`)} key={index}>
+                {bookmarksData.map(
+                  (bookmark: BookmarkModifiedType, index: number) => (
                     <Card
                       last={index === bookmarksData.length - 1}
                       key={bookmark.id}
                       tags={tags}
                       data={bookmark}
                     />
-                  ))}
+                  )
+                )}
               </div>
             );
           })}

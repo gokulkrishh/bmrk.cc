@@ -70,9 +70,11 @@ export const addTagToBookmark = async (
   const supabase = await createSupabaseServerClient();
 
   if (!isChecked) {
-    const { error } = await supabase
-      .from('bookmarks_tags')
-      .insert({ bookmark_id: id, tag_id: tagId, user_id: user.id });
+    const { error } = await supabase.from('bookmarks_tags').insert({
+      bookmark_id: id,
+      tag_id: tagId,
+      user_id: 'cb489a84-2422-4e12-8d88-5451ae853dba',
+    });
 
     if (error) {
       return new Error('Unable to remove tag from bookmark.');

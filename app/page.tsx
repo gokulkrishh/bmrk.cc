@@ -34,11 +34,9 @@ export default async function Page() {
                 })}
                 key={index}
               >
-                {bookmarksData
-                  .reverse()
-                  .map((bookmark: BookmarkModifiedType) => (
-                    <Card key={bookmark.id} tags={tags} data={bookmark} />
-                  ))}
+                {bookmarksData.map((bookmark: BookmarkModifiedType) => (
+                  <Card key={bookmark.id} tags={tags} data={bookmark} />
+                ))}
               </div>
             );
           })}
