@@ -2,13 +2,13 @@ import Link from 'next/link';
 
 import { Badge } from 'components/ui/badge';
 
-import { BookmarkModified, Tag } from 'types/data';
+import { BookmarkModifiedType, Tag } from 'types/data';
 
 export default function TagBadge({
   data,
   tags,
 }: {
-  data: BookmarkModified;
+  data: BookmarkModifiedType;
   tags: Tag[];
 }) {
   const bookmarkTagIds = data.bookmarks_tags;

@@ -7,7 +7,7 @@ import Header from 'components/header';
 import { groupByDate } from 'lib/data';
 import { cn } from 'lib/utils';
 
-import { BookmarkModified } from 'types/data';
+import { BookmarkModifiedType } from 'types/data';
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug: tagName } = params;
@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {Object.keys(groupedBookmarks)
           .reverse()
           .map((groupKey: any, index: number) => {
-            const bookmarksData: BookmarkModified[] =
+            const bookmarksData: BookmarkModifiedType[] =
               groupedBookmarks[groupKey];
             return (
               <div
@@ -31,9 +31,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 })}
                 key={index}
               >
-                {bookmarksData.reverse().map((bookmark: BookmarkModified) => (
-                  <Card key={bookmark.id} tags={tags} data={bookmark} />
-                ))}
+                {bookmarksData
+                  .reverse()
+                  .map((bookmark: BookmarkModifiedType) => (
+                    <Card
+                      last={index === bookmarksData.length - 1}
+                      key={bookmark.id}
+                      tags={tags}
+                      data={bookmark}
+                    />
+                  ))}
               </div>
             );
           })}

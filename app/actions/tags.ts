@@ -91,3 +91,55 @@ export const addTagToBookmark = async (
 
   revalidatePath('/');
 };
+
+export const deleteTag = async (tagId: Tag['id']) => {
+  const supabase = await createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return new Error('User is not authenticated.');
+  }
+
+  const { error: bookmarkError } = await supabase
+    .from('bookmarks_tags')
+    .delete()
+    .eq('tag_id', tagId)
+    .eq('user_id', user.id);
+
+  if (bookmarkError) {
+    return new Error('Unable to delete tag from bookmarks.');
+  }
+
+  const { error } = await supabase
+    .from('tags')
+    .delete()
+    .eq('id', tagId)
+    .eq('user_id', user.id);
+
+  if (error) {
+    return new Error('Unable to delete the tag.');
+  }
+
+  revalidatePath('/tags');
+};
+
+export const getTagsWithBookmarkIds = async () => {
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase.from('bookmarks_tags').select();
+
+  if (error) {
+    return {};
+  }
+
+  return data.reduce((acc: { [key: string]: number[] }, datum) => {
+    if (!acc[datum.tag_id]) {
+      acc[datum.tag_id] = [datum.bookmark_id];
+    } else {
+      acc[datum.tag_id].push(datum.bookmark_id);
+    }
+    return acc;
+  }, {});
+};

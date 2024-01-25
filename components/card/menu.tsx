@@ -18,13 +18,13 @@ import {
 
 import {
   BookmarkInsertModified,
-  BookmarkModified,
+  BookmarkModifiedType,
   BookmarkUpdate,
 } from 'types/data';
 
 type CardMenuProps = {
-  id: BookmarkModified['id'];
-  url: BookmarkModified['url'];
+  id: BookmarkModifiedType['id'];
+  url: BookmarkModifiedType['url'];
 };
 
 export default function CardMenu({ url, id }: CardMenuProps) {

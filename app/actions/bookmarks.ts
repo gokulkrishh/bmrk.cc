@@ -4,18 +4,15 @@ import { unstable_noStore as noStore, revalidatePath } from 'next/cache';
 
 import createSupabaseServerClient from 'lib/supabase/server';
 
-import { Bookmark, BookmarkInsert, BookmarkUpdate, Tag } from 'types/data';
+import {
+  Bookmark,
+  BookmarkInsert,
+  BookmarkModifiedType,
+  BookmarkUpdate,
+  Tag,
+} from 'types/data';
 
 import { getUser } from './user';
-
-export type BookmarkModifiedType = Bookmark & {
-  metadata: {
-    imageUrl: string;
-    twitterImageUrl: string;
-    ogImageUrl: string;
-  };
-  bookmarks_tags: { [key: string]: Tag }[];
-};
 
 export const getBookmarks = async () => {
   const supabase = await createSupabaseServerClient();
@@ -35,7 +32,7 @@ export const getBookmarks = async () => {
 
   return data.map((datum) => ({
     ...datum,
-    bookmarks_tags: datum.bookmarks_tags.map((bt) => bt.tags.id),
+    bookmarks_tags: datum.bookmarks_tags.map((bt: any) => bt.tags.id),
   }));
 };
 
@@ -146,7 +143,10 @@ export const getAllFavBookmarks = async () => {
     return [];
   }
 
-  return data;
+  return data.map((datum) => ({
+    ...datum,
+    bookmarks_tags: datum.bookmarks_tags.map((bt: any) => bt.tags.id),
+  }));
 };
 
 export const getBookmarksWithFilter = async (tagName: string) => {

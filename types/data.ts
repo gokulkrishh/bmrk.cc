@@ -5,7 +5,7 @@ export type BookmarkInsert =
   Database['public']['Tables']['bookmarks']['Insert'];
 export type BookmarkUpdate =
   Database['public']['Tables']['bookmarks']['Update'];
-export type BookmarkModified = Bookmark & {
+export type BookmarkModifiedType = Bookmark & {
   metadata: {
     imageUrl: string;
     twitterImageUrl: string;

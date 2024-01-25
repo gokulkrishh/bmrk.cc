@@ -7,13 +7,13 @@ import { addToFav } from 'app/actions/bookmarks';
 
 import { cn } from 'lib/utils';
 
-import { BookmarkModified, Tag } from 'types/data';
+import { BookmarkModifiedType, Tag } from 'types/data';
 
 import Loader from '../loader';
 import AddTag from './add-tag';
 import TagBadge from './tag-badge';
 
-function FavButtonIcon({ is_fav }: { is_fav: BookmarkModified['is_fav'] }) {
+function FavButtonIcon({ is_fav }: { is_fav: BookmarkModifiedType['is_fav'] }) {
   const { pending } = useFormStatus();
   return (
     <button
@@ -37,7 +37,7 @@ export default function CardActions({
   data,
   tags,
 }: {
-  data: BookmarkModified;
+  data: BookmarkModifiedType;
   tags: Tag[];
 }) {
   const { is_fav } = data;

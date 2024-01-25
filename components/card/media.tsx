@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { BookmarkModified } from 'types/data';
+import { BookmarkModifiedType } from 'types/data';
 
 const blurDataURL = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWGhoYrwEMwAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=`;
 
-export default function CardMedia({ data }: { data: BookmarkModified }) {
+export default function CardMedia({ data }: { data: BookmarkModifiedType }) {
   const imageUrl =
     data?.metadata?.ogImageUrl ||
     data?.metadata?.twitterImageUrl ||

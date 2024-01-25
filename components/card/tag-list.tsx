@@ -16,10 +16,10 @@ import {
 import { groupByKey } from 'lib/data';
 import { cn } from 'lib/utils';
 
-import { Bookmark, BookmarkModified, Tag, TagInsert } from 'types/data';
+import { Bookmark, BookmarkModifiedType, Tag, TagInsert } from 'types/data';
 
 type TagListProps = {
-  data: BookmarkModified;
+  data: BookmarkModifiedType;
   tags: Tag[];
 };
 

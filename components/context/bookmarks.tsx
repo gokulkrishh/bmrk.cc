@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 import { getBookmarks } from 'app/actions/bookmarks';
 
-import { BookmarkModified } from 'types/data';
+import { BookmarkModifiedType } from 'types/data';
 
 const BookmarkContext = createContext(null);
 
@@ -13,7 +13,7 @@ type BookmarkContextProptype = {
 };
 
 export const BookmarkProvider = (props: BookmarkContextProptype) => {
-  const [bookmarks, setBookmarks] = useState<BookmarkModified[]>([]);
+  const [bookmarks, setBookmarks] = useState<BookmarkModifiedType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const { children } = props;
 
@@ -22,7 +22,7 @@ export const BookmarkProvider = (props: BookmarkContextProptype) => {
       setLoading(true);
       const data = await getBookmarks();
       setLoading(false);
-      setBookmarks(data as BookmarkModified[]);
+      setBookmarks(data as BookmarkModifiedType[]);
     };
 
     getAllBookmarks();
