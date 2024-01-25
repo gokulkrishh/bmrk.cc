@@ -84,7 +84,7 @@ export const addTagToBookmark = async (
     }
   }
 
-  revalidatePath('/');
+  revalidatePath('/', 'page');
 };
 
 export const deleteTag = async (tagId: Tag['id']) => {

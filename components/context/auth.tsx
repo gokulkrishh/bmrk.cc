@@ -9,8 +9,8 @@ import createSupabaseBrowserClient from 'lib/supabase/client';
 const AuthContext = createContext(null);
 
 export const AuthProvider = (props: any) => {
-  const { session, children } = props;
-  const [user, setUser] = useState<any>(session?.user);
+  const { children } = props;
+  const [user, setUser] = useState<any>(null);
   const supabase = createSupabaseBrowserClient();
   const router = useRouter();
 
@@ -19,7 +19,7 @@ export const AuthProvider = (props: any) => {
       const { data } = await supabase.auth.getUser();
       setUser(data?.user);
       if (data?.user) {
-        router.refresh();
+        router.replace('/');
       }
     }
 

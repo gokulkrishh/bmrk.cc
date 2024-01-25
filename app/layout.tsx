@@ -52,12 +52,10 @@ export const viewport: Viewport = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const user = await getUser();
-
   return (
     <html lang="en" className="h-full">
       <body className={`${inter.className} flex h-full bg-white`}>
-        <AuthProvider user={user}>
+        <AuthProvider>
           <BookmarkProvider>
             <TagProvider>
               <div className="max-w-[600px] m-auto flex min-h-dvh w-full">
