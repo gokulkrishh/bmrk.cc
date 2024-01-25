@@ -18,16 +18,13 @@ export default function TagBadge({
         .sort((a: any, b: any) => a?.name?.localeCompare(b?.name))
         .filter((tag) => bookmarkTagIds?.includes(tag.id))
         .map(({ id, name }) => (
-          <Link
-            className="mr-1.5"
-            prefetch={false}
+          <Badge
             key={id}
-            href={`/tags/${name}`}
+            className="font-normal py-1 mr-1.5"
+            variant="secondary"
           >
-            <Badge className="font-normal" variant="secondary">
-              {name}
-            </Badge>
-          </Link>
+            <Link href={`/tags/${name}`}>{name}</Link>
+          </Badge>
         ))}
     </div>
   );

@@ -13,15 +13,11 @@ export default function Header({ headerText }: { headerText?: string }) {
       <div className="flex items-center">
         <Link href="/" className="active:opacity-85 ml-2 block sm:hidden">
           <Image
-            priority={true}
             alt="logo"
             src="/icons/icon.svg"
             width={55}
             height={55}
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-            }}
+            style={{ maxWidth: '100%', height: 'auto' }}
           />
         </Link>
         <h2 className="w-full font-medium flex flex-col p-3 tracking-wide">

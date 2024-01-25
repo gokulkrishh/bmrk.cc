@@ -9,15 +9,10 @@ import { Bookmark, Tag, TagInsert } from 'types/data';
 import { getUser } from './user';
 
 export const getTags = async () => {
-  const user = await getUser();
-  if (!user) {
-    return [];
-  }
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('tags')
     .select('id, name')
-    .eq('user_id', user.id)
     .order('name', { ascending: false })
     .returns<Tag[]>();
 
@@ -55,8 +50,6 @@ export const createTag = async (id: Bookmark['id'], tag: TagInsert) => {
   revalidatePath('/');
 };
 
-export const getTagsByName = async () => {};
-
 export const addTagToBookmark = async (
   id: Bookmark['id'],
   tagId: Tag['id'],
@@ -73,7 +66,7 @@ export const addTagToBookmark = async (
     const { error } = await supabase.from('bookmarks_tags').insert({
       bookmark_id: id,
       tag_id: tagId,
-      user_id: 'cb489a84-2422-4e12-8d88-5451ae853dba',
+      user_id: user.id,
     });
 
     if (error) {
@@ -129,13 +122,10 @@ export const deleteTag = async (tagId: Tag['id']) => {
 
 export const getTagsWithBookmarkIds = async () => {
   const supabase = await createSupabaseServerClient();
-
   const { data, error } = await supabase.from('bookmarks_tags').select();
-
   if (error) {
     return {};
   }
-
   return data.reduce((acc: { [key: string]: number[] }, datum) => {
     if (!acc[datum.tag_id]) {
       acc[datum.tag_id] = [datum.bookmark_id];

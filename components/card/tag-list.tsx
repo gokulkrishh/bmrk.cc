@@ -100,9 +100,7 @@ export default function TagList({ data, tags }: TagListProps) {
               })}
           </CommandGroup>
         ) : (
-          <CommandItem className="text-sm flex justify-center">
-            No data.
-          </CommandItem>
+          <div className="text-sm flex py-4 justify-center">No tags.</div>
         )}
       </CommandList>
       {searchText.length && !groupByTagName[searchText] ? (

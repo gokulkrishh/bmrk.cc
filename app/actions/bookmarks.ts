@@ -81,16 +81,10 @@ export const addToFav = async (
   id: Bookmark['id'],
   isFav: Bookmark['is_fav']
 ) => {
-  const user = await getUser();
-  if (!user) {
-    return new Error('User is not authenticated.');
-  }
-
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase
     .from('bookmarks')
     .update({ is_fav: isFav })
-    .eq('user_id', user.id)
     .eq('id', id);
 
   if (error) {
