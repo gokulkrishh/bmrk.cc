@@ -14,7 +14,7 @@ export default function CardTimeline({ url, title }: CardTimelineProps) {
     <div className="w-2 border-l border-neutral-200">
       <span
         className={cn(
-          `w-4 h-4 shrink-0 relative left-[-8.5px] top-[8px] rounded-full bg-blue-transparent text-white inline-flex items-center justify-center`
+          `w-4 h-4 shrink-0 relative left-[-8.5px] top-[12px] rounded-full bg-blue-transparent text-white inline-flex items-center justify-center`
         )}
       >
         <CardAvatar

@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
-import { Bookmark } from 'lucide-react';
-
 import { AuthProvider } from 'components/context/auth';
 import { BookmarkProvider } from 'components/context/bookmarks';
 import { TagProvider } from 'components/context/tags';
+import ThemeProvider from 'components/context/theme';
 import Sidebar from 'components/sidebar';
 import { Toaster } from 'components/ui/sonner';
 import { TooltipProvider } from 'components/ui/tooltip';

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import { SearchIcon } from 'lucide-react';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import { useAuth } from 'components/context/auth';
 import SignupModal from 'components/modal/signup';
@@ -15,6 +16,15 @@ import SearchCommand from './command';
 export default function Search({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
+
+  useHotkeys(
+    ['k'],
+    (_, handler) => {
+      const keys = handler.keys?.join('');
+      if (keys === 'k') setOpen(true);
+    },
+    { keyup: true }
+  );
 
   return (
     <>

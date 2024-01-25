@@ -10,7 +10,7 @@ export default function CardInfo({ data }: { data: Bookmark }) {
       rel="noopener"
       href={data.url}
       prefetch={false}
-      className="group items-start justify-between flex-col py-2 pt-1.5 gap-1 flex hover:bg-neutral-50 text-black w-[calc(100%-60px)]"
+      className="group items-start justify-between flex-col py-2 mt-1 pt-1.5 gap-1 flex hover:bg-neutral-50 text-black w-[calc(100%-60px)]"
     >
       <p className="relative items-center inline-flex text-[15px]">
         {data.title}

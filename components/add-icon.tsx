@@ -3,18 +3,27 @@
 import { useState } from 'react';
 
 import { Plus } from 'lucide-react';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import { cn } from 'lib/utils';
 
 import { useAuth } from './context/auth';
 import AddBookmark from './modal/bookmark';
 import SignupModal from './modal/signup';
-import { Dialog, DialogContent } from './ui/dialog';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
 export default function AddIcon({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
+
+  useHotkeys(
+    ['a'],
+    (_, handler) => {
+      const keys = handler.keys?.join('');
+      if (keys === 'a') setOpen(true);
+    },
+    { keyup: true }
+  );
 
   return (
     <div>
