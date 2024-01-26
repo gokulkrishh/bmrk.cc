@@ -26,7 +26,7 @@ export const BookmarkProvider = (props: BookmarkContextProptype) => {
     }
 
     fetchBookmarks();
-  }, []);
+  }, [children]);
 
   const value = useMemo(() => {
     return { bookmarks, loading };

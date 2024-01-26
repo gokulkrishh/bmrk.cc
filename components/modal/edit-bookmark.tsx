@@ -82,6 +82,7 @@ export default function EditBookmark({
           }}
           value={state.title ?? ''}
           required
+          autoFocus
         />
       </div>
 
@@ -151,6 +152,7 @@ export default function EditBookmark({
           <DialogTitle className="text-lg font-medium">
             Edit Bookmark
           </DialogTitle>
+          <Form />
         </DialogContent>
       </Dialog>
     );

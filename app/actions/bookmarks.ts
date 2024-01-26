@@ -1,8 +1,6 @@
 'use server';
 
-import { cache } from 'react';
-
-import { unstable_noStore as noStore, revalidatePath } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 
 import createSupabaseServerClient from 'lib/supabase/server';
 
@@ -16,7 +14,7 @@ import {
 
 import { getUser } from './user';
 
-export const getBookmarks = cache(async () => {
+export const getBookmarks = async () => {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('bookmarks')
@@ -36,7 +34,7 @@ export const getBookmarks = cache(async () => {
     ...datum,
     bookmarks_tags: datum.bookmarks_tags.map((bt: any) => bt.tags.id),
   }));
-});
+};
 
 type getBookmarkType = {
   is_fav: Bookmark['is_fav'];
@@ -147,7 +145,7 @@ export const refreshBookmark = async (
   revalidatePath('/');
 };
 
-export const getAllFavBookmarks = cache(async () => {
+export const getAllFavBookmarks = async () => {
   const user = await getUser();
   if (!user) {
     return [];
@@ -174,9 +172,9 @@ export const getAllFavBookmarks = cache(async () => {
     ...datum,
     bookmarks_tags: datum.bookmarks_tags.map((bt: any) => bt.tags.id),
   }));
-});
+};
 
-export const getBookmarksWithFilter = cache(async (tagName: string) => {
+export const getBookmarksWithFilter = async (tagName: string) => {
   const user = await getUser();
   if (!user) {
     return [];
@@ -210,4 +208,4 @@ export const getBookmarksWithFilter = cache(async (tagName: string) => {
       ...datum,
       bookmarks_tags: datum.bookmarks_tags.map((bt: any) => bt.tags.id),
     }));
-});
+};
