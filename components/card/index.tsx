@@ -30,7 +30,7 @@ export default function Card({ data, tags, last }: CardProps) {
       <div className="w-full flex flex-col">
         <div className="flex w-full justify-between">
           <CardInfo data={data} />
-          <CardMenu id={data.id} url={data.url} />
+          <CardMenu data={data} />
         </div>
         <CardMedia data={data} />
         <CardActions tags={tags} data={data} />

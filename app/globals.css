@@ -29,8 +29,8 @@
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5% 64.9%;
 
     --radius: 0.5rem;
   }
@@ -74,7 +74,7 @@
     @apply bg-background text-foreground;
   }
   textarea {
-    @apply block resize-none border-none;
+    @apply block resize-none;
   }
 }
 

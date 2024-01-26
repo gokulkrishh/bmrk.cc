@@ -59,6 +59,28 @@ export const createBookmark = async (bookmark: BookmarkInsert) => {
   revalidatePath('/', 'page');
 };
 
+export const updateBookmark = async (
+  id: Bookmark['id'],
+  bookmark: BookmarkModifiedType
+) => {
+  const user = await getUser();
+  if (!user) {
+    return new Error('User is not authenticated.');
+  }
+  const supabase = await createSupabaseServerClient();
+  const { error } = await supabase
+    .from('bookmarks')
+    .update({ ...bookmark, user_id: user.id } as any)
+    .eq('id', id);
+
+  if (error) {
+    console.log('error', error);
+
+    return new Error('Unable to create update bookmark.');
+  }
+  revalidatePath('/', 'page');
+};
+
 export const deleteBookmark = async (id: Bookmark['id']) => {
   const user = await getUser();
   if (!user) {

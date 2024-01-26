@@ -9,6 +9,7 @@ import { deleteBookmark, refreshBookmark } from 'app/actions/bookmarks';
 import { getOg } from 'app/actions/og';
 
 import { MoreIcon } from 'components/icons';
+import EditBookmark from 'components/modal/edit-bookmark';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,20 +24,19 @@ import {
 } from 'types/data';
 
 type CardMenuProps = {
-  id: BookmarkModifiedType['id'];
-  url: BookmarkModifiedType['url'];
+  data: BookmarkModifiedType;
 };
 
-export default function CardMenu({ url, id }: CardMenuProps) {
+export default function CardMenu({ data }: CardMenuProps) {
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const { url, id } = data;
 
   const onRefresh = async () => {
     try {
       setLoading(true);
       const ogData = await getOg(url);
       const payload: BookmarkUpdate = {
-        description: ogData.description,
-        title: ogData.title,
         metadata: {
           ogImageUrl: ogData['og:image'] ?? '',
           twitterImageUrl: ogData['og:twitter'] ?? '',
@@ -48,6 +48,7 @@ export default function CardMenu({ url, id }: CardMenuProps) {
       toast.error('Unable to refresh, try again.');
     } finally {
       setLoading(false);
+      setOpen(false);
     }
   };
 
@@ -70,7 +71,12 @@ export default function CardMenu({ url, id }: CardMenuProps) {
           <MoreIcon className="fill-neutral-600 h-4 w-4 " />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-2 min-w-40">
-          <DropdownMenuItem disabled={loading}>
+          <DropdownMenuItem
+            onClick={() => {
+              setOpen(true);
+            }}
+            disabled={loading}
+          >
             <Edit className="h-4 w-4  mr-2.5" /> Edit
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -101,6 +107,7 @@ export default function CardMenu({ url, id }: CardMenuProps) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      {open ? <EditBookmark data={data} open={open} setOpen={setOpen} /> : null}
     </div>
   );
 }
