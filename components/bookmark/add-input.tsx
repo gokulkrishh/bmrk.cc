@@ -76,7 +76,6 @@ export default function AddBookmarkInput({
               setUrl(event.target.value);
             }}
             value={url}
-            autoFocus
           />
         </div>
         <div className={cn(`flex mb-3 justify-end`, btnClassname)}>

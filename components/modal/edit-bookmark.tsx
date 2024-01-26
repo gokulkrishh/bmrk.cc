@@ -82,7 +82,6 @@ export default function EditBookmark({
           }}
           value={state.title ?? ''}
           required
-          autoFocus
         />
       </div>
 
