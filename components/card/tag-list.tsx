@@ -1,4 +1,12 @@
-import { useMemo, useState } from 'react';
+'use client';
+
+import {
+  startTransition,
+  useEffect,
+  useMemo,
+  useOptimistic,
+  useState,
+} from 'react';
 
 import { CheckIcon } from '@radix-ui/react-icons';
 import { CommandList } from 'cmdk';
@@ -27,6 +35,12 @@ export default function TagList({ data, tags }: TagListProps) {
   const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(false);
   const groupByTagName = useMemo(() => groupByKey(tags, 'name'), [tags]);
+  const [optimisticData, setOptimisticData] =
+    useOptimistic<BookmarkModifiedType>(data);
+
+  useEffect(() => {
+    startTransition(() => setOptimisticData(data));
+  }, [data, setOptimisticData]);
 
   const onCreate = async () => {
     const payload = {
@@ -46,9 +60,22 @@ export default function TagList({ data, tags }: TagListProps) {
   };
 
   const onUpdate = async (id: Tag['id'], isChecked: boolean) => {
-    setLoading(true);
-
     try {
+      setLoading(true);
+      if (isChecked) {
+        const bookmarksTagIds = optimisticData.bookmarks_tags.filter(
+          (bId) => bId !== id
+        );
+        setOptimisticData({
+          ...optimisticData,
+          bookmarks_tags: bookmarksTagIds,
+        });
+      } else {
+        setOptimisticData({
+          ...optimisticData,
+          bookmarks_tags: [...optimisticData.bookmarks_tags, id],
+        });
+      }
       await addTagToBookmark(data.id, id, isChecked);
       toast.success(`Tag is ${!isChecked ? 'removed' : `added`}.`);
     } catch {
@@ -73,10 +100,11 @@ export default function TagList({ data, tags }: TagListProps) {
             {tags
               .sort((a: any, b: any) => a?.name?.localeCompare(b?.name))
               .map((tag: Tag) => {
-                const isChecked = data?.bookmarks_tags?.includes(tag.id);
+                const isChecked = optimisticData?.bookmarks_tags?.includes(
+                  tag.id
+                );
                 return (
                   <CommandItem
-                    disabled={loading}
                     key={tag.id}
                     onSelect={async () => {
                       await onUpdate(tag.id, isChecked);

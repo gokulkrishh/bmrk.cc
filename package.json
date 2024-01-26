@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install",
     "format": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\""
   },
   "dependencies": {
@@ -22,7 +21,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cmdk": "^0.2.0",
-    "lucide-react": "^0.314.0",
+    "lucide-react": "^0.315.0",
     "next": "^14.1.1-canary.7",
     "next-themes": "^0.2.1",
     "object.groupby": "^1.0.1",
@@ -43,12 +42,11 @@
     "autoprefixer": "^10.4.17",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
-    "husky": "^8.0.3",
     "node-html-parser": "^6.1.12",
     "postcss": "^8",
     "prettier": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.5.11",
-    "supabase": "^1.136.2",
+    "supabase": "^1.136.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

@@ -1,5 +1,7 @@
 'use server';
 
+import { cache } from 'react';
+
 import { unstable_noStore as noStore, revalidatePath } from 'next/cache';
 
 import createSupabaseServerClient from 'lib/supabase/server';
@@ -8,7 +10,7 @@ import { Bookmark, Tag, TagInsert } from 'types/data';
 
 import { getUser } from './user';
 
-export const getTags = async () => {
+export const getTags = cache(async () => {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('tags')
@@ -20,7 +22,7 @@ export const getTags = async () => {
     return [];
   }
   return data;
-};
+});
 
 export const createTag = async (id: Bookmark['id'], tag: TagInsert) => {
   const user = await getUser();
@@ -120,7 +122,7 @@ export const deleteTag = async (tagId: Tag['id']) => {
   revalidatePath('/tags');
 };
 
-export const getTagsWithBookmarkIds = async () => {
+export const getTagsWithBookmarkIds = cache(async () => {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase.from('bookmarks_tags').select();
   if (error) {
@@ -134,4 +136,4 @@ export const getTagsWithBookmarkIds = async () => {
     }
     return acc;
   }, {});
-};
+});
