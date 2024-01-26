@@ -74,8 +74,6 @@ export const updateBookmark = async (
     .eq('id', id);
 
   if (error) {
-    console.log('error', error);
-
     return new Error('Unable to create update bookmark.');
   }
   revalidatePath('/', 'page');

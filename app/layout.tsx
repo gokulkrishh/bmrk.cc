@@ -9,6 +9,7 @@ import Sidebar from 'components/sidebar';
 import { Toaster } from 'components/ui/sonner';
 import { TooltipProvider } from 'components/ui/tooltip';
 
+import { getBookmarks } from './actions/bookmarks';
 import { getUser } from './actions/user';
 import './globals.css';
 
@@ -52,11 +53,13 @@ export const viewport: Viewport = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const bookmarks = await getBookmarks();
+
   return (
     <html lang="en" className="h-full">
       <body className={`${inter.className} flex h-full bg-white`}>
         <AuthProvider>
-          <BookmarkProvider>
+          <BookmarkProvider bookmarks={bookmarks}>
             <TagProvider>
               <div className="max-w-[600px] m-auto flex min-h-dvh w-full">
                 <TooltipProvider delayDuration={200}>

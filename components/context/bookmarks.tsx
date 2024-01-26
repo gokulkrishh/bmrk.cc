@@ -10,6 +10,7 @@ const BookmarkContext = createContext(null);
 
 type BookmarkContextProptype = {
   children: React.ReactNode;
+  bookmarks: BookmarkModifiedType[];
 };
 
 export const BookmarkProvider = (props: BookmarkContextProptype) => {
@@ -18,15 +19,10 @@ export const BookmarkProvider = (props: BookmarkContextProptype) => {
   const { children } = props;
 
   useEffect(() => {
-    const getAllBookmarks = async () => {
-      setLoading(true);
-      const data = await getBookmarks();
-      setLoading(false);
-      setBookmarks(data as BookmarkModifiedType[]);
-    };
-
-    getAllBookmarks();
-  }, []);
+    setLoading(true);
+    setBookmarks(props.bookmarks);
+    setLoading(false);
+  }, [props.bookmarks]);
 
   const value = useMemo(() => {
     return { bookmarks, loading };

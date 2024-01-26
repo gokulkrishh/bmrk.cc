@@ -16,9 +16,11 @@ import { BookmarkInsertModified } from 'types/data';
 
 export default function AddBookmarkInput({
   className,
+  btnClassname = '',
   onDone,
 }: {
   className?: string;
+  btnClassname?: string;
   onDone?: () => void;
 }) {
   const [url, setUrl] = useState('');
@@ -76,7 +78,7 @@ export default function AddBookmarkInput({
             value={url}
           />
         </div>
-        <div className="flex px-2 mb-3 justify-end">
+        <div className={cn(`flex mb-3 justify-end`, btnClassname)}>
           <button
             type="submit"
             disabled={loading || !isUrl(url)}
