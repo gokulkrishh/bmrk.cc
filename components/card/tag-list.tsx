@@ -83,6 +83,7 @@ export default function TagList({ data, tags }: TagListProps) {
                 const isChecked = data?.bookmarks_tags?.includes(tag.id);
                 return (
                   <CommandItem
+                    disabled={loading}
                     key={tag.id}
                     onSelect={async () => {
                       await onUpdate(tag.id, isChecked);
