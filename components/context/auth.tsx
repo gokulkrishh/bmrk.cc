@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
-import { permanentRedirect, useRouter } from 'next/navigation';
+import { permanentRedirect, usePathname, useRouter } from 'next/navigation';
 
 import createSupabaseBrowserClient from 'lib/supabase/client';
 
@@ -13,13 +13,14 @@ export const AuthProvider = (props: any) => {
   const [user, setUser] = useState<any>(null);
   const supabase = createSupabaseBrowserClient();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     async function getActiveSession() {
       const { data } = await supabase.auth.getUser();
       setUser(data?.user);
       if (data?.user) {
-        router.replace('/');
+        router.replace(pathname);
       }
     }
 

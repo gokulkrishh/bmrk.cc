@@ -122,6 +122,24 @@ export const deleteTag = async (tagId: Tag['id']) => {
   revalidatePath('/tags');
 };
 
+export const updateTag = async (id: Bookmark['id'], name: Tag['name']) => {
+  const user = await getUser();
+  if (!user) {
+    return new Error('User is not authenticated.');
+  }
+  const supabase = await createSupabaseServerClient();
+  const { error } = await supabase
+    .from('tags')
+    .update({ name } as TagInsert)
+    .eq('id', id)
+    .eq('user_id', user.id);
+
+  if (error) {
+    return new Error('Unable to update bookmark.');
+  }
+  revalidatePath('/tags', 'page');
+};
+
 export const getTagsWithBookmarkIds = cache(async () => {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase.from('bookmarks_tags').select();

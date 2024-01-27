@@ -153,25 +153,27 @@ export default function EditBookmark({
     </form>
   );
 
-  return (
-    <Dialog open={open} onOpenChange={(hide) => setOpen(hide)}>
-      <DialogContent className="sm:max-w-md py-4 px-5 max-sm:w-[calc(100%-30px)]">
-        <DialogTitle className="text-lg font-medium">Edit Bookmark</DialogTitle>
-        {Form()}
-      </DialogContent>
-    </Dialog>
-  );
   if (isDesktop) {
+    return (
+      <Dialog open={open} onOpenChange={(hide) => setOpen(hide)}>
+        <DialogContent className="sm:max-w-md py-4 px-5 max-sm:w-[calc(100%-30px)]">
+          <DialogTitle className="text-lg font-medium">
+            Edit Bookmark
+          </DialogTitle>
+          {Form()}
+        </DialogContent>
+      </Dialog>
+    );
   } else {
-    // return (
-    //   <Drawer open={open} onOpenChange={setOpen}>
-    //     <DrawerContent className="px-4 pb-6">
-    //       <DrawerHeader className="text-left pt-2 px-0 font-medium">
-    //         Edit Bookmark
-    //       </DrawerHeader>
-    //       <Form />
-    //     </DrawerContent>
-    //   </Drawer>
-    // );
+    return (
+      <Drawer open={open} onOpenChange={setOpen}>
+        <DrawerContent className="px-4 pb-6">
+          <DrawerHeader className="text-left pt-2 px-0 font-medium">
+            Edit Bookmark
+          </DrawerHeader>
+          {Form()}
+        </DrawerContent>
+      </Drawer>
+    );
   }
 }

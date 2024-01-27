@@ -72,7 +72,7 @@ export const updateBookmark = async (
     .eq('id', id);
 
   if (error) {
-    return new Error('Unable to create update bookmark.');
+    return new Error('Unable to update bookmark.');
   }
   revalidatePath('/', 'page');
 };

@@ -9,6 +9,7 @@ import { createBookmark } from 'app/actions/bookmarks';
 import { OgResponse, getOg } from 'app/actions/og';
 
 import Loader from 'components/loader';
+import { Input } from 'components/ui/input';
 
 import { cn } from 'lib/utils';
 
@@ -53,7 +54,7 @@ export default function AddBookmarkInput({
   return (
     <div
       className={cn(
-        'h-24 flex flex-col px-1 border-neutral-200 border-r border-b',
+        'h-26 flex flex-col px-1 border-neutral-200 border-r border-b',
         className
       )}
     >
@@ -65,9 +66,9 @@ export default function AddBookmarkInput({
         }}
       >
         <div className="flex flex-col items-center justify-center w-full">
-          <input
+          <Input
             className={cn(
-              `mt-4 bg-transparent w-full px-2 pb-1 border-none outline-none placeholder:text-stone-500 text-lg font-normal`
+              `mt-2 bg-transparent focus-visible:ring-0 w-full pt-0 px-2 pb-1 !outline-none !focus:outline-none !focus:border-none !border-none !shadow-none placeholder:text-stone-500 text-lg font-normal`
             )}
             type="url"
             pattern="https://.*|http://.*"

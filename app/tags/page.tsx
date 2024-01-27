@@ -26,21 +26,21 @@ export default async function Page() {
     <>
       <Header headerText="Tags" />
       <div className="min-h-dvh border-r border-neutral-200 pb-24">
-        <div className="flex gap-x-3 gap-y-2 items-end px-4 flex-wrap py-3">
-          {tags.length
-            ? tags.map(({ id, name }) => (
-                <div key={id} className="inline-flex items-center">
-                  <Link className="flex items-center" href={`/tags/${name}`}>
-                    <Badge className="font-normal py-1" variant="secondary">
-                      {name} ({groupedByTagId[id]?.length ?? 0})
-                    </Badge>
-                  </Link>
-                  <EditTag id={id} name={name} />
-                  <DeleteTag id={id} />
-                </div>
-              ))
-            : null}
-        </div>
+        {tags.length ? (
+          <div className="flex gap-x-3 gap-y-2 items-end px-4 flex-wrap py-3">
+            {tags.map(({ id, name }) => (
+              <div key={id} className="inline-flex items-center">
+                <Link className="flex items-center" href={`/tags/${name}`}>
+                  <Badge className="font-normal py-1.5" variant="secondary">
+                    {name} ({groupedByTagId[id]?.length ?? 0})
+                  </Badge>
+                </Link>
+                <EditTag id={id} name={name} />
+                <DeleteTag id={id} />
+              </div>
+            ))}
+          </div>
+        ) : null}
         {tags.length ? (
           <div className="border-b border-neutral-200 flex w-full pt-1" />
         ) : null}
