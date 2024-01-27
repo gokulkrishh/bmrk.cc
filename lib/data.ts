@@ -13,16 +13,17 @@ export const groupByKey = (data: any, key: string) => {
 };
 
 export const groupByDate = (data: any) => {
+  if (!data) return [];
   return groupBy(data, ({ created_at }: any) => new Date(created_at).getDate());
 };
 
 export const groupByTag = (data: BookmarkModifiedType[], tags: any) => {
   return data.reduce((acc: any, datum) => {
-    datum.bookmarks_tags.forEach((tagId) => {
-      if (!acc[tagId]) {
-        acc[tagId] = [];
+    datum.bookmarks_tags.forEach(({ tags: { id } }) => {
+      if (!acc[id]) {
+        acc[id] = [];
       }
-      acc[tagId].push(datum);
+      acc[id].push(datum);
     });
     return acc;
   }, tags);

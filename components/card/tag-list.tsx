@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  startTransition,
-  useEffect,
-  useMemo,
-  useOptimistic,
-  useState,
-} from 'react';
+import { useState } from 'react';
 
 import { CheckIcon } from '@radix-ui/react-icons';
 import { CommandList } from 'cmdk';
@@ -14,6 +8,7 @@ import { toast } from 'sonner';
 
 import { addTagToBookmark, createTag } from 'app/actions/tags';
 
+import Loader from 'components/loader';
 import {
   Command,
   CommandGroup,
@@ -21,7 +16,6 @@ import {
   CommandItem,
 } from 'components/ui/command';
 
-import { groupByKey } from 'lib/data';
 import { cn } from 'lib/utils';
 
 import { Bookmark, BookmarkModifiedType, Tag, TagInsert } from 'types/data';
@@ -34,7 +28,6 @@ type TagListProps = {
 export default function TagList({ data, tags }: TagListProps) {
   const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(false);
-  const groupByTagName = useMemo(() => groupByKey(tags, 'name'), [tags]);
 
   const onCreate = async () => {
     const payload = {
@@ -77,40 +70,38 @@ export default function TagList({ data, tags }: TagListProps) {
       <CommandList className="max-h-56 overflow-y-auto">
         {tags.length ? (
           <CommandGroup heading="All tags">
-            {tags
-              .sort((a: any, b: any) => a?.name?.localeCompare(b?.name))
-              .map((tag: Tag) => {
-                const isChecked = data?.bookmarks_tags?.includes(tag.id);
-                return (
-                  <CommandItem
-                    disabled={loading}
-                    key={tag.id}
-                    onSelect={async () => {
-                      await onUpdate(tag.id, isChecked);
-                    }}
+            {tags.map((tag: Tag) => {
+              const isChecked = Boolean(
+                data.bookmarks_tags?.find(({ tags: { id } }) => id == tag.id)
+              );
+              return (
+                <CommandItem
+                  disabled={loading}
+                  key={tag.id}
+                  onSelect={async () => {
+                    await onUpdate(tag.id, isChecked);
+                  }}
+                >
+                  <div
+                    className={cn(
+                      'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-blue-600',
+                      isChecked
+                        ? 'bg-blue-600 text-primary-foreground'
+                        : 'bg-white text-tranparent'
+                    )}
                   >
-                    <div
-                      className={cn(
-                        'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-blue-600',
-                        isChecked
-                          ? 'bg-blue-600 text-primary-foreground'
-                          : 'bg-white text-tranparent'
-                      )}
-                    >
-                      {isChecked ? (
-                        <CheckIcon className={cn('h-4 w-4')} />
-                      ) : null}
-                    </div>
-                    {tag.name}
-                  </CommandItem>
-                );
-              })}
+                    {isChecked ? <CheckIcon className={cn('h-4 w-4')} /> : null}
+                  </div>
+                  {tag.name}
+                </CommandItem>
+              );
+            })}
           </CommandGroup>
         ) : (
           <div className="text-sm flex py-4 justify-center">No tags.</div>
         )}
       </CommandList>
-      {searchText.length && !groupByTagName[searchText] ? (
+      {searchText.length && !tags.find(({ name }) => name === searchText) ? (
         <CommandList>
           <CommandGroup heading="Click to create">
             <CommandItem

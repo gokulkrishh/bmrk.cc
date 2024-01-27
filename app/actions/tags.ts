@@ -15,7 +15,7 @@ export const getTags = cache(async () => {
   const { data, error } = await supabase
     .from('tags')
     .select('id, name')
-    .order('name', { ascending: false })
+    .order('name', { ascending: true })
     .returns<Tag[]>();
 
   if (error) {

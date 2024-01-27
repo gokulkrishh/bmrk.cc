@@ -20,9 +20,7 @@ export default function Card({ data, tags, last }: CardProps) {
     <div
       className={cn(
         `justify-between group gap-3 flex hover:bg-neutral-50 text-black w-full`,
-        {
-          'border-b': last,
-        }
+        { 'border-b': last }
       )}
     >
       <CardDate data={data} />

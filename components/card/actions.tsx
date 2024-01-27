@@ -44,8 +44,8 @@ export default function CardActions({
   return (
     <div className="justify-between mb-2 flex items-center">
       <div className="tracking-wide items-center text-neutral-500 text-xs gap-2 flex w-full">
-        <AddTag tags={tags} data={data} />
-        <TagBadge tags={tags} data={data} />
+        <AddTag data={data} tags={tags} />
+        <TagBadge data={data} />
       </div>
       <div className="flex">
         <form

@@ -2,28 +2,24 @@ import Link from 'next/link';
 
 import { Badge } from 'components/ui/badge';
 
-import { BookmarkModifiedType, Tag } from 'types/data';
+import { BookmarkModifiedType } from 'types/data';
 
-export default function TagBadge({
-  data,
-  tags,
-}: {
-  data: BookmarkModifiedType;
-  tags: Tag[];
-}) {
-  const bookmarkTagIds = data.bookmarks_tags;
+export default function TagBadge({ data }: { data: BookmarkModifiedType }) {
   return (
     <div className="flex gap-y-1.5 items-center overflow-x-scroll max-sm:max-w-[200px] max-w-[350px] w-full hidden-scrollbar">
-      {tags
-        .sort((a: any, b: any) => a?.name?.localeCompare(b?.name))
-        .filter((tag) => bookmarkTagIds?.includes(tag.id))
-        .map(({ id, name }) => (
-          <Link key={id} href={`/tags/${name}`}>
-            <Badge className="font-normal py-1 mr-1.5" variant="secondary">
+      {data.bookmarks_tags?.map(({ tags: { id, name } }) => {
+        return (
+          <Link
+            className="active:bg-neutral-300 rounded-full mr-2"
+            key={id}
+            href={`/tags/${name}`}
+          >
+            <Badge className="font-normal py-1" variant="secondary">
               {name}
             </Badge>
           </Link>
-        ))}
+        );
+      })}
     </div>
   );
 }

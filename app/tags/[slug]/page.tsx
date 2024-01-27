@@ -1,4 +1,4 @@
-import { getBookmarksWithFilter } from 'app/actions/bookmarks';
+import { getBookmarksByTagName } from 'app/actions/bookmarks';
 import { getTags } from 'app/actions/tags';
 
 import Card from 'components/card';
@@ -11,7 +11,7 @@ import { BookmarkModifiedType } from 'types/data';
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug: tagName } = params;
-  const bookmarks = await getBookmarksWithFilter(tagName);
+  const bookmarks = await getBookmarksByTagName(tagName);
   const tags = await getTags();
   const groupedBookmarks = groupByDate(bookmarks);
 
@@ -19,11 +19,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <>
       <Header headerText={`Tags: ${tagName}`} />
       <div className="h-full border-r border-neutral-200 pb-24">
-        {Object.keys(groupedBookmarks)
+        {Object.values(groupedBookmarks)
           .reverse()
-          .map((groupKey: any, index: number) => {
-            const bookmarksData: BookmarkModifiedType[] =
-              groupedBookmarks[groupKey];
+          .map((bookmarksData: BookmarkModifiedType[], index: number) => {
             return (
               <div className={cn(`flex flex-col w-full`, {})} key={index}>
                 {bookmarksData.map((bookmark: BookmarkModifiedType) => (

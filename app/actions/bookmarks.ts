@@ -1,5 +1,7 @@
 'use server';
 
+import { cache } from 'react';
+
 import { revalidatePath } from 'next/cache';
 
 import createSupabaseServerClient from 'lib/supabase/server';
@@ -9,20 +11,15 @@ import {
   BookmarkInsert,
   BookmarkModifiedType,
   BookmarkUpdate,
-  Tag,
 } from 'types/data';
 
 import { getUser } from './user';
 
-export const getBookmarks = async () => {
+export const getBookmarks = cache(async () => {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('bookmarks')
-    .select(
-      `*, bookmarks_tags (
-        tags!inner (id)
-      )`
-    )
+    .select(`*, bookmarks_tags (tags!inner (id,name))`)
     .order('created_at', { ascending: false })
     .returns<BookmarkModifiedType[]>();
 
@@ -30,15 +27,8 @@ export const getBookmarks = async () => {
     return [];
   }
 
-  return data.map((datum) => ({
-    ...datum,
-    bookmarks_tags: datum.bookmarks_tags.map((bt: any) => bt.tags.id),
-  }));
-};
-
-type getBookmarkType = {
-  is_fav: Bookmark['is_fav'];
-};
+  return data;
+});
 
 export const createBookmark = async (bookmark: BookmarkInsert) => {
   const user = await getUser();
@@ -145,7 +135,7 @@ export const refreshBookmark = async (
   revalidatePath('/');
 };
 
-export const getAllFavBookmarks = async () => {
+export const getFavBookmarks = async () => {
   const user = await getUser();
   if (!user) {
     return [];
@@ -154,27 +144,19 @@ export const getAllFavBookmarks = async () => {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('bookmarks')
-    .select(
-      `*, bookmarks_tags (
-        tags!inner (id)
-      )`
-    )
-    .order('created_at', { ascending: false })
-    .eq('is_fav', true)
+    .select(`*, bookmarks_tags (tags!inner (id,name))`)
     .eq('user_id', user.id)
+    .eq('is_fav', true)
+    .order('created_at', { ascending: false })
     .returns<BookmarkModifiedType[]>();
 
   if (error) {
     return [];
   }
-
-  return data.map((datum) => ({
-    ...datum,
-    bookmarks_tags: datum.bookmarks_tags.map((bt: any) => bt.tags.id),
-  }));
+  return data;
 };
 
-export const getBookmarksWithFilter = async (tagName: string) => {
+export const getBookmarksByTagName = async (tagName: string) => {
   const user = await getUser();
   if (!user) {
     return [];
@@ -184,28 +166,14 @@ export const getBookmarksWithFilter = async (tagName: string) => {
 
   const { data, error } = await supabase
     .from('bookmarks')
-    .select(
-      `*, bookmarks_tags (
-        tags!inner (id,name)
-      )`
-    )
+    .select(`*, bookmarks_tags (tags!inner (id,name))`)
+    .eq('bookmarks_tags.tags.name', tagName)
     .order('created_at', { ascending: false })
-    .eq('user_id', user.id)
     .returns<BookmarkModifiedType[]>();
 
   if (error) {
     return [];
   }
 
-  return data
-    .filter((datum) => {
-      const hasTag = datum.bookmarks_tags.find((bt: any) =>
-        bt.tags.name?.includes(tagName)
-      );
-      return hasTag;
-    })
-    .map((datum) => ({
-      ...datum,
-      bookmarks_tags: datum.bookmarks_tags.map((bt: any) => bt.tags.id),
-    }));
+  return data;
 };
