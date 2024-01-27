@@ -51,63 +51,53 @@ export default function EditBookmark({ open, setOpen, id, name }: EditTag) {
   };
 
   const Form = () => (
-    <form
-      className="h-full flex flex-col gap-3"
-      onSubmit={async (event) => {
-        event.preventDefault();
-        await onSubmit();
-      }}
-    >
-      <div className="flex flex-col gap-1">
-        <Label htmlFor="name">Name</Label>
-        <Input
-          id="name"
-          type="text"
-          placeholder="youtube or oss"
-          onChange={(event: any) => {
-            setTagName(event.target.value);
-          }}
-          value={tagName ?? ''}
-          required
-        />
-      </div>
-
-      <div className="flex mt-1 justify-end">
-        <button
-          type="submit"
-          disabled={loading || !Boolean(tagName?.length) || !isEdited()}
-          className={cn(
-            `rounded-full w-[90px] disabled:bg-blue-200 focus:outline-0 focus:bg-blue-700 active:bg-blue-700 border-0 text-sm flex justify-center py-2 px-5 text-white bg-blue-600 hover:bg-blue-700`,
-            {
-              '!bg-blue-200 cursor-not-allowed': loading,
-            }
-          )}
-        >
-          {loading ? <Loader /> : 'Update'}
-        </button>
-      </div>
-    </form>
+    <div className={cn('h-26 flex flex-col px-1')}>
+      <form
+        className="h-full flex flex-col gap-3"
+        onSubmit={async (event) => {
+          event.preventDefault();
+          await onSubmit();
+        }}
+      >
+        <div className="flex flex-col items-center justify-center w-full">
+          <Input
+            className={cn(
+              `mt-2 bg-transparent border focus-visible:ring-0 w-full pt-0 px-2 pb-0 !outline-none !focus:outline-none !focus:border-none !border-none !shadow-none placeholder:text-stone-500 text-lg font-normal`
+            )}
+            autoFocus
+            inputMode="text"
+            id="name"
+            type="text"
+            placeholder="youtube or oss"
+            onChange={(event: any) => {
+              setTagName(event.target.value);
+            }}
+            value={tagName ?? ''}
+            required
+            data-1p-ignore
+          />
+        </div>
+        <div className={cn(`flex mb-3 justify-end`)}>
+          <button
+            type="submit"
+            disabled={loading || !Boolean(tagName?.length) || !isEdited()}
+            className={cn(
+              `rounded-full w-[90px] disabled:bg-blue-200 focus:outline-0 focus:bg-blue-700 active:bg-blue-700 border-0 text-sm flex justify-center py-2 px-5 text-white bg-blue-600 hover:bg-blue-700`,
+              {
+                '!bg-blue-200 cursor-not-allowed': loading,
+              }
+            )}
+          >
+            {loading ? <Loader /> : 'Update'}
+          </button>
+        </div>
+      </form>
+    </div>
   );
 
-  if (isDesktop) {
-    return (
-      <Dialog open={open} onOpenChange={(hide) => setOpen(hide)}>
-        <DialogContent className="sm:max-w-md py-4 px-5 max-sm:w-[calc(100%-30px)]">
-          <DialogTitle className="text-lg font-medium">Edit Tag</DialogTitle>
-          {Form()}
-        </DialogContent>
-      </Dialog>
-    );
-  } else {
-    return (
-      <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerContent className="px-4 pb-6">
-          <DrawerHeader className="text-left pt-2 px-0 font-medium">
-            Edit Bookmark
-          </DrawerHeader>
-          {Form()}
-        </DrawerContent>
-      </Drawer>
-    );
-  }
+  return (
+    <Dialog open={open} onOpenChange={(hide) => setOpen(hide)}>
+      <DialogContent className="sm:max-w-md py-2 px-2">{Form()}</DialogContent>
+    </Dialog>
+  );
 }
