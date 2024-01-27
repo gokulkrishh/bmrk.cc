@@ -22,7 +22,7 @@ export default function CardAvatar({ url, title, className }: CardAvatarProps) {
   return (
     <Avatar className={cn(className)}>
       <AvatarImage
-        src={`https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${imageUrl?.origin ?? url}&size=32`}
+        src={`https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${imageUrl?.origin ?? url}&size=128`}
         alt={title}
       />
       <AvatarFallback />

@@ -63,6 +63,14 @@ export default function EditBookmark({
     }
   };
 
+  const isEdited = () => {
+    return (
+      state.url !== data.url ||
+      state.title !== data.title ||
+      state.description !== data.description
+    );
+  };
+
   const Form = () => (
     <form
       className="h-full flex flex-col gap-3"
@@ -91,7 +99,7 @@ export default function EditBookmark({
           <CardAvatar
             className="!w-4 !h-4 rounded-full bg-white"
             url={state.url}
-            title={state.title ?? ''}
+            title={state.url ?? ''}
           />
         </Label>
         <Input
@@ -100,7 +108,6 @@ export default function EditBookmark({
           type="url"
           inputMode="url"
           pattern="https://.*|http://.*"
-          maxLength={30}
           placeholder="https://google.com"
           required
           onChange={(event) => {
@@ -130,7 +137,9 @@ export default function EditBookmark({
       <div className="flex mt-1 justify-end">
         <button
           type="submit"
-          disabled={loading || !isUrl(state.url) || !state.title?.length}
+          disabled={
+            loading || !isUrl(state.url) || !state.title?.length || !isEdited()
+          }
           className={cn(
             `rounded-full w-[90px] disabled:bg-blue-200 focus:outline-0 focus:bg-blue-700 active:bg-blue-700 border-0 text-sm flex justify-center py-2 px-5 text-white bg-blue-600 hover:bg-blue-700`,
             {
@@ -144,27 +153,25 @@ export default function EditBookmark({
     </form>
   );
 
+  return (
+    <Dialog open={open} onOpenChange={(hide) => setOpen(hide)}>
+      <DialogContent className="sm:max-w-md py-4 px-5 max-sm:w-[calc(100%-30px)]">
+        <DialogTitle className="text-lg font-medium">Edit Bookmark</DialogTitle>
+        {Form()}
+      </DialogContent>
+    </Dialog>
+  );
   if (isDesktop) {
-    return (
-      <Dialog open={open} onOpenChange={(hide) => setOpen(hide)}>
-        <DialogContent className="sm:max-w-md py-4 px-5 max-sm:w-[calc(100%-30px)]">
-          <DialogTitle className="text-lg font-medium">
-            Edit Bookmark
-          </DialogTitle>
-          <Form />
-        </DialogContent>
-      </Dialog>
-    );
   } else {
-    return (
-      <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerContent className="px-4 pb-4">
-          <DrawerHeader className="text-left px-0 font-medium">
-            Edit Bookmark
-          </DrawerHeader>
-          <Form />
-        </DrawerContent>
-      </Drawer>
-    );
+    // return (
+    //   <Drawer open={open} onOpenChange={setOpen}>
+    //     <DrawerContent className="px-4 pb-6">
+    //       <DrawerHeader className="text-left pt-2 px-0 font-medium">
+    //         Edit Bookmark
+    //       </DrawerHeader>
+    //       <Form />
+    //     </DrawerContent>
+    //   </Drawer>
+    // );
   }
 }

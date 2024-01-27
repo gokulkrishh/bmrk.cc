@@ -8,7 +8,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import { cn } from 'lib/utils';
 
 import { useAuth } from './context/auth';
-import AddBookmark from './modal/bookmark';
+import AddBookmark from './modal/add-bookmark';
 import SignupModal from './modal/signup';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
@@ -16,14 +16,10 @@ export default function AddIcon({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
 
-  useHotkeys(
-    ['a'],
-    (_, handler) => {
-      const keys = handler.keys?.join('');
-      if (keys === 'a') setOpen(true);
-    },
-    { keyup: true }
-  );
+  useHotkeys(['a'], (_, handler) => {
+    const keys = handler.keys?.join('');
+    if (keys === 'a') setOpen(true);
+  });
 
   return (
     <div>

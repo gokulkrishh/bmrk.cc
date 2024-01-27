@@ -67,7 +67,11 @@ export default async function RootLayout({
             </TagProvider>
           </BookmarkProvider>
         </AuthProvider>
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            className: 'max-sm:mb-20',
+          }}
+        />
       </body>
     </html>
   );

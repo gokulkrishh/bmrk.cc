@@ -83,7 +83,7 @@ export default function CardMenu({ data }: CardMenuProps) {
             disabled={loading}
             onClick={() => {
               navigator.clipboard.writeText(url);
-              toast.success('Link copied.');
+              toast.success('Link copied to clipboard.');
             }}
           >
             <LinkIcon className="h-4 w-4  mr-2.5" /> Copy link
