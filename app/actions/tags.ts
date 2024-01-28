@@ -2,7 +2,7 @@
 
 import { cache } from 'react';
 
-import { unstable_noStore as noStore, revalidatePath } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 
 import createSupabaseServerClient from 'lib/supabase/server';
 
