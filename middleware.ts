@@ -53,7 +53,13 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  await supabase.auth.getSession();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  // if user is not signed in and redirect to home page
+  if (!user) {
+  }
 
   return response;
 }
