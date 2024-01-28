@@ -61,11 +61,7 @@ export default async function RootLayout({
             </TooltipProvider>
           </div>
         </AuthProvider>
-        <Toaster
-          toastOptions={{
-            className: 'max-sm:mb-20',
-          }}
-        />
+        <Toaster toastOptions={{ className: 'max-sm:mb-20' }} />
       </body>
     </html>
   );
