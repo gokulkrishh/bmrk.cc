@@ -64,7 +64,7 @@ export default function EditBookmark({ open, setOpen, id, name }: EditTag) {
             className={cn(
               `mt-2 bg-transparent focus-visible:ring-0 w-full pt-0 px-2 pb-1 !outline-none !focus:outline-none !focus:border-none !border-none !shadow-none placeholder:text-stone-500 text-lg font-normal`
             )}
-            autoFocus
+            autoComplete="off"
             inputMode="text"
             id="name"
             type="text"

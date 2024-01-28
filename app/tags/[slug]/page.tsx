@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <Header headerText={`Tags: ${tagName}`} />
+      <Header headerText={`Tag: ${tagName}`} />
       <div className="h-full border-r border-neutral-200 pb-24">
         {Object.values(groupedBookmarks)
           .reverse()
