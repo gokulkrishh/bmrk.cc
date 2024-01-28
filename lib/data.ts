@@ -28,3 +28,15 @@ export const groupByTag = (data: BookmarkModifiedType[], tags: any) => {
     return acc;
   }, tags);
 };
+
+export const filterByTagName = (
+  data: BookmarkModifiedType[],
+  tagName: string
+) => {
+  if (!data) return [];
+  return data.filter((datum) => {
+    return datum.bookmarks_tags.some((bookmarkTag) => {
+      return bookmarkTag.tags.name === tagName;
+    });
+  });
+};

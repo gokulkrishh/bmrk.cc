@@ -22,7 +22,10 @@ export default function Header({ headerText }: { headerText?: string }) {
         </Link>
         <h2 className="w-full font-medium flex flex-col p-3 tracking-wide">
           {headerText ?? showGreetings()}
-          <span className="text-xs mt-0.5 font-normal text-neutral-500">
+          <span
+            className="text-xs mt-0.5 font-normal text-neutral-500"
+            suppressHydrationWarning
+          >
             {formatDate(new Date())}
           </span>
         </h2>

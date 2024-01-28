@@ -155,25 +155,3 @@ export const getFavBookmarks = async () => {
   }
   return data;
 };
-
-export const getBookmarksByTagName = async (tagName: string) => {
-  const user = await getUser();
-  if (!user) {
-    return [];
-  }
-
-  const supabase = await createSupabaseServerClient();
-
-  const { data, error } = await supabase
-    .from('bookmarks')
-    .select(`*, bookmarks_tags (tags!inner (id,name))`)
-    .eq('bookmarks_tags.tags.name', tagName)
-    .order('created_at', { ascending: false })
-    .returns<BookmarkModifiedType[]>();
-
-  if (error) {
-    return [];
-  }
-
-  return data;
-};

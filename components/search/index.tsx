@@ -48,11 +48,13 @@ export default function Search({ className }: { className?: string }) {
         </Tooltip>
       </button>
 
-      {user ? (
-        <SearchCommand open={open} setOpen={setOpen} />
-      ) : (
-        <SignupModal open={open} onHide={setOpen} />
-      )}
+      {open ? (
+        user ? (
+          <SearchCommand open={true} setOpen={setOpen} />
+        ) : (
+          <SignupModal open={true} onHide={setOpen} />
+        )
+      ) : null}
     </>
   );
 }

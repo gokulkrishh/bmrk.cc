@@ -1,10 +1,12 @@
-import { getBookmarksByTagName } from 'app/actions/bookmarks';
+import { cache, useMemo } from 'react';
+
+import { getBookmarks } from 'app/actions/bookmarks';
 import { getTags } from 'app/actions/tags';
 
 import Card from 'components/card';
 import Header from 'components/header';
 
-import { groupByDate } from 'lib/data';
+import { filterByTagName, groupByDate } from 'lib/data';
 import { cn } from 'lib/utils';
 
 import { BookmarkModifiedType } from 'types/data';
@@ -12,10 +14,10 @@ import { BookmarkModifiedType } from 'types/data';
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug: tagName } = params;
   const [bookmarks, tags] = await Promise.all([
-    await getBookmarksByTagName(tagName),
+    await getBookmarks(),
     await getTags(),
   ]);
-  const groupedBookmarks = groupByDate(bookmarks);
+  const groupedBookmarks = groupByDate(filterByTagName(bookmarks, tagName));
 
   return (
     <>
