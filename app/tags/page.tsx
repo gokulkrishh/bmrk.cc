@@ -50,7 +50,12 @@ export default async function Page() {
             const bookmarksData: BookmarkModifiedType[] =
               groupedBookmarks[groupKey];
             return (
-              <div className={cn(`flex flex-col w-full`)} key={index}>
+              <div
+                className={cn(`flex flex-col w-full`, {
+                  'border-b border-neutral-200': bookmarksData.length > 1,
+                })}
+                key={index}
+              >
                 {bookmarksData.map((bookmark: BookmarkModifiedType) => (
                   <Card
                     last={index === bookmarksData.length - 1}

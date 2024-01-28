@@ -24,7 +24,12 @@ export default async function Page() {
           .reverse()
           .map((bookmarksData: BookmarkModifiedType[], index: number) => {
             return (
-              <div className={cn(`flex flex-col w-full`, {})} key={index}>
+              <div
+                className={cn(`flex flex-col w-full`, {
+                  'border-b border-neutral-200': bookmarksData.length > 1,
+                })}
+                key={index}
+              >
                 {bookmarksData.map((bookmark: BookmarkModifiedType) => (
                   <Card
                     last={index === bookmarksData.length - 1}
