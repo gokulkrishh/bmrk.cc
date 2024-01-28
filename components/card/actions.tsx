@@ -42,7 +42,7 @@ export default function CardActions({
 }) {
   const { is_fav } = data;
   return (
-    <div className="justify-between mb-2 flex items-center">
+    <div className="justify-between mb-2 flex items-center w-full">
       <div className="tracking-wide items-center text-neutral-500 text-xs gap-2 flex w-full">
         <AddTag data={data} tags={tags} />
         <TagBadge data={data} />
