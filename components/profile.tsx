@@ -30,15 +30,13 @@ export default function Profile({ className }: { className?: string }) {
     <Avatar className={cn(className)}>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <Avatar>
-            <AvatarImage
-              src={user.user_metadata.avatar_url}
-              alt={user.user_metadata.name}
-            />
-            <AvatarFallback className="font-medium text-orange-900 uppercase text-xl bg-orange-300">
-              {user.user_metadata.name[0]}
-            </AvatarFallback>
-          </Avatar>
+          <AvatarImage
+            src={user.user_metadata.avatar_url}
+            alt={user.user_metadata.name}
+          />
+          <AvatarFallback className="font-medium text-orange-900 uppercase text-xl bg-orange-300">
+            {user.user_metadata.name[0]}
+          </AvatarFallback>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-2">
           <DropdownMenuItem className="hidden max-sm:block">
