@@ -17,14 +17,14 @@ export default function CardMedia({ data }: { data: BookmarkModifiedType }) {
 
   return (
     <Link
-      className="group w-[calc(100%-16px)] max-h-[185px] mb-3 my-2"
+      className="group w-fit max-sm:max-w-[calc(100%-30px)] max-w-[calc(100%-16px)] max-h-[185px] mb-2 rounded-2xl"
       target="_blank"
       rel="noopener"
       href={data.url}
       prefetch={false}
     >
       <Image
-        className="rounded-2xl border border-neutral-200 object-cover h-full"
+        className="h-full rounded-2xl border border-neutral-200"
         src={imageUrl.startsWith('/') ? `${data.url}${imageUrl}` : imageUrl}
         alt={data.title ?? ''}
         width={350}

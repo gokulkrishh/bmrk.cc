@@ -52,17 +52,12 @@ export default async function Page() {
             return (
               <div
                 className={cn(`flex flex-col w-full`, {
-                  'border-b border-neutral-200': bookmarksData.length > 1,
+                  'border-b border-neutral-200': bookmarksData.length > 0,
                 })}
                 key={index}
               >
                 {bookmarksData.map((bookmark: BookmarkModifiedType) => (
-                  <Card
-                    last={index === bookmarksData.length - 1}
-                    key={bookmark.id}
-                    tags={tags}
-                    data={bookmark}
-                  />
+                  <Card key={bookmark.id} tags={tags} data={bookmark} />
                 ))}
               </div>
             );

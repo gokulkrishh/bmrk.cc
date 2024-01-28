@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-
 import AddBookmarkInput from 'components/bookmark/add-input';
 import Card from 'components/card';
 import Header from 'components/header';
@@ -30,7 +28,7 @@ export default async function Page() {
             return (
               <div
                 className={cn(`flex flex-col w-full`, {
-                  'border-b border-neutral-200': bookmarksData.length > 1,
+                  'border-b border-neutral-200': bookmarksData.length > 0,
                 })}
                 key={index}
               >

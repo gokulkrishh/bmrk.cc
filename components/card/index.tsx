@@ -12,15 +12,13 @@ import CardTimeline from './timeline';
 type CardProps = {
   data: BookmarkModifiedType;
   tags: Tag[];
-  last?: boolean;
 };
 
-export default function Card({ data, tags, last }: CardProps) {
+export default function Card({ data, tags }: CardProps) {
   return (
     <div
       className={cn(
-        `justify-between group gap-3 flex hover:bg-neutral-50 text-black w-full`,
-        { 'border-b': last }
+        `justify-between group gap-3 flex hover:bg-neutral-50 text-black w-full`
       )}
     >
       <CardDate data={data} />

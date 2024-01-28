@@ -23,11 +23,11 @@ function FavButtonIcon({ is_fav }: { is_fav: BookmarkModifiedType['is_fav'] }) {
       )}
     >
       {pending ? (
-        <Loader className="text-neutral-500 h-4 w-4" />
+        <Loader className="text-neutral-600 h-4 w-4" />
       ) : is_fav ? (
         <StarFilledIcon className="h-4 w-4 text-yellow-500 " />
       ) : (
-        <StarIcon className="h-4 w-4 text-neutral-500" />
+        <StarIcon className="h-4 w-4 text-neutral-600" />
       )}
     </button>
   );
