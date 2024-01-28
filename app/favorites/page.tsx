@@ -10,8 +10,10 @@ import { cn } from 'lib/utils';
 import { BookmarkModifiedType } from 'types/data';
 
 export default async function Page() {
-  const bookmarks = await getFavBookmarks();
-  const tags = await getTags();
+  const [bookmarks, tags] = await Promise.all([
+    await getFavBookmarks(),
+    await getTags(),
+  ]);
   const groupedBookmarks = groupByDate(bookmarks);
 
   return (

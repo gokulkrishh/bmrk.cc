@@ -14,7 +14,7 @@ export default function TagBadge({ data }: { data: BookmarkModifiedType }) {
             key={id}
             href={`/tags/${name}`}
           >
-            <Badge className="font-normal py-1" variant="secondary">
+            <Badge className="font-normal py-1 w-max" variant="secondary">
               {name}
             </Badge>
           </Link>

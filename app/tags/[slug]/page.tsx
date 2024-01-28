@@ -11,8 +11,10 @@ import { BookmarkModifiedType } from 'types/data';
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug: tagName } = params;
-  const bookmarks = await getBookmarksByTagName(tagName);
-  const tags = await getTags();
+  const [bookmarks, tags] = await Promise.all([
+    await getBookmarksByTagName(tagName),
+    await getTags(),
+  ]);
   const groupedBookmarks = groupByDate(bookmarks);
 
   return (

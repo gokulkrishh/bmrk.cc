@@ -13,8 +13,10 @@ import { getBookmarks } from './actions/bookmarks';
 import { getTags } from './actions/tags';
 
 export default async function Page() {
-  const bookmarks = await getBookmarks();
-  const tags = await getTags();
+  const [bookmarks, tags] = await Promise.all([
+    await getBookmarks(),
+    await getTags(),
+  ]);
   const bookmarksByDate = groupByDate(bookmarks);
 
   return (

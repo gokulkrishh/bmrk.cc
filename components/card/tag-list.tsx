@@ -50,9 +50,8 @@ export default function TagList({ data, tags }: TagListProps) {
     try {
       setLoading(true);
       await addTagToBookmark(data.id, id, isChecked);
-      toast.success(`Tag is ${!isChecked ? 'removed' : `added`}.`);
     } catch {
-      toast.error(`Unable to ${!isChecked ? 'remove' : `add tag`}. Try again.`);
+      toast.error(`Unable to add/remove tag. Try again.`);
     } finally {
       setLoading(false);
     }

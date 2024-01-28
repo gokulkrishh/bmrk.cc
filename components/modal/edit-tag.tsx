@@ -62,7 +62,7 @@ export default function EditBookmark({ open, setOpen, id, name }: EditTag) {
         <div className="flex flex-col items-center justify-center w-full">
           <Input
             className={cn(
-              `mt-2 bg-transparent border focus-visible:ring-0 w-full pt-0 px-2 pb-0 !outline-none !focus:outline-none !focus:border-none !border-none !shadow-none placeholder:text-stone-500 text-lg font-normal`
+              `mt-2 bg-transparent focus-visible:ring-0 w-full pt-0 px-2 pb-1 !outline-none !focus:outline-none !focus:border-none !border-none !shadow-none placeholder:text-stone-500 text-lg font-normal`
             )}
             autoFocus
             inputMode="text"
@@ -77,7 +77,7 @@ export default function EditBookmark({ open, setOpen, id, name }: EditTag) {
             data-1p-ignore
           />
         </div>
-        <div className={cn(`flex mb-3 justify-end`)}>
+        <div className={cn(`flex justify-end mx-0.5 relative bottom-1.5`)}>
           <button
             type="submit"
             disabled={loading || !Boolean(tagName?.length) || !isEdited()}
