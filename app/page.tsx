@@ -33,8 +33,7 @@ export default async function Page() {
             </span>
           </h2>
           <p className="text-neutral-600 w-full font-medium mx-auto text-lg md:text-xl max-w-xl mt-1 tracking-normal text-center">
-            Streamlined Browsing: Effortlessly Bookmark, Categorize, and
-            Favorite your Web Essentials.
+            Effortlessly Bookmark, Categorize, and Favorite your Web Essentials.
           </p>
           <Image
             src="/images/open-graph.jpg"

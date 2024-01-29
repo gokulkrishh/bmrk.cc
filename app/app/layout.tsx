@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     type: 'website',
     title,
     description,
+    url: 'https://bmrk.cc',
     images: ['/images/open-graph.jpg'],
   },
   icons: {

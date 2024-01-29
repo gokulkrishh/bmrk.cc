@@ -4,16 +4,8 @@ import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
-import { DashboardIcon } from '@radix-ui/react-icons';
 import { urls } from 'config';
-import {
-  AppWindowIcon,
-  LayoutDashboardIcon,
-  LayoutGrid,
-  LayoutPanelTop,
-  LogOut,
-  Settings,
-} from 'lucide-react';
+import { AppWindowIcon, LogOut } from 'lucide-react';
 
 import SignupModal from 'components/modal/signup';
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';

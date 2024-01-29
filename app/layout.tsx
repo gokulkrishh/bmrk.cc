@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     title,
+    url: 'https://bmrk.cc',
     description,
     images: ['/images/open-graph.jpg'],
   },
