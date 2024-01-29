@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     title,
     description,
     creator: '@gokul_i',
-    images: ['/open-graph.jpg'],
+    images: ['/images/open-graph.jpg'],
   },
   openGraph: {
     type: 'website',
     title,
     description,
-    images: ['/open-graph.jpg'],
+    images: ['/images/open-graph.jpg'],
   },
   icons: {
     icon: '/icons/icon.svg',

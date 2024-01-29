@@ -6,7 +6,7 @@ import { urls } from 'config/index';
 export async function middleware(request: NextRequest) {
   const hostname = request.headers.get('host');
   const url = request.nextUrl;
-  // const currentHost = hostname?.replace(`.${urls.homeWithoutApp}`, '');
+  const currentHost = hostname?.replace(`.${urls.homeWithoutApp}`, '');
 
   let response = NextResponse.next({ request: { headers: request.headers } });
 
@@ -60,8 +60,11 @@ export async function middleware(request: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  if (!session && url.pathname === '/app') {
-    return NextResponse.redirect(urls.home);
+  const user = session?.user;
+
+  if (user && currentHost === 'app') {
+    url.pathname = `/app${url.pathname}`;
+    return NextResponse.rewrite(url);
   }
 
   return response;
@@ -77,6 +80,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * Feel free to modify this pattern to include more paths.
      */
-    '/((?!_next/static|_next/image|favicon.ico).*)',
+    '/((?!_next/static|_next/image|favicon.ico|manifest.webmanifest|icons|images|api/).*)',
   ],
 };

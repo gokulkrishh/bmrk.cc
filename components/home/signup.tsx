@@ -33,22 +33,21 @@ export default function Signup() {
   const supabase = createSupabaseBrowserClient();
 
   useEffect(() => {
-    async function getUser() {
+    async function getSession() {
       setLoading(true);
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (user) {
-        setUser(user);
+      const { data } = await supabase.auth.getSession();
+      const { session } = data;
+      if (session?.user) {
+        setUser(session.user);
       }
       setLoading(false);
     }
-    getUser();
+    getSession();
   }, [supabase.auth]);
 
   const signOut = async () => {
     await supabase.auth.signOut();
-    window.location.href = '/';
+    window.location.href = urls.home;
   };
 
   return (

@@ -86,6 +86,7 @@ export default function SignupModal({ open, onHide }: SignupModalProp) {
                 maxWidth: '100%',
                 height: 'auto',
               }}
+              priority
             />
             <DialogDescription className="mt-1 mb-1 font-medium text-primary">
               Bookmark it.

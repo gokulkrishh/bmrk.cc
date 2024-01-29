@@ -35,6 +35,5 @@ export async function GET(request: Request) {
       return NextResponse.redirect(`${origin}/app${next}`);
     }
   }
-  console.log('came 3');
   return NextResponse.redirect(urls.home);
 }

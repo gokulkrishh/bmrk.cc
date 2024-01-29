@@ -11,7 +11,6 @@ import createSupabaseBrowserClient from 'lib/supabase/client';
 const AuthContext = createContext(null);
 
 const isProduction = process.env.NODE_ENV === 'production';
-const redirectUrl = `${isProduction ? 'https://' : 'http://'}${urls.home}`;
 
 export const AuthProvider = (props: any) => {
   const { children } = props;
@@ -22,10 +21,13 @@ export const AuthProvider = (props: any) => {
 
   useEffect(() => {
     async function getActiveSession() {
-      const { data } = await supabase.auth.getUser();
-      setUser(data?.user);
-      if (data?.user) {
+      const { data } = await supabase.auth.getSession();
+      const { session } = data;
+      setUser(session?.user);
+      if (session?.user) {
         router.replace(pathname);
+      } else if (!session?.user) {
+        window.location.href = urls.home;
       }
     }
 
@@ -33,10 +35,14 @@ export const AuthProvider = (props: any) => {
 
     const {
       data: { subscription: authListener },
-    } = supabase.auth.onAuthStateChange((event) => {
-      if (event == 'SIGNED_OUT') {
-        window.location.href = redirectUrl;
+    } = supabase.auth.onAuthStateChange((event, currentSession) => {
+      if (event === 'TOKEN_REFRESHED' || event === 'SIGNED_IN') {
+        router.refresh();
       }
+      if (event == 'SIGNED_OUT') {
+        window.location.href = urls.home;
+      }
+      if (currentSession?.user) setUser(currentSession?.user);
     });
 
     return () => {

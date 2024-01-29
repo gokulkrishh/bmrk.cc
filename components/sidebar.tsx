@@ -17,7 +17,7 @@ const SettingsLink = ({ className }: { className?: string }) => (
       `rounded-xl max-sm:hidden mt-2 p-2.5 transition-colors hover:bg-neutral-200 order-5`,
       className
     )}
-    href="/app/settings"
+    href="/settings"
     title="Settings"
   >
     <Settings className="w-7 h-7 opacity-90" />
@@ -28,30 +28,28 @@ export default function Sidebar() {
   return (
     <nav className="flex fixed sm:top-0 max-sm:bottom-0 max-sm:bg-neutral-100 max-sm:h-[92px] z-10 justify-center sm:justify-between max-sm:px-4 sm:flex-col sm:h-full bottom-t sm:border-r sm:w-[70px] w-full border-neutral-200">
       <div className="flex sm:flex-col items-center max-sm:mb-3 max-sm:gap-6 gap-3 text-neutral-900">
-        <Link
-          href="/app"
-          className="active:opacity-85 mt-2 mb-2 hidden sm:block"
-        >
+        <Link href="/" className="active:opacity-85 mt-2 mb-2 hidden sm:block">
           <Image
             alt="logo"
             src={IconSVG}
             width={44}
             height={44}
             style={{ maxWidth: '100%', height: 'auto' }}
+            priority
           />
         </Link>
-        <NavLink href={'/app'} title="Home">
+        <NavLink href={'/'} title="Home">
           <Home className="w-7 h-7 opacity-90" />
         </NavLink>
         <Search />
         <NavLink
           className="max-sm:order-4"
-          href={'/app/favorites'}
+          href={'/favorites'}
           title="Favorites"
         >
           <StarIcon className="w-7 h-7 opacity-90" />
         </NavLink>
-        <NavLink className="max-sm:order-4" href={'/app/tags'} title="Tags">
+        <NavLink className="max-sm:order-4" href={'/tags'} title="Tags">
           <Tags className="w-7 h-7 opacity-90" />
         </NavLink>
         <AddIcon className="max-sm:order-3 mt-2" />

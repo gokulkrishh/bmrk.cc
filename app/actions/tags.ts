@@ -90,14 +90,12 @@ export const addTagToBookmark = async (
 };
 
 export const deleteTag = async (tagId: Tag['id']) => {
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+  const user = await getUser();
   if (!user) {
     return new Error('User is not authenticated.');
   }
+
+  const supabase = await createSupabaseServerClient();
 
   const { error: bookmarkError } = await supabase
     .from('bookmarks_tags')
@@ -127,6 +125,7 @@ export const updateTag = async (id: Bookmark['id'], name: Tag['name']) => {
   if (!user) {
     return new Error('User is not authenticated.');
   }
+
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase
     .from('tags')

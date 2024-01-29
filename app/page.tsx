@@ -37,7 +37,7 @@ export default async function Page() {
             Favorite your Web Essentials.
           </p>
           <Image
-            src="/open-graph.jpg"
+            src="/images/open-graph.jpg"
             width={1200}
             height={630}
             alt="Bookmark it"

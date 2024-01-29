@@ -2,21 +2,25 @@ import { NextRequest } from 'next/server';
 
 import { parse } from 'node-html-parser';
 
+import { checkAuth } from 'lib/auth';
+
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const siteUrl = searchParams.get('q');
   if (!siteUrl) {
     return new Response('Site url is missing.', { status: 400 });
   }
-  try {
-    const url = new URL(siteUrl);
-    const response = await fetch(url);
-    const html = await response.text();
-    const metatags: { [key: string]: string } = extractMetaTags(html);
-    return new Response(JSON.stringify(metatags), { status: 200 });
-  } catch (error) {
-    return new Response(JSON.stringify(error), { status: 500 });
-  }
+  return await checkAuth(async () => {
+    try {
+      const url = new URL(siteUrl);
+      const response = await fetch(url);
+      const html = await response.text();
+      const metatags: { [key: string]: string } = extractMetaTags(html);
+      return new Response(JSON.stringify(metatags), { status: 200 });
+    } catch (error) {
+      return new Response(JSON.stringify(error), { status: 500 });
+    }
+  });
 }
 
 function extractMetaTags(html: string) {

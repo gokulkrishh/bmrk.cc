@@ -20,6 +20,7 @@ export default function Header({ headerText }: { headerText?: string }) {
             width={55}
             height={55}
             style={{ maxWidth: '100%', height: 'auto' }}
+            priority
           />
         </Link>
         <h2 className="w-full font-medium flex flex-col p-3 tracking-wide">

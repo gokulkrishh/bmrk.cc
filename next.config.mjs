@@ -17,7 +17,7 @@ const nextConfig = {
 };
 
 const ContentSecurityPolicy = `
-    default-src 'self' bmrk.cc bmrk-cc.vercel.app;
+    default-src 'self' bmrk.cc;
     script-src 'self' 'unsafe-eval' 'unsafe-inline';
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
