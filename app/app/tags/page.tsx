@@ -38,7 +38,7 @@ export default async function Page() {
           <div className="flex gap-x-3 gap-y-2 items-end px-4 flex-wrap py-3">
             {tags.map(({ id, name }) => (
               <div key={id} className="inline-flex items-center">
-                <Link className="flex items-center" href={`/tags/${name}`}>
+                <Link className="flex items-center" href={`/app/tags/${name}`}>
                   <Badge className="font-normal py-1.5" variant="secondary">
                     {name} ({groupedByTagId[id]?.length ?? 0})
                   </Badge>
