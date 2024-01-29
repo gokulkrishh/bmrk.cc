@@ -26,7 +26,7 @@ export default function manifest(): MetadataRoute.Manifest {
       },
     ],
     start_url: '/?utm_source=homescreen',
-    theme_color: '#fff',
-    background_color: '#fff',
+    theme_color: '#ffffff',
+    background_color: '#ffffff',
   };
 }
