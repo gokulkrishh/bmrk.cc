@@ -49,7 +49,7 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <body className={`${inter.className} flex h-full bg-white`}>
         <AuthProvider>
           <div className="max-w-[600px] m-auto flex min-h-dvh w-full">
