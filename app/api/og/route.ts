@@ -4,15 +4,13 @@ import { parse } from 'node-html-parser';
 
 import { checkAuth } from 'lib/auth';
 
-export async function GET(request: NextRequest) {
-  const { searchParams } = request.nextUrl;
-  const siteUrl = searchParams.get('q');
-  if (!siteUrl) {
-    return new Response('Site url is missing.', { status: 400 });
-  }
+export async function POST(request: NextRequest) {
   return await checkAuth(async () => {
+    const { url } = await request.json();
+    if (!url) {
+      return new Response('Site url is missing.', { status: 400 });
+    }
     try {
-      const url = new URL(siteUrl);
       const response = await fetch(url);
       const html = await response.text();
       const metatags: { [key: string]: string } = extractMetaTags(html);

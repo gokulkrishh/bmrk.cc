@@ -10,7 +10,9 @@ export type OgResponse = {
 };
 
 export async function getOg(url: string) {
-  const res = await fetch(`/api/og?q=${encodeURIComponent(url)}`);
-  const data = await res.json();
-  return data;
+  const data = await fetch(`/api/og`, {
+    body: JSON.stringify({ url }),
+    method: 'POST',
+  });
+  return await data.json();
 }
