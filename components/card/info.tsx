@@ -8,7 +8,7 @@ export default function CardInfo({ data }: { data: Bookmark }) {
       title={data.title ?? ''}
       target="_blank"
       rel="noopener"
-      href={data.url}
+      href={`${data.url}?utm_source=bmrk.cc`}
       prefetch={false}
       className="group items-start justify-between flex-col py-2 mt-1 pt-1.5 gap-1 flex hover:bg-neutral-50 text-black w-[calc(100%-60px)]"
     >

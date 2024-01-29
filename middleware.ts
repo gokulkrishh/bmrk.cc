@@ -6,7 +6,7 @@ import { urls } from 'config/index';
 export async function middleware(request: NextRequest) {
   const hostname = request.headers.get('host');
   const url = request.nextUrl;
-  const currentHost = hostname?.replace(`.${urls.homeWithoutApp}`, '');
+  const currentHost = hostname?.replace(`.${urls.homeWithoutProtocol}`, '');
 
   let response = NextResponse.next({ request: { headers: request.headers } });
 
@@ -53,7 +53,7 @@ export async function middleware(request: NextRequest) {
           });
         },
       },
-    }
+    },
   );
 
   const {

@@ -20,7 +20,7 @@ export default function CardMedia({ data }: { data: BookmarkModifiedType }) {
       className="group w-fit max-sm:max-w-[calc(100%-30px)] max-w-[calc(100%-16px)] max-h-[185px] mb-2 rounded-2xl"
       target="_blank"
       rel="noopener"
-      href={data.url}
+      href={`${data.url}?utm_source=bmrk.cc`}
       prefetch={false}
     >
       <Image

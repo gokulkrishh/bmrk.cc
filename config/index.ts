@@ -6,7 +6,7 @@ const home = isProduction ? domain : local;
 const protocol = isProduction ? 'https://' : 'http://';
 
 export const urls = {
-  homeWithoutApp: home,
+  homeWithoutProtocol: home,
   home: `${protocol}${home}`,
   authCallback: `${protocol}${home}/auth/callback`,
   app: `${protocol}app.${home}`,

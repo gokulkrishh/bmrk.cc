@@ -26,6 +26,6 @@ export default cache(async function createSupabaseServerClient() {
           cookieStore.set({ name, value: '', ...options });
         },
       },
-    }
+    },
   );
 });
