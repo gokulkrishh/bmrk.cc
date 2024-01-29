@@ -25,6 +25,7 @@
     "cmdk": "^0.2.0",
     "lucide-react": "^0.315.0",
     "next": "^14.1.1-canary.7",
+    "next-auth": "^4.24.5",
     "next-themes": "^0.2.1",
     "object.groupby": "^1.0.1",
     "react": "^18",
@@ -52,5 +53,10 @@
     "supabase": "^1.136.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "overrides": {
+    "next-auth": {
+      "next": "^14.1.1-canary.7"
+    }
   }
 }

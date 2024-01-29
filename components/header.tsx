@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import IconSVG from 'public/icons/icon.svg';
+
 import { formatDate, showGreetings } from 'lib/date';
 
 import Profile from './profile';
@@ -14,7 +16,7 @@ export default function Header({ headerText }: { headerText?: string }) {
         <Link href="/" className="active:opacity-85 ml-2 block sm:hidden">
           <Image
             alt="logo"
-            src="/icons/icon.svg"
+            src={IconSVG}
             width={55}
             height={55}
             style={{ maxWidth: '100%', height: 'auto' }}

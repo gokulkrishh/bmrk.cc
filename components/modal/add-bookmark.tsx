@@ -12,7 +12,7 @@ export default function AddBookmark({ open, setOpen }: AddBookmarkProps) {
       <DialogContent className="sm:max-w-md py-2 px-2">
         <AddBookmarkInput
           btnClassname="mx-0.5 relative -bottom-1.5"
-          onDone={() => {
+          onHide={() => {
             setOpen(false);
           }}
           className="!border-none"

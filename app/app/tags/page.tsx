@@ -16,6 +16,14 @@ import { cn } from 'lib/utils';
 
 import { BookmarkModifiedType } from 'types/data';
 
+const title = 'Bookmark it. | Tags';
+const description = 'Bookmark manager for the modern web.';
+
+export const metadata = {
+  title,
+  description,
+};
+
 export default async function Page() {
   const tags = await getTags();
   const bookmarks = await getBookmarks();

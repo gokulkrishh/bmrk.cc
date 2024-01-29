@@ -1,11 +1,14 @@
 import { type NextRequest, NextResponse } from 'next/server';
 
 import { type CookieOptions, createServerClient } from '@supabase/ssr';
+import { urls } from 'config/index';
 
 export async function middleware(request: NextRequest) {
-  let response = NextResponse.next({
-    request: { headers: request.headers },
-  });
+  const hostname = request.headers.get('host');
+  const url = request.nextUrl;
+  // const currentHost = hostname?.replace(`.${urls.homeWithoutApp}`, '');
+
+  let response = NextResponse.next({ request: { headers: request.headers } });
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -54,11 +57,11 @@ export async function middleware(request: NextRequest) {
   );
 
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { session },
+  } = await supabase.auth.getSession();
 
-  // if user is not signed in and redirect to home page
-  if (!user) {
+  if (!session && url.pathname === '/app') {
+    return NextResponse.redirect(urls.home);
   }
 
   return response;
@@ -66,6 +69,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    '/',
     /*
      * Match all request paths except for the ones starting with:
      * - _next/static (static files)

@@ -1,5 +1,13 @@
 import Header from 'components/header';
 
+const title = 'Bookmark it. | Settings';
+const description = 'Bookmark manager for the modern web.';
+
+export const metadata = {
+  title,
+  description,
+};
+
 export default async function Page() {
   return (
     <>

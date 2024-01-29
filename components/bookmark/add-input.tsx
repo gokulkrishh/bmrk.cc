@@ -18,11 +18,11 @@ import { BookmarkInsertModified } from 'types/data';
 export default function AddBookmarkInput({
   className,
   btnClassname = '',
-  onDone,
+  onHide,
 }: {
   className?: string;
   btnClassname?: string;
-  onDone?: () => void;
+  onHide?: () => void;
 }) {
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
@@ -47,7 +47,7 @@ export default function AddBookmarkInput({
       toast.error(`Unable to add bookmark, try again.`);
     } finally {
       setLoading(false);
-      onDone?.();
+      onHide?.();
     }
   };
 

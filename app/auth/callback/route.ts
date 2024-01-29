@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 import { type CookieOptions, createServerClient } from '@supabase/ssr';
+import { urls } from 'config';
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
@@ -31,10 +32,9 @@ export async function GET(request: Request) {
 
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
-      return NextResponse.redirect(`${origin}${next}`);
+      return NextResponse.redirect(`${origin}/app${next}`);
     }
   }
-
-  // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/auth/auth-code-error`);
+  console.log('came 3');
+  return NextResponse.redirect(urls.home);
 }

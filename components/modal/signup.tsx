@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 import { DialogDescription } from '@radix-ui/react-dialog';
 import { createBrowserClient } from '@supabase/ssr';
+import { urls } from 'config';
 import Icon from 'public/icons/icon.svg';
 
 import { GoogleIcon } from 'components/icons';
@@ -45,7 +46,7 @@ const Button = ({ loading, Icon, btnText, clickHandler }: ButtonProp) => {
 
 type SignupModalProp = {
   open: boolean;
-  onHide: (open: boolean) => void;
+  onHide?: (open: boolean) => void;
 };
 
 export default function SignupModal({ open, onHide }: SignupModalProp) {
@@ -57,20 +58,22 @@ export default function SignupModal({ open, onHide }: SignupModalProp) {
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
     );
+
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${process?.env?.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+        redirectTo: urls.authCallback,
       },
     });
+
     setTimeout(() => {
       setLoading(false);
-      onHide(true);
+      onHide?.(true);
     }, 2000);
   };
 
   return (
-    <Dialog open={open} onOpenChange={(hide) => onHide(hide)}>
+    <Dialog open={open} onOpenChange={(hide) => onHide?.(hide)}>
       <DialogContent className="max-w-sm w-[calc(100%-20px)] bg-white rounded-xl">
         <DialogHeader>
           <DialogTitle className="tracking-normal items-center flex-col justify-center flex">

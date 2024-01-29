@@ -11,6 +11,22 @@ import { cn } from 'lib/utils';
 
 import { BookmarkModifiedType } from 'types/data';
 
+const title = 'Bookmark it.';
+const description = 'Bookmark manager for the modern web.';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug: tagName } = params;
+
+  return {
+    title: `${title} | Tag: ${tagName}`,
+    description,
+  };
+}
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug: tagName } = params;
   const [bookmarks, tags] = await Promise.all([

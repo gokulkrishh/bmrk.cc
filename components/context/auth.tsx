@@ -2,11 +2,16 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
-import { permanentRedirect, usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+
+import { urls } from 'config';
 
 import createSupabaseBrowserClient from 'lib/supabase/client';
 
 const AuthContext = createContext(null);
+
+const isProduction = process.env.NODE_ENV === 'production';
+const redirectUrl = `${isProduction ? 'https://' : 'http://'}${urls.home}`;
 
 export const AuthProvider = (props: any) => {
   const { children } = props;
@@ -30,7 +35,7 @@ export const AuthProvider = (props: any) => {
       data: { subscription: authListener },
     } = supabase.auth.onAuthStateChange((event) => {
       if (event == 'SIGNED_OUT') {
-        window.location.href = '/';
+        window.location.href = redirectUrl;
       }
     });
 
