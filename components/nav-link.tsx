@@ -23,7 +23,7 @@ export default function NavLink({
   className,
 }: Props) {
   const pathname = usePathname();
-  const isActive = pathname === href || window?.location?.pathname === href;
+  const isActive = pathname === href;
   return (
     <Link
       href={href}
