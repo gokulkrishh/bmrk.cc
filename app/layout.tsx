@@ -45,7 +45,7 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="h-full ">
+    <html lang="en" className="h-full">
       <body className={`${inter.className} flex h-full bg-white`}>
         {children}
       </body>

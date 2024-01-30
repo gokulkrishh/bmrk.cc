@@ -1,8 +1,15 @@
 import { Skeleton } from 'components/ui/skeleton';
 
-export default function CardSkeleton() {
+import { cn } from 'lib/utils';
+
+export default function CardSkeleton({ className }: { className?: string }) {
   return (
-    <div className="justify-between group gap-3 flex hover:bg-neutral-50 text-black w-full">
+    <div
+      className={cn(
+        `justify-between group gap-3 flex hover:bg-neutral-50 text-black w-full`,
+        className,
+      )}
+    >
       <Skeleton className="w-[59px] inline-flex mt-3.5 mx-2 h-2 text-neutral-500  bg-neutral-300 " />
       <div className="w-2 border-l border-neutral-200 ">
         <span className="w-4 h-4 shrink-0 relative left-[-8.5px] top-[8px] z-1 rounded-full bg-blue-transparent text-white inline-flex items-center justify-center">
