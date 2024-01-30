@@ -14,7 +14,7 @@ export default function Header({ headerText }: { headerText?: string }) {
     <div className="border-b border-neutral-200 border-r w-full items-center flex justify-between">
       <div className="flex items-center">
         <Link href="/" className="active:opacity-85 ml-2 block sm:hidden">
-          <Logo />
+          <Logo className="w-[44px] h-[44px]" />
         </Link>
         <h2 className="w-full font-medium flex flex-col p-3 tracking-wide">
           {headerText ?? showGreetings()}

@@ -27,7 +27,7 @@ export const AuthProvider = (props: any) => {
       if (session?.user) {
         router.replace(pathname);
       } else if (!session?.user) {
-        window.location.href = urls.account;
+        // window.location.href = urls.account;
       }
     }
 
@@ -42,7 +42,9 @@ export const AuthProvider = (props: any) => {
       if (event == 'SIGNED_OUT') {
         window.location.href = urls.account;
       }
-      if (currentSession?.user) setUser(currentSession?.user);
+      if (currentSession?.user) {
+        setUser(currentSession?.user);
+      }
     });
 
     return () => {
