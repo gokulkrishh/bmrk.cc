@@ -1,8 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { Home, Settings, StarIcon, Tags } from 'lucide-react';
-import IconSVG from 'public/icons/icon.svg';
 
 import { cn } from 'lib/utils';
 

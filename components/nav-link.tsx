@@ -23,15 +23,16 @@ export default function NavLink({
   className,
 }: Props) {
   const pathname = usePathname();
+  const isActive = pathname === href || window?.location?.pathname === href;
   return (
     <Link
       href={href}
       className={cn(
         `p-2.5 inline-block rounded-xl transition-colors text-center text-neutral-900 hover:bg-neutral-200`,
         {
-          'bg-neutral-200': pathname === href,
+          'bg-neutral-200': isActive,
         },
-        className
+        className,
       )}
     >
       <Tooltip>
