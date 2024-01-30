@@ -38,14 +38,14 @@ export default function DeleteAccount() {
     <SettingsCard className="bg-red-50 border-red-100">
       <div className="flex flex-col">
         <h3 className="font-medium">Delete My Account</h3>
-        <p className="text-sm mt-1 max-w-[350px]">
+        <p className="text-sm mt-1 max-w-[350px] text-neutral-600">
           Permanently delete your account and all its associated data, this
           action cannot be undone.
         </p>
       </div>
       {user?.user_metadata?.email ? (
         <button
-          className="items-center tracking-wide w-[95px] rounded-full focus:outline-0 focus:bg-red-700/80 active:bg-red-700/80 border-0 text-sm flex justify-center py-2 px-4 text-white bg-red-700 hover:bg-red-700/80"
+          className="items-center tracking-wide w-[95px] rounded-lg focus:outline-0 focus:bg-red-700/80 active:bg-red-700/80 border-0 text-sm flex justify-center py-2 px-4 text-white bg-red-700 hover:bg-red-700/80"
           onClick={() => setOpen(true)}
         >
           Delete

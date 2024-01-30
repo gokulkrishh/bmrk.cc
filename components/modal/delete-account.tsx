@@ -25,7 +25,9 @@ export default function DeleteAccountModal({
   return (
     <Dialog open={open} onOpenChange={() => setOpen(false)}>
       <DialogContent className="sm:max-w-md p-4">
-        <DialogHeader className="font-medium">Delete Your Account</DialogHeader>
+        <DialogHeader className="font-medium !text-left">
+          Delete Your Account
+        </DialogHeader>
         <DialogDescription className="-mt-3 text-sm">
           Type this account email to delete your account and its data.
         </DialogDescription>
