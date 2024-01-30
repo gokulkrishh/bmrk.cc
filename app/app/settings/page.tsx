@@ -14,7 +14,7 @@ export default async function Page() {
   return (
     <>
       <Header headerText="Settings" />
-      <div className="min-h-dvh border-r border-neutral-200 pb-24 flex gap-6 flex-col px-4 py-6">
+      <div className="min-h-dvh border-r border-neutral-200 pb-24 flex gap-6 flex-col px-4 py-4">
         <div>
           <h2 className="font-medium mb-2">Account</h2>
           <SettingsAccount />
