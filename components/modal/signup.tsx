@@ -2,14 +2,10 @@
 
 import { useState } from 'react';
 
-import Image from 'next/image';
-
 import { DialogDescription } from '@radix-ui/react-dialog';
-import { createBrowserClient } from '@supabase/ssr';
 import { urls } from 'config';
-import Icon from 'public/icons/icon.svg';
 
-import { GoogleIcon } from 'components/icons';
+import { GoogleIcon, Logo } from 'components/icons';
 import Loader from 'components/loader';
 import {
   Dialog,
@@ -18,6 +14,7 @@ import {
   DialogTitle,
 } from 'components/ui/dialog';
 
+import createSupabaseBrowserClient from 'lib/supabase/client';
 import { cn } from 'lib/utils';
 
 type ButtonProp = {
@@ -34,7 +31,7 @@ const Button = ({ loading, Icon, btnText, clickHandler }: ButtonProp) => {
         `items-center max-w-sm justify-center text-sm transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/80 active:scale-[0.98] rounded-xl bg-primary px-6 py-4 text-secondary font-medium flex space-x-2 h-[40px] w-full`,
         {
           'bg-primary/80 cursor-default': loading,
-        }
+        },
       )}
       onClick={clickHandler}
     >
@@ -54,11 +51,7 @@ export default function SignupModal({ open, onHide }: SignupModalProp) {
 
   const clickHandler = async () => {
     setLoading(true);
-    const supabase = createBrowserClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
-
+    const supabase = createSupabaseBrowserClient();
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
@@ -77,17 +70,7 @@ export default function SignupModal({ open, onHide }: SignupModalProp) {
       <DialogContent className="max-w-sm w-[calc(100%-20px)] bg-white rounded-xl">
         <DialogHeader>
           <DialogTitle className="tracking-normal items-center flex-col justify-center flex">
-            <Image
-              src={Icon}
-              width={55}
-              height={55}
-              alt="logo"
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-              }}
-              priority
-            />
+            <Logo />
             <DialogDescription className="mt-1 mb-1 font-medium text-primary">
               Bookmark it.
             </DialogDescription>

@@ -1,14 +1,12 @@
 'use server';
 
-import { cache } from 'react';
-
 import { cookies } from 'next/headers';
 
 import { type CookieOptions, createServerClient } from '@supabase/ssr';
 
 import { Database } from 'types/database';
 
-export default cache(async function createSupabaseServerClient() {
+export default async function createSupabaseServerClient() {
   const cookieStore = cookies();
 
   return createServerClient<Database>(
@@ -28,4 +26,4 @@ export default cache(async function createSupabaseServerClient() {
       },
     },
   );
-});
+}

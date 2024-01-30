@@ -7,6 +7,7 @@ import IconSVG from 'public/icons/icon.svg';
 import { cn } from 'lib/utils';
 
 import AddIcon from './add-icon';
+import { Logo } from './icons';
 import NavLink from './nav-link';
 import Profile from './profile';
 import Search from './search';
@@ -15,7 +16,7 @@ const SettingsLink = ({ className }: { className?: string }) => (
   <NavLink
     className={cn(
       `rounded-xl max-sm:hidden mt-2 p-2.5 transition-colors hover:bg-neutral-200 order-5`,
-      className
+      className,
     )}
     href="/settings"
     title="Settings"
@@ -29,14 +30,7 @@ export default function Sidebar() {
     <nav className="flex fixed sm:top-0 max-sm:bottom-0 max-sm:bg-neutral-100 max-sm:h-[92px] z-10 justify-center sm:justify-between max-sm:px-4 sm:flex-col sm:h-full bottom-t sm:border-r sm:w-[70px] w-full border-neutral-200">
       <div className="flex sm:flex-col items-center max-sm:mb-3 max-sm:gap-6 gap-3 text-neutral-900">
         <Link href="/" className="active:opacity-85 mt-2 mb-2 hidden sm:block">
-          <Image
-            alt="logo"
-            src={IconSVG}
-            width={44}
-            height={44}
-            style={{ maxWidth: '100%', height: 'auto' }}
-            priority
-          />
+          <Logo />
         </Link>
         <NavLink href={'/'} title="Home">
           <Home className="w-7 h-7 opacity-90" />

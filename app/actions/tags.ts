@@ -55,7 +55,7 @@ export const createTag = async (id: Bookmark['id'], tag: TagInsert) => {
 export const addTagToBookmark = async (
   id: Bookmark['id'],
   tagId: Tag['id'],
-  isChecked: boolean
+  isChecked: boolean,
 ) => {
   const user = await getUser();
   if (!user) {

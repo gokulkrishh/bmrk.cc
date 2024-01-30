@@ -9,6 +9,7 @@ export const urls = {
   homeWithoutProtocol: home,
   home: `${protocol}${home}`,
   authCallback: `${protocol}${home}/auth/callback`,
+  account: `${protocol}app.${home}/account`,
   app: `${protocol}app.${home}`,
   twitter: 'https://twitter.com/gokul_i',
   github: 'https://github.com/gokulkrishh/bmrk.cc',

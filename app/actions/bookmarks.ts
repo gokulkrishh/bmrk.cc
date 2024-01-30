@@ -49,7 +49,7 @@ export const createBookmark = async (bookmark: BookmarkInsert) => {
 
 export const updateBookmark = async (
   id: Bookmark['id'],
-  bookmark: BookmarkModifiedType
+  bookmark: BookmarkModifiedType,
 ) => {
   const user = await getUser();
   if (!user) {
@@ -100,7 +100,7 @@ export const deleteBookmark = async (id: Bookmark['id']) => {
 
 export const addToFav = async (
   id: Bookmark['id'],
-  isFav: Bookmark['is_fav']
+  isFav: Bookmark['is_fav'],
 ) => {
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase
@@ -116,7 +116,7 @@ export const addToFav = async (
 
 export const refreshBookmark = async (
   id: Bookmark['id'],
-  payload: BookmarkUpdate
+  payload: BookmarkUpdate,
 ) => {
   const user = await getUser();
   if (!user) {

@@ -77,7 +77,7 @@ export default function Signup() {
             if (user) {
               window.location.href = urls.app;
             } else {
-              setOpen(true);
+              window.location.href = urls.account;
             }
           }}
           className="rounded-full inline-flex text-sm items-center disabled:bg-red-200 focus:outline-0 bg-neutral-950 focus:bg-black/80 active:bg-black/80 hover:bg-black/80 border-0 py-2 px-4 text-white"

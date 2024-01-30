@@ -12,7 +12,7 @@ export const checkAuth = async (callback: Function) => {
   } else {
     return NextResponse.json(
       { message: 'Unauthorized request' },
-      { status: 401 }
+      { status: 401 },
     );
   }
 };

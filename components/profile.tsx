@@ -25,7 +25,7 @@ export default function Profile({ className }: { className?: string }) {
 
   const signOut = async () => {
     await supabase.auth.signOut();
-    window.location.href = urls.home;
+    window.location.href = urls.account;
   };
 
   return (
