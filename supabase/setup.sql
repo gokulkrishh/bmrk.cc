@@ -78,12 +78,12 @@ alter table tags
 create policy "Allow operations for authenticated users only" on tags
   for all using (auth.uid () = user_id);
 
-
+-- Create a table for bookmarks tags for many to many relationship
 create table
   bookmarks_tags (
     bookmark_id bigint not null references bookmarks (id),
     tag_id bigint not null references tags (id),
-    user_id uuid not null references  users (id),
+    user_id uuid not null references users (id) on delete cascade not null,
     primary key (bookmark_id, tag_id)
   );
 

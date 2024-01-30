@@ -17,7 +17,7 @@ import {
 
 import createSupabaseBrowserClient from 'lib/supabase/client';
 
-export default function Account() {
+export default function HomeAccount() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<any>(null);
   const supabase = createSupabaseBrowserClient();

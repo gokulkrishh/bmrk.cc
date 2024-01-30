@@ -40,7 +40,7 @@ export default async function Page() {
               the modern web.
             </span>
           </h2>
-          <p className="text-neutral-600 w-full font-medium mx-auto text-lg md:text-xl max-w-xl mt-1 tracking-normal text-center">
+          <p className="text-neutral-600 w-full font-normal mx-auto text-lg md:text-xl max-w-xl mt-1 tracking-normal text-center">
             Effortlessly Bookmark, Categorize, and Favorite your Web Essentials.
           </p>
           <Signup />

@@ -36,7 +36,7 @@ export default function Profile({ className }: { className?: string }) {
             src={user.user_metadata.avatar_url}
             alt={user.user_metadata.name}
           />
-          <AvatarFallback className="font-medium text-orange-900 uppercase text-xl bg-orange-300">
+          <AvatarFallback className="font-medium text-black uppercase text-xl bg-neutral-300">
             {user.user_metadata.name[0]}
           </AvatarFallback>
         </DropdownMenuTrigger>
