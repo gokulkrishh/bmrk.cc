@@ -15,22 +15,18 @@ type Props = {
   title: string;
   side?: 'top' | 'right' | 'bottom' | 'left';
   className?: string;
+  active: boolean;
 };
 
 export default function NavLink({
+  active,
   children,
-  href,
-  title,
-  side = 'right',
   className,
+  href,
+  side = 'right',
+  title,
 }: Props) {
-  const [active, setActive] = useState(false);
   const pathname = usePathname();
-
-  // To fix the partial pre-rendering of the active link
-  useEffect(() => {
-    setActive(pathname === href);
-  }, [href, pathname]);
 
   return (
     <Link
@@ -38,7 +34,7 @@ export default function NavLink({
       className={cn(
         `p-2.5 inline-block rounded-xl transition-colors text-center text-neutral-900 hover:bg-neutral-200`,
         {
-          'bg-neutral-200': pathname === href || active,
+          'bg-neutral-200': active,
         },
         className,
       )}
