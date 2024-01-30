@@ -16,10 +16,7 @@ export const formatDate = (dateString: string | Date | null): string | null => {
   if (!dateString) return null;
   return new Intl.DateTimeFormat('en-US', {
     year: 'numeric',
-    month: 'short',
+    month: 'long',
     day: 'numeric',
-    timeZone: getTimeZone(),
-    hour: 'numeric',
-    minute: 'numeric',
   }).format(new Date(dateString)) as string;
 };
