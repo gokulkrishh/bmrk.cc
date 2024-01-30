@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -9,23 +7,16 @@ import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
 import { cn } from 'lib/utils';
 
-type Props = {
+type NavLinkProps = {
   children: React.ReactNode;
   href: string;
   title: string;
   side?: 'top' | 'right' | 'bottom' | 'left';
   className?: string;
-  active: boolean;
 };
 
-export default function NavLink({
-  active,
-  children,
-  className,
-  href,
-  side = 'right',
-  title,
-}: Props) {
+export default function NavLink(props: NavLinkProps) {
+  const { children, href, title, side = 'right', className = '' } = props;
   const pathname = usePathname();
 
   return (
@@ -34,7 +25,7 @@ export default function NavLink({
       className={cn(
         `p-2.5 inline-block rounded-xl transition-colors text-center text-neutral-900 hover:bg-neutral-200`,
         {
-          'bg-neutral-200': active,
+          'bg-neutral-200': pathname === href,
         },
         className,
       )}
