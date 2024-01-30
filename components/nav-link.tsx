@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -22,15 +24,21 @@ export default function NavLink({
   side = 'right',
   className,
 }: Props) {
+  const [active, setActive] = useState(false);
   const pathname = usePathname();
-  const isActive = pathname === href;
+
+  // To fix the partial pre-rendering of the active link
+  useEffect(() => {
+    setActive(pathname === href);
+  }, [href, pathname]);
+
   return (
     <Link
       href={href}
       className={cn(
         `p-2.5 inline-block rounded-xl transition-colors text-center text-neutral-900 hover:bg-neutral-200`,
         {
-          'bg-neutral-200': isActive,
+          'bg-neutral-200': pathname === href || active,
         },
         className,
       )}
