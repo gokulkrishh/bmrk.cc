@@ -26,7 +26,7 @@ export default async function Page() {
           </h1>
           <Link
             href={urls.account}
-            className="rounded-full inline-flex h-[36px] text-sm items-center disabled:bg-neutral-200 focus:outline-0 bg-neutral-950 focus:bg-black/80 active:bg-black/80 ring-1 ring-slate-900/10 hover:bg-black/80 border-0 px-4 py-3 text-white"
+            className="rounded-full inline-flex h-[36px] text-sm items-center disabled:bg-black focus:outline-0 bg-black focus:bg-black/80 active:bg-black/80 shadow hover:bg-black/80 border-0 px-4 py-3 text-white"
           >
             Sign In
           </Link>
@@ -40,8 +40,8 @@ export default async function Page() {
               the modern web.
             </span>
           </h2>
-          <p className="text-neutral-600 w-full font-normal mx-auto text-lg md:text-xl max-w-xl mt-1 tracking-normal text-center">
-            Effortlessly Bookmark, Categorize, and Favorite your Web Essentials.
+          <p className="text-neutral-600 leading-7 sm:text-lg mx-auto max-w-xl mt-1 tracking-normal text-center">
+            Effortlessly Bookmark, Categorize, and Favorite your Web Sites.
           </p>
           <Signup />
           <Image
@@ -53,14 +53,14 @@ export default async function Page() {
             priority
           />
         </div>
-        <div className="mx-auto mt-10 text-center">
+        <div className="mx-auto mt-10 flex flex-col items-center">
           <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl sm:leading-[3.5rem]">
             Proudly{' '}
             <span className="bg-gradient-to-r from-blue-400 to-sky-600 bg-clip-text text-transparent">
               Open Sourced!
             </span>
           </h2>
-          <p className="mt-3 text-base leading-7 sm:text-lg">
+          <p className="mt-3 text-neutral-600 leading-7 sm:text-lg w-[80%] text-center">
             Source code is available on GitHub - feel free to read, review, or
             contribute to it!
           </p>
@@ -82,7 +82,7 @@ export default async function Page() {
           </Link>
         </div>
       </main>
-      <footer className="w-full mt-20 py-4 flex justify-between text-[13px] border-t text-black">
+      <footer className="w-full mt-28 py-4 flex justify-between text-[13px] border-t text-black">
         <div>&copy; {new Date().getFullYear()} Bookmark It. </div>
         <div className="flex items-center gap-4">
           <Link

@@ -37,12 +37,12 @@ export default function Signup() {
             window.location.href = urls.account;
           }
         }}
-        className="rounded-full inline-flex h-[36px] text-sm items-center disabled:bg-neutral-200 focus:outline-0 bg-neutral-950 focus:bg-black/80 active:bg-black/80 ring-1 ring-slate-900/10 hover:bg-black/80 border-0 px-4 py-3 text-white"
+        className="rounded-full inline-flex h-[38px] text-sm items-center disabled:bg-neutral-200 focus:outline-0 bg-neutral-950 focus:bg-black/80 active:bg-black/80 ring-1 ring-slate-900/10 hover:bg-black/80 border-0 px-4 py-3 text-white"
       >
         Get Started <ArrowRight className="ml-1 w-4 h-4" />
       </button>
       <Link
-        className="inline-flex h-[36px] items-center justify-center  rounded-full bg-white/0 px-4 py-3 text-sm font-medium text-slate-900 ring-1 ring-slate-900/10 hover:bg-gray-100"
+        className="inline-flex h-[38px] items-center justify-center  rounded-full bg-white/0 px-4 py-3 text-sm font-medium text-slate-900 ring-1 ring-slate-900/10 hover:bg-gray-100"
         target="_blank"
         rel="noopener noreferrer"
         href="https://github.com/gokulkrishh/bmrk.cc"

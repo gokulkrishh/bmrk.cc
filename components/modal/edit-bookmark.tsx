@@ -43,20 +43,16 @@ export default function EditBookmark({
   const onSubmit = async () => {
     try {
       setLoading(true);
-      const ogData: OgResponse = await getOg(state.url);
       const payload = {
         url: state.url,
-        description: state.description,
         title: state.title,
-        metadata: {
-          ogImageUrl: ogData['og:image'] ?? '',
-          twitterImageUrl: ogData['twitter:image'] ?? '',
-        },
+        description: state.description,
+        metadata: state.metadata,
       } as BookmarkModifiedType;
       await updateBookmark(data.id, payload);
       toast.success(`Bookmark updated.`);
-    } catch {
-      toast.success(`Unable to update the bookmark, try again.`);
+    } catch (error) {
+      toast.error(`Unable to update the bookmark, try again.`);
     } finally {
       setOpen(false);
       setLoading(false);
@@ -144,7 +140,7 @@ export default function EditBookmark({
             `rounded-full w-[90px] disabled:bg-blue-200 focus:outline-0 focus:bg-blue-700 active:bg-blue-700 border-0 text-sm flex justify-center py-2 px-5 text-white bg-blue-600 hover:bg-blue-700`,
             {
               '!bg-blue-200 cursor-not-allowed': loading,
-            }
+            },
           )}
         >
           {loading ? <Loader /> : 'Update'}

@@ -13,7 +13,7 @@ import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
-const title = 'Bookmark it.';
+const title = 'Bookmark it. | Home';
 const description = 'Bookmark manager for the modern web.';
 
 export const metadata: Metadata = {
@@ -65,7 +65,10 @@ export default async function RootLayout({
             </TooltipProvider>
           </div>
         </AuthProvider>
-        <Toaster toastOptions={{ className: 'max-sm:mb-20' }} />
+        <Toaster
+          richColors
+          toastOptions={{ className: 'max-sm:mb-[4.5rem]' }}
+        />
       </body>
     </html>
   );

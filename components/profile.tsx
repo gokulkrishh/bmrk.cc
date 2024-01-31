@@ -29,7 +29,7 @@ export default function Profile({ className }: { className?: string }) {
   };
 
   return (
-    <Avatar className={cn(className)}>
+    <Avatar className={cn('h-9 w-9', className)}>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <AvatarImage

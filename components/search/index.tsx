@@ -37,7 +37,7 @@ export default function Search({ className }: { className?: string }) {
       >
         <Tooltip>
           <TooltipTrigger className="text-neutral-900" asChild>
-            <SearchIcon className="w-7 h-7 text-black" />
+            <SearchIcon className="w-6 h-6 text-black" />
           </TooltipTrigger>
           <TooltipContent side={'right'} className="flex items-center ml-4">
             Search{' '}

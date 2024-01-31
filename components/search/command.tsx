@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { StarFilledIcon } from '@radix-ui/react-icons';
 import { Command as CommandPrimitive } from 'cmdk';
 
+import { getBookmarks } from 'app/actions/bookmarks';
+
 import CardAvatar from 'components/card/avatar';
 import { useAuth } from 'components/context/auth';
 import Loader from 'components/loader';
@@ -31,23 +33,17 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
   const [result, setResult] = useState<Bookmark[]>([]);
   const [search, setSearch] = useState('');
-  const supabase = createSupabaseBrowserClient();
-  const { user } = useAuth();
 
   const getAllBookmarks = useCallback(async () => {
     try {
       setLoading(true);
-      const { data } = await supabase
-        .from('bookmarks')
-        .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false });
+      const data = await getBookmarks();
       setResult(data ?? []);
       setBookmarks(data ?? []);
     } finally {
       setLoading(false);
     }
-  }, [supabase, user.id]);
+  }, []);
 
   useEffect(() => {
     getAllBookmarks();

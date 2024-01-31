@@ -26,8 +26,8 @@ export default function AddIcon({ className }: { className?: string }) {
       <button
         onClick={() => setOpen(true)}
         className={cn(
-          'rounded-full flex justify-center p-2.5 max-sm:p-3.5 text-white bg-blue-600 hover:bg-blue-500',
-          className
+          'rounded-full flex justify-center p-2 max-sm:p-3 text-white bg-blue-600 hover:bg-blue-500',
+          className,
         )}
       >
         <Tooltip>
