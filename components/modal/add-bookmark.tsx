@@ -15,7 +15,7 @@ export default function AddBookmark({ open, setOpen }: AddBookmarkProps) {
           onHide={() => {
             setOpen(false);
           }}
-          className="!border-none"
+          className="!border-none px-0"
         />
       </DialogContent>
     </Dialog>

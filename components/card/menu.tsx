@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { UpdateIcon } from '@radix-ui/react-icons';
 import { Edit, LinkIcon, RotateCcw, Trash } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -94,7 +95,7 @@ export default function CardMenu({ data }: CardMenuProps) {
               await onRefresh();
             }}
           >
-            <RotateCcw className="h-4 w-4  mr-2.5" /> Refresh
+            <UpdateIcon className="h-4 w-4  mr-2.5" /> Refresh
           </DropdownMenuItem>
           <DropdownMenuItem
             disabled={loading}

@@ -1,31 +1,40 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { isUrl } from 'check-valid-url';
+import { UploadCloudIcon, UploadIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { createBookmark } from 'app/actions/bookmarks';
 import { OgResponse, getOg } from 'app/actions/og';
 
 import Loader from 'components/loader';
+import UploadModal from 'components/modal/upload';
 import { Input } from 'components/ui/input';
+import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
 import { cn } from 'lib/utils';
 
 import { BookmarkInsertModified } from 'types/data';
 
+type AddBookmarkInputProps = {
+  className?: string;
+  btnClassname?: string;
+  onHide?: () => void;
+  showUploadIcon?: boolean;
+};
+
 export default function AddBookmarkInput({
   className,
   btnClassname = '',
   onHide,
-}: {
-  className?: string;
-  btnClassname?: string;
-  onHide?: () => void;
-}) {
+  showUploadIcon,
+}: AddBookmarkInputProps) {
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [open, setOpen] = useState(false);
 
   const onSubmit = async () => {
     setLoading(true);
@@ -55,7 +64,7 @@ export default function AddBookmarkInput({
     <div
       className={cn(
         'h-26 flex flex-col px-1 border-neutral-200 border-r border-b',
-        className
+        className,
       )}
     >
       <form
@@ -68,7 +77,7 @@ export default function AddBookmarkInput({
         <div className="flex flex-col items-center justify-center w-full">
           <Input
             className={cn(
-              `mt-2 bg-transparent focus-visible:ring-0 w-full pt-0 px-2 pb-1 !outline-none !focus:outline-none !focus:border-none !border-none !shadow-none placeholder:text-stone-500 text-lg font-normal`
+              `mt-2 bg-transparent focus-visible:ring-0 w-full pt-0 px-2 pb-1 !outline-none !focus:outline-none !focus:border-none !border-none !shadow-none placeholder:text-stone-500 text-lg font-normal`,
             )}
             autoComplete="off"
             inputMode="text"
@@ -82,7 +91,34 @@ export default function AddBookmarkInput({
             data-1p-ignore
           />
         </div>
-        <div className={cn(`flex mb-3 justify-end`, btnClassname)}>
+        <div
+          className={cn(`flex mb-2 items-center justify-between`, btnClassname)}
+        >
+          <div>
+            {showUploadIcon ? (
+              <button
+                className="w-8 h-8 inline-flex items-center justify-center"
+                type="button"
+                onClick={() => setOpen(true)}
+              >
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <UploadIcon
+                      strokeWidth={2}
+                      className="w-[19px] h-[19px] text-neutral-500 hover:stroke-blue-700 active:stroke-blue-500"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent
+                    side="bottom"
+                    className="flex items-center mt-1"
+                  >
+                    Upload bookmarks
+                  </TooltipContent>
+                </Tooltip>
+              </button>
+            ) : null}
+          </div>
+
           <button
             type="submit"
             disabled={loading || !isUrl(url)}
@@ -90,13 +126,15 @@ export default function AddBookmarkInput({
               `rounded-full w-[70px] disabled:bg-blue-200 focus:outline-0 focus:bg-blue-700 active:bg-blue-700 border-0 text-sm flex justify-center py-2 px-5 text-white bg-blue-600 hover:bg-blue-700`,
               {
                 '!bg-blue-200 cursor-not-allowed': loading,
-              }
+              },
             )}
           >
             {loading ? <Loader /> : 'Add'}
           </button>
         </div>
       </form>
+
+      {open ? <UploadModal open={open} onHide={setOpen} /> : null}
     </div>
   );
 }

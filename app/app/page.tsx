@@ -20,7 +20,7 @@ export default async function Page() {
   return (
     <>
       <Header />
-      <AddBookmarkInput btnClassname="mx-2" />
+      <AddBookmarkInput btnClassname="mx-2" showUploadIcon />
       <div className="h-full border-r border-neutral-200 pb-24">
         {Object.values(bookmarksByDate)
           .reverse()
