@@ -23,13 +23,13 @@ export default function UploadModal() {
     }
     try {
       setLoading(true);
-      const res = await fetch('/api/bookmarks/create', {
-        method: 'POST',
-        body: JSON.stringify(content),
-      });
-      if (!res.ok) {
-        throw new Error('Error occurred, try again');
-      }
+      // const res = await fetch('/api/bookmarks/create', {
+      //   method: 'POST',
+      //   body: JSON.stringify(content),
+      // });
+      // if (!res.ok) {
+      //   throw new Error('Error occurred, try again');
+      // }
       toast.success('Bookmarks are successfully created');
     } catch {
       showToastError();
