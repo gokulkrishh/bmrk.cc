@@ -23,7 +23,7 @@ export default function Search({ className }: { className?: string }) {
       const keys = handler.keys?.join('');
       if (keys === 'k') setOpen(true);
     },
-    { keyup: true }
+    { keyup: true },
   );
 
   return (
@@ -32,12 +32,12 @@ export default function Search({ className }: { className?: string }) {
         onClick={() => setOpen(!open)}
         className={cn(
           'p-2.5 inline-block rounded-xl transition-colors text-center hover:bg-neutral-200',
-          className
+          className,
         )}
       >
         <Tooltip>
           <TooltipTrigger className="text-neutral-900" asChild>
-            <SearchIcon className="w-7 h-7 opacity-90" />
+            <SearchIcon className="w-7 h-7 text-black" />
           </TooltipTrigger>
           <TooltipContent side={'right'} className="flex items-center ml-4">
             Search{' '}

@@ -19,7 +19,7 @@ const SettingsLink = ({ className }: { className?: string }) => (
     href="/settings"
     title="Settings"
   >
-    <Settings className="w-7 h-7 opacity-90" />
+    <Settings className="w-7 h-7 text-black" />
   </NavLink>
 );
 
@@ -31,7 +31,7 @@ export default function Sidebar() {
           <Logo className="w-[44px] h-[44px]" />
         </Link>
         <NavLink href={'/'} title="Home">
-          <Home className="w-7 h-7 opacity-90" />
+          <Home className="w-7 h-7 text-black" />
         </NavLink>
         <Search />
         <NavLink
@@ -39,10 +39,10 @@ export default function Sidebar() {
           href={'/favorites'}
           title="Favorites"
         >
-          <StarIcon className="w-7 h-7 opacity-90" />
+          <StarIcon className="w-7 h-7 text-black" />
         </NavLink>
         <NavLink className="max-sm:order-4" href={'/tags'} title="Tags">
-          <Tags className="w-7 h-7 opacity-90" />
+          <Tags className="w-7 h-7 text-black" />
         </NavLink>
         <AddIcon className="max-sm:order-3" />
       </div>
