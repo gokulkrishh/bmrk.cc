@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 
 import { useAuth } from 'components/context/auth';
 import DeleteAccountModal from 'components/modal/delete-account';
+import { Skeleton } from 'components/ui/skeleton';
 
 import SettingsCard from './settings-card';
 
@@ -35,13 +36,23 @@ export default function DeleteAccount() {
   };
 
   return (
-    <SettingsCard className="bg-red-50 border-red-100">
+    <SettingsCard className="bg-red-50 py-3 border-red-100">
       <div className="flex flex-col">
-        <h3 className="font-medium">Delete My Account</h3>
-        <p className="text-sm mt-1 max-w-[350px] text-neutral-600">
-          Permanently delete your account and all its associated data, this
-          action cannot be undone.
-        </p>
+        <div className="font-medium">
+          {user?.user_metadata?.name ? (
+            'Delete My Account'
+          ) : (
+            <Skeleton className="w-52 h-4 bg-neutral-300 pb-0.5" />
+          )}
+        </div>
+        <div className="text-sm mt-1 max-w-[350px] text-neutral-600">
+          {user?.user_metadata?.name ? (
+            `Permanently delete your account and all its associated data, this
+          action cannot be undone.`
+          ) : (
+            <Skeleton className=" w-80 h-10 bg-neutral-300 mt-1.5" />
+          )}
+        </div>
       </div>
       {user?.user_metadata?.email ? (
         <button
