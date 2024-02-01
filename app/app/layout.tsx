@@ -1,13 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
-import { permanentRedirect } from 'next/navigation';
 
 import { AuthProvider } from 'components/context/auth';
 import Sidebar from 'components/sidebar';
 import { Toaster } from 'components/ui/sonner';
 import { TooltipProvider } from 'components/ui/tooltip';
-
-import createSupabaseServerClient from 'lib/supabase/server';
 
 import '../globals.css';
 

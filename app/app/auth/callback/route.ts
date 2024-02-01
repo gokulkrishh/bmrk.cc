@@ -17,5 +17,5 @@ export async function GET(request: Request) {
       return NextResponse.redirect(`${origin}/${next}`);
     }
   }
-  return NextResponse.redirect(urls.account);
+  return NextResponse.redirect(urls.home);
 }

@@ -11,7 +11,7 @@ export const urls = {
   authCallback: `${protocol}app.${home}/auth/callback`,
   account: `${protocol}app.${home}/account`,
   app: `${protocol}app.${home}`,
-  api: `${protocol}api.${home}`,
+  api: `${protocol}${home}`,
   twitter: 'https://twitter.com/gokul_i',
   github: 'https://github.com/gokulkrishh/bmrk.cc',
 };

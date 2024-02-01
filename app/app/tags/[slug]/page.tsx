@@ -1,5 +1,3 @@
-import { cache, useMemo } from 'react';
-
 import { getBookmarks } from 'app/actions/bookmarks';
 import { getTags } from 'app/actions/tags';
 
@@ -33,6 +31,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     await getBookmarks(),
     await getTags(),
   ]);
+
   const groupedBookmarks = groupByDate(filterByTagName(bookmarks, tagName));
 
   return (

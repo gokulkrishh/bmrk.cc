@@ -43,6 +43,12 @@ export default function CardMenu({ data }: CardMenuProps) {
           twitterImageUrl: ogData['og:twitter'] ?? '',
         },
       };
+
+      if (!payload.description) {
+        payload.description =
+          ogData.description ?? ogData['og:description'] ?? '';
+      }
+
       await refreshBookmark(id, payload);
       toast.success('Bookmark refreshed.');
     } catch {

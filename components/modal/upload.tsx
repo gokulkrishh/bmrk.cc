@@ -2,13 +2,14 @@
 
 import { useRef, useState } from 'react';
 
-import { DialogTitle } from '@radix-ui/react-dialog';
+import { useRouter } from 'next/navigation';
+
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 import { ArrowUpCircle, File } from 'lucide-react';
 import { toast } from 'sonner';
 
 import Loader from 'components/loader';
-import { Dialog, DialogContent } from 'components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from 'components/ui/dialog';
 import { Input } from 'components/ui/input';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
@@ -31,24 +32,26 @@ export default function UploadModal({ open, onHide }: UploadModalProps) {
   const [loading, setLoading] = useState(false);
   const [fileName, setFileName] = useState('');
   const hiddenInputRef = useRef<HTMLInputElement>(null);
-
-  const showToastError = () => toast.error('Error occurred, try again');
+  const router = useRouter();
 
   const createBookmarks = async (content: string | ArrayBuffer | null) => {
     if (!content) {
-      showToastError();
+      toast.error('Error occurred, try again');
     }
     try {
-      const res = await fetch('/api/bookmarks/create', {
+      const res = await fetch('/api/bookmarks', {
         method: 'POST',
-        body: JSON.stringify(content),
+        body: JSON.stringify({ content }),
       });
+      const data = await res.json();
       if (!res.ok) {
-        throw new Error('Error occurred, try again');
+        throw new Error(data?.message);
       }
+      onHide(false);
       toast.success('Bookmarks are successfully created');
-    } catch {
-      showToastError();
+      router.refresh();
+    } catch (error: any) {
+      toast.error(error?.message);
     } finally {
       setLoading(false);
     }
@@ -83,7 +86,7 @@ export default function UploadModal({ open, onHide }: UploadModalProps) {
         }
       }
     } catch {
-      showToastError();
+      toast.error('Error occurred, try again');
     }
   };
 
@@ -103,7 +106,7 @@ export default function UploadModal({ open, onHide }: UploadModalProps) {
             <Input
               className="opacity-0"
               type="file"
-              accept="*.html"
+              accept=".html"
               ref={hiddenInputRef}
               onChange={onFileChange}
             />
@@ -119,35 +122,29 @@ export default function UploadModal({ open, onHide }: UploadModalProps) {
                 className="text-neutral-500 w-9 h-9"
               />
               <p className="text-sm mt-2 font-medium">Click to select</p>
-              <p className="text-sm mt-1 text-neutral-500">
-                {fileName.length ? (
-                  fileName
-                ) : (
-                  <>
-                    <span className="flex">
-                      Select exported HTML bookmark file{' '}
-                      <button
-                        onClick={() => {
-                          let name = getBrowserName();
-                          const link = helpLinks[name];
-                          window.open(
-                            link ? link : helpLinks['chrome'],
-                            '_blank',
-                          );
-                        }}
-                      >
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <QuestionMarkCircledIcon className="w-3.5 relative -top-0.5 h-3.5 ml-1 text-pink-500 " />
-                          </TooltipTrigger>
-                          <TooltipContent>Click to know.</TooltipContent>
-                        </Tooltip>
-                      </button>
-                    </span>
-                  </>
-                )}
-              </p>
             </button>
+            <p className="text-sm mt-1 text-neutral-500 text-center">
+              {fileName.length ? (
+                fileName
+              ) : (
+                <>
+                  Select exported HTML bookmark file{' '}
+                  <Tooltip>
+                    <TooltipTrigger
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        let name = getBrowserName();
+                        const link = helpLinks[name] ?? helpLinks['chrome'];
+                        window.open(link, '_blank');
+                      }}
+                    >
+                      <QuestionMarkCircledIcon className="w-3.5 relative -top-0.5 h-3.5 text-pink-700 " />
+                    </TooltipTrigger>
+                    <TooltipContent>Click to know how.</TooltipContent>
+                  </Tooltip>
+                </>
+              )}
+            </p>
           </div>
           <div className="flex w-full justify-end mt-3 mb-1">
             <button

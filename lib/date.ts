@@ -9,14 +9,18 @@ export const showGreetings = () => {
   return partOfTheDay;
 };
 
-const getTimeZone = () =>
-  Intl.DateTimeFormat().resolvedOptions().timeZone as string;
+const dateOptions = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+} as any;
 
-export const formatDate = (dateString: string | Date | null): string | null => {
+export const formatDate = (
+  dateString: string | Date | null,
+  options = dateOptions,
+): string | null => {
   if (!dateString) return null;
-  return new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(new Date(dateString)) as string;
+  return new Intl.DateTimeFormat('en-US', options).format(
+    new Date(dateString),
+  ) as string;
 };
