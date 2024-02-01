@@ -17,7 +17,7 @@ export default function DeleteTag({ id }: { id: Tag['id'] }) {
     try {
       setLoading(true);
       await deleteTag(id);
-      toast.error('Tag has been deleted');
+      toast.success('Tag has been deleted.');
     } catch {
       toast.error('Unable to delete tag, try again');
     } finally {
