@@ -36,7 +36,8 @@ export const metadata: Metadata = {
     images: ['https://bmrk.cc/images/open-graph.jpg'],
   },
   icons: {
-    icon: '/icons/android-chrome-192x192.png',
+    icon: '/icons/favicon.ico',
+    shortcut: '/icons/icon.svg',
     apple: '/icons/apple-touch-icon.png',
   },
 };
