@@ -8,13 +8,16 @@ export const groupByKey = (data: any, key: string) => {
       acc[datum[key]] = datum;
       return acc;
     },
-    {} as Record<string, Tag>
+    {} as Record<string, Tag>,
   );
 };
 
 export const groupByDate = (data: any) => {
   if (!data) return [];
-  return groupBy(data, ({ created_at }: any) => new Date(created_at).getDate());
+  return groupBy(data, ({ created_at }: any) => {
+    const date = new Date(created_at);
+    return `${date.getDate()}-${date.getMonth() === 0 ? 1 : date.getMonth()}-${date.getFullYear()}`;
+  });
 };
 
 export const groupByTag = (data: BookmarkModifiedType[], tags: any) => {
@@ -31,7 +34,7 @@ export const groupByTag = (data: BookmarkModifiedType[], tags: any) => {
 
 export const filterByTagName = (
   data: BookmarkModifiedType[],
-  tagName: string
+  tagName: string,
 ) => {
   if (!data) return [];
   return data.filter((datum) => {

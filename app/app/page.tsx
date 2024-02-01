@@ -22,9 +22,8 @@ export default async function Page() {
       <Header />
       <AddBookmarkInput btnClassname="mx-2" showUploadIcon />
       <div className="h-full border-r border-neutral-200 pb-24">
-        {Object.values(bookmarksByDate)
-          .reverse()
-          .map((bookmarksData: BookmarkModifiedType[], index: number) => {
+        {Object.values(bookmarksByDate).map(
+          (bookmarksData: BookmarkModifiedType[], index: number) => {
             return (
               <div
                 className={cn(`flex flex-col w-full`, {
@@ -37,7 +36,8 @@ export default async function Page() {
                 ))}
               </div>
             );
-          })}
+          },
+        )}
       </div>
     </>
   );

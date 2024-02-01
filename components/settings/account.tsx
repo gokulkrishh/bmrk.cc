@@ -51,11 +51,11 @@ export default function SettingsAccount() {
         <div>
           {user?.user_metadata?.email ? (
             <button
-              className="items-center rounded-lg tracking-wide focus:outline-0 focus:bg-black/80 active:bg-black/80 border-0 text-sm flex justify-center py-2 px-3 text-white bg-black hover:bg-black/80 max-sm:-ml-5"
+              className="items-center rounded-full tracking-wide focus:outline-0 focus:bg-black/80 active:bg-black/80 border-0 text-sm flex justify-center py-2.5 px-4 text-white bg-black hover:bg-black/80 max-sm:-ml-5"
               onClick={signOut}
+              title="Logout"
             >
-              <LogOut className="h-3.5 w-3.5 mr-1.5" />
-              Logout
+              <LogOut className="h-4 w-4" />
             </button>
           ) : null}
         </div>

@@ -140,9 +140,7 @@ export default function UploadModal({ open, onHide }: UploadModalProps) {
                           <TooltipTrigger>
                             <QuestionMarkCircledIcon className="w-3.5 relative -top-0.5 h-3.5 ml-1 text-pink-500 " />
                           </TooltipTrigger>
-                          <TooltipContent className="!text-xs">
-                            Click to know.
-                          </TooltipContent>
+                          <TooltipContent>Click to know.</TooltipContent>
                         </Tooltip>
                       </button>
                     </span>

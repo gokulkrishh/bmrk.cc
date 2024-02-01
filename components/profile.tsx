@@ -46,7 +46,10 @@ export default function Profile({ className }: { className?: string }) {
               <Settings className="h-4 w-4 mr-2.5" /> Settings
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center" onClick={signOut}>
+          <DropdownMenuItem
+            className="flex items-center cursor-pointer"
+            onClick={signOut}
+          >
             <LogOut className="h-4 w-4 mr-2.5" /> Logout
           </DropdownMenuItem>
         </DropdownMenuContent>
