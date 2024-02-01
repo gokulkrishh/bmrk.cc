@@ -13,11 +13,11 @@ export const groupByKey = (data: any, key: string) => {
 };
 
 export const groupByDate = (data: any) => {
-  if (!data) return [];
+  if (!data) return {};
   return groupBy(data, ({ created_at }: any) => {
     const date = new Date(created_at);
     return `${date.getDate()}-${date.getMonth() === 0 ? 1 : date.getMonth()}-${date.getFullYear()}`;
-  });
+  }) as { [key: string]: BookmarkModifiedType[] };
 };
 
 export const groupByTag = (data: BookmarkModifiedType[], tags: any) => {
