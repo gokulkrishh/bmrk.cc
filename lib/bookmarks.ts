@@ -1,7 +1,7 @@
 type Bookmark = {
   url: string;
   title: string;
-  created_at: string;
+  created_at?: string;
 };
 
 export const bookmarkParser = (rootNode: HTMLElement) => {
@@ -14,12 +14,15 @@ export const bookmarkParser = (rootNode: HTMLElement) => {
     const url = node.getAttribute('href');
     const created_at: any = node.getAttribute('ADD_DATE');
     const title = node.textContent;
-    if (url?.length && title && created_at) {
+    if (url?.length && title) {
       const bookmark = {
         title,
         url,
-        created_at: new Date(created_at * 1000).toISOString(),
-      };
+      } as Bookmark;
+
+      if (created_at) {
+        bookmark['created_at'] = new Date(created_at * 1000).toISOString();
+      }
       bookmarks.push(bookmark);
     }
   };
