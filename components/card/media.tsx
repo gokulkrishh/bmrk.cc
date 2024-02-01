@@ -7,8 +7,8 @@ const blurDataURL = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAA
 
 export default function CardMedia({ data }: { data: BookmarkModifiedType }) {
   const imageUrl =
-    data?.metadata?.ogImageUrl ||
     data?.metadata?.twitterImageUrl ||
+    data?.metadata?.ogImageUrl ||
     data?.metadata?.imageUrl;
 
   if (!imageUrl?.length) {
