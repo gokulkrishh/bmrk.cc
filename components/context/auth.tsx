@@ -8,34 +8,26 @@ import { urls } from 'config';
 
 import createSupabaseBrowserClient from 'lib/supabase/client';
 
+import { User } from 'types/data';
+
 const AuthContext = createContext(null);
 
-const isProduction = process.env.NODE_ENV === 'production';
+type AuthProviderProps = {
+  children: React.ReactNode;
+  user: User;
+};
 
-export const AuthProvider = (props: any) => {
+export const AuthProvider = (props: AuthProviderProps) => {
   const { children } = props;
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | undefined>(props.user);
   const supabase = createSupabaseBrowserClient();
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
-    async function getActiveSession() {
-      const { data } = await supabase.auth.getSession();
-      const { session } = data;
-      setUser(session?.user);
-      if (session?.user) {
-        router.replace(pathname);
-      } else if (!session?.user) {
-        // window.location.href = urls.account;
-      }
-    }
-
-    getActiveSession();
-
     const {
       data: { subscription: authListener },
-    } = supabase.auth.onAuthStateChange((event, currentSession) => {
+    } = supabase.auth.onAuthStateChange((event, currentSession: any) => {
       if (event === 'TOKEN_REFRESHED' || event === 'SIGNED_IN') {
         router.refresh();
       }
@@ -43,7 +35,7 @@ export const AuthProvider = (props: any) => {
         window.location.href = urls.account;
       }
       if (currentSession?.user) {
-        setUser(currentSession?.user);
+        setUser(currentSession?.user as User);
       }
     });
 

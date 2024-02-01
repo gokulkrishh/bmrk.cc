@@ -8,7 +8,7 @@ const protocol = isProduction ? 'https://' : 'http://';
 export const urls = {
   homeWithoutProtocol: home,
   home: `${protocol}${home}`,
-  authCallback: `${protocol}app.${home}/auth/callback`,
+  authCallback: `${protocol}app.${home}/auth/callback/`,
   account: `${protocol}app.${home}/account`,
   app: `${protocol}app.${home}`,
   api: `${protocol}${home}`,

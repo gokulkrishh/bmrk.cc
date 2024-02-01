@@ -1,10 +1,19 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import { permanentRedirect } from 'next/navigation';
+
+import { urls } from 'config';
+
+import { getUser } from 'app/actions/user';
 
 import { AuthProvider } from 'components/context/auth';
 import Sidebar from 'components/sidebar';
 import { Toaster } from 'components/ui/sonner';
 import { TooltipProvider } from 'components/ui/tooltip';
+
+import createSupabaseServerClient from 'lib/supabase/server';
+
+import { User } from 'types/data';
 
 import '../globals.css';
 
@@ -49,10 +58,16 @@ export const viewport: Viewport = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const user = await getUser();
+
+  if (!user) {
+    permanentRedirect(urls.account);
+  }
+
   return (
     <html lang="en" className="h-full" suppressHydrationWarning>
       <body className={`${inter.className} flex h-full bg-white`}>
-        <AuthProvider>
+        <AuthProvider user={user}>
           <div className="max-w-[600px] m-auto flex min-h-dvh w-full">
             <TooltipProvider delayDuration={200}>
               <Sidebar />
