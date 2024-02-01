@@ -17,14 +17,14 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-tooltip": "^1.0.7",
-    "@supabase/ssr": "^0.0.10",
+    "@supabase/ssr": "^0.1.0",
     "@supabase/supabase-js": "^2.39.3",
     "check-valid-url": "^0.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "cmdk": "^0.2.0",
-    "lucide-react": "^0.316.0",
-    "next": "^14.1.1-canary.7",
+    "cmdk": "^0.2.1",
+    "lucide-react": "^0.320.0",
+    "next": "^14.1.1-canary.27",
     "next-themes": "^0.2.1",
     "object.groupby": "^1.0.1",
     "react": "^18",
@@ -52,9 +52,5 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
-  "overrides": {
-    "next-auth": {
-      "next": "^14.1.1-canary.7"
-    }
-  }
+  "packageManager": "pnpm@8.15.1"
 }

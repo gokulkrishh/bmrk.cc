@@ -1,9 +1,9 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 import { isUrl } from 'check-valid-url';
-import { UploadCloudIcon, UploadIcon } from 'lucide-react';
+import { UploadIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { createBookmark } from 'app/actions/bookmarks';
@@ -33,7 +33,6 @@ export default function AddBookmarkInput({
 }: AddBookmarkInputProps) {
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
 
   const onSubmit = async () => {
@@ -97,7 +96,7 @@ export default function AddBookmarkInput({
           <div>
             {showUploadIcon ? (
               <button
-                className="w-8 h-8 inline-flex items-center justify-center"
+                className="w-8 h-8 -ml-1.5 mt-3 inline-flex items-center justify-center"
                 type="button"
                 onClick={() => setOpen(true)}
               >
@@ -123,7 +122,7 @@ export default function AddBookmarkInput({
             type="submit"
             disabled={loading || !isUrl(url)}
             className={cn(
-              `rounded-full w-[70px] disabled:bg-blue-200 focus:outline-0 focus:bg-blue-700 active:bg-blue-700 border-0 text-sm flex justify-center py-2 px-5 text-white bg-blue-600 hover:bg-blue-700`,
+              `rounded-full h-[40px] items-center disabled:bg-blue-200 focus:outline-0 focus:bg-blue-700 active:bg-blue-700 border-0 flex justify-center py-2 px-5 text-white bg-blue-600 hover:bg-blue-700`,
               {
                 '!bg-blue-200 cursor-not-allowed': loading,
               },
