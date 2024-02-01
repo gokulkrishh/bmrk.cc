@@ -11,10 +11,6 @@ import Sidebar from 'components/sidebar';
 import { Toaster } from 'components/ui/sonner';
 import { TooltipProvider } from 'components/ui/tooltip';
 
-import createSupabaseServerClient from 'lib/supabase/server';
-
-import { User } from 'types/data';
-
 import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
@@ -30,14 +26,14 @@ export const metadata: Metadata = {
     title,
     description,
     creator: '@gokul_i',
-    images: ['/images/open-graph.jpg'],
+    images: ['https://bmrk.cc/images/open-graph.jpg'],
   },
   openGraph: {
     type: 'website',
     title,
     description,
     url: 'https://bmrk.cc',
-    images: ['/images/open-graph.jpg'],
+    images: ['https://bmrk.cc/images/open-graph.jpg'],
   },
   icons: {
     icon: '/icons/icon.svg',

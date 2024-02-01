@@ -25,7 +25,7 @@ export default function CardMedia({ data }: { data: BookmarkModifiedType }) {
     >
       <Image
         className="h-full rounded-2xl border border-neutral-200"
-        src={imageUrl.startsWith('/') ? `${data.url}${imageUrl}` : imageUrl}
+        src={imageUrl.startsWith('/') ? `${data.url}/${imageUrl}` : imageUrl}
         alt={data.title ?? ''}
         width={350}
         height={180}
