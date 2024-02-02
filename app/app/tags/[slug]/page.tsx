@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: MetadataType) {
   };
 }
 
-const fetcher = async (from: number, to: number, tagName: string) => {
+const fetcher = async (from: number, to: number, slug?: string | undefined) => {
   'use server';
   const supabase = await createSupabaseServerClient();
 
@@ -39,7 +39,11 @@ const fetcher = async (from: number, to: number, tagName: string) => {
     return [];
   }
 
-  return filterByTagName(data, tagName);
+  if (slug) {
+    return filterByTagName(data, slug);
+  }
+
+  return filterByTagName(data, '');
 };
 
 export default async function Page({ params }: { params: { slug: string } }) {
