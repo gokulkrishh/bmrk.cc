@@ -19,7 +19,7 @@ type CardListProps = {
   fetcher: (
     from: number,
     to: number,
-    slug?: string,
+    slug?: string | undefined,
   ) => Promise<BookmarkModified[]>;
   slug?: string;
 };
