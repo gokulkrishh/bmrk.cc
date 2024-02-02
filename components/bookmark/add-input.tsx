@@ -96,7 +96,7 @@ export default function AddBookmarkInput({
           <div>
             {showUploadIcon ? (
               <button
-                className="w-8 h-8 -ml-1.5 mt-3 inline-flex items-center justify-center"
+                className="w-8 h-8 -left-1.5 relative top-2 inline-flex items-center justify-center"
                 type="button"
                 onClick={() => setOpen(true)}
               >

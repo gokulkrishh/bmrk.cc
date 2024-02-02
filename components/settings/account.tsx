@@ -20,8 +20,8 @@ export default function SettingsAccount() {
 
   return (
     <SettingsCard className="h-[86px]">
-      <div className="flex gap-3 w-full justify-between items-center">
-        <Avatar className="h-[40px] w-[40px]">
+      <div className="flex gap-3 w-full items-center">
+        <Avatar className="h-[50px] w-[50px]">
           <AvatarImage
             src={user?.user_metadata?.avatar_url}
             alt={user?.user_metadata?.name}
@@ -47,17 +47,6 @@ export default function SettingsAccount() {
               <Skeleton className="w-36 h-5 bg-neutral-300" />
             )}
           </div>
-        </div>
-        <div>
-          {user?.user_metadata?.email ? (
-            <button
-              className="items-center rounded-full tracking-wide focus:outline-0 focus:bg-black/80 active:bg-black/80 border-0 text-sm flex justify-center py-2.5 px-4 text-white bg-black hover:bg-black/80 max-sm:-ml-5"
-              onClick={signOut}
-              title="Logout"
-            >
-              <LogOut className="h-4 w-4" />
-            </button>
-          ) : null}
         </div>
       </div>
     </SettingsCard>

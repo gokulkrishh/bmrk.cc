@@ -11,18 +11,10 @@ type CardAvatarProps = {
 };
 
 export default function CardAvatar({ url, title, className }: CardAvatarProps) {
-  let imageUrl: any = url;
-
-  try {
-    imageUrl = new URL(url);
-  } catch {
-    imageUrl = url;
-  }
-
   return (
     <Avatar className={cn(className)}>
       <AvatarImage
-        src={`https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${imageUrl?.origin ?? url}&size=128`}
+        src={`https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${url}&size=128`}
         alt={title}
       />
       <AvatarFallback />
