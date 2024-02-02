@@ -1,6 +1,6 @@
 import groupBy from 'object.groupby';
 
-import { Bookmark, BookmarkModifiedType, Tag } from 'types/data';
+import { Bookmark, BookmarkModified, Tag } from 'types/data';
 
 export const groupByKey = (data: any, key: string) => {
   return data.reduce(
@@ -17,10 +17,10 @@ export const groupByDate = (data: any) => {
   return groupBy(data, ({ created_at }: any) => {
     const date = new Date(created_at);
     return `${date.getDate()}-${date.getMonth() === 0 ? 1 : date.getMonth()}-${date.getFullYear()}`;
-  }) as { [key: string]: BookmarkModifiedType[] };
+  }) as { [key: string]: BookmarkModified[] };
 };
 
-export const groupByTag = (data: BookmarkModifiedType[], tags: any) => {
+export const groupByTag = (data: BookmarkModified[], tags: any) => {
   return data.reduce((acc: any, datum) => {
     datum.bookmarks_tags.forEach(({ tags: { id } }) => {
       if (!acc[id]) {
@@ -32,10 +32,7 @@ export const groupByTag = (data: BookmarkModifiedType[], tags: any) => {
   }, tags);
 };
 
-export const filterByTagName = (
-  data: BookmarkModifiedType[],
-  tagName: string,
-) => {
+export const filterByTagName = (data: BookmarkModified[], tagName: string) => {
   if (!data) return [];
   return data.filter((datum) => {
     return datum.bookmarks_tags.some((bookmarkTag) => {

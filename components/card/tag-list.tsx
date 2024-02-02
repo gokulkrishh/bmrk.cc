@@ -18,10 +18,10 @@ import {
 
 import { cn } from 'lib/utils';
 
-import { Bookmark, BookmarkModifiedType, Tag, TagInsert } from 'types/data';
+import { Bookmark, BookmarkModified, Tag, TagInsert } from 'types/data';
 
 type TagListProps = {
-  data: BookmarkModifiedType;
+  data: BookmarkModified;
   tags: Tag[];
 };
 

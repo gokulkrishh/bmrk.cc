@@ -1,6 +1,6 @@
 import { cn } from 'lib/utils';
 
-import { BookmarkModifiedType, Tag } from 'types/data';
+import { BookmarkModified, Tag } from 'types/data';
 
 import CardActions from './actions';
 import CardDate from './date';
@@ -10,7 +10,7 @@ import CardMenu from './menu';
 import CardTimeline from './timeline';
 
 type CardProps = {
-  data: BookmarkModifiedType;
+  data: BookmarkModified;
   tags: Tag[];
 };
 
@@ -18,7 +18,7 @@ export default function Card({ data, tags }: CardProps) {
   return (
     <div
       className={cn(
-        `justify-between group gap-3 flex hover:bg-neutral-50 text-black w-full`
+        `justify-between group gap-3 flex hover:bg-neutral-50 text-black w-full`,
       )}
     >
       <CardDate data={data} />

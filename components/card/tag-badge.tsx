@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 import { Badge } from 'components/ui/badge';
 
-import { BookmarkModifiedType, Tag } from 'types/data';
+import { BookmarkModified, Tag } from 'types/data';
 
-export default function TagBadge({ data }: { data: BookmarkModifiedType }) {
+export default function TagBadge({ data }: { data: BookmarkModified }) {
   return (
     <div className="flex gap-y-1.5 items-center overflow-x-scroll max-sm:max-w-[200px] max-w-[350px] w-full hidden-scrollbar mask-start-and-end">
       {data.bookmarks_tags

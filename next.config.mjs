@@ -6,6 +6,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: '**', port: '', pathname: '**' },
     ],
+    deviceSizes: [640, 750],
     minimumCacheTTL: 60,
   },
   experimental: {

@@ -20,12 +20,12 @@ import {
 
 import {
   BookmarkInsertModified,
-  BookmarkModifiedType,
+  BookmarkModified,
   BookmarkUpdate,
 } from 'types/data';
 
 type CardMenuProps = {
-  data: BookmarkModifiedType;
+  data: BookmarkModified;
 };
 
 export default function CardMenu({ data }: CardMenuProps) {

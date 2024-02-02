@@ -6,12 +6,12 @@ import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover';
 
 import { cn } from 'lib/utils';
 
-import { BookmarkModifiedType, Tag } from 'types/data';
+import { BookmarkModified, Tag } from 'types/data';
 
 import TagList from './tag-list';
 
 type AddTagProps = {
-  data: BookmarkModifiedType;
+  data: BookmarkModified;
   tags: Tag[];
 };
 
@@ -27,7 +27,7 @@ export default function AddTag({ data, tags }: AddTagProps) {
         <button
           className={cn(
             `flex items-center -ml-1.5 justify-center gap-1 rounded-full shrink-0 w-9 h-9 hover:bg-blue-100 active:bg-blue-100`,
-            { '!opacity-100': open }
+            { '!opacity-100': open },
           )}
         >
           <Tags className="w-4 h-4 text-blue-500" />

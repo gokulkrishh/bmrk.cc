@@ -19,12 +19,12 @@ import { Textarea } from 'components/ui/textarea';
 
 import { cn } from 'lib/utils';
 
-import { BookmarkModifiedType } from 'types/data';
+import { BookmarkModified } from 'types/data';
 
 type EditBookmarkProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
-  data: BookmarkModifiedType;
+  data: BookmarkModified;
 };
 
 export default function EditBookmark({
@@ -48,7 +48,7 @@ export default function EditBookmark({
         title: state.title?.trim(),
         description: state.description?.trim(),
         metadata: state.metadata,
-      } as BookmarkModifiedType;
+      } as BookmarkModified;
       await updateBookmark(data.id, payload);
       toast.success(`Bookmark updated.`);
     } catch (error) {

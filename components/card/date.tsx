@@ -1,8 +1,8 @@
 import { formatDate } from 'lib/date';
 
-import { BookmarkModifiedType } from 'types/data';
+import { BookmarkModified } from 'types/data';
 
-export default function CardDate({ data }: { data: BookmarkModifiedType }) {
+export default function CardDate({ data }: { data: BookmarkModified }) {
   const date = formatDate(data.created_at);
   const currentDate = formatDate(new Date());
   const isToday = currentDate === date;

@@ -1,12 +1,12 @@
 import { cn } from 'lib/utils';
 
-import { BookmarkModifiedType } from 'types/data';
+import { BookmarkModified } from 'types/data';
 
 import CardAvatar from './avatar';
 
 type CardTimelineProps = {
-  url: BookmarkModifiedType['url'];
-  title: BookmarkModifiedType['title'];
+  url: BookmarkModified['url'];
+  title: BookmarkModified['title'];
 };
 
 export default function CardTimeline({ url, title }: CardTimelineProps) {

@@ -1,59 +1,66 @@
 import { getBookmarks } from 'app/actions/bookmarks';
 import { getTags } from 'app/actions/tags';
 
-import Card from 'components/card';
+import CardList from 'components/card-list';
 import Header from 'components/header';
 
-import { filterByTagName, groupByDate } from 'lib/data';
-import { cn } from 'lib/utils';
+import { filterByTagName } from 'lib/data';
+import createSupabaseServerClient from 'lib/supabase/server';
 
-import { BookmarkModifiedType } from 'types/data';
+import { BookmarkModified } from 'types/data';
 
 const title = 'Bookmark it.';
 const description = 'Bookmark manager for the modern web.';
 
-export async function generateMetadata({
-  params,
-}: {
+type MetadataType = {
   params: { slug: string };
-}) {
-  const { slug: tagName } = params;
+};
 
+export async function generateMetadata({ params }: MetadataType) {
+  const { slug: tagName } = params;
   return {
     title: `${title} | Tag: ${tagName}`,
     description,
   };
 }
 
+const fetcher = async (from: number, to: number, tagName: string) => {
+  'use server';
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase
+    .from('bookmarks')
+    .select(`*, bookmarks_tags (tags!inner (id,name))`)
+    .order('created_at', { ascending: false })
+    .range(from, to)
+    .returns<BookmarkModified[]>();
+
+  if (error) {
+    return [];
+  }
+
+  return filterByTagName(data, tagName);
+};
+
 export default async function Page({ params }: { params: { slug: string } }) {
-  const { slug: tagName } = params;
+  const { slug } = params;
   const [bookmarks, tags] = await Promise.all([
     await getBookmarks(),
     await getTags(),
   ]);
 
-  const groupedBookmarks = groupByDate(filterByTagName(bookmarks, tagName));
+  const filteredBookmarks = filterByTagName(bookmarks, slug);
 
   return (
     <>
-      <Header headerText={`Tag: ${tagName}`} />
+      <Header headerText={`Tag: ${slug}`} />
       <div className="h-full border-r border-neutral-200 pb-24">
-        {Object.values(groupedBookmarks).map(
-          (bookmarksData: BookmarkModifiedType[], index: number) => {
-            return (
-              <div
-                className={cn(`flex flex-col w-full`, {
-                  'border-b border-neutral-200': bookmarksData.length > 0,
-                })}
-                key={index}
-              >
-                {bookmarksData.map((bookmark: BookmarkModifiedType) => (
-                  <Card key={bookmark.id} tags={tags} data={bookmark} />
-                ))}
-              </div>
-            );
-          },
-        )}
+        <CardList
+          slug={slug}
+          bookmarks={filteredBookmarks}
+          fetcher={fetcher}
+          tags={tags}
+        />
       </div>
     </>
   );

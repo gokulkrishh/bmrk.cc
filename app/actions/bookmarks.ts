@@ -9,11 +9,13 @@ import createSupabaseServerClient from 'lib/supabase/server';
 import {
   Bookmark,
   BookmarkInsert,
-  BookmarkModifiedType,
+  BookmarkModified,
   BookmarkUpdate,
 } from 'types/data';
 
 import { getUser } from './user';
+
+const PAGE_SIZE = 20;
 
 export const getBookmarks = cache(async () => {
   const supabase = await createSupabaseServerClient();
@@ -21,7 +23,8 @@ export const getBookmarks = cache(async () => {
     .from('bookmarks')
     .select(`*, bookmarks_tags (tags!inner (id,name))`)
     .order('created_at', { ascending: false })
-    .returns<BookmarkModifiedType[]>();
+    .limit(PAGE_SIZE)
+    .returns<BookmarkModified[]>();
 
   if (error) {
     return [];
@@ -49,7 +52,7 @@ export const createBookmark = async (bookmark: BookmarkInsert) => {
 
 export const updateBookmark = async (
   id: Bookmark['id'],
-  bookmark: BookmarkModifiedType,
+  bookmark: BookmarkModified,
 ) => {
   const user = await getUser();
   if (!user) {
@@ -147,8 +150,9 @@ export const getFavBookmarks = async () => {
     .select(`*, bookmarks_tags (tags!inner (id,name))`)
     .eq('user_id', user.id)
     .eq('is_fav', true)
+    .limit(PAGE_SIZE)
     .order('created_at', { ascending: false })
-    .returns<BookmarkModifiedType[]>();
+    .returns<BookmarkModified[]>();
 
   if (error) {
     return [];
