@@ -11,10 +11,16 @@ import { Bookmark, Tag, TagInsert } from 'types/data';
 import { getUser } from './user';
 
 export const getTags = cache(async () => {
+  const user = await getUser();
+  if (!user) {
+    return [];
+  }
+
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('tags')
     .select('id, name')
+    .eq('user_id', user.id)
     .order('name', { ascending: true })
     .returns<Tag[]>();
 
@@ -140,11 +146,21 @@ export const updateTag = async (id: Bookmark['id'], name: Tag['name']) => {
 };
 
 export const getTagsWithBookmarkIds = cache(async () => {
+  const user = await getUser();
+  if (!user) {
+    return {};
+  }
+
   const supabase = await createSupabaseServerClient();
-  const { data, error } = await supabase.from('bookmarks_tags').select();
+  const { data, error } = await supabase
+    .from('bookmarks_tags')
+    .select()
+    .eq('user_id', user.id);
+
   if (error) {
     return {};
   }
+
   return data.reduce((acc: { [key: string]: number[] }, datum) => {
     if (!acc[datum.tag_id]) {
       acc[datum.tag_id] = [datum.bookmark_id];

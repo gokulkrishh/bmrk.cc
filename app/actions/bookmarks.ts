@@ -15,15 +15,18 @@ import {
 
 import { getUser } from './user';
 
-const PAGE_SIZE = 20;
-
 export const getBookmarks = cache(async () => {
+  const user = await getUser();
+  if (!user) {
+    return [];
+  }
+
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('bookmarks')
     .select(`*, bookmarks_tags (tags!inner (id,name))`)
+    .eq('user_id', user.id)
     .order('created_at', { ascending: false })
-    .limit(PAGE_SIZE)
     .returns<BookmarkModified[]>();
 
   if (error) {
@@ -150,7 +153,6 @@ export const getFavBookmarks = async () => {
     .select(`*, bookmarks_tags (tags!inner (id,name))`)
     .eq('user_id', user.id)
     .eq('is_fav', true)
-    .limit(PAGE_SIZE)
     .order('created_at', { ascending: false })
     .returns<BookmarkModified[]>();
 
@@ -159,3 +161,26 @@ export const getFavBookmarks = async () => {
   }
   return data;
 };
+
+export const getBookmarksForTag = cache(async (slug: string) => {
+  const user = await getUser();
+  if (!user) {
+    return [];
+  }
+
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase
+    .from('bookmarks')
+    .select(`*, bookmarks_tags (tags!inner (id,name))`)
+    .eq('user_id', user.id)
+    .eq('bookmarks_tags.tags.name', slug)
+    .order('created_at', { ascending: false })
+    .returns<BookmarkModified[]>();
+
+  if (error) {
+    return [];
+  }
+
+  return data;
+});

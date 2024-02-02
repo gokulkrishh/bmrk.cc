@@ -1,13 +1,10 @@
-import { getBookmarks } from 'app/actions/bookmarks';
+import { getBookmarksForTag } from 'app/actions/bookmarks';
 import { getTags } from 'app/actions/tags';
 
 import CardList from 'components/card-list';
 import Header from 'components/header';
 
 import { filterByTagName } from 'lib/data';
-import createSupabaseServerClient from 'lib/supabase/server';
-
-import { BookmarkModified } from 'types/data';
 
 const title = 'Bookmark it.';
 const description = 'Bookmark manager for the modern web.';
@@ -24,32 +21,10 @@ export async function generateMetadata({ params }: MetadataType) {
   };
 }
 
-const fetcher = async (from: number, to: number, slug?: string | undefined) => {
-  'use server';
-  const supabase = await createSupabaseServerClient();
-
-  const { data, error } = await supabase
-    .from('bookmarks')
-    .select(`*, bookmarks_tags (tags!inner (id,name))`)
-    .order('created_at', { ascending: false })
-    .range(from, to)
-    .returns<BookmarkModified[]>();
-
-  if (error) {
-    return [];
-  }
-
-  if (slug) {
-    return filterByTagName(data, slug);
-  }
-
-  return filterByTagName(data, '');
-};
-
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const [bookmarks, tags] = await Promise.all([
-    await getBookmarks(),
+    await getBookmarksForTag(slug),
     await getTags(),
   ]);
 
@@ -59,12 +34,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <>
       <Header headerText={`Tag: ${slug}`} />
       <div className="h-full border-r border-neutral-200 pb-24">
-        <CardList
-          slug={slug}
-          bookmarks={filteredBookmarks}
-          fetcher={fetcher}
-          tags={tags}
-        />
+        <CardList bookmarks={filteredBookmarks} tags={tags} />
       </div>
     </>
   );

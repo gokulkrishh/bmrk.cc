@@ -22,14 +22,14 @@ type AddBookmarkInputProps = {
   className?: string;
   btnClassname?: string;
   onHide?: () => void;
-  showUploadIcon?: boolean;
+  showUpload?: boolean;
 };
 
 export default function AddBookmarkInput({
   className,
   btnClassname = '',
   onHide,
-  showUploadIcon,
+  showUpload,
 }: AddBookmarkInputProps) {
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
@@ -102,7 +102,7 @@ export default function AddBookmarkInput({
           className={cn(`flex mb-2 items-center justify-between`, btnClassname)}
         >
           <div>
-            {showUploadIcon ? (
+            {showUpload ? (
               <button
                 className="w-8 h-8 -left-1.5 relative top-2 inline-flex items-center justify-center"
                 type="button"

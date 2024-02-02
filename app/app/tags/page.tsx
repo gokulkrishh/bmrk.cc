@@ -9,34 +9,12 @@ import DeleteTag from 'components/tag/delete-tag';
 import EditTag from 'components/tag/edit-tag';
 import { Badge } from 'components/ui/badge';
 
-import createSupabaseServerClient from 'lib/supabase/server';
-
-import { BookmarkModified } from 'types/data';
-
 const title = 'Bookmark it. | Tags';
 const description = 'Bookmark manager for the modern web.';
 
 export const metadata = {
   title,
   description,
-};
-
-const fetcher = async (from: number, to: number) => {
-  'use server';
-  const supabase = await createSupabaseServerClient();
-
-  const { data, error } = await supabase
-    .from('bookmarks')
-    .select(`*, bookmarks_tags (tags!inner (id,name))`)
-    .order('created_at', { ascending: false })
-    .range(from, to)
-    .returns<BookmarkModified[]>();
-
-  if (error) {
-    return [];
-  }
-
-  return data;
 };
 
 export default async function Page() {
@@ -66,7 +44,7 @@ export default async function Page() {
             <div className="border-b border-neutral-200 flex w-full pt-1" />
           </>
         ) : null}
-        <CardList bookmarks={bookmarks} tags={tags} fetcher={fetcher} />
+        <CardList bookmarks={bookmarks} tags={tags} />
       </div>
     </>
   );
