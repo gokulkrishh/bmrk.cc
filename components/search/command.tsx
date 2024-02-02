@@ -4,11 +4,11 @@ import Link from 'next/link';
 
 import { StarFilledIcon } from '@radix-ui/react-icons';
 import { Command as CommandPrimitive } from 'cmdk';
+import humanizeUrl from 'humanize-url';
 
 import { getBookmarks } from 'app/actions/bookmarks';
 
 import CardAvatar from 'components/card/avatar';
-import { useAuth } from 'components/context/auth';
 import Loader from 'components/loader';
 import {
   CommandDialog,
@@ -18,8 +18,6 @@ import {
   CommandItem,
   CommandList,
 } from 'components/ui/command';
-
-import createSupabaseBrowserClient from 'lib/supabase/client';
 
 import { Bookmark } from 'types/data';
 
@@ -113,7 +111,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                           {bookmark.is_fav ? (
                             <StarFilledIcon className="!h-3 !w-3 -ml-1 text-yellow-500 mr-1" />
                           ) : null}
-                          {new URL(bookmark.url)?.hostname?.replace('www.', '')}
+                          {humanizeUrl(bookmark.url)}
                         </div>
                       </div>
                     </Link>

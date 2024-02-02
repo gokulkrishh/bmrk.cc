@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 import { urls } from 'config';
-import { LogOut, Settings } from 'lucide-react';
+import { HelpCircleIcon, LogOut, Settings } from 'lucide-react';
 
 import { cn } from 'lib/utils';
 
@@ -15,6 +15,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
+
+const helpMailLink = 'mailto:support@bmrk.cc';
 
 export default function Profile({ className }: { className?: string }) {
   const { user, supabase } = useAuth();
@@ -42,6 +44,14 @@ export default function Profile({ className }: { className?: string }) {
           </AvatarFallback>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-2">
+          <DropdownMenuItem
+            className="flex items-center cursor-pointer"
+            onClick={() => {
+              window.open(helpMailLink, '_blank');
+            }}
+          >
+            <HelpCircleIcon className="h-4 w-4 mr-2.5" /> Help
+          </DropdownMenuItem>
           <DropdownMenuItem className="hidden max-sm:block">
             <Link className="flex items-center" href="/settings">
               <Settings className="h-4 w-4 mr-2.5" /> Settings

@@ -13,11 +13,41 @@ type NavLinkProps = {
   title: string;
   side?: 'top' | 'right' | 'bottom' | 'left';
   className?: string;
+  target?: 'external';
 };
 
 export default function NavLink(props: NavLinkProps) {
-  const { children, href, title, side = 'right', className = '' } = props;
+  const {
+    children,
+    href,
+    title,
+    side = 'right',
+    className = '',
+    target,
+  } = props;
   const pathname = usePathname();
+
+  if (target === 'external') {
+    return (
+      <a
+        href={href}
+        className={cn(
+          `p-2 inline-block rounded-xl group transition-colors text-center text-neutral-900 hover:bg-neutral-200`,
+          {
+            'bg-neutral-200': pathname === href,
+          },
+          className,
+        )}
+      >
+        <Tooltip>
+          <TooltipTrigger asChild>{children}</TooltipTrigger>
+          <TooltipContent className="ml-4" side={side}>
+            {title}
+          </TooltipContent>
+        </Tooltip>
+      </a>
+    );
+  }
 
   return (
     <Link

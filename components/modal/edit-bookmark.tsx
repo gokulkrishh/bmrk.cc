@@ -45,8 +45,8 @@ export default function EditBookmark({
       setLoading(true);
       const payload = {
         url: state.url,
-        title: state.title,
-        description: state.description,
+        title: state.title?.trim(),
+        description: state.description?.trim(),
         metadata: state.metadata,
       } as BookmarkModifiedType;
       await updateBookmark(data.id, payload);

@@ -41,8 +41,8 @@ export default function AddBookmarkInput({
       const ogData: OgResponse = await getOg(inputUrl);
       const payload = {
         url: inputUrl,
-        description: ogData.description,
-        title: ogData.title,
+        description: ogData.description?.trim(),
+        title: ogData.title?.trim(),
         metadata: {
           ogImageUrl: ogData['og:image'] ?? '',
           twitterImageUrl: ogData['twitter:image'] ?? '',
