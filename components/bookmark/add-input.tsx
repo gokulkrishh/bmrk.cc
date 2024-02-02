@@ -61,7 +61,6 @@ export default function AddBookmarkInput({
 
   const onPaste = async (event: ClipboardEvent<HTMLInputElement>) => {
     const pastedText = event.clipboardData?.getData('text');
-    setUrl(pastedText);
     if (isUrl(pastedText)) {
       await onSubmit(pastedText);
     }
