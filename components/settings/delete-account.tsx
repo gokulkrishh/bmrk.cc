@@ -36,13 +36,13 @@ export default function DeleteAccount() {
   };
 
   return (
-    <SettingsCard className="bg-red-50 py-3 border-red-100">
+    <SettingsCard className="bg-red-50 py-4 border-red-100">
       <div className="flex flex-col">
         <div className="font-medium">
           {user?.user_metadata?.name ? (
             'Delete My Account'
           ) : (
-            <Skeleton className="w-52 h-4 bg-neutral-300 pb-0.5" />
+            <Skeleton className="w-52 h-4 bg-neutral-300" />
           )}
         </div>
         <div className="text-sm mt-1 max-w-[350px] text-neutral-600">

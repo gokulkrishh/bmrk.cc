@@ -100,7 +100,7 @@ export interface Database {
         Row: {
           created_at: string;
           id: number;
-          name: string | null;
+          name: string;
           updated_at: string;
           user_id: string;
         };

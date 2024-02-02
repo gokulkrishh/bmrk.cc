@@ -2,8 +2,9 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
+import { SupabaseClient } from '@supabase/supabase-js';
 import { urls } from 'config';
 
 import createSupabaseBrowserClient from 'lib/supabase/client';
@@ -22,7 +23,6 @@ export const AuthProvider = (props: AuthProviderProps) => {
   const [user, setUser] = useState<User | undefined>(props.user);
   const supabase = createSupabaseBrowserClient();
   const router = useRouter();
-  const pathname = usePathname();
 
   useEffect(() => {
     const {
@@ -47,9 +47,11 @@ export const AuthProvider = (props: AuthProviderProps) => {
 
   const value = useMemo(() => {
     return { user, supabase };
-  }, [user, supabase]) as any;
+  }, [user, supabase]) as { user: User; supabase: SupabaseClient };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value as any}>{children}</AuthContext.Provider>
+  );
 };
 
 export const useAuth = () => {

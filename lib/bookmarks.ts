@@ -1,11 +1,77 @@
-type Bookmark = {
-  url: string;
-  title: string;
-  created_at?: string;
+import { BookmarkModified } from 'types/data';
+
+type TagHierarchy = {
+  [key: string]: TagHierarchy | { _links: BookmarkModified[] };
+};
+
+const buildTagHierarchy = (bookmarks: BookmarkModified[]) => {
+  const root = {};
+
+  bookmarks.forEach((bookmark) => {
+    let currentLevel: any = root;
+    bookmark.bookmarks_tags.forEach(({ tags }) => {
+      const { name = 'Bookmarks' } = tags;
+      if (!currentLevel[name]) {
+        currentLevel[name] = { _links: [] };
+      }
+      currentLevel = currentLevel[name];
+    });
+    currentLevel?._links?.push({ title: bookmark.title, url: bookmark.url });
+  });
+
+  return root as TagHierarchy;
+};
+
+const generateHTMLForTags = (
+  tagHierarchy: TagHierarchy,
+  tagName = 'Bookmarks',
+) => {
+  let htmlContent = `<DT><H3>${tagName}</H3>\n<DL><p>\n`;
+
+  Object.entries(tagHierarchy).forEach(([tag, content]: any) => {
+    if (tag === '_links') {
+      content.forEach((link: BookmarkModified) => {
+        htmlContent += `<DT><A ADD_DATE="${link.created_at}" HREF="${link.url}">${link.title}</A>\n`;
+      });
+    } else {
+      htmlContent += generateHTMLForTags(content as TagHierarchy, tag);
+    }
+  });
+
+  htmlContent += `    </DL><p>\n`;
+  return htmlContent;
+};
+
+export const exportBookmarksToHTML = (
+  bookmarks: BookmarkModified[],
+  filename: string,
+) => {
+  const tagHierarchy = buildTagHierarchy(bookmarks);
+  let htmlContent = `<!DOCTYPE NETSCAPE-Bookmark-file-1>
+<!-- This is an automatically generated file.
+     It will be read and overwritten.
+     DO NOT EDIT! -->
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<TITLE>Bookmarks</TITLE>
+<H1>Bookmarks</H1>
+<DL><p>\n`;
+
+  htmlContent += generateHTMLForTags(tagHierarchy);
+  htmlContent += `</DL><p>`;
+
+  const blob = new Blob([htmlContent], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a); // Required for Firefox
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 };
 
 export const bookmarkParser = (rootNode: HTMLElement) => {
-  const bookmarks: Bookmark[] = [];
+  const bookmarks: BookmarkModified[] = [];
 
   const processNode = (node: HTMLAnchorElement) => {
     if (!node) {
@@ -18,7 +84,7 @@ export const bookmarkParser = (rootNode: HTMLElement) => {
       const bookmark = {
         title,
         url,
-      } as Bookmark;
+      } as BookmarkModified;
 
       if (created_at) {
         bookmark['created_at'] = new Date(created_at * 1000).toISOString();

@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
             bookmarks.map((bookmark) => ({
               ...bookmark,
               user_id: user.id,
-            })) as BookmarkInsert[],
+            })) as unknown as BookmarkInsert[],
           )
           .select();
 
