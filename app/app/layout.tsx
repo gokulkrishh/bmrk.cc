@@ -40,6 +40,11 @@ export const metadata: Metadata = {
     shortcut: '/icons/icon.svg',
     apple: '/icons/apple-touch-icon.png',
   },
+  appleWebApp: {
+    title,
+    statusBarStyle: 'default',
+    startupImage: ['https://bmrk.cc/icons/apple-icon.png'],
+  },
 };
 
 export const viewport: Viewport = {

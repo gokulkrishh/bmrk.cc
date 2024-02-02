@@ -1,6 +1,14 @@
 import AccountButton from 'components/account-button';
 import { Logo } from 'components/icons';
 
+const title = 'Bookmark it. | Account';
+const description = 'Bookmark manager for the modern web.';
+
+export const metadata = {
+  title,
+  description,
+};
+
 export default async function Page() {
   return (
     <div className="flex flex-col max-w-sm min-h-screen mx-auto w-full">
