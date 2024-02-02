@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     images: ['https://bmrk.cc/images/open-graph.jpg'],
   },
   icons: {
-    icon: '/icons/favicon.ico',
-    shortcut: '/icons/icon.svg',
-    apple: '/icons/apple-touch-icon.png',
+    icon: 'https://bmrk.cc/icons/favicon-32x32.png',
+    shortcut: 'https://bmrk.cc/icons/icon.svg',
+    apple: 'https://bmrk.cc/icons/apple-touch-icon.png',
   },
   appleWebApp: {
     title,
