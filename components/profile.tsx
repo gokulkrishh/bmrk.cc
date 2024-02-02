@@ -29,14 +29,15 @@ export default function Profile({ className }: { className?: string }) {
   };
 
   return (
-    <Avatar className={cn('h-9 w-9', className)}>
+    <Avatar className={cn('h-9 w-9 group', className)}>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <AvatarImage
+            className="group-active:scale-95 h-9 w-9 duration-150 transition-transform"
             src={user.user_metadata.avatar_url}
             alt={user.user_metadata.name}
           />
-          <AvatarFallback className="font-medium text-black uppercase text-xl bg-neutral-300">
+          <AvatarFallback className="font-medium h-9 w-9 text-black uppercase text-xl bg-neutral-300">
             {user.user_metadata.name[0]}
           </AvatarFallback>
         </DropdownMenuTrigger>

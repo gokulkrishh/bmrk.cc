@@ -31,13 +31,13 @@ export default function Search({ className }: { className?: string }) {
       <button
         onClick={() => setOpen(!open)}
         className={cn(
-          'p-2.5 inline-block rounded-xl transition-colors text-center hover:bg-neutral-200',
+          'p-2.5 inline-block rounded-xl transition-colors text-center hover:bg-neutral-200 group',
           className,
         )}
       >
         <Tooltip>
           <TooltipTrigger className="text-neutral-900" asChild>
-            <SearchIcon className="w-6 h-6 text-black" />
+            <SearchIcon className="w-6 h-6 text-black group-hover:scale-95 duration-150 transition-transform" />
           </TooltipTrigger>
           <TooltipContent side={'right'} className="flex items-center ml-4">
             Search{' '}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { ClipboardEvent, useState } from 'react';
 
 import { isUrl } from 'check-valid-url';
 import { UploadIcon } from 'lucide-react';
@@ -35,12 +35,12 @@ export default function AddBookmarkInput({
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const onSubmit = async () => {
+  const onSubmit = async (inputUrl: string) => {
     setLoading(true);
     try {
-      const ogData: OgResponse = await getOg(url);
+      const ogData: OgResponse = await getOg(inputUrl);
       const payload = {
-        url,
+        url: inputUrl,
         description: ogData.description,
         title: ogData.title,
         metadata: {
@@ -59,6 +59,14 @@ export default function AddBookmarkInput({
     }
   };
 
+  const onPaste = async (event: ClipboardEvent<HTMLInputElement>) => {
+    const pastedText = event.clipboardData?.getData('text');
+    setUrl(pastedText);
+    if (isUrl(pastedText)) {
+      await onSubmit(pastedText);
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -70,7 +78,7 @@ export default function AddBookmarkInput({
         className="h-full"
         onSubmit={async (event) => {
           event.preventDefault();
-          await onSubmit();
+          await onSubmit(url);
         }}
       >
         <div className="flex flex-col items-center justify-center w-full">
@@ -86,6 +94,7 @@ export default function AddBookmarkInput({
             onChange={(event: any) => {
               setUrl(event.target.value);
             }}
+            onPaste={onPaste}
             value={url}
             data-1p-ignore
           />
