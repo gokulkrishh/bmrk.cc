@@ -52,24 +52,22 @@ export default async function Page() {
         {tags.length ? (
           <div className="border-b border-neutral-200 flex w-full pt-1" />
         ) : null}
-        {Object.keys(groupedBookmarks)
-          .reverse()
-          .map((groupKey: any, index: number) => {
-            const bookmarksData: BookmarkModifiedType[] =
-              groupedBookmarks[groupKey];
-            return (
-              <div
-                className={cn(`flex flex-col w-full`, {
-                  'border-b border-neutral-200': bookmarksData.length > 0,
-                })}
-                key={index}
-              >
-                {bookmarksData.map((bookmark: BookmarkModifiedType) => (
-                  <Card key={bookmark.id} tags={tags} data={bookmark} />
-                ))}
-              </div>
-            );
-          })}
+        {Object.keys(groupedBookmarks).map((groupKey: any, index: number) => {
+          const bookmarksData: BookmarkModifiedType[] =
+            groupedBookmarks[groupKey];
+          return (
+            <div
+              className={cn(`flex flex-col w-full`, {
+                'border-b border-neutral-200': bookmarksData.length > 0,
+              })}
+              key={index}
+            >
+              {bookmarksData.map((bookmark: BookmarkModifiedType) => (
+                <Card key={bookmark.id} tags={tags} data={bookmark} />
+              ))}
+            </div>
+          );
+        })}
       </div>
     </>
   );

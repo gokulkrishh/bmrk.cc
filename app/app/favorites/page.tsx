@@ -28,9 +28,8 @@ export default async function Page() {
     <>
       <Header headerText="Favorites" />
       <div className="h-full border-r border-neutral-200 pb-24">
-        {Object.values(groupedBookmarks)
-          .reverse()
-          .map((bookmarksData: BookmarkModifiedType[], index: number) => {
+        {Object.values(groupedBookmarks).map(
+          (bookmarksData: BookmarkModifiedType[], index: number) => {
             return (
               <div
                 className={cn(`flex flex-col w-full`, {
@@ -43,7 +42,8 @@ export default async function Page() {
                 ))}
               </div>
             );
-          })}
+          },
+        )}
       </div>
     </>
   );
