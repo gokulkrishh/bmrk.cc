@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import { Logo } from 'components/icons';
 
-import { formatDate, showGreetings } from 'lib/date';
+import { formatDate } from 'lib/date';
 
 import Profile from './profile';
 
@@ -17,7 +17,7 @@ export default function Header({ headerText }: { headerText?: string }) {
           <Logo className="w-[44px] h-[44px]" />
         </Link>
         <h2 className="w-full font-medium flex flex-col p-3 tracking-wide">
-          {headerText ?? showGreetings()}
+          {headerText ?? 'Bookmark It.'}
           <span
             className="text-xs mt-0.5 font-normal text-neutral-500"
             suppressHydrationWarning
