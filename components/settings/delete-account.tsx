@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import { urls } from 'config';
+import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { useAuth } from 'components/context/auth';
@@ -36,8 +37,8 @@ export default function DeleteAccount() {
   };
 
   return (
-    <SettingsCard className="flex flex-col p-0 items-start border-red-300">
-      <div className="flex flex-col p-3.5 pt-3 pb-0">
+    <SettingsCard className="flex flex-col items-start">
+      <div className="flex flex-col p-4 pb-0">
         <div className="font-medium">
           {user?.user_metadata?.name ? (
             'Delete My Account'
@@ -54,13 +55,13 @@ export default function DeleteAccount() {
           )}
         </div>
       </div>
-      <div className="flex w-full justify-end border-t bg-red-100 border-red-300 rounded-bl-md rounded-br-md p-1.5 px-4">
+      <div className="flex w-full justify-end border-t bg-red-50 border-neutral-300 rounded-bl-md rounded-br-md p-2 px-3.5">
         {user?.user_metadata?.email ? (
           <button
-            className="items-center tracking-wide rounded-lg focus:outline-0 focus:bg-red-700/80 active:bg-red-700/80 border-0 text-sm flex justify-center py-2 h-[34px] px-3 text-white bg-red-700 hover:bg-red-700/80"
+            className="items-center tracking-wide rounded-full text-red-700 border border-neutral-400 focus:outline-0 focus:bg-neutral-200/80 active:bg-neutral-200/80 text-sm flex justify-center py-2 h-[36px] px-3  bg-white hover:bg-neutral-200/80"
             onClick={() => setOpen(true)}
           >
-            Delete
+            <Trash2 className="w-3.5 h-3.5 mr-1.5" /> Delete
           </button>
         ) : null}
         {open ? (

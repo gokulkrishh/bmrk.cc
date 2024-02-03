@@ -35,7 +35,9 @@ export default function DeleteAccountModal({
           className=""
           onSubmit={(event: SyntheticEvent<HTMLFormElement>) => {
             event.preventDefault();
-            onSubmit(email);
+            if (email === emailId) {
+              onSubmit(email);
+            }
           }}
         >
           <Input
@@ -48,8 +50,8 @@ export default function DeleteAccountModal({
           />
           <button
             type="submit"
-            disabled={email !== emailId}
-            className="items-center mt-3 disabled:pointer-events-auto rounded-lg focus:outline-0 disabled:bg-red-700/70 focus:bg-red-700/80 active:bg-red-700/80 border-0 text-sm flex w-full justify-center py-2.5 px-4 text-white bg-red-700 hover:bg-red-700/80"
+            disabled={email !== emailId || loading}
+            className="items-center mt-3 disabled:cursor-not-allowed rounded-lg focus:outline-0 disabled:bg-red-700/60 focus:bg-red-700/80 active:bg-red-700/80 border-0 text-sm flex w-full justify-center py-2.5 px-4 text-white bg-red-700 hover:bg-red-700/80"
           >
             {loading ? <Loader /> : 'Confirm Delete'}
           </button>

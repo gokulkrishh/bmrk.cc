@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { FileDown } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { useAuth } from 'components/context/auth';
@@ -55,14 +56,20 @@ export default function ExportBookmarks() {
           </div>
         </div>
       </div>
-      <div className="flex w-full justify-end border-t bg-neutral-50 border-neutral-300 rounded-bl-md rounded-br-md p-1.5 px-4">
+      <div className="flex w-full justify-end border-t bg-neutral-50 border-neutral-300 rounded-bl-md rounded-br-md p-1.5 px-3.5">
         <button
-          className="justify-center items-center tracking-wide rounded-lg focus:outline-0 focus:bg-neutral-700 active:bg-neutral-700 border-0 text-sm flex py-2 h-[34px] px-3 text-white bg-neutral-900 hover:bg-neutral-700"
+          className="items-center tracking-wide rounded-full text-white border border-neutral-900 focus:outline-0 focus:bg-neutral-900/80 active:bg-neutral-900/80 text-sm flex justify-center py-2 h-[36px] px-3  bg-neutral-900 hover:bg-neutral-900/80"
           onClick={() => {
             fetchBookmarksToExport();
           }}
         >
-          {loading ? <Loader /> : 'Export'}
+          {loading ? (
+            <Loader />
+          ) : (
+            <>
+              <FileDown className="w-3.5 h-3.5 mr-1.5" /> Export
+            </>
+          )}
         </button>
       </div>
     </SettingsCard>
