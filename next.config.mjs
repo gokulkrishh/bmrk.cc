@@ -2,6 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: '**', port: '', pathname: '**' },

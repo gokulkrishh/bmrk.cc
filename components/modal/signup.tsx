@@ -14,7 +14,7 @@ import {
   DialogTitle,
 } from 'components/ui/dialog';
 
-import createSupabaseBrowserClient from 'lib/supabase/client';
+import createClient from 'lib/supabase/client';
 import { cn } from 'lib/utils';
 
 type ButtonProp = {
@@ -51,7 +51,7 @@ export default function SignupModal({ open, onHide }: SignupModalProp) {
 
   const clickHandler = async () => {
     setLoading(true);
-    const supabase = createSupabaseBrowserClient();
+    const supabase = createClient();
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {

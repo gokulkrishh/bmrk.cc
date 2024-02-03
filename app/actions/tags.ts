@@ -1,22 +1,20 @@
 'use server';
 
-import { cache } from 'react';
-
 import { revalidatePath } from 'next/cache';
 
-import createSupabaseServerClient from 'lib/supabase/server';
+import createClient from 'lib/supabase/actions';
 
 import { Bookmark, Tag, TagInsert } from 'types/data';
 
 import { getUser } from './user';
 
-export const getTags = cache(async () => {
+export const getTags = async () => {
   const user = await getUser();
   if (!user) {
     return [];
   }
 
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('tags')
     .select('id, name')
@@ -28,7 +26,7 @@ export const getTags = cache(async () => {
     return [];
   }
   return data;
-});
+};
 
 export const createTag = async (id: Bookmark['id'], tag: TagInsert) => {
   const user = await getUser();
@@ -36,7 +34,7 @@ export const createTag = async (id: Bookmark['id'], tag: TagInsert) => {
     return new Error('User is not authenticated.');
   }
 
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
   const { error: tagError, data: newTag } = await supabase
     .from('tags')
     .insert({ ...tag, user_id: user.id })
@@ -68,7 +66,7 @@ export const addTagToBookmark = async (
     return new Error('User is not authenticated.');
   }
 
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
 
   if (!isChecked) {
     const { error } = await supabase.from('bookmarks_tags').insert({
@@ -101,7 +99,7 @@ export const deleteTag = async (tagId: Tag['id']) => {
     return new Error('User is not authenticated.');
   }
 
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
 
   const { error: bookmarkError } = await supabase
     .from('bookmarks_tags')
@@ -132,7 +130,7 @@ export const updateTag = async (id: Bookmark['id'], name: Tag['name']) => {
     return new Error('User is not authenticated.');
   }
 
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
   const { error } = await supabase
     .from('tags')
     .update({ name } as TagInsert)
@@ -145,13 +143,13 @@ export const updateTag = async (id: Bookmark['id'], name: Tag['name']) => {
   revalidatePath('/tags', 'page');
 };
 
-export const getTagsWithBookmarkIds = cache(async () => {
+export const getTagsWithBookmarkIds = async () => {
   const user = await getUser();
   if (!user) {
     return {};
   }
 
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('bookmarks_tags')
     .select()
@@ -169,4 +167,4 @@ export const getTagsWithBookmarkIds = cache(async () => {
     }
     return acc;
   }, {});
-});
+};

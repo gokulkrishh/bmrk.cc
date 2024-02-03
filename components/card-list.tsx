@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 import { groupByDate } from 'lib/data';
 import { cn } from 'lib/utils';
 
@@ -22,13 +20,7 @@ export default function CardList({ bookmarks, tags }: CardListProps) {
       {Object.keys(data).map((dateKey: string) => {
         const bookmarksData = data[dateKey];
         return (
-          <motion.div
-            initial={{ opacity: 0.9, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.3,
-              ease: [0.25, 0.25, 0, 1],
-            }}
+          <div
             className={cn(`flex flex-col w-full`, {
               'border-b border-neutral-200': bookmarks.length > 0,
             })}
@@ -37,7 +29,7 @@ export default function CardList({ bookmarks, tags }: CardListProps) {
             {bookmarksData.map((bookmark: BookmarkModified) => (
               <Card key={bookmark.id} tags={tags} data={bookmark} />
             ))}
-          </motion.div>
+          </div>
         );
       })}
     </div>

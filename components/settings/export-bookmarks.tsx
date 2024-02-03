@@ -9,7 +9,7 @@ import { useAuth } from 'components/context/auth';
 import Loader from 'components/loader';
 
 import { exportBookmarksToHTML } from 'lib/bookmarks';
-import createSupabaseBrowserClient from 'lib/supabase/client';
+import createClient from 'lib/supabase/client';
 
 import { BookmarkModified } from 'types/data';
 
@@ -17,7 +17,7 @@ import SettingsCard from './settings-card';
 
 export default function ExportBookmarks() {
   const [loading, setLoading] = useState(false);
-  const supabase = createSupabaseBrowserClient();
+  const supabase = createClient();
   const { user } = useAuth();
 
   const fetchBookmarksToExport = async () => {

@@ -1,10 +1,8 @@
 'use server';
 
-import { cache } from 'react';
-
 import { revalidatePath } from 'next/cache';
 
-import createSupabaseServerClient from 'lib/supabase/server';
+import createClient from 'lib/supabase/actions';
 
 import {
   Bookmark,
@@ -15,13 +13,13 @@ import {
 
 import { getUser } from './user';
 
-export const getBookmarks = cache(async () => {
+export const getBookmarks = async () => {
   const user = await getUser();
   if (!user) {
     return [];
   }
 
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('bookmarks')
     .select(`*, bookmarks_tags (tags!inner (id,name))`)
@@ -34,7 +32,7 @@ export const getBookmarks = cache(async () => {
   }
 
   return data;
-});
+};
 
 export const createBookmark = async (bookmark: BookmarkInsert) => {
   const user = await getUser();
@@ -42,7 +40,7 @@ export const createBookmark = async (bookmark: BookmarkInsert) => {
     return new Error('User is not authenticated.');
   }
 
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
   const { error } = await supabase
     .from('bookmarks')
     .insert({ ...bookmark, user_id: user.id } as BookmarkInsert);
@@ -61,7 +59,7 @@ export const updateBookmark = async (
   if (!user) {
     return new Error('User is not authenticated.');
   }
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
   const { error } = await supabase
     .from('bookmarks')
     .update({ ...bookmark, user_id: user.id } as any)
@@ -79,7 +77,7 @@ export const deleteBookmark = async (id: Bookmark['id']) => {
     return new Error('User is not authenticated.');
   }
 
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
 
   const { error: bookmarkError } = await supabase
     .from('bookmarks_tags')
@@ -108,7 +106,7 @@ export const addToFav = async (
   id: Bookmark['id'],
   isFav: Bookmark['is_fav'],
 ) => {
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
   const { error } = await supabase
     .from('bookmarks')
     .update({ is_fav: isFav })
@@ -128,7 +126,7 @@ export const refreshBookmark = async (
   if (!user) {
     return new Error('User is not authenticated.');
   }
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
   const { error } = await supabase
     .from('bookmarks')
     .update({ ...payload })
@@ -147,7 +145,7 @@ export const getFavBookmarks = async () => {
     return [];
   }
 
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('bookmarks')
     .select(`*, bookmarks_tags (tags!inner (id,name))`)
@@ -162,13 +160,13 @@ export const getFavBookmarks = async () => {
   return data;
 };
 
-export const getBookmarksForTag = cache(async (slug: string) => {
+export const getBookmarksForTag = async (slug: string) => {
   const user = await getUser();
   if (!user) {
     return [];
   }
 
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from('bookmarks')
@@ -183,4 +181,4 @@ export const getBookmarksForTag = cache(async (slug: string) => {
   }
 
   return data;
-});
+};

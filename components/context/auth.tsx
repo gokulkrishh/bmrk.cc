@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { urls } from 'config';
 
-import createSupabaseBrowserClient from 'lib/supabase/client';
+import createClient from 'lib/supabase/client';
 
 import { User } from 'types/data';
 
@@ -21,7 +21,7 @@ type AuthProviderProps = {
 export const AuthProvider = (props: AuthProviderProps) => {
   const { children } = props;
   const [user, setUser] = useState<User | undefined>(props.user);
-  const supabase = createSupabaseBrowserClient();
+  const supabase = createClient();
   const router = useRouter();
 
   useEffect(() => {
@@ -29,6 +29,8 @@ export const AuthProvider = (props: AuthProviderProps) => {
       data: { subscription: authListener },
     } = supabase.auth.onAuthStateChange((event, currentSession: any) => {
       if (event === 'TOKEN_REFRESHED' || event === 'SIGNED_IN') {
+        console.log('came ----->');
+
         router.refresh();
       }
       if (event == 'SIGNED_OUT') {

@@ -15,12 +15,12 @@ import {
   DropdownMenuTrigger,
 } from 'components/ui/dropdown-menu';
 
-import createSupabaseBrowserClient from 'lib/supabase/client';
+import createClient from 'lib/supabase/client';
 
 export default function HomeAccount() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<any>(null);
-  const supabase = createSupabaseBrowserClient();
+  const supabase = createClient();
 
   useEffect(() => {
     async function getSession() {

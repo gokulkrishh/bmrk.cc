@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import { NextRequest } from 'next/server';
 
 import { parse } from 'node-html-parser';
@@ -5,7 +6,7 @@ import { parse } from 'node-html-parser';
 import { checkAuth } from 'lib/auth';
 import { bookmarkParser } from 'lib/bookmarks';
 import { formatDate } from 'lib/date';
-import createSupabaseServerClient from 'lib/supabase/server';
+import createClient from 'lib/supabase/server';
 
 import { BookmarkInsert, TagInsert, User } from 'types/data';
 
@@ -21,7 +22,7 @@ export async function POST(request: NextRequest) {
       const root: any = parse(content);
       const bookmarks = bookmarkParser(root);
 
-      const supabase = await createSupabaseServerClient();
+      const supabase = await createClient(cookies());
 
       const { data: newTag } = await supabase
         .from('tags')

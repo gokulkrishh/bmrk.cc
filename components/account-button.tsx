@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { urls } from 'config';
 
-import createSupabaseBrowserClient from 'lib/supabase/client';
+import createClient from 'lib/supabase/client';
 import { cn } from 'lib/utils';
 
 import { GoogleIcon } from './icons';
@@ -15,7 +15,7 @@ export default function AccountButton() {
 
   const onClick = async () => {
     setLoading(true);
-    const supabase = createSupabaseBrowserClient();
+    const supabase = createClient();
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {

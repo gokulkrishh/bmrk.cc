@@ -9,12 +9,12 @@ import { ArrowRight } from 'lucide-react';
 
 import SignupModal from 'components/modal/signup';
 
-import createSupabaseBrowserClient from 'lib/supabase/client';
+import createClient from 'lib/supabase/client';
 
 export default function Signup() {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
-  const supabase = createSupabaseBrowserClient();
+  const supabase = createClient();
 
   useEffect(() => {
     async function getSession() {
