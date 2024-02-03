@@ -73,7 +73,9 @@ export default function TagList({ data, tags }: TagListProps) {
               .sort((a: any, b: any) => a.name.localeCompare(b.name))
               .map((tag: Tag) => {
                 const isChecked = Boolean(
-                  data.bookmarks_tags?.find(({ tags: { id } }) => id == tag.id),
+                  data?.bookmarks_tags?.find(
+                    ({ tags: { id } }) => id == tag.id,
+                  ),
                 );
                 return (
                   <CommandItem

@@ -29,8 +29,6 @@ export const AuthProvider = (props: AuthProviderProps) => {
       data: { subscription: authListener },
     } = supabase.auth.onAuthStateChange((event, currentSession: any) => {
       if (event === 'TOKEN_REFRESHED' || event === 'SIGNED_IN') {
-        console.log('came ----->');
-
         router.refresh();
       }
       if (event == 'SIGNED_OUT') {

@@ -9,6 +9,10 @@ const title = 'Bookmark it.';
 const description = 'Bookmark manager for the modern web.';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://bmrk.cc'),
+  alternates: {
+    canonical: '/',
+  },
   title,
   description,
   twitter: {
@@ -16,24 +20,24 @@ export const metadata: Metadata = {
     title,
     description,
     creator: '@gokul_i',
-    images: ['https://bmrk.cc/images/open-graph.jpg'],
+    images: ['/images/open-graph.jpg'],
   },
   openGraph: {
     type: 'website',
     title,
-    url: 'https://bmrk.cc',
     description,
-    images: ['https://bmrk.cc/images/open-graph.jpg'],
+    url: 'https://bmrk.cc',
+    images: ['/images/open-graph.jpg'],
   },
   icons: {
-    icon: 'https://bmrk.cc/icons/favicon-32x32.png',
-    shortcut: 'https://bmrk.cc/icons/icon.svg',
-    apple: 'https://bmrk.cc/icons/apple-touch-icon.png',
+    icon: '/icons/favicon-32x32.png',
+    shortcut: '/icons/icon.svg',
+    apple: '/icons/apple-touch-icon.png',
   },
   appleWebApp: {
     title,
     statusBarStyle: 'default',
-    startupImage: ['https://bmrk.cc/icons/apple-icon.png'],
+    startupImage: ['/icons/apple-icon.png'],
   },
 };
 
