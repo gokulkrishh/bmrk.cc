@@ -36,8 +36,8 @@ export default function DeleteAccount() {
   };
 
   return (
-    <SettingsCard className="bg-red-50 py-4 border-red-100">
-      <div className="flex flex-col">
+    <SettingsCard className="flex flex-col p-0 items-start border-red-300">
+      <div className="flex flex-col p-3.5 pt-3 pb-0">
         <div className="font-medium">
           {user?.user_metadata?.name ? (
             'Delete My Account'
@@ -45,32 +45,34 @@ export default function DeleteAccount() {
             <Skeleton className="w-52 h-4 bg-neutral-300" />
           )}
         </div>
-        <div className="text-sm mt-1 max-w-[350px] text-neutral-600">
+        <div className="text-sm mt-1 text-neutral-600">
           {user?.user_metadata?.name ? (
             `Permanently delete your account and all its associated data, this
           action cannot be undone.`
           ) : (
-            <Skeleton className=" w-80 h-10 bg-neutral-300 mt-1.5" />
+            <Skeleton className="w-80 h-10 bg-neutral-300 mt-1.5" />
           )}
         </div>
       </div>
-      {user?.user_metadata?.email ? (
-        <button
-          className="items-center tracking-wide rounded-full focus:outline-0 focus:bg-red-700/80 active:bg-red-700/80 border-0 text-sm flex justify-center py-2 px-4 text-white bg-red-700 hover:bg-red-700/80"
-          onClick={() => setOpen(true)}
-        >
-          Delete
-        </button>
-      ) : null}
-      {open ? (
-        <DeleteAccountModal
-          loading={loading}
-          open={true}
-          setOpen={setOpen}
-          emailId={user?.user_metadata?.email}
-          onSubmit={onSubmit}
-        />
-      ) : null}
+      <div className="flex w-full justify-end border-t bg-red-100 border-red-300 rounded-bl-md rounded-br-md p-1.5 px-4">
+        {user?.user_metadata?.email ? (
+          <button
+            className="items-center tracking-wide rounded-lg focus:outline-0 focus:bg-red-700/80 active:bg-red-700/80 border-0 text-sm flex justify-center py-2 h-[34px] px-3 text-white bg-red-700 hover:bg-red-700/80"
+            onClick={() => setOpen(true)}
+          >
+            Delete
+          </button>
+        ) : null}
+        {open ? (
+          <DeleteAccountModal
+            loading={loading}
+            open={true}
+            setOpen={setOpen}
+            emailId={user?.user_metadata?.email}
+            onSubmit={onSubmit}
+          />
+        ) : null}
+      </div>
     </SettingsCard>
   );
 }

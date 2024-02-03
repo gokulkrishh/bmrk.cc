@@ -8,6 +8,8 @@ export default function Loading() {
       <div className="min-h-dvh border-r border-neutral-200">
         <CardSkeleton />
         <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton className="border-b border-neutral-200" />
       </div>
     </>
   );

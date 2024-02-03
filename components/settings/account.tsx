@@ -19,7 +19,7 @@ export default function SettingsAccount() {
   };
 
   return (
-    <SettingsCard className="h-[86px]">
+    <SettingsCard className="h-[86px] px-3">
       <div className="flex gap-3 w-full items-center">
         <Avatar className="h-[50px] w-[50px]">
           <AvatarImage

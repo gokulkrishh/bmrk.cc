@@ -7,7 +7,7 @@ type TagHierarchy = {
 const buildTagHierarchy = (bookmarks: BookmarkModified[]) => {
   const root = {};
 
-  bookmarks.forEach((bookmark) => {
+  bookmarks.forEach((bookmark: BookmarkModified) => {
     let currentLevel: any = root;
     bookmark.bookmarks_tags.forEach(({ tags }) => {
       const { name = 'Bookmarks' } = tags;
@@ -16,7 +16,11 @@ const buildTagHierarchy = (bookmarks: BookmarkModified[]) => {
       }
       currentLevel = currentLevel[name];
     });
-    currentLevel?._links?.push({ title: bookmark.title, url: bookmark.url });
+    currentLevel?._links?.push({
+      title: bookmark.title,
+      url: bookmark.url,
+      created_at: Math.floor(new Date(bookmark.created_at).getTime() / 1000),
+    });
   });
 
   return root as TagHierarchy;

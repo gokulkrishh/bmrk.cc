@@ -45,17 +45,19 @@ export default function ExportBookmarks() {
   };
 
   return (
-    <SettingsCard className="">
-      <div className="flex items-center justify-between w-full">
+    <SettingsCard className="flex flex-col p-0 items-start">
+      <div className="flex flex-col p-3.5 pt-3 pb-0 w-full">
         <div>
           <h3 className="font-medium">Export Bookmarks</h3>
-          <div className="text-sm mt-1 max-w-[350px] text-neutral-600">
-            Instantly export your bookmarks as an HTML file to import into other
-            web browsers.
+          <div className="text-sm mt-1 text-neutral-600">
+            Instantly export your bookmarks as an HTML file to import into web
+            browsers.
           </div>
         </div>
+      </div>
+      <div className="flex w-full justify-end border-t bg-neutral-50 border-neutral-300 rounded-bl-md rounded-br-md p-1.5 px-4">
         <button
-          className="items-center tracking-wide rounded-full focus:outline-0 focus:bg-neutral-800/70 active:bg-neutral-800/70 border-0 text-sm flex justify-center py-2 px-4 text-white bg-neutral-700 hover:bg-neutral-800/70"
+          className="justify-center items-center tracking-wide rounded-lg focus:outline-0 focus:bg-neutral-700 active:bg-neutral-700 border-0 text-sm flex py-2 h-[34px] px-3 text-white bg-neutral-900 hover:bg-neutral-700"
           onClick={() => {
             fetchBookmarksToExport();
           }}

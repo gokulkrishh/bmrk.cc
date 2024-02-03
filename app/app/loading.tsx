@@ -9,6 +9,8 @@ export default function Loading() {
       <AddBookmarkInput btnClassname="mx-2" />
       <div className="min-h-dvh border-r border-neutral-200">
         <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
         <CardSkeleton className="border-b border-neutral-200" />
       </div>
     </>
