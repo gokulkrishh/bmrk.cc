@@ -78,6 +78,27 @@
   }
 }
 
+@layer components {
+  .scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    @apply bg-neutral-200;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-neutral-500;
+    border-radius: 100vh;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-400;
+  }
+}
+
 @layer utilities {
   .hidden-scrollbar::-webkit-scrollbar {
     @apply hidden;

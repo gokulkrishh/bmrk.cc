@@ -25,7 +25,7 @@ export default function CardSkeleton({ className }: { className?: string }) {
         </div>
         <Skeleton className="rounded-2xl border border-neutral-200 mb-3 my-2 object-cover w-[calc(100%-16px)] max-w-[350px] h-[180px] bg-neutral-300 " />
         <div className="tracking-wide items-center text-neutral-500 text-xs gap-2 flex w-full">
-          <Skeleton className="flex items-center -ml-1.5 justify-center gap-1 rounded-full shrink-0 w-8 h-8 hover:bg-blue-100 active:bg-blue-100" />
+          <Skeleton className="flex items-center -ml-1.5 justify-center gap-1 rounded-full bg-neutral-200 shrink-0 w-6 h-6" />
           <div className="tracking-wide text-neutral-500 text-xs gap-2 flex">
             <Skeleton className="rounded-full h-[26px] w-16 border px-2.5 bg-neutral-200" />
             <Skeleton className="rounded-full h-[26px] w-16 border px-2.5 bg-neutral-200" />

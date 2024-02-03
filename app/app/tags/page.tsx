@@ -28,7 +28,7 @@ export default async function Page() {
       <div className="min-h-dvh border-r border-neutral-200 pb-24">
         {tags.length ? (
           <>
-            <div className="flex gap-x-3 gap-y-2 items-end px-4 flex-wrap py-3">
+            <div className="flex gap-x-3 gap-y-2 items-end px-4 max-h-[5.25rem] overflow-y-scroll scrollbar flex-wrap py-3 border-b border-neutral-200">
               {tags.map(({ id, name }) => (
                 <div key={id} className="inline-flex items-center">
                   <Link className="flex items-center" href={`/tags/${name}`}>
@@ -41,7 +41,6 @@ export default async function Page() {
                 </div>
               ))}
             </div>
-            <div className="border-b border-neutral-200 flex w-full pt-1" />
           </>
         ) : null}
         <CardList bookmarks={bookmarks} tags={tags} />
