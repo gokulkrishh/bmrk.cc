@@ -1,6 +1,6 @@
 'use client';
 
-import { ClipboardEvent, useState } from 'react';
+import { ClipboardEvent, SyntheticEvent, useState } from 'react';
 
 import { isUrl } from 'check-valid-url';
 import { UploadIcon } from 'lucide-react';
@@ -75,7 +75,7 @@ export default function AddBookmarkInput({
     >
       <form
         className="h-full"
-        onSubmit={async (event) => {
+        onSubmit={async (event: SyntheticEvent<HTMLFormElement>) => {
           event.preventDefault();
           await onSubmit(url);
         }}

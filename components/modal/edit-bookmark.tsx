@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 
 import { isUrl } from 'check-valid-url';
 import { toast } from 'sonner';
@@ -70,7 +70,7 @@ export default function EditBookmark({
   const Form = () => (
     <form
       className="h-full flex flex-col gap-3"
-      onSubmit={async (event) => {
+      onSubmit={async (event: SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
         await onSubmit();
       }}

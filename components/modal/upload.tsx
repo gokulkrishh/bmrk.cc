@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { SyntheticEvent, useRef, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
@@ -97,7 +97,7 @@ export default function UploadModal({ open, onHide }: UploadModalProps) {
           <File className="w-4 h-4" /> Upload bookmarks
         </DialogTitle>
         <form
-          onSubmit={(event) => {
+          onSubmit={(event: SyntheticEvent<HTMLFormElement>) => {
             event.preventDefault();
             onSubmit();
           }}

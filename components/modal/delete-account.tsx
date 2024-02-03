@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 
 import { DialogDescription } from '@radix-ui/react-dialog';
 
@@ -33,7 +33,7 @@ export default function DeleteAccountModal({
         </DialogDescription>
         <form
           className=""
-          onSubmit={(event) => {
+          onSubmit={(event: SyntheticEvent<HTMLFormElement>) => {
             event.preventDefault();
             onSubmit(email);
           }}

@@ -17,9 +17,10 @@ function FavButtonIcon({ is_fav }: { is_fav: BookmarkModified['is_fav'] }) {
   const { pending } = useFormStatus();
   return (
     <button
+      disabled={pending}
       type="submit"
       className={cn(
-        `rounded-full flex w-9 h-9 hover:bg-yellow-100 active:bg-yellow-100 max-sm:flex items-center justify-center mr-2`
+        `rounded-full flex w-9 h-9 hover:bg-yellow-100 active:bg-yellow-100 max-sm:flex items-center justify-center mr-2`,
       )}
     >
       {pending ? (

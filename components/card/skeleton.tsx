@@ -16,7 +16,6 @@ export default function CardSkeleton({ className }: { className?: string }) {
           <div className="w-4 !h-4 rounded-full bg-neutral-300" />
         </span>
       </div>
-
       <div className="w-full flex flex-col">
         <div className="flex justify-between">
           <div className="group items-start justify-between flex-col py-2 gap-1 flex hover:bg-neutral-50 text-black sm:w-[calc(100%-60px)] max-sm:w-[calc(100%-80px)]">
@@ -24,9 +23,13 @@ export default function CardSkeleton({ className }: { className?: string }) {
             <Skeleton className="text-neutral-500 mt-1 text-sm line-clamp-2 md:w-80 w-40 h-8 bg-neutral-300 " />
           </div>
         </div>
-        <Skeleton className="rounded-2xl border border-neutral-200 mb-3 my-2 object-cover w-[calc(100%-16px)] max-w-[350px] h-[176px] bg-neutral-300 " />
-        <div className="justify-between flex items-center">
-          <div className="tracking-wide text-neutral-500 text-xs gap-2 flex" />
+        <Skeleton className="rounded-2xl border border-neutral-200 mb-3 my-2 object-cover w-[calc(100%-16px)] max-w-[350px] h-[180px] bg-neutral-300 " />
+        <div className="tracking-wide items-center text-neutral-500 text-xs gap-2 flex w-full">
+          <Skeleton className="flex items-center -ml-1.5 justify-center gap-1 rounded-full shrink-0 w-8 h-8 hover:bg-blue-100 active:bg-blue-100" />
+          <div className="tracking-wide text-neutral-500 text-xs gap-2 flex">
+            <Skeleton className="rounded-full h-[26px] w-16 border px-2.5 bg-neutral-200" />
+            <Skeleton className="rounded-full h-[26px] w-16 border px-2.5 bg-neutral-200" />
+          </div>
           <div className="flex mb-1 h-8" />
         </div>
       </div>
