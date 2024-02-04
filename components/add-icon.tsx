@@ -43,8 +43,11 @@ export default function AddIcon({ className }: { className?: string }) {
         </Tooltip>
       </button>
 
-      {user && open ? <AddBookmark open={open} setOpen={setOpen} /> : null}
-      {!user && open ? <SignupModal open={open} onHide={setOpen} /> : null}
+      {open && user ? (
+        <AddBookmark open={open} onHide={setOpen} />
+      ) : open && !user ? (
+        <SignupModal open={open} onHide={setOpen} />
+      ) : null}
     </div>
   );
 }

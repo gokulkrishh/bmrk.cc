@@ -18,9 +18,11 @@ export const metadata = {
 };
 
 export default async function Page() {
-  const tags = await getTags();
-  const bookmarks = await getBookmarks();
-  const groupedByTagId = await getTagsWithBookmarkIds();
+  const [bookmarks, tags, groupedByTagId] = await Promise.all([
+    await getBookmarks(),
+    await getTags(),
+    await getTagsWithBookmarkIds(),
+  ]);
 
   return (
     <>

@@ -46,7 +46,7 @@ const generateHTMLForTags = (
   return htmlContent;
 };
 
-export const exportBookmarksToHTML = (
+export const exportAsHTML = (
   bookmarks: BookmarkModified[],
   filename: string,
 ) => {
@@ -68,7 +68,7 @@ export const exportBookmarksToHTML = (
   const a = document.createElement('a');
   a.href = url;
   a.download = filename;
-  document.body.appendChild(a); // Required for Firefox
+  document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
@@ -102,4 +102,16 @@ export const bookmarkParser = (rootNode: HTMLElement) => {
     allAnchorTags.forEach((aTag) => processNode(aTag));
   }
   return bookmarks;
+};
+
+export const exportAsCSV = (content: string, filename: string) => {
+  const blob = new Blob([content], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 };

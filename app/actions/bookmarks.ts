@@ -167,17 +167,43 @@ export const getBookmarksForTag = async (slug: string) => {
   }
 
   const supabase = await createClient();
-
   const { data, error } = await supabase
     .from('bookmarks')
     .select(`*, bookmarks_tags (tags!inner (id,name))`)
     .eq('user_id', user.id)
-    .eq('bookmarks_tags.tags.name', slug)
     .order('created_at', { ascending: false })
     .returns<BookmarkModified[]>();
 
   if (error) {
     return [];
+  }
+
+  return data.filter((datum) => {
+    return datum.bookmarks_tags.some((bookmarkTag) => {
+      return bookmarkTag.tags.name === slug;
+    });
+  });
+};
+
+export const getBookmarksAsCSV = async () => {
+  const user = await getUser();
+  if (!user) {
+    return '';
+  }
+
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('bookmarks')
+    .select(
+      `title, url, description, metadata, is_fav, created_at, updated_at, bookmarks_tags (tags!inner (name))`,
+    )
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false })
+    .returns<string>()
+    .csv();
+
+  if (error) {
+    return '';
   }
 
   return data;

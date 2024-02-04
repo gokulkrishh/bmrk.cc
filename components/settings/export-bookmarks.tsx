@@ -2,46 +2,60 @@
 
 import { useState } from 'react';
 
-import { FileDown } from 'lucide-react';
+import { FileIcon, FileTextIcon } from '@radix-ui/react-icons';
+import { Download } from 'lucide-react';
 import { toast } from 'sonner';
 
-import { useAuth } from 'components/context/auth';
+import { getBookmarks, getBookmarksAsCSV } from 'app/actions/bookmarks';
+
 import Loader from 'components/loader';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from 'components/ui/dropdown-menu';
 
-import { exportBookmarksToHTML } from 'lib/bookmarks';
-import createClient from 'lib/supabase/client';
-
-import { BookmarkModified } from 'types/data';
+import { exportAsCSV, exportAsHTML } from 'lib/bookmarks';
+import { formatDate } from 'lib/date';
 
 import SettingsCard from './settings-card';
 
+const dateOptions = { day: 'numeric', month: 'numeric', year: 'numeric' };
+
 export default function ExportBookmarks() {
-  const [loading, setLoading] = useState(false);
-  const supabase = createClient();
-  const { user } = useAuth();
+  const [loadingHTML, setLoadingHTML] = useState(false);
+  const [loadingCSV, setLoadingCSV] = useState(false);
 
-  const fetchBookmarksToExport = async () => {
+  const exportHTML = async () => {
     try {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from('bookmarks')
-        .select(`*, bookmarks_tags (tags!inner (id,name))`)
-        .eq('user_id', user?.id)
-        .order('created_at', { ascending: false })
-        .returns<BookmarkModified[]>();
-
-      if (error) {
-        throw new Error('Unable to fetch bookmarks, try again.');
-      }
-      exportBookmarksToHTML(
-        data,
-        `bookmarkit-bookmarks-${new Date().getTime()}`,
-      );
+      setLoadingHTML(true);
       toast.info('Your bookmarks will be exported shortly.');
+      const data = await getBookmarks();
+      exportAsHTML(
+        data,
+        `bookmarkit-bookmarks-${formatDate(new Date(), dateOptions)}`,
+      );
     } catch (errr) {
       toast.error('Unable to export bookmarks, try again.');
     } finally {
-      setLoading(false);
+      setLoadingHTML(false);
+    }
+  };
+
+  const exportCSV = async () => {
+    try {
+      setLoadingCSV(true);
+      toast.info('Your bookmarks will be exported shortly.');
+      const data = await getBookmarksAsCSV();
+      exportAsCSV(
+        data,
+        `bookmarkit-bookmarks-${formatDate(new Date(), dateOptions)}`,
+      );
+    } catch (errr) {
+      toast.error('Unable to export bookmarks, try again.');
+    } finally {
+      setLoadingCSV(false);
     }
   };
 
@@ -51,26 +65,54 @@ export default function ExportBookmarks() {
         <div>
           <h3 className="font-medium">Export Bookmarks</h3>
           <div className="text-sm mt-1 text-neutral-600">
-            Instantly export your bookmarks as an HTML file to import into web
-            browsers.
+            Instantly export your bookmarks as an HTML or CSV file.
           </div>
         </div>
       </div>
-      <div className="flex w-full justify-end border-t bg-neutral-50 border-neutral-300 rounded-bl-md rounded-br-md p-1.5 px-3.5">
-        <button
-          className="items-center tracking-wide rounded-full text-white border border-neutral-900 focus:outline-0 focus:bg-neutral-900/80 active:bg-neutral-900/80 text-sm flex justify-center py-2 h-[36px] px-3  bg-neutral-900 hover:bg-neutral-900/80"
-          onClick={() => {
-            fetchBookmarksToExport();
-          }}
-        >
-          {loading ? (
-            <Loader />
-          ) : (
-            <>
-              <FileDown className="w-3.5 h-3.5 mr-1.5" /> Export
-            </>
-          )}
-        </button>
+      <div className="flex w-full justify-end border-t bg-white border-neutral-300 rounded-bl-md rounded-br-md p-1.5 px-3.5">
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            disabled={loadingHTML || loadingCSV}
+            className="items-center tracking-wide disabled:cursor-not-allowed disabled:bg-neutral-900/80 disabled:border-neutral-600 rounded-full text-white border border-neutral-900 focus:outline-0 active:bg-neutral-900/80 text-sm flex justify-center py-2 h-[36px] px-3 bg-neutral-900 hover:bg-neutral-900/80"
+          >
+            {loadingHTML || loadingCSV ? (
+              <Loader className="w-4 h-4 mr-1.5" />
+            ) : (
+              <Download className="w-3.5 h-3.5 mr-1.5" />
+            )}{' '}
+            Export
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="mr-2">
+            <DropdownMenuItem
+              disabled={loadingHTML}
+              className="flex items-center cursor-pointer"
+              onClick={() => {
+                exportHTML();
+              }}
+            >
+              {loadingHTML ? (
+                <Loader className="text-black w-3.5 h-3.5 mr-1.5" />
+              ) : (
+                <FileTextIcon className="w-3.5 h-3.5 mr-1.5" />
+              )}{' '}
+              Export HTML
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              disabled={loadingCSV}
+              className="flex items-center cursor-pointer"
+              onClick={() => {
+                exportCSV();
+              }}
+            >
+              {loadingCSV ? (
+                <Loader className="text-black w-3.5 h-3.5 mr-1.5" />
+              ) : (
+                <FileIcon className="w-3.5 h-3.5 mr-1.5" />
+              )}{' '}
+              Export CSV
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </SettingsCard>
   );

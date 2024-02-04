@@ -1,10 +1,11 @@
 import CardSkeleton from 'components/card/skeleton';
 import Header from 'components/header';
+import { Skeleton } from 'components/ui/skeleton';
 
 export default function Loading() {
   return (
     <>
-      <Header headerText="Tags:" />
+      <Header headerText={`Tag:`} />
       <div className="min-h-dvh border-r border-neutral-200">
         <CardSkeleton />
         <CardSkeleton />
