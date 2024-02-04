@@ -195,7 +195,7 @@ export const getBookmarksAsCSV = async () => {
   const { data, error } = await supabase
     .from('bookmarks')
     .select(
-      `title, url, description, metadata, is_fav, created_at, updated_at, bookmarks_tags (tags!inner (name))`,
+      `title, url, description, is_fav, bookmarks_tags (tags!inner (name)), created_at, updated_at`,
     )
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
