@@ -26,7 +26,7 @@ export default function SettingsAccount() {
             src={user?.user_metadata?.avatar_url}
             alt={user?.user_metadata?.name}
           />
-          <AvatarFallback className="font-medium text-black uppercase text-xl bg-neutral-300">
+          <AvatarFallback className="font-medium text-pimary-foreground uppercase text-xl bg-accent">
             {user?.user_metadata?.name[0]}
           </AvatarFallback>
         </Avatar>
@@ -36,15 +36,15 @@ export default function SettingsAccount() {
             title={user?.user_metadata?.name ?? ''}
           >
             {user?.user_metadata?.name ?? (
-              <Skeleton className="w-52 h-5 bg-neutral-300 mb-1.5" />
+              <Skeleton className="w-52 h-5 bg-accent mb-1.5" />
             )}
           </div>
           <div
-            className="text-sm truncate pr-4 text-neutral-600"
+            className="text-sm truncate pr-4 blur-[3px] text-muted-foreground"
             title={user?.user_metadata?.email ?? ''}
           >
             {user?.user_metadata?.email ?? (
-              <Skeleton className="w-36 h-5 bg-neutral-300" />
+              <Skeleton className="w-36 h-5 bg-accent" />
             )}
           </div>
         </div>

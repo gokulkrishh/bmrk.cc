@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import { UpdateIcon } from '@radix-ui/react-icons';
-import { Edit, LinkIcon, RotateCcw, Trash } from 'lucide-react';
+import { Edit, LinkIcon, RotateCcw, Trash, Trash2Icon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { deleteBookmark, refreshBookmark } from 'app/actions/bookmarks';
@@ -74,8 +74,8 @@ export default function CardMenu({ data }: CardMenuProps) {
   return (
     <div className="pr-2">
       <DropdownMenu>
-        <DropdownMenuTrigger className="cursor-pointer h-9 w-9 mt-1 flex items-center justify-center rounded-full hover:bg-neutral-200 outline-none focus:border-none focus:outline-none active:bg-neutral-200 shrink-0">
-          <MoreIcon className="fill-neutral-600 h-4 w-4 " />
+        <DropdownMenuTrigger className="cursor-pointer h-9 w-9 mt-1 flex items-center justify-center rounded-full hover:bg-accent hover:border outline-none focus:border-none focus:outline-none active:bg-accent shrink-0">
+          <MoreIcon className="fill-muted-foreground h-4 w-4 " />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-2 min-w-40">
           <DropdownMenuItem
@@ -108,9 +108,9 @@ export default function CardMenu({ data }: CardMenuProps) {
             onClick={async () => {
               await onDelete();
             }}
-            className="!text-red-600 focus:bg-red-100 active:bg-red-100"
+            className="!text-red-600 focus:bg-red-100 active:bg-red-100 dark:focus:bg-red-200 dark:active:bg-red-200"
           >
-            <Trash className="h-4 w-4  mr-2.5" /> Delete
+            <Trash2Icon className="h-4 w-4  mr-2.5" /> Delete
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

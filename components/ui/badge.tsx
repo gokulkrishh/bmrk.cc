@@ -12,7 +12,7 @@ const badgeVariants = cva(
         default:
           'border-transparent bg-primary text-primary-foreground hover:bg-primary/80',
         secondary:
-          'border-transparent bg-neutral-200 text-secondary-foreground hover:bg-neutral-300',
+          'border-transparent bg-accent text-secondary-foreground hover:bg-accent',
         destructive:
           'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80',
         outline: 'text-foreground',
@@ -21,7 +21,7 @@ const badgeVariants = cva(
     defaultVariants: {
       variant: 'default',
     },
-  }
+  },
 );
 
 export interface BadgeProps

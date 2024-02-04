@@ -1,5 +1,6 @@
 import Header from 'components/header';
 import SettingsAccount from 'components/settings/account';
+import Appearance from 'components/settings/appearance';
 import DeleteAccount from 'components/settings/delete-account';
 import ExportBookmarks from 'components/settings/export-bookmarks';
 
@@ -15,11 +16,12 @@ export default async function Page() {
   return (
     <>
       <Header headerText="Settings" />
-      <div className="min-h-dvh border-r border-neutral-200 pb-24 flex gap-6 flex-col px-4 py-4">
+      <div className="min-h-dvh border-r border-border pb-24 flex gap-6 flex-col px-4 py-4">
         <div className="flex flex-col">
           <h2 className="font-medium mb-2">General</h2>
           <div className="flex flex-col gap-6">
             <SettingsAccount />
+            <Appearance />
             <ExportBookmarks />
           </div>
         </div>

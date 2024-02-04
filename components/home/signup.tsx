@@ -7,11 +7,11 @@ import Link from 'next/link';
 import { urls } from 'config';
 import { ArrowRight } from 'lucide-react';
 
-import SignupModal from 'components/modal/signup';
+import AccountModal from 'components/modal/signup';
 
 import createClient from 'lib/supabase/client';
 
-export default function Signup() {
+export default function Account() {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const supabase = createClient();
@@ -37,7 +37,7 @@ export default function Signup() {
             window.location.href = urls.account;
           }
         }}
-        className="rounded-full inline-flex h-[38px] text-sm items-center disabled:bg-neutral-200 focus:outline-0 bg-neutral-950 focus:bg-black/80 active:bg-black/80 ring-1 ring-slate-900/10 hover:bg-black/80 border-0 px-4 py-3 text-white"
+        className="rounded-full inline-flex h-[38px] text-sm items-center disabled:bg-accent focus:outline-0 bg-neutral-950 focus:bg-black/80 active:bg-black/80 ring-1 ring-slate-900/10 hover:bg-black/80 border-0 px-4 py-3 text-white"
       >
         Get Started <ArrowRight className="ml-1 w-4 h-4" />
       </button>
@@ -59,7 +59,7 @@ export default function Signup() {
         </svg>
         Star on Github
       </Link>
-      {open ? <SignupModal open={open} onHide={setOpen} /> : null}
+      {open ? <AccountModal open={open} onHide={setOpen} /> : null}
     </div>
   );
 }

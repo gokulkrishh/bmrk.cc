@@ -94,20 +94,20 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                     key={bookmark.id}
                   >
                     <Link
-                      className="flex gap-2 items-start text-black w-full"
+                      className="flex gap-2 items-start text-pimary-foreground w-full"
                       prefetch={false}
                       target="_blank"
                       rel="noopener"
                       href={bookmark.url}
                     >
                       <CardAvatar
-                        className="!w-4 !h-4 rounded-full bg-white"
+                        className="!w-4 !h-4 rounded-full bg-background"
                         url={bookmark.url}
                         title={bookmark.title ?? ''}
                       />{' '}
                       <div className="flex flex-col">
                         <p className="relative -top-0.5">{bookmark.title}</p>
-                        <div className="text-xs flex items-center mt-0.5 text-neutral-600">
+                        <div className="text-xs flex items-center mt-0.5 text-muted-foreground">
                           {bookmark.is_fav ? (
                             <StarFilledIcon className="!h-3 !w-3 -ml-1 text-yellow-500 mr-1" />
                           ) : null}

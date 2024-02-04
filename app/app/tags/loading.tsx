@@ -7,17 +7,17 @@ export default function Loading() {
     <>
       <Header headerText="Tags" />
       <div className="flex gap-x-3 gap-y-2 items-end px-4 border-r flex-wrap py-3">
-        <Skeleton className="w-20 h-7 bg-neutral-300 rounded-full" />
-        <Skeleton className="w-20 h-7 bg-neutral-300 rounded-full" />
-        <Skeleton className="w-20 h-7 bg-neutral-300 rounded-full" />
-        <Skeleton className="w-20 h-7 bg-neutral-300 rounded-full" />
+        <Skeleton className="w-20 h-7 bg-accent rounded-full" />
+        <Skeleton className="w-20 h-7 bg-accent rounded-full" />
+        <Skeleton className="w-20 h-7 bg-accent rounded-full" />
+        <Skeleton className="w-20 h-7 bg-accent rounded-full" />
       </div>
-      <div className="border-b border-neutral-200 flex w-full" />
-      <div className="min-h-dvh border-r border-neutral-200">
+      <div className="border-b border-border flex w-full" />
+      <div className="min-h-dvh border-r border-border">
         <CardSkeleton />
         <CardSkeleton />
         <CardSkeleton />
-        <CardSkeleton className="border-b border-neutral-200" />
+        <CardSkeleton className="border-b border-border" />
       </div>
     </>
   );

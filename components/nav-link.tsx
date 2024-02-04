@@ -32,9 +32,9 @@ export default function NavLink(props: NavLinkProps) {
       <a
         href={href}
         className={cn(
-          `p-2 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-neutral-900 hover:bg-neutral-200`,
+          `p-2 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary hover:bg-accent-foreground/10`,
           {
-            'bg-neutral-200': pathname === href,
+            'bg-accent-foreground/10': pathname === href,
           },
           className,
         )}
@@ -53,9 +53,9 @@ export default function NavLink(props: NavLinkProps) {
     <Link
       href={href}
       className={cn(
-        `p-2 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-neutral-900 hover:bg-neutral-200`,
+        `p-2 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary hover:bg-accent-foreground/10`,
         {
-          'bg-neutral-200': pathname === href,
+          'bg-accent-foreground/10': pathname === href,
         },
         className,
       )}

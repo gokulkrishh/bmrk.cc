@@ -69,7 +69,7 @@ export default function AddBookmarkInput({
   return (
     <div
       className={cn(
-        'h-26 flex flex-col px-1 border-neutral-200 border-r border-b',
+        'h-26 flex flex-col px-1 border-border border-r border-b',
         className,
       )}
     >
@@ -112,7 +112,7 @@ export default function AddBookmarkInput({
                   <TooltipTrigger asChild>
                     <UploadIcon
                       strokeWidth={2}
-                      className="w-[19px] h-[19px] text-neutral-500 hover:stroke-blue-700 active:stroke-blue-500"
+                      className="w-[19px] h-[19px] text-muted-foreground hover:stroke-blue-700 active:stroke-blue-500"
                     />
                   </TooltipTrigger>
                   <TooltipContent
@@ -130,9 +130,9 @@ export default function AddBookmarkInput({
             type="submit"
             disabled={loading || !isUrl(url)}
             className={cn(
-              `rounded-full h-[40px] items-center disabled:bg-blue-200 focus:outline-0 focus:bg-blue-700 active:bg-blue-700 border-0 flex justify-center py-2 px-5 text-white bg-blue-600 hover:bg-blue-700`,
+              `rounded-full h-[40px] items-center disabled:bg-blue-300 focus:outline-0 focus:bg-blue-700 active:bg-blue-700 border-0 flex justify-center py-2 px-5 text-white bg-blue-600 hover:bg-blue-700`,
               {
-                '!bg-blue-200 cursor-not-allowed': loading,
+                '!bg-blue-300 cursor-not-allowed': loading,
               },
             )}
           >

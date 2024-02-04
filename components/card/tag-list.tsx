@@ -8,7 +8,6 @@ import { toast } from 'sonner';
 
 import { addTagToBookmark, createTag } from 'app/actions/tags';
 
-import Loader from 'components/loader';
 import {
   Command,
   CommandGroup,
@@ -18,7 +17,7 @@ import {
 
 import { cn } from 'lib/utils';
 
-import { Bookmark, BookmarkModified, Tag, TagInsert } from 'types/data';
+import { BookmarkModified, Tag, TagInsert } from 'types/data';
 
 type TagListProps = {
   data: BookmarkModified;
@@ -90,7 +89,7 @@ export default function TagList({ data, tags }: TagListProps) {
                         'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-blue-600',
                         isChecked
                           ? 'bg-blue-700 text-primary-foreground'
-                          : 'bg-white text-tranparent',
+                          : 'bg-background text-tranparent',
                       )}
                     >
                       {isChecked ? (

@@ -7,6 +7,7 @@ import { urls } from 'config';
 import { getUser } from 'app/actions/user';
 
 import { AuthProvider } from 'components/context/auth';
+import { ThemeProvider } from 'components/context/theme';
 import Sidebar from 'components/sidebar';
 import { Toaster } from 'components/ui/sonner';
 import { TooltipProvider } from 'components/ui/tooltip';
@@ -70,8 +71,13 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="en" className="h-full" suppressHydrationWarning>
-      <body className={`${inter.className} flex h-full bg-white`}>
+    <>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
         <AuthProvider user={user}>
           <div className="max-w-[600px] m-auto flex min-h-dvh w-full">
             <TooltipProvider delayDuration={200}>
@@ -82,11 +88,8 @@ export default async function RootLayout({
             </TooltipProvider>
           </div>
         </AuthProvider>
-        <Toaster
-          richColors
-          toastOptions={{ className: 'max-sm:mb-[4.5rem]' }}
-        />
-      </body>
-    </html>
+      </ThemeProvider>
+      <Toaster richColors toastOptions={{ className: 'max-sm:mb-[4.5rem]' }} />
+    </>
   );
 }

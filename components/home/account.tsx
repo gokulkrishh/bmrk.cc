@@ -55,7 +55,7 @@ export default function HomeAccount() {
             src={user?.user_metadata?.avatar_url}
             alt={user?.user_metadata?.name}
           />
-          <AvatarFallback className="font-medium text-black uppercase text-xl bg-neutral-300">
+          <AvatarFallback className="font-medium text-pimary-foreground uppercase text-xl bg-accent">
             {user?.user_metadata?.name[0]}
           </AvatarFallback>
         </DropdownMenuTrigger>

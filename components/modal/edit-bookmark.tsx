@@ -93,7 +93,7 @@ export default function EditBookmark({
         <Label htmlFor="Url" className="flex items-center gap-2">
           Url{' '}
           <CardAvatar
-            className="!w-4 !h-4 rounded-full bg-white"
+            className="!w-4 !h-4 rounded-full bg-background"
             url={state.url}
             title={state.url ?? ''}
           />
@@ -116,7 +116,7 @@ export default function EditBookmark({
       <div className="flex flex-col gap-1">
         <Label htmlFor="description">
           Description{' '}
-          <span className="text-center text-sm font-normal text-neutral-500">
+          <span className="text-center text-sm font-normal text-muted-foreground">
             (optional)
           </span>
         </Label>

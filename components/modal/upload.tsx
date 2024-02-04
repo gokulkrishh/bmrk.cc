@@ -102,7 +102,7 @@ export default function UploadModal({ open, onHide }: UploadModalProps) {
             onSubmit();
           }}
         >
-          <div className="relative h-48 border border-neutral-400 border-dashed rounded-lg">
+          <div className="relative h-48 border border-border border-dashed rounded-lg">
             <Input
               className="opacity-0"
               type="file"
@@ -119,11 +119,11 @@ export default function UploadModal({ open, onHide }: UploadModalProps) {
             >
               <ArrowUpCircle
                 strokeWidth={1}
-                className="text-neutral-400 w-10 h-10"
+                className="text-muted-foreground w-10 h-10"
               />
               <p className="text-sm mt-2 font-medium">Click to select</p>
             </button>
-            <div className="text-sm mt-1 text-neutral-500 text-center">
+            <div className="text-sm mt-1 text-muted-foreground text-center">
               {fileName.length ? (
                 fileName
               ) : (

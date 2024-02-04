@@ -20,7 +20,7 @@ export default async function Page() {
           <h1 className="font-bold text-center tracking-tight text-2xl mb-1">
             Login to Bookmark It.
           </h1>
-          <p className="text-neutral-600 w-full text-center medium mx-auto mt-0 tracking-normal mb-5">
+          <p className="text-muted-foreground w-full text-center medium mx-auto mt-0 tracking-normal mb-5">
             Bookmark manager for the modern web.
           </p>
           <AccountButton />

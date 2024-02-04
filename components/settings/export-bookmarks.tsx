@@ -64,16 +64,16 @@ export default function ExportBookmarks() {
       <div className="flex flex-col p-3.5 pt-3 pb-0 w-full">
         <div>
           <h3 className="font-medium">Export Bookmarks</h3>
-          <div className="text-sm mt-1 text-neutral-600">
+          <div className="text-sm mt-1 text-muted-foreground">
             Instantly export your bookmarks as an HTML or CSV file.
           </div>
         </div>
       </div>
-      <div className="flex w-full justify-end border-t bg-white border-neutral-300 rounded-bl-md rounded-br-md p-1.5 px-3.5">
+      <div className="flex w-full justify-end border-t bg-background border-border rounded-bl-md rounded-br-md p-1.5 px-3.5">
         <DropdownMenu>
           <DropdownMenuTrigger
             disabled={loadingHTML || loadingCSV}
-            className="items-center tracking-wide disabled:cursor-not-allowed disabled:bg-neutral-900/80 disabled:border-neutral-600 rounded-full text-white border border-neutral-900 focus:outline-0 active:bg-neutral-900/80 text-sm flex justify-center py-2 h-[36px] px-3 bg-neutral-900 hover:bg-neutral-900/80"
+            className="items-center tracking-wide disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 h-[36px] px-3 bg-primary-foreground hover:bg-accent"
           >
             {loadingHTML || loadingCSV ? (
               <Loader className="w-4 h-4 mr-1.5" />
@@ -91,7 +91,7 @@ export default function ExportBookmarks() {
               }}
             >
               {loadingHTML ? (
-                <Loader className="text-black w-3.5 h-3.5 mr-1.5" />
+                <Loader className="text-pimary-foreground w-3.5 h-3.5 mr-1.5" />
               ) : (
                 <FileTextIcon className="w-3.5 h-3.5 mr-1.5" />
               )}{' '}
@@ -105,7 +105,7 @@ export default function ExportBookmarks() {
               }}
             >
               {loadingCSV ? (
-                <Loader className="text-black w-3.5 h-3.5 mr-1.5" />
+                <Loader className="text-pimary-foreground w-3.5 h-3.5 mr-1.5" />
               ) : (
                 <FileIcon className="w-3.5 h-3.5 mr-1.5" />
               )}{' '}

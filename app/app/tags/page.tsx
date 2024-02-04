@@ -27,10 +27,10 @@ export default async function Page() {
   return (
     <>
       <Header headerText="Tags" />
-      <div className="min-h-dvh border-r border-neutral-200 pb-24">
+      <div className="min-h-dvh border-r border-border pb-24">
         {tags.length ? (
           <>
-            <div className="flex gap-x-3 gap-y-2 items-end px-4 max-h-[5.25rem] overflow-y-scroll scrollbar flex-wrap py-3 border-b border-neutral-200">
+            <div className="flex gap-x-3 gap-y-2 items-end px-4 max-h-[5.25rem] overflow-y-scroll scrollbar flex-wrap py-3 border-b border-border">
               {tags.map(({ id, name }) => (
                 <div key={id} className="inline-flex items-center">
                   <Link className="flex items-center" href={`/tags/${name}`}>

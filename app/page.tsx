@@ -40,7 +40,7 @@ export default async function Page() {
               the modern web.
             </span>
           </h2>
-          <p className="text-neutral-600 leading-7 sm:text-lg mx-auto max-w-xl mt-1 tracking-normal text-center">
+          <p className="text-muted-foreground leading-7 sm:text-lg mx-auto max-w-xl mt-1 tracking-normal text-center">
             Effortlessly Bookmark, Categorize, and Favorite your Web Sites.
           </p>
           <Signup />
@@ -60,7 +60,7 @@ export default async function Page() {
               Open Sourced!
             </span>
           </h2>
-          <p className="mt-3 text-neutral-600 leading-7 sm:text-lg w-[80%] text-center">
+          <p className="mt-3 text-muted-foreground leading-7 sm:text-lg w-[80%] text-center">
             Source code is available on GitHub - feel free to read, review, or
             contribute to it!
           </p>

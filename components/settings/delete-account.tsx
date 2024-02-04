@@ -37,28 +37,28 @@ export default function DeleteAccount() {
   };
 
   return (
-    <SettingsCard className="flex flex-col items-start">
+    <SettingsCard className="flex flex-col items-start border-red-200 dark:border-red-500/30">
       <div className="flex flex-col p-4 pb-0">
         <div className="font-medium">
           {user?.user_metadata?.name ? (
             'Delete My Account'
           ) : (
-            <Skeleton className="w-52 h-4 bg-neutral-300" />
+            <Skeleton className="w-52 h-4 bg-accent" />
           )}
         </div>
-        <div className="text-sm mt-1 text-neutral-600">
+        <div className="text-sm mt-1 text-muted-foreground">
           {user?.user_metadata?.name ? (
             `Permanently delete your account and all its associated data, this
           action cannot be undone.`
           ) : (
-            <Skeleton className="w-80 h-10 bg-neutral-300 mt-1.5" />
+            <Skeleton className="w-80 h-10 bg-accent mt-1.5" />
           )}
         </div>
       </div>
-      <div className="flex w-full justify-end border-t bg-red-50 border-neutral-300 rounded-bl-md rounded-br-md p-2 px-3.5">
+      <div className="flex w-full justify-end border-t bg-red-50 dark:bg-red-500/30 border-red-200 dark:border-red-500/30 rounded-bl-md rounded-br-md p-2 px-3.5">
         {user?.user_metadata?.email ? (
           <button
-            className="items-center tracking-wide rounded-full text-red-700 border border-neutral-400 focus:outline-0 focus:bg-neutral-200/80 active:bg-neutral-200/80 text-sm flex justify-center py-2 h-[36px] px-3  bg-white hover:bg-neutral-200/80"
+            className="items-center tracking-wide rounded-full text-red-700 border border-border focus:outline-0 focus:bg-accent/80 active:bg-accent/80 text-sm flex justify-center py-2 h-[36px] px-3  bg-background hover:bg-accent/80"
             onClick={() => setOpen(true)}
           >
             <Trash2 className="w-3.5 h-3.5 mr-1.5" /> Delete

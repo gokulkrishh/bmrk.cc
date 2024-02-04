@@ -7,7 +7,7 @@ export default function CardDate({ data }: { data: BookmarkModified }) {
   const currentDate = formatDate(new Date());
   const isToday = currentDate === date;
   return (
-    <div className="w-16 pt-3.5 pl-2 shrink-0 flex flex-col font-medium text-center text-[11px] text-neutral-500 ">
+    <div className="w-16 pt-3.5 pl-2 shrink-0 flex flex-col font-medium text-center text-[11px] text-muted-foreground ">
       <span>{isToday ? 'Today' : date}</span>
     </div>
   );

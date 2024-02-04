@@ -9,7 +9,7 @@ import { cn } from 'lib/utils';
 
 import { useAuth } from './context/auth';
 import AddBookmark from './modal/add-bookmark';
-import SignupModal from './modal/signup';
+import AccountModal from './modal/signup';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
 export default function AddIcon({ className }: { className?: string }) {
@@ -34,9 +34,12 @@ export default function AddIcon({ className }: { className?: string }) {
           <TooltipTrigger asChild>
             <Plus className="text-white w-6 h-6" />
           </TooltipTrigger>
-          <TooltipContent side="right" className="flex items-center ml-4">
+          <TooltipContent
+            side="right"
+            className="flex items-center ml-4 font-medium"
+          >
             Add{' '}
-            <kbd className="pointer-events-none ml-2 border border-white inline-flex h-4 select-none items-center gap-1 rounded  px-1 font-mono text-[10px] font-medium text-white opacity-100">
+            <kbd className="pointer-events-none ml-2 border border-input inline-flex h-4 select-none items-center gap-1 rounded  px-1 font-mono text-[10px] font-medium text-primary opacity-100">
               A
             </kbd>
           </TooltipContent>
@@ -46,7 +49,7 @@ export default function AddIcon({ className }: { className?: string }) {
       {open && user ? (
         <AddBookmark open={open} onHide={setOpen} />
       ) : open && !user ? (
-        <SignupModal open={open} onHide={setOpen} />
+        <AccountModal open={open} onHide={setOpen} />
       ) : null}
     </div>
   );

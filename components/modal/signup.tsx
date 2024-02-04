@@ -41,12 +41,12 @@ const Button = ({ loading, Icon, btnText, clickHandler }: ButtonProp) => {
   );
 };
 
-type SignupModalProp = {
+type AccountModalProp = {
   open: boolean;
   onHide?: (open: boolean) => void;
 };
 
-export default function SignupModal({ open, onHide }: SignupModalProp) {
+export default function AccountModal({ open, onHide }: AccountModalProp) {
   const [loading, setLoading] = useState(false);
 
   const clickHandler = async () => {
@@ -67,14 +67,14 @@ export default function SignupModal({ open, onHide }: SignupModalProp) {
 
   return (
     <Dialog open={open} onOpenChange={(hide) => onHide?.(hide)}>
-      <DialogContent className="max-w-sm w-[calc(100%-20px)] bg-white rounded-xl">
+      <DialogContent className="max-w-sm w-[calc(100%-20px)] bg-background rounded-xl">
         <DialogHeader>
           <DialogTitle className="tracking-normal items-center flex-col justify-center flex">
             <Logo />
             <DialogDescription className="mt-1 mb-1 font-medium text-primary">
               Bookmark it.
             </DialogDescription>
-            <DialogDescription className="mb-3 mt-0.5 text-sm font-normal text-neutral-500">
+            <DialogDescription className="mb-3 mt-0.5 text-sm font-normal text-muted-foreground">
               Welcome, Sign in below.
             </DialogDescription>
           </DialogTitle>
