@@ -40,7 +40,7 @@ export default function SettingsAccount() {
             )}
           </div>
           <div
-            className="text-sm truncate pr-4 blur-[3px] text-muted-foreground"
+            className="text-sm truncate pr-4 text-muted-foreground"
             title={user?.user_metadata?.email ?? ''}
           >
             {user?.user_metadata?.email ?? (
