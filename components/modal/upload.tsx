@@ -138,7 +138,7 @@ export default function UploadModal({ open, onHide }: UploadModalProps) {
                         window.open(link, '_blank');
                       }}
                     >
-                      <QuestionMarkCircledIcon className="w-3.5 relative -top-0.5 h-3.5 text-red-700 " />
+                      <QuestionMarkCircledIcon className="w-3.5 relative -top-0.5 h-3.5 text-blue-700 " />
                     </TooltipTrigger>
                     <TooltipContent className="text-white dark:text-black">
                       Know how to export bookmarks in web browsers.

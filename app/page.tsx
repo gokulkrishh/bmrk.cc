@@ -11,11 +11,13 @@ import { BookmarkModified, Tag } from 'types/data';
 export default async function Page() {
   return (
     <div className="flex flex-col mx-auto relative">
-      <main className="flex max-w-3xl py-5 mx-auto flex-col w-full h-full px-4">
-        <div className="hello"></div>
+      <main className="flex max-w-4xl py-5 mx-auto flex-col w-full h-fit px-4">
         <header className="flex justify-between items-center">
-          <h1 className="font-semibold tracking-tight text-lg flex items-center">
-            <Link className="flex items-center active:opacity-80" href="/">
+          <h1 className="font-medium tracking-tight text-lg flex items-center">
+            <Link
+              className="flex text-primary items-center active:opacity-80"
+              href="/"
+            >
               <Image
                 src="/icons/icon.svg"
                 width={44}
@@ -35,7 +37,7 @@ export default async function Page() {
           </Link>
         </header>
         <div className="mx-auto mt-24">
-          <h2 className="lg:text-6xl md:text-5xl text-4xl text-black font-black max-w-2xl text-center mx-auto tracking-tight py-4">
+          <h2 className="lg:text-6xl md:text-5xl text-4xl text-primary font-black max-w-2xl text-center mx-auto tracking-tight py-4">
             Bookmark manager
             <br />
             for{' '}
@@ -56,96 +58,98 @@ export default async function Page() {
             priority
           />
         </div>
-        <div className="mx-auto mt-10 flex flex-col items-center">
-          <h2 className="mt-4 text-3xl mb-8 font-extrabold tracking-[-0.03em] text-black sm:text-4xl sm:leading-[3.5rem]">
-            Bookmark It{' '}
+        <div className="mx-auto my-10 flex flex-col items-center">
+          <h2 className="mt-4 text-3xl mb-8 font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
             <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent mt-1 inline-flex">
               Features
-            </span>
-            .
+            </span>{' '}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-9 px-5 mx-auto max-w-container md:px-8">
-            <div className="md:col-span-2 items-center rounded-2xl overflow-hidden h-fit grid grid-cols-[0.6fr,1fr] shadow bg-gradient-to-b from-neutral-100 to-neutral-50">
-              <div className="flex flex-col p-10 pr-0">
-                <h3 className="text-3xl font-bold text-black">Display</h3>
-                <p className="text-black/80 mt-2">
-                  Familiar UI with a modern touch. Users can view their
-                  bookmarks in a timeline view.
-                </p>
-              </div>
-              <div className="flex justify-center items-center">
-                <Card
-                  data={
-                    {
-                      id: 569,
-                      title:
-                        'Fast, composable, unstyled command menu for React — ⌘K',
-                      url: 'https://cmdk.paco.me/',
-                      description:
-                        'Fast, composable, unstyled command menu for React',
-                      metadata: {
-                        ogImageUrl: 'https://cmdk.paco.me/og.png',
-                        twitterImageUrl: 'https://cmdk.paco.me/og.png',
-                      },
-                      user_id: '123',
-                      is_fav: true,
-                      created_at: '2024-02-02T09:09:04.700613+00:00',
-                      updated_at: '2024-02-02T09:09:04.700613+00:00',
-                      bookmarks_tags: [
-                        { tags: { name: 'react', id: 123123123131231 } },
-                        { tags: { name: 'nextjs', id: 12312312312312321123 } },
-                      ],
-                    } as BookmarkModified
-                  }
-                  tags={
-                    [
+          <div className="grid w-full grid-cols-1 sm:grid-cols-3 gap-4 h-full ">
+            {[
+              {
+                title: 'Timeline',
+                Component: (
+                  <Card
+                    data={
                       {
-                        id: 12312312312312321,
-                        name: 'react',
+                        id: 569,
+                        title:
+                          'Fast, composable, unstyled command menu for React — ⌘K',
+                        url: 'https://cmdk.paco.me/',
+                        description:
+                          'Fast, composable, unstyled command menu for React',
+                        metadata: {
+                          ogImageUrl: 'https://cmdk.paco.me/og.png',
+                          twitterImageUrl: 'https://cmdk.paco.me/og.png',
+                        },
+                        user_id: '123',
+                        is_fav: true,
                         created_at: '2024-02-02T09:09:04.700613+00:00',
                         updated_at: '2024-02-02T09:09:04.700613+00:00',
-                      },
-                      {
-                        id: 12312312312312323,
-                        name: 'OSS',
-                        created_at: '2024-02-02T09:09:04.700613+00:00',
-                        updated_at: '2024-02-02T09:09:04.700613+00:00',
-                      },
-                      {
-                        id: 12312312312312321123,
-                        name: 'nextjs',
-                        created_at: '2024-02-02T09:09:04.700613+00:00',
-                        updated_at: '2024-02-02T09:09:04.700613+00:00',
-                      },
-                    ] as Tag[]
-                  }
-                />
+                        bookmarks_tags: [
+                          { tags: { name: 'react', id: 123123123131231 } },
+                          {
+                            tags: { name: 'nextjs', id: 12312312312312321123 },
+                          },
+                        ],
+                      } as BookmarkModified
+                    }
+                    tags={
+                      [
+                        {
+                          id: 12312312312312321,
+                          name: 'react',
+                          created_at: '2024-02-02T09:09:04.700613+00:00',
+                          updated_at: '2024-02-02T09:09:04.700613+00:00',
+                        },
+                        {
+                          id: 12312312312312323,
+                          name: 'OSS',
+                          created_at: '2024-02-02T09:09:04.700613+00:00',
+                          updated_at: '2024-02-02T09:09:04.700613+00:00',
+                        },
+                        {
+                          id: 12312312312312321123,
+                          name: 'nextjs',
+                          created_at: '2024-02-02T09:09:04.700613+00:00',
+                          updated_at: '2024-02-02T09:09:04.700613+00:00',
+                        },
+                      ] as Tag[]
+                    }
+                  />
+                ),
+              },
+              {
+                title: 'Bookmark',
+                description: 'Bookmark your favorite websites.',
+              },
+              {
+                title: 'Bookmark',
+                description: 'Bookmark your favorite websites.',
+              },
+              {
+                title: 'Bookmark',
+                description: 'Bookmark your favorite websites.',
+              },
+              {
+                title: 'Bookmark',
+                description: 'Bookmark your favorite websites.',
+              },
+            ].map((_, i) => (
+              <div
+                key={i}
+                className={`row-span-1 h-full bg-secondary/30 rounded-xl border p-4 ${
+                  i === 0 ? 'sm:col-span-2' : ''
+                }`}
+              >
+                <h3 className="text-primary text-xl mb-2">{_.title}</h3>
+                {_.Component}
               </div>
-            </div>
-
-            <div className="grid p-4 grid-rows-[auto_1fr] rounded-lg gap-8 md:gap-4 shadow bg-gradient-to-b from-neutral-100 to-neutral-50">
-              <div className="flex flex-col">
-                <h3 className="text-2xl font-bold">Save & Search</h3>
-                <p className="text-black/70 mt-2 text-balance">
-                  Allows users to save bookmarks with a single click. Users can
-                  search their bookmarks using the title, description, or tags
-                  and url as well
-                </p>
-              </div>
-            </div>
-            <div className="grid p-4 grid-rows-[auto_1fr] rounded-lg gap-8 md:gap-4 shadow bg-gradient-to-b from-neutral-100 to-neutral-50">
-              <div className="flex flex-col">
-                <h3 className="text-2xl font-bold">Import & Export</h3>
-                <p className="text-black/70 mt-2">
-                  Users can import their bookmarks from web browsers and also
-                  export them as well as HTMl or CSV forma t.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <div className="mx-auto mt-10 flex flex-col items-center">
-          <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl sm:leading-[3.5rem]">
+          <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
             Proudly{' '}
             <span className="bg-gradient-to-r from-blue-400 to-sky-600 bg-clip-text text-transparent">
               Open Sourced!
@@ -156,7 +160,7 @@ export default async function Page() {
             contribute to it!
           </p>
           <Link
-            className="mt-6 inline-flex h-[36px] items-center justify-center  rounded-full bg-white/0 px-4 py-2.5 text-sm font-medium text-slate-900 ring-1 ring-slate-900/10 hover:bg-gray-100 hover:shadow"
+            className="mt-6 inline-flex h-[36px] items-center justify-center rounded-full bg-white/0 px-4 py-2.5 text-sm font-medium text-muted-foreground ring-1 ring-slate-900/10 hover:bg-gray-100 hover:shadow"
             href="https://github.com/gokulkrishh/bmrk.cc"
           >
             <svg
@@ -172,13 +176,13 @@ export default async function Page() {
             Star on Github
           </Link>
         </div>
-        <footer className="w-full mt-28 py-4 flex justify-between text-[13px] border-t text-black">
+        <footer className="w-full mt-28 py-4 flex justify-between text-[13px] border-t text-primary">
           <div>&copy; {new Date().getFullYear()} Bookmark It. </div>
           <div className="flex items-center gap-4">
             <Link
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black hover:opacity-85"
+              className="text-primary hover:opacity-85"
               href="https://x.com/@gokul_i"
             >
               <svg viewBox="0 0 16 16" aria-hidden="true" className="h-4 w-4">
@@ -191,7 +195,7 @@ export default async function Page() {
             <Link
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black hover:opacity-85"
+              className="text-primary hover:opacity-85"
               href="https://github.com/gokulkrishh/bmrk.cc"
             >
               <svg

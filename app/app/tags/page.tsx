@@ -30,10 +30,13 @@ export default async function Page() {
       <div className="min-h-dvh border-r border-border pb-24">
         {tags.length ? (
           <>
-            <div className="flex gap-x-3 gap-y-2 items-end px-4 max-h-[5.25rem] overflow-y-scroll scrollbar flex-wrap py-3 border-b border-border">
+            <div className="flex flex-row gap-1.5 items-end px-4 max-h-[8rem] overflow-y-scroll scrollbar flex-wrap py-3 border-b border-border">
               {tags.map(({ id, name }) => (
-                <div key={id} className="inline-flex items-center">
-                  <Link className="flex items-center" href={`/tags/${name}`}>
+                <div key={id} className="inline-flex w-auto items-center">
+                  <Link
+                    className="flex items-center w-auto"
+                    href={`/tags/${name}`}
+                  >
                     <Badge className="font-normal py-1.5" variant="secondary">
                       {name} ({groupedByTagId[id]?.length ?? 0})
                     </Badge>
@@ -44,7 +47,11 @@ export default async function Page() {
               ))}
             </div>
           </>
-        ) : null}
+        ) : (
+          <div className="flex h-full w-full items-center justify-center">
+            No tags
+          </div>
+        )}
         <CardList bookmarks={bookmarks} tags={tags} />
       </div>
     </>
