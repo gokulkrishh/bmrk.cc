@@ -86,9 +86,9 @@ export default function TagList({ data, tags }: TagListProps) {
                   >
                     <div
                       className={cn(
-                        'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-blue-600',
+                        'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-blue-600 dark:border-white',
                         isChecked
-                          ? 'bg-blue-700 text-primary-foreground'
+                          ? 'bg-blue-700 dark:bg-white text-primary-foreground'
                           : 'bg-background text-tranparent',
                       )}
                     >

@@ -3,11 +3,14 @@ import Link from 'next/link';
 
 import { urls } from 'config';
 
+import Card from 'components/card';
 import Signup from 'components/home/signup';
+
+import { BookmarkModified, Tag } from 'types/data';
 
 export default async function Page() {
   return (
-    <div className="flex flex-col mx-auto">
+    <div className="flex flex-col mx-auto relative">
       <main className="flex max-w-3xl py-5 mx-auto flex-col w-full h-full px-4">
         <div className="hello"></div>
         <header className="flex justify-between items-center">
@@ -54,6 +57,94 @@ export default async function Page() {
           />
         </div>
         <div className="mx-auto mt-10 flex flex-col items-center">
+          <h2 className="mt-4 text-3xl mb-8 font-extrabold tracking-[-0.03em] text-black sm:text-4xl sm:leading-[3.5rem]">
+            Bookmark It{' '}
+            <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent mt-1 inline-flex">
+              Features
+            </span>
+            .
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-9 px-5 mx-auto max-w-container md:px-8">
+            <div className="md:col-span-2 items-center rounded-2xl overflow-hidden h-fit grid grid-cols-[0.6fr,1fr] shadow bg-gradient-to-b from-neutral-100 to-neutral-50">
+              <div className="flex flex-col p-10 pr-0">
+                <h3 className="text-3xl font-bold text-black">Display</h3>
+                <p className="text-black/80 mt-2">
+                  Familiar UI with a modern touch. Users can view their
+                  bookmarks in a timeline view.
+                </p>
+              </div>
+              <div className="flex justify-center items-center">
+                <Card
+                  data={
+                    {
+                      id: 569,
+                      title:
+                        'Fast, composable, unstyled command menu for React — ⌘K',
+                      url: 'https://cmdk.paco.me/',
+                      description:
+                        'Fast, composable, unstyled command menu for React',
+                      metadata: {
+                        ogImageUrl: 'https://cmdk.paco.me/og.png',
+                        twitterImageUrl: 'https://cmdk.paco.me/og.png',
+                      },
+                      user_id: '123',
+                      is_fav: true,
+                      created_at: '2024-02-02T09:09:04.700613+00:00',
+                      updated_at: '2024-02-02T09:09:04.700613+00:00',
+                      bookmarks_tags: [
+                        { tags: { name: 'react', id: 123123123131231 } },
+                        { tags: { name: 'nextjs', id: 12312312312312321123 } },
+                      ],
+                    } as BookmarkModified
+                  }
+                  tags={
+                    [
+                      {
+                        id: 12312312312312321,
+                        name: 'react',
+                        created_at: '2024-02-02T09:09:04.700613+00:00',
+                        updated_at: '2024-02-02T09:09:04.700613+00:00',
+                      },
+                      {
+                        id: 12312312312312323,
+                        name: 'OSS',
+                        created_at: '2024-02-02T09:09:04.700613+00:00',
+                        updated_at: '2024-02-02T09:09:04.700613+00:00',
+                      },
+                      {
+                        id: 12312312312312321123,
+                        name: 'nextjs',
+                        created_at: '2024-02-02T09:09:04.700613+00:00',
+                        updated_at: '2024-02-02T09:09:04.700613+00:00',
+                      },
+                    ] as Tag[]
+                  }
+                />
+              </div>
+            </div>
+
+            <div className="grid p-4 grid-rows-[auto_1fr] rounded-lg gap-8 md:gap-4 shadow bg-gradient-to-b from-neutral-100 to-neutral-50">
+              <div className="flex flex-col">
+                <h3 className="text-2xl font-bold">Save & Search</h3>
+                <p className="text-black/70 mt-2 text-balance">
+                  Allows users to save bookmarks with a single click. Users can
+                  search their bookmarks using the title, description, or tags
+                  and url as well
+                </p>
+              </div>
+            </div>
+            <div className="grid p-4 grid-rows-[auto_1fr] rounded-lg gap-8 md:gap-4 shadow bg-gradient-to-b from-neutral-100 to-neutral-50">
+              <div className="flex flex-col">
+                <h3 className="text-2xl font-bold">Import & Export</h3>
+                <p className="text-black/70 mt-2">
+                  Users can import their bookmarks from web browsers and also
+                  export them as well as HTMl or CSV forma t.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mx-auto mt-10 flex flex-col items-center">
           <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-black sm:text-4xl sm:leading-[3.5rem]">
             Proudly{' '}
             <span className="bg-gradient-to-r from-blue-400 to-sky-600 bg-clip-text text-transparent">
@@ -81,44 +172,44 @@ export default async function Page() {
             Star on Github
           </Link>
         </div>
-      </main>
-      <footer className="w-full mt-28 py-4 flex justify-between text-[13px] border-t text-black">
-        <div>&copy; {new Date().getFullYear()} Bookmark It. </div>
-        <div className="flex items-center gap-4">
-          <Link
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-black hover:opacity-85"
-            href="https://x.com/@gokul_i"
-          >
-            <svg viewBox="0 0 16 16" aria-hidden="true" className="h-4 w-4">
-              <path
-                fill="currentColor"
-                d="M12.6 0h2.454l-5.36 6.778L16 16h-4.937l-3.867-5.594L2.771 16H.316l5.733-7.25L0 0h5.063l3.495 5.114L12.601 0Zm-.86 14.376h1.36L4.323 1.539H2.865l8.875 12.837Z"
-              ></path>
-            </svg>
-          </Link>
-          <Link
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-black hover:opacity-85"
-            href="https://github.com/gokulkrishh/bmrk.cc"
-          >
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              className="h-[1.15rem] w-[1.15rem]"
+        <footer className="w-full mt-28 py-4 flex justify-between text-[13px] border-t text-black">
+          <div>&copy; {new Date().getFullYear()} Bookmark It. </div>
+          <div className="flex items-center gap-4">
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black hover:opacity-85"
+              href="https://x.com/@gokul_i"
             >
-              <path
-                fill="currentColor"
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M8 0C3.582 0 0 3.672 0 8.203c0 3.623 2.292 6.699 5.471 7.783.4.075.546-.178.546-.396 0-.194-.007-.71-.01-1.394-2.226.495-2.696-1.1-2.696-1.1-.363-.948-.888-1.2-.888-1.2-.726-.508.055-.499.055-.499.803.058 1.225.845 1.225.845.714 1.253 1.873.891 2.328.682.074-.53.28-.891.509-1.096-1.776-.207-3.644-.911-3.644-4.054 0-.895.312-1.628.823-2.201-.082-.208-.357-1.042.079-2.17 0 0 .672-.222 2.2.84A7.485 7.485 0 0 1 8 3.967c.68.003 1.364.094 2.003.276 1.527-1.062 2.198-.841 2.198-.841.437 1.129.161 1.963.08 2.17.512.574.822 1.307.822 2.202 0 3.15-1.871 3.844-3.653 4.048.288.253.543.753.543 1.519 0 1.095-.01 1.98-.01 2.25 0 .219.144.474.55.394a8.031 8.031 0 0 0 3.96-2.989A8.337 8.337 0 0 0 16 8.203C16 3.672 12.418 0 8 0Z"
-              ></path>
-            </svg>
-          </Link>
-        </div>
-      </footer>
+              <svg viewBox="0 0 16 16" aria-hidden="true" className="h-4 w-4">
+                <path
+                  fill="currentColor"
+                  d="M12.6 0h2.454l-5.36 6.778L16 16h-4.937l-3.867-5.594L2.771 16H.316l5.733-7.25L0 0h5.063l3.495 5.114L12.601 0Zm-.86 14.376h1.36L4.323 1.539H2.865l8.875 12.837Z"
+                ></path>
+              </svg>
+            </Link>
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black hover:opacity-85"
+              href="https://github.com/gokulkrishh/bmrk.cc"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                className="h-[1.15rem] w-[1.15rem]"
+              >
+                <path
+                  fill="currentColor"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M8 0C3.582 0 0 3.672 0 8.203c0 3.623 2.292 6.699 5.471 7.783.4.075.546-.178.546-.396 0-.194-.007-.71-.01-1.394-2.226.495-2.696-1.1-2.696-1.1-.363-.948-.888-1.2-.888-1.2-.726-.508.055-.499.055-.499.803.058 1.225.845 1.225.845.714 1.253 1.873.891 2.328.682.074-.53.28-.891.509-1.096-1.776-.207-3.644-.911-3.644-4.054 0-.895.312-1.628.823-2.201-.082-.208-.357-1.042.079-2.17 0 0 .672-.222 2.2.84A7.485 7.485 0 0 1 8 3.967c.68.003 1.364.094 2.003.276 1.527-1.062 2.198-.841 2.198-.841.437 1.129.161 1.963.08 2.17.512.574.822 1.307.822 2.202 0 3.15-1.871 3.844-3.653 4.048.288.253.543.753.543 1.519 0 1.095-.01 1.98-.01 2.25 0 .219.144.474.55.394a8.031 8.031 0 0 0 3.96-2.989A8.337 8.337 0 0 0 16 8.203C16 3.672 12.418 0 8 0Z"
+                ></path>
+              </svg>
+            </Link>
+          </div>
+        </footer>
+      </main>
     </div>
   );
 }

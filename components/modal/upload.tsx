@@ -140,7 +140,7 @@ export default function UploadModal({ open, onHide }: UploadModalProps) {
                     >
                       <QuestionMarkCircledIcon className="w-3.5 relative -top-0.5 h-3.5 text-red-700 " />
                     </TooltipTrigger>
-                    <TooltipContent>
+                    <TooltipContent className="text-white dark:text-black">
                       Know how to export bookmarks in web browsers.
                     </TooltipContent>
                   </Tooltip>

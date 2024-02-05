@@ -58,7 +58,7 @@ export default function DeleteAccount() {
       <div className="flex w-full justify-end border-t bg-red-50 dark:bg-red-500/30 border-red-200 dark:border-red-500/30 rounded-bl-md rounded-br-md p-2 px-3.5">
         {user?.user_metadata?.email ? (
           <button
-            className="items-center tracking-wide rounded-full text-red-700 border border-border focus:outline-0 focus:bg-accent/80 active:bg-accent/80 text-sm flex justify-center py-2 h-[36px] px-3  bg-background hover:bg-accent/80"
+            className="items-center tracking-wide rounded-full text-red-700 dark:text-black dark:bg-red-500 dark:hover:bg-red-600 dark:hover:border-red-600 dark:border-red-500 border border-red-700 focus:outline-0 focus:bg-accent/80 active:bg-accent/80 text-sm flex justify-center py-2 h-[36px] px-3 bg-background hover:bg-red-200/80"
             onClick={() => setOpen(true)}
           >
             <Trash2 className="w-3.5 h-3.5 mr-1.5" /> Delete

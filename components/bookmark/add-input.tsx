@@ -117,7 +117,7 @@ export default function AddBookmarkInput({
                   </TooltipTrigger>
                   <TooltipContent
                     side="bottom"
-                    className="flex items-center mt-1"
+                    className="flex items-center mt-1 text-white dark:text-black"
                   >
                     Upload bookmarks
                   </TooltipContent>

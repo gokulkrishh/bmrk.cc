@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { SearchIcon } from 'lucide-react';
+import { SearchIcon as Search } from 'lucide-react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 import { useAuth } from 'components/context/auth';
@@ -13,7 +13,7 @@ import { cn } from 'lib/utils';
 
 import SearchCommand from './command';
 
-export default function Search({ className }: { className?: string }) {
+export default function SearchIcon({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
 
@@ -31,17 +31,20 @@ export default function Search({ className }: { className?: string }) {
       <button
         onClick={() => setOpen(!open)}
         className={cn(
-          'p-2.5 inline-block rounded-xl transition-colors text-center hover:bg-accent-foreground/10 group',
+          'p-2.5 inline-block rounded-xl transition-colors text-center hover:bg-accent group',
           className,
         )}
       >
         <Tooltip>
           <TooltipTrigger className="text-primary" asChild>
-            <SearchIcon className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
+            <Search className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
           </TooltipTrigger>
-          <TooltipContent side={'right'} className="flex items-center ml-4">
+          <TooltipContent
+            side={'right'}
+            className="flex items-center ml-4 text-white dark:text-black"
+          >
             Search{' '}
-            <kbd className="pointer-events-none ml-2 border border-input inline-flex h-4 select-none items-center gap-1 rounded px-1 font-mono text-[10px] font-medium text-primary opacity-100">
+            <kbd className="pointer-events-none ml-2 border dark:text-black text-white border-input inline-flex h-4 select-none items-center gap-1 rounded px-1 font-mono text-[10px] font-medium text-primary opacity-100">
               K
             </kbd>
           </TooltipContent>

@@ -8,7 +8,7 @@ import AddIcon from './add-icon';
 import { HomeIcon, Logo } from './icons';
 import NavLink from './nav-link';
 import Profile from './profile';
-import Search from './search';
+import SearchIcon from './search';
 
 const SettingsLink = ({ className }: { className?: string }) => (
   <NavLink
@@ -36,7 +36,7 @@ export default function Sidebar() {
         <NavLink href={'/'} title="Home">
           <HomeIcon className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
         </NavLink>
-        <Search />
+        <SearchIcon />
         <NavLink
           className="max-sm:order-4"
           href={'/favorites'}

@@ -36,10 +36,10 @@ export default function AddIcon({ className }: { className?: string }) {
           </TooltipTrigger>
           <TooltipContent
             side="right"
-            className="flex items-center ml-4 font-medium"
+            className="flex items-center ml-4 font-medium text-white dark:text-black"
           >
             Add{' '}
-            <kbd className="pointer-events-none ml-2 border border-input inline-flex h-4 select-none items-center gap-1 rounded  px-1 font-mono text-[10px] font-medium text-primary opacity-100">
+            <kbd className="pointer-events-none ml-2 border dark:text-black text-white border-input inline-flex h-4 select-none items-center gap-1 rounded  px-1 font-mono text-[10px] font-medium text-primary opacity-100">
               A
             </kbd>
           </TooltipContent>

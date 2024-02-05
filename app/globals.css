@@ -36,7 +36,7 @@
   }
 
   .dark {
-    --background: 0 0% 3.9%;
+    --background: 0 0 0;
     --foreground: 0 0% 98%;
 
     --card: 0 0% 3.9%;
@@ -70,9 +70,13 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
   }
+
   textarea {
     @apply block resize-none;
   }
