@@ -28,7 +28,7 @@ export default function EditTag({ id, name }: EditTagProps) {
         className="rounded-full ml-1 flex w-7 h-7 hover:bg-blue-100 active:bg-blue-100 max-sm:flex items-center justify-center"
       >
         {loading ? (
-          <Loader className="h-4 w-4" />
+          <Loader className="h-4 w-4 text-muted-foreground dark:text-muted" />
         ) : (
           <Edit3 className="text-blue-500" size={16} />
         )}
