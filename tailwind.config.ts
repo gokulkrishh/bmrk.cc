@@ -56,9 +56,6 @@ const config = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
-      backgroundColor: {
-        grid: 'url(/grid.svg)',
-      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
