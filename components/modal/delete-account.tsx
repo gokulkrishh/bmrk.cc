@@ -24,7 +24,7 @@ export default function DeleteAccountModal({
   const [email, setEmail] = useState('');
   return (
     <Dialog open={open} onOpenChange={() => setOpen(false)}>
-      <DialogContent className="sm:max-w-md p-4">
+      <DialogContent className="sm:max-w-md p-4 max-sm:w-[calc(100%-30px)]">
         <DialogHeader className="font-medium !text-left">
           Delete Your Account
         </DialogHeader>
