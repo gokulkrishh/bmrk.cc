@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { StarFilledIcon } from '@radix-ui/react-icons';
 import { Command as CommandPrimitive } from 'cmdk';
 import humanizeUrl from 'humanize-url';
+import { CopyIcon } from 'lucide-react';
 
 import { getBookmarks } from 'app/actions/bookmarks';
 
@@ -17,7 +18,8 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandPrimitiveLoading,
+  CommandLoading,
+  CommandShortcut,
 } from 'components/ui/command';
 
 import { Bookmark } from 'types/data';
@@ -70,61 +72,63 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
 
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
-      <div cmdk-raycast-top-shine></div>
       <CommandInput
         value={search}
         onValueChange={onValueChange}
         placeholder="Search bookmarks"
       />
       <CommandList>
-        {loading ? (
-          <CommandPrimitiveLoading>
-            <div className="flex justify-center my-6">
-              <Loader />
-            </div>
-          </CommandPrimitiveLoading>
-        ) : (
-          <>
-            {result.length ? (
-              <CommandGroup heading="All Bookmarks">
-                {result.map((bookmark: Bookmark) => (
-                  <CommandItem
-                    className="flex flex-col items-start w-full"
-                    onSelect={() => {
-                      openBookmark(bookmark.url);
-                    }}
-                    key={bookmark.id}
-                  >
-                    <Link
-                      className="flex gap-2 items-start text-pimary-foreground w-full"
-                      prefetch={false}
-                      target="_blank"
-                      rel="noopener"
-                      href={bookmark.url}
+        <CommandGroup heading="All Bookmarks">
+          {loading ? (
+            <CommandLoading>
+              <div className="flex justify-center my-6">
+                <Loader />
+              </div>
+            </CommandLoading>
+          ) : null}
+          {result.map((bookmark: Bookmark) => {
+            const url = new URL(bookmark.url);
+            url.searchParams.append('utm_source', 'bmrk.cc');
+            return (
+              <CommandItem
+                className="flex flex-col items-start w-full"
+                onSelect={() => {
+                  openBookmark(url.href);
+                }}
+                key={bookmark.id}
+              >
+                <div className="flex gap-2 items-start text-pimary-foreground w-full">
+                  <CardAvatar
+                    className="!w-4 !h-4 rounded-full bg-background"
+                    url={url.href}
+                    title={bookmark.title ?? ''}
+                  />
+                  <div className="flex flex-col">
+                    <p className="relative -top-0.5">{bookmark.title}</p>
+                    <div className="text-xs flex items-center mt-0.5 text-muted-foreground">
+                      {bookmark.is_fav ? (
+                        <StarFilledIcon className="!h-3 !w-3 -ml-1 text-yellow-500 mr-1" />
+                      ) : null}
+                      {humanizeUrl(bookmark.url)}
+                    </div>
+                  </div>
+                  <CommandShortcut>
+                    <button
+                      className="rounded-xl active:opacity-50 p-3 relative -top-2 -right-2"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        navigator.clipboard.writeText(url.href);
+                      }}
                     >
-                      <CardAvatar
-                        className="!w-4 !h-4 rounded-full bg-background"
-                        url={bookmark.url}
-                        title={bookmark.title ?? ''}
-                      />{' '}
-                      <div className="flex flex-col">
-                        <p className="relative -top-0.5">{bookmark.title}</p>
-                        <div className="text-xs flex items-center mt-0.5 text-muted-foreground">
-                          {bookmark.is_fav ? (
-                            <StarFilledIcon className="!h-3 !w-3 -ml-1 text-yellow-500 mr-1" />
-                          ) : null}
-                          {humanizeUrl(bookmark.url)}
-                        </div>
-                      </div>
-                    </Link>
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            ) : (
-              <CommandEmpty>No bookmarks.</CommandEmpty>
-            )}
-          </>
-        )}
+                      <CopyIcon className="!w-4 !h-4 text-black dark:text-white" />
+                    </button>
+                  </CommandShortcut>
+                </div>
+              </CommandItem>
+            );
+          })}
+        </CommandGroup>
+        <CommandEmpty>No result.</CommandEmpty>
       </CommandList>
     </CommandDialog>
   );

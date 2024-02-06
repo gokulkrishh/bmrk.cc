@@ -13,12 +13,15 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
     return null;
   }
 
+  const url = new URL(data.url);
+  url.searchParams.append('utm_source', 'bmrk.cc');
+
   return (
     <Link
       className="group w-fit mt-2 max-sm:max-w-[calc(100%-30px)] max-w-[calc(100%-16px)] max-h-[185px] mb-2 rounded-2xl"
       target="_blank"
       rel="noopener"
-      href={`${data.url}?utm_source=bmrk.cc`}
+      href={`${url.href}?utm_source=bmrk.cc`}
       prefetch={false}
     >
       <Image
