@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import { UpdateIcon } from '@radix-ui/react-icons';
-import { Edit, LinkIcon, RotateCcw, Trash, Trash2Icon } from 'lucide-react';
+import { Edit, LinkIcon, Share, Trash2Icon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { deleteBookmark, refreshBookmark } from 'app/actions/bookmarks';
@@ -71,6 +71,25 @@ export default function CardMenu({ data }: CardMenuProps) {
     }
   };
 
+  const siteUrl = new URL(url);
+  siteUrl.searchParams.append('utm_source', 'bmrk.cc');
+
+  const share = async () => {
+    try {
+      const shareData = {
+        text: data.title ?? data.description ?? '',
+        url: siteUrl.href,
+      };
+      if (navigator.share && navigator.canShare(shareData)) {
+        await navigator.share(shareData);
+      } else {
+        throw new Error('Share API not supported.');
+      }
+    } catch (error) {
+      console.log('Sharing failed!', error);
+    }
+  };
+
   return (
     <div className="pr-2">
       <DropdownMenu>
@@ -111,6 +130,14 @@ export default function CardMenu({ data }: CardMenuProps) {
             className="!text-red-600 focus:bg-red-100 active:bg-red-100 dark:focus:bg-red-200 dark:active:bg-red-200"
           >
             <Trash2Icon className="h-4 w-4  mr-2.5" /> Delete
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className="max-sm:flex hidden"
+            onClick={async () => {
+              await share();
+            }}
+          >
+            <Share className="h-4 w-4  mr-2.5" /> Share
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
