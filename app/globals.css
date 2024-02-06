@@ -77,7 +77,7 @@
     scroll-behavior: smooth;
   }
 
-  body::after {
+  .homepage::after {
     background-image: url(/images/grid.svg);
     opacity: 0.05;
     position: fixed;

@@ -11,7 +11,7 @@ import { BookmarkModified, Tag } from 'types/data';
 
 export default async function Page() {
   return (
-    <div className="flex flex-col mx-auto relative">
+    <div className="flex flex-col mx-auto relative homepage">
       <main className="flex after:bg-grid sm:max-w-4xl py-5 mx-auto flex-col w-full h-fit px-4">
         <header className="flex justify-between items-center">
           <h1 className="font-medium tracking-tight text-lg flex items-center">
