@@ -55,7 +55,7 @@ export default function DeleteAccount() {
           )}
         </div>
       </div>
-      <div className="flex w-full justify-end border-t bg-red-50 dark:bg-red-500/30 border-red-200 dark:border-red-500/30 rounded-bl-[calc(var(--radius)-1px)] rounded-br-[calc(var(--radius)-1px)] p-2 px-3.5">
+      <div className="flex w-full justify-end bg-red-50 dark:bg-red-500/30 border-red-200 dark:border-red-500/30 rounded-bl-[calc(var(--radius)-1px)] rounded-br-[calc(var(--radius)-1px)] p-2 px-3.5">
         {user?.user_metadata?.email ? (
           <button
             className="items-center tracking-wide rounded-full text-red-700 dark:text-black dark:bg-red-500 dark:hover:bg-red-600 dark:hover:border-red-700 dark:border-red-700 border border-red-700 focus:outline-0 focus:bg-accent/80 active:bg-accent/80 text-sm flex justify-center py-2 px-3 transition-colors bg-background hover:border-red-200/80 hover:bg-red-200/80"
