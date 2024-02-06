@@ -69,7 +69,7 @@ export default function AddBookmarkInput({
   return (
     <div
       className={cn(
-        'h-26 flex flex-col px-1 sm:border-border border-r border-b',
+        'h-26 flex flex-col px-1 sm:border-border sm:border-r border-b',
         className,
       )}
     >
