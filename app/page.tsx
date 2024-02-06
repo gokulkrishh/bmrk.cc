@@ -167,7 +167,7 @@ export default async function Page() {
             saying about Bookmark It on Twitter.
           </p>
           <div className="flex overflow-hidden relative w-full">
-            <div className="animate-marquee gap-6 animation-pause items-center w-full max-w-[90vw] flex">
+            <div className="animate-marquee gap-6 hover:animation-pause items-center w-full max-w-[90vw] flex">
               <Tweet id="1754217612173562218" />
               <Tweet id="1754190758096105879" />
               <Tweet id="1754180337750708443" />
