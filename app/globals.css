@@ -117,4 +117,8 @@
     mask: linear-gradient(90deg, #000c, #000 10% 95%, #0000);
     -webkit-mask: linear-gradient(90deg, #000c, #000 10% 90%, #0000);
   }
+
+  .animation-pause {
+    animation-play-state: paused;
+  }
 }

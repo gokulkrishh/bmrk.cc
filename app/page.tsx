@@ -5,13 +5,14 @@ import { urls } from 'config';
 
 import Card from 'components/card';
 import Signup from 'components/home/signup';
+import { Tweet } from 'components/tweet/tweets';
 
 import { BookmarkModified, Tag } from 'types/data';
 
 export default async function Page() {
   return (
     <div className="flex flex-col mx-auto relative">
-      <main className="flex max-w-4xl py-5 mx-auto flex-col w-full h-fit px-4">
+      <main className="flex sm:max-w-4xl py-5 mx-auto flex-col w-full h-fit px-4">
         <header className="flex justify-between items-center">
           <h1 className="font-medium tracking-tight text-lg flex items-center">
             <Link
@@ -31,13 +32,13 @@ export default async function Page() {
           </h1>
           <Link
             href={urls.account}
-            className="rounded-full inline-flex h-[36px] text-sm items-center disabled:bg-black focus:outline-0 bg-black focus:bg-black/80 active:bg-black/80 shadow hover:bg-black/80 border-0 px-4 py-3 text-white"
+            className="rounded-full inline-flex h-[36px] text-sm items-center focus:outline-0 bg-accent hover:bg-accent/80 shadow border border-secondary/30 px-4 py-3 text-white"
           >
             Sign In
           </Link>
         </header>
-        <div className="mx-auto mt-24">
-          <h2 className="lg:text-6xl md:text-5xl text-4xl text-primary font-black max-w-2xl text-center mx-auto tracking-tight py-4">
+        <div className="mx-auto mt-20">
+          <h2 className="lg:text-6xl md:text-5xl text-4xl text-primary font-black max-w-2xl text-center mx-auto tracking-tight py-4 pb-1">
             Bookmark manager
             <br />
             for{' '}
@@ -45,18 +46,19 @@ export default async function Page() {
               the modern web.
             </span>
           </h2>
-          <p className="text-muted-foreground leading-7 sm:text-lg mx-auto max-w-xl mt-1 tracking-normal text-center">
-            Effortlessly Bookmark, Categorize, and Favorite your Web Sites.
+          <p className="text-muted-foreground leading-7 sm:text-lg mx-auto max-w-xl mt-2 sm:mt-0 tracking-normal text-center">
+            Effortlessly Bookmark, Categorize, and Favorite your web sites.
           </p>
           <Signup />
-          <Image
+          {/* <Image
             src="/images/open-graph.jpg"
-            width={1200}
+            width={500}
             height={630}
             alt="Bookmark it"
             className="rounded-lg mt-20"
             priority
-          />
+            style={{ maxWidth: '100%', objectFit: 'cover' }}
+          /> */}
         </div>
         <div className="mx-auto my-10 flex flex-col items-center">
           <h2 className="mt-4 text-3xl mb-1 font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
@@ -65,11 +67,11 @@ export default async function Page() {
               Features
             </span>{' '}
           </h2>
-          <p className="mb-8 text-muted-foreground">
+          <p className="mb-8 mt-2 sm:mt-0 text-muted-foreground text-center">
             Here are the list of top features that you can use to manage your
             bookmarks.
           </p>
-          <div className="grid w-full grid-cols-1 sm:grid-cols-3 gap-4 h-full ">
+          <div className="grid w-full mt-6 grid-cols-1 sm:grid-cols-3 gap-4 h-full ">
             {[
               {
                 title: 'Timeline',
@@ -153,111 +155,49 @@ export default async function Page() {
             ))}
           </div>
         </div>
-        <div className="mx-auto my-10 flex flex-col items-center">
+        <div className="mx-auto w-full h-full relative my-10 flex flex-col items-center">
           <h2 className="mt-4 mb-1 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
-            What People Are Saying
+            <span className="bg-gradient-to-r from-neutral-400 to-neutral-300 bg-clip-text text-transparent mt-1 inline-flex">
+              What People
+            </span>{' '}
+            Are Saying
           </h2>
-          <p className="mb-8 text-muted-foreground">
+          <p className="mb-8 mt-2 sm:mt-0 text-muted-foreground text-center">
             Don{"'"}t just take our word for it. Here{"'"}s what people are
             saying about Bookmark It on Twitter.
           </p>
-          <div className="grid w-full grid-cols-1 sm:grid-cols-3 gap-4 h-full ">
-            {[
-              {
-                title: 'Timeline',
-                Component: (
-                  <Card
-                    data={
-                      {
-                        id: 569,
-                        title:
-                          'Fast, composable, unstyled command menu for React — ⌘K',
-                        url: 'https://cmdk.paco.me/',
-                        description:
-                          'Fast, composable, unstyled command menu for React',
-                        metadata: {
-                          ogImageUrl: 'https://cmdk.paco.me/og.png',
-                          twitterImageUrl: 'https://cmdk.paco.me/og.png',
-                        },
-                        user_id: '123',
-                        is_fav: true,
-                        created_at: '2024-02-02T09:09:04.700613+00:00',
-                        updated_at: '2024-02-02T09:09:04.700613+00:00',
-                        bookmarks_tags: [
-                          { tags: { name: 'react', id: 123123123131231 } },
-                          {
-                            tags: { name: 'nextjs', id: 12312312312312321123 },
-                          },
-                        ],
-                      } as BookmarkModified
-                    }
-                    tags={
-                      [
-                        {
-                          id: 12312312312312321,
-                          name: 'react',
-                          created_at: '2024-02-02T09:09:04.700613+00:00',
-                          updated_at: '2024-02-02T09:09:04.700613+00:00',
-                        },
-                        {
-                          id: 12312312312312323,
-                          name: 'OSS',
-                          created_at: '2024-02-02T09:09:04.700613+00:00',
-                          updated_at: '2024-02-02T09:09:04.700613+00:00',
-                        },
-                        {
-                          id: 12312312312312321123,
-                          name: 'nextjs',
-                          created_at: '2024-02-02T09:09:04.700613+00:00',
-                          updated_at: '2024-02-02T09:09:04.700613+00:00',
-                        },
-                      ] as Tag[]
-                    }
-                  />
-                ),
-              },
-              {
-                title: 'Bookmark',
-                description: 'Bookmark your favorite websites.',
-              },
-              {
-                title: 'Bookmark',
-                description: 'Bookmark your favorite websites.',
-              },
-              {
-                title: 'Bookmark',
-                description: 'Bookmark your favorite websites.',
-              },
-              {
-                title: 'Bookmark',
-                description: 'Bookmark your favorite websites.',
-              },
-            ].map((_, i) => (
-              <div
-                key={i}
-                className={`row-span-1 h-full bg-secondary/30 rounded-xl border p-4 ${
-                  i === 0 ? 'sm:col-span-2' : ''
-                }`}
-              >
-                <h3 className="text-primary text-xl mb-2">{_.title}</h3>
-                {_.Component}
-              </div>
-            ))}
+          <div className="flex overflow-hidden relative w-full">
+            <div className="animate-marquee gap-6 animation-pause items-center w-full max-w-[90vw] flex">
+              <Tweet id="1754217612173562218" />
+              <Tweet id="1754190758096105879" />
+              <Tweet id="1754180337750708443" />
+              <Tweet id="1754189598891135463" />
+              <Tweet id="1754219522830250298" />
+              <Tweet id="1754346017049432479" />
+              <Tweet id="1754360689441833408" />
+              <Tweet id="1754459093870244045" />
+              <Tweet id="1754373174261596525" />
+            </div>
+            <div className="pointer-events-none absolute inset-y-0 left-0 h-full w-1/5 bg-gradient-to-r from-white dark:from-background"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 h-full  w-1/5 bg-gradient-to-l from-white dark:from-background"></div>
           </div>
         </div>
-        <div className="mx-auto mt-10 flex flex-col items-center">
+
+        <div className="mx-auto flex flex-col items-center">
           <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
             Proudly{' '}
             <span className="bg-gradient-to-r from-blue-400 to-sky-600 bg-clip-text text-transparent">
               Open Sourced!
             </span>
           </h2>
-          <p className="mt-3 text-muted-foreground leading-7 sm:text-lg w-[80%] text-center">
+          <p className="mt-3 mb-10 text-muted-foreground leading-7 sm:text-lg w-[80%] text-center">
             Source code is available on GitHub - feel free to read, review, or
             contribute to it!
           </p>
           <Link
-            className="mt-6 inline-flex h-[36px] items-center justify-center rounded-full bg-white/0 px-4 py-2.5 text-sm font-medium text-muted-foreground ring-1 ring-slate-900/10 hover:bg-gray-100 hover:shadow"
+            className="inline-flex items-center justify-center h-[40px] rounded-full px-4 py-2 text-sm font-medium text-slate-900 ring-1 ring-slate-900/10 bg-white hover:bg-gray-200"
+            target="_blank"
+            rel="noopener noreferrer"
             href="https://github.com/gokulkrishh/bmrk.cc"
           >
             <svg
@@ -273,6 +213,7 @@ export default async function Page() {
             Star on Github
           </Link>
         </div>
+
         <footer className="w-full mt-28 py-4 flex justify-between text-[13px] border-t text-primary">
           <div>&copy; {new Date().getFullYear()} Bookmark It. </div>
           <div className="flex items-center gap-4">
