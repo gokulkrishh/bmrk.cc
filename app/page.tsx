@@ -12,7 +12,7 @@ import { BookmarkModified, Tag } from 'types/data';
 export default async function Page() {
   return (
     <div className="flex flex-col mx-auto relative">
-      <main className="flex sm:max-w-4xl py-5 mx-auto flex-col w-full h-fit px-4">
+      <main className="flex after:bg-grid sm:max-w-4xl py-5 mx-auto flex-col w-full h-fit px-4">
         <header className="flex justify-between items-center">
           <h1 className="font-medium tracking-tight text-lg flex items-center">
             <Link
@@ -37,7 +37,7 @@ export default async function Page() {
             Sign In
           </Link>
         </header>
-        <div className="mx-auto mt-20">
+        <div className="mx-auto max-sm:mt-32 mt-40">
           <h2 className="lg:text-6xl md:text-5xl text-4xl text-primary font-black max-w-2xl text-center mx-auto tracking-tight py-4 pb-1">
             Bookmark manager
             <br />
@@ -47,9 +47,7 @@ export default async function Page() {
             </span>
           </h2>
           <p className="text-muted-foreground leading-7 mt-3 sm:text-lg mx-auto max-w-xl tracking-normal text-center">
-            Effortlessly Bookmark, Categorize, Favorite your web sites.
-            <br />
-            Your ultimate bookmark manager app.
+            Effortlessly Bookmark, Categorize, and Favorite your web sites.
           </p>
           <Signup />
           {/* <Image

@@ -17,6 +17,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  CommandPrimitiveLoading,
 } from 'components/ui/command';
 
 import { Bookmark } from 'types/data';
@@ -69,6 +70,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
 
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
+      <div cmdk-raycast-top-shine></div>
       <CommandInput
         value={search}
         onValueChange={onValueChange}
@@ -76,11 +78,11 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
       />
       <CommandList>
         {loading ? (
-          <CommandPrimitive.Loading>
+          <CommandPrimitiveLoading>
             <div className="flex justify-center my-6">
               <Loader />
             </div>
-          </CommandPrimitive.Loading>
+          </CommandPrimitiveLoading>
         ) : (
           <>
             {result.length ? (

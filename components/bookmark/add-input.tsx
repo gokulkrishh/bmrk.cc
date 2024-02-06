@@ -2,8 +2,8 @@
 
 import { ClipboardEvent, SyntheticEvent, useState } from 'react';
 
+import { UploadIcon } from '@radix-ui/react-icons';
 import { isUrl } from 'check-valid-url';
-import { UploadIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { createBookmark } from 'app/actions/bookmarks';
@@ -110,10 +110,7 @@ export default function AddBookmarkInput({
               >
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <UploadIcon
-                      strokeWidth={2}
-                      className="w-[19px] h-[19px] text-muted-foreground hover:stroke-blue-700 active:stroke-blue-500"
-                    />
+                    <UploadIcon className="w-[19px] h-[19px] text-muted-foreground hover:text-blue-700 active:text-blue-500" />
                   </TooltipTrigger>
                   <TooltipContent
                     side="bottom"

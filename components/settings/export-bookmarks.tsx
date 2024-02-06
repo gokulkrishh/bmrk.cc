@@ -93,7 +93,28 @@ export default function ExportBookmarks() {
               {loadingHTML ? (
                 <Loader className="text-pimary-foreground w-3.5 h-3.5 mr-1.5" />
               ) : (
-                <FileTextIcon className="w-3.5 h-3.5 mr-1.5" />
+                <svg
+                  className="w-3.5 h-3.5 mr-1.5"
+                  width="44"
+                  height="44"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                  <path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
+                  <path d="M2 21v-6" />
+                  <path d="M5 15v6" />
+                  <path d="M2 18h3" />
+                  <path d="M20 15v6h2" />
+                  <path d="M13 21v-6l2 3l2 -3v6" />
+                  <path d="M7.5 15h3" />
+                  <path d="M9 15v6" />
+                </svg>
               )}{' '}
               Export HTML
             </DropdownMenuItem>
@@ -107,8 +128,25 @@ export default function ExportBookmarks() {
               {loadingCSV ? (
                 <Loader className="text-pimary-foreground w-3.5 h-3.5 mr-1.5" />
               ) : (
-                <FileIcon className="w-3.5 h-3.5 mr-1.5" />
-              )}{' '}
+                <svg
+                  className="w-3.5 h-3.5 mr-1.5"
+                  width="44"
+                  height="44"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                  <path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
+                  <path d="M7 16.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0" />
+                  <path d="M10 20.25c0 .414 .336 .75 .75 .75h1.25a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-1a1 1 0 0 1 -1 -1v-1a1 1 0 0 1 1 -1h1.25a.75 .75 0 0 1 .75 .75" />
+                  <path d="M16 15l2 6l2 -6" />
+                </svg>
+              )}
               Export CSV
             </DropdownMenuItem>
           </DropdownMenuContent>
