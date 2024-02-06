@@ -32,7 +32,7 @@ export default async function Page() {
           </h1>
           <Link
             href={urls.account}
-            className="rounded-full inline-flex h-[36px] text-sm items-center focus:outline-0 bg-accent hover:bg-accent/80 shadow border border-secondary/30 px-4 py-3 text-white"
+            className="rounded-full inline-flex text-sm items-center focus:outline-0 bg-black hover:bg-black/80 shadow border border-black px-4 py-2 text-white"
           >
             Sign In
           </Link>
@@ -46,8 +46,10 @@ export default async function Page() {
               the modern web.
             </span>
           </h2>
-          <p className="text-muted-foreground leading-7 sm:text-lg mx-auto max-w-xl mt-2 sm:mt-0 tracking-normal text-center">
-            Effortlessly Bookmark, Categorize, and Favorite your web sites.
+          <p className="text-muted-foreground leading-7 mt-3 sm:text-lg mx-auto max-w-xl tracking-normal text-center">
+            Effortlessly Bookmark, Categorize, Favorite your web sites.
+            <br />
+            Your ultimate bookmark manager app.
           </p>
           <Signup />
           {/* <Image
@@ -65,16 +67,16 @@ export default async function Page() {
             Available{' '}
             <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent mt-1 inline-flex">
               Features
-            </span>{' '}
+            </span>
           </h2>
-          <p className="mb-8 mt-2 sm:mt-0 text-muted-foreground text-center">
+          <p className="mt-1 mb-10 text-muted-foreground leading-7 sm:text-lg w-[80%] text-center">
             Here are the list of top features that you can use to manage your
             bookmarks.
           </p>
           <div className="grid w-full mt-6 grid-cols-1 sm:grid-cols-3 gap-4 h-full ">
             {[
               {
-                title: 'Timeline',
+                title: 'Timeline based Bookmarks',
                 Component: (
                   <Card
                     data={
@@ -127,20 +129,20 @@ export default async function Page() {
                 ),
               },
               {
-                title: 'Bookmark',
-                description: 'Bookmark your favorite websites.',
+                title: 'Seamless Integration',
+                description: `Import your existing bookmarks from any web browser and start organizing without skipping a beat. Ready to move or backup your collection? Export your bookmarks effortlessly in both CSV and browser-supported HTML for easy sharing and transferring.`,
               },
               {
-                title: 'Bookmark',
-                description: 'Bookmark your favorite websites.',
+                title: 'Personalize Your Collection',
+                description: `Make your bookmark collection truly yours. Effortlessly 'Favorite' bookmarks for quick access to your most-loved content. Categorize your finds with custom tags, turning a cluttered list into a well-organized library tailored to your likings.`,
               },
               {
-                title: 'Bookmark',
-                description: 'Bookmark your favorite websites.',
+                title: 'Find Anything in Seconds',
+                description: `Say goodbye to endless scrolling. Powerful search feature lets you open any bookmark instantly. Whether you're looking for a specific url, website title, or custom description, finding it is as simple as typing in a keyword.`,
               },
               {
-                title: 'Bookmark',
-                description: 'Bookmark your favorite websites.',
+                title: 'Customizable Viewing Experience',
+                description: `Embraces your comfort with both dark and light mode support. Choose the theme that best suits your viewing preference, ensuring an eye-friendly browsing experience at any time of the day.`,
               },
             ].map((_, i) => (
               <div
@@ -149,7 +151,12 @@ export default async function Page() {
                   i === 0 ? 'sm:col-span-2' : ''
                 }`}
               >
-                <h3 className="text-primary text-xl mb-2">{_.title}</h3>
+                <h3 className="text-primary font-semibold text-xl mb-2">
+                  {_.title}
+                </h3>
+                <p className="text-balance text-muted-foreground">
+                  {_.description}
+                </p>
                 {_.Component}
               </div>
             ))}
@@ -157,26 +164,44 @@ export default async function Page() {
         </div>
         <div className="mx-auto w-full h-full relative my-10 flex flex-col items-center">
           <h2 className="mt-4 mb-1 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
-            <span className="bg-gradient-to-r from-neutral-400 to-neutral-300 bg-clip-text text-transparent mt-1 inline-flex">
+            <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent mt-1 inline-flex">
               What People
             </span>{' '}
             Are Saying
           </h2>
-          <p className="mb-8 mt-2 sm:mt-0 text-muted-foreground text-center">
+          <p className="mt-1 mb-10 text-muted-foreground leading-7 sm:text-lg w-[80%] text-center">
             Don{"'"}t just take our word for it. Here{"'"}s what people are
             saying about Bookmark It on Twitter.
           </p>
           <div className="flex overflow-hidden relative w-full">
             <div className="animate-marquee gap-6 hover:animation-pause items-center w-full max-w-[90vw] flex">
-              <Tweet id="1754217612173562218" />
-              <Tweet id="1754190758096105879" />
-              <Tweet id="1754180337750708443" />
-              <Tweet id="1754189598891135463" />
-              <Tweet id="1754219522830250298" />
-              <Tweet id="1754346017049432479" />
-              <Tweet id="1754360689441833408" />
-              <Tweet id="1754459093870244045" />
-              <Tweet id="1754373174261596525" />
+              <div data-theme="light">
+                <Tweet id="1754217612173562218" />
+              </div>
+              <div data-theme="light">
+                <Tweet id="1754190758096105879" />
+              </div>
+              <div data-theme="light">
+                <Tweet id="1754180337750708443" />
+              </div>
+              <div data-theme="light">
+                <Tweet id="1754189598891135463" />
+              </div>
+              <div data-theme="light">
+                <Tweet id="1754219522830250298" />
+              </div>
+              <div data-theme="light">
+                <Tweet id="1754346017049432479" />
+              </div>
+              <div data-theme="light">
+                <Tweet id="1754360689441833408" />
+              </div>
+              <div data-theme="light">
+                <Tweet id="1754459093870244045" />
+              </div>
+              <div data-theme="light">
+                <Tweet id="1754373174261596525" />
+              </div>
             </div>
             <div className="pointer-events-none absolute inset-y-0 left-0 h-full w-1/5 bg-gradient-to-r from-white dark:from-background"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 h-full  w-1/5 bg-gradient-to-l from-white dark:from-background"></div>

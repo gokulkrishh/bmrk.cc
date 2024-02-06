@@ -37,7 +37,7 @@ export default function Account() {
             window.location.href = urls.account;
           }
         }}
-        className="rounded-full inline-flex text-sm items-center focus:outline-0 border-secondary/30 bg-accent hover:bg-accent/80 border px-4 py-2 h-[40px] text-white"
+        className="rounded-full inline-flex text-sm items-center focus:outline-0 bg-black hover:bg-black/80 shadow border border-black px-4 py-2 text-white"
       >
         Get Started <ArrowRight className="ml-1.5 w-4 h-4" />
       </button>

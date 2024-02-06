@@ -20,7 +20,7 @@ type Props = {
 export const MyTweet = ({ tweet: t, components }: Props) => {
   const tweet = enrichTweet(t);
   return (
-    <TweetContainer className="!bg-background !border-border min-w-60 h-fit">
+    <TweetContainer className="!dark:bg-black !dark:border-black">
       <TweetHeader tweet={tweet} components={components} />
       {tweet.in_reply_to_status_id_str && <TweetInReplyTo tweet={tweet} />}
       <TweetBody tweet={tweet} />

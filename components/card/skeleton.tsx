@@ -10,7 +10,7 @@ export default function CardSkeleton({ className }: { className?: string }) {
         className,
       )}
     >
-      <Skeleton className="w-[56px] inline-flex mt-3.5 mx-2 h-[33px] text-accent bg-accent " />
+      <Skeleton className="w-[56px] inline-flex mt-3 mx-2 relative -top-[5px] h-[20px] text-accent bg-accent " />
       <div className="w-2 border-l border-border ">
         <span className="w-4 h-4 shrink-0 relative left-[-8.5px] top-[8px] z-1 rounded-full bg-blue-transparent text-white inline-flex items-center justify-center">
           <div className="w-4 !h-4 rounded-full bg-accent" />

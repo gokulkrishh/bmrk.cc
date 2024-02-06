@@ -74,7 +74,7 @@ export default function CardMenu({ data }: CardMenuProps) {
   return (
     <div className="pr-2">
       <DropdownMenu>
-        <DropdownMenuTrigger className="cursor-pointer h-9 w-9 mt-1 flex items-center justify-center rounded-full hover:bg-accent active:bg-accent shrink-0">
+        <DropdownMenuTrigger className="cursor-pointer h-9 w-9 mt-1 flex items-center justify-center transition-colors rounded-full hover:bg-accent hover:border hover:border-input active:bg-accent shrink-0">
           <MoreIcon className="fill-muted-foreground h-4 w-4 " />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-2 min-w-40">

@@ -20,11 +20,11 @@ function FavButtonIcon({ is_fav }: { is_fav: BookmarkModified['is_fav'] }) {
       disabled={pending}
       type="submit"
       className={cn(
-        `rounded-full group/fav flex w-9 h-9 hover:border hover:border-yellow-200 hover:bg-yellow-100 active:bg-yellow-100 max-sm:flex items-center justify-center mr-2`,
+        `rounded-full transition-colors group/fav flex w-9 h-9 hover:border hover:border-yellow-300 hover:bg-yellow-100 active:bg-yellow-100 max-sm:flex items-center justify-center mr-2`,
       )}
     >
       {pending ? (
-        <Loader className="text-muted-foreground dark:text-muted h-4 w-4" />
+        <Loader className="text-muted-foreground dark:group-hover/fav:text-muted h-4 w-4" />
       ) : is_fav ? (
         <StarFilledIcon className="h-4 w-4 text-yellow-500 " />
       ) : (
