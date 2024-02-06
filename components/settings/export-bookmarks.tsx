@@ -69,11 +69,11 @@ export default function ExportBookmarks() {
           </div>
         </div>
       </div>
-      <div className="flex w-full justify-end border-t bg-background border-border rounded-bl-md rounded-br-md p-1.5 px-3.5">
+      <div className="flex w-full justify-end border-t bg-background border-border rounded-bl-lg rounded-br-lg p-1.5 px-3.5">
         <DropdownMenu>
           <DropdownMenuTrigger
             disabled={loadingHTML || loadingCSV}
-            className="items-center tracking-wide disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 h-[36px] px-3 bg-primary-foreground hover:bg-accent"
+            className="items-center tracking-wide disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 px-3 transition-colors bg-primary-foreground hover:bg-accent"
           >
             {loadingHTML || loadingCSV ? (
               <Loader className="w-4 h-4 mr-1.5" />

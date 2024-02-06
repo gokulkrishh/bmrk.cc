@@ -7,7 +7,7 @@ export default function Loading() {
     <>
       <Header />
       <AddBookmarkInput btnClassname="mx-2" />
-      <div className="min-h-dvh border-r border-border">
+      <div className="min-h-dvh sm:border-r border-border">
         <CardSkeleton />
         <CardSkeleton />
         <CardSkeleton />

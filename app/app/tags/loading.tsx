@@ -13,7 +13,7 @@ export default function Loading() {
         <Skeleton className="w-20 h-7 bg-accent rounded-full" />
       </div>
       <div className="border-b border-border flex w-full" />
-      <div className="min-h-dvh border-r border-border">
+      <div className="min-h-dvh sm:border-r border-border">
         <CardSkeleton />
         <CardSkeleton />
         <CardSkeleton />

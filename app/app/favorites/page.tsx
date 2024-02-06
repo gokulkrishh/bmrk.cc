@@ -21,7 +21,7 @@ export default async function Page() {
   return (
     <>
       <Header headerText="Favorites" />
-      <div className="h-full border-r border-border pb-24">
+      <div className="h-full sm:border-r border-border pb-24">
         <CardList bookmarks={bookmarks} tags={tags} />
       </div>
     </>

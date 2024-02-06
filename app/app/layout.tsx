@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
 import { permanentRedirect } from 'next/navigation';
 
 import { urls } from 'config';
@@ -13,8 +12,6 @@ import { Toaster } from 'components/ui/sonner';
 import { TooltipProvider } from 'components/ui/tooltip';
 
 import '../globals.css';
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const title = 'Bookmark it. | Home';
 const description = 'Bookmark manager for the modern web.';

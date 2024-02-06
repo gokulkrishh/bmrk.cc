@@ -3,7 +3,6 @@
 import { useState } from 'react';
 
 import { CheckIcon } from '@radix-ui/react-icons';
-import { CommandList } from 'cmdk';
 import { toast } from 'sonner';
 
 import { addTagToBookmark, createTag } from 'app/actions/tags';
@@ -13,6 +12,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from 'components/ui/command';
 
 import { cn } from 'lib/utils';

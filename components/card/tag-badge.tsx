@@ -10,7 +10,7 @@ export default function TagBadge({ data }: { data: BookmarkModified }) {
       {data?.bookmarks_tags?.map(({ tags: { id, name } }) => {
         return (
           <Link
-            className="border rounded-full mr-2"
+            className="border focus:bg-accent hover:bg-accent active:bg-accent rounded-full mr-2"
             key={id}
             href={`/tags/${name}`}
           >

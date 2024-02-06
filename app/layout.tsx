@@ -60,7 +60,7 @@ export default async function RootLayout({
       <body className={`${inter.className} flex h-full bg-background`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
           disableTransitionOnChange
         >
           {children}

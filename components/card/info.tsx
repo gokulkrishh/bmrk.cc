@@ -10,13 +10,13 @@ export default function CardInfo({ data }: { data: Bookmark }) {
       title={data.title ?? ''}
       target="_blank"
       rel="noopener"
-      href={url}
+      href={url.href}
       prefetch={false}
-      className="group items-start justify-between flex-col py-2 mt-1 pt-1.5 gap-1 flex text-pimary-foreground w-[calc(100%-60px)]"
+      className="group items-start justify-between flex-col py-2 mt-1 pt-1.5 pb-0 gap-1 flex text-pimary-foreground w-[calc(100%-60px)]"
     >
-      <p className="relative items-center text-primary inline-flex text-[15px]">
+      <h3 className="relative items-center text-primary inline-flex">
         {data.title ?? new URL(data.url)?.hostname?.replace('www.', '')}
-      </p>
+      </h3>
       <p
         className="text-muted-foreground text-sm line-clamp-3 max-w-sm"
         title={data.description ?? ''}

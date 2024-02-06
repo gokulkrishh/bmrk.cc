@@ -27,7 +27,7 @@ export default async function Page() {
   return (
     <>
       <Header headerText="Tags" />
-      <div className="min-h-dvh border-r border-border pb-24">
+      <div className="min-h-dvh sm:border-r border-border pb-24">
         {tags.length ? (
           <>
             <div className="flex flex-row gap-1.5 items-end px-4 max-h-[8rem] overflow-y-scroll scrollbar flex-wrap py-3 border-b border-border">

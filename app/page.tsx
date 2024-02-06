@@ -59,11 +59,108 @@ export default async function Page() {
           />
         </div>
         <div className="mx-auto my-10 flex flex-col items-center">
-          <h2 className="mt-4 text-3xl mb-8 font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
+          <h2 className="mt-4 text-3xl mb-1 font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
+            Available{' '}
             <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent mt-1 inline-flex">
               Features
             </span>{' '}
           </h2>
+          <p className="mb-8 text-muted-foreground">
+            Here are the list of top features that you can use to manage your
+            bookmarks.
+          </p>
+          <div className="grid w-full grid-cols-1 sm:grid-cols-3 gap-4 h-full ">
+            {[
+              {
+                title: 'Timeline',
+                Component: (
+                  <Card
+                    data={
+                      {
+                        id: 569,
+                        title:
+                          'Fast, composable, unstyled command menu for React — ⌘K',
+                        url: 'https://cmdk.paco.me/',
+                        description:
+                          'Fast, composable, unstyled command menu for React',
+                        metadata: {
+                          ogImageUrl: 'https://cmdk.paco.me/og.png',
+                          twitterImageUrl: 'https://cmdk.paco.me/og.png',
+                        },
+                        user_id: '123',
+                        is_fav: true,
+                        created_at: '2024-02-02T09:09:04.700613+00:00',
+                        updated_at: '2024-02-02T09:09:04.700613+00:00',
+                        bookmarks_tags: [
+                          { tags: { name: 'react', id: 123123123131231 } },
+                          {
+                            tags: { name: 'nextjs', id: 12312312312312321123 },
+                          },
+                        ],
+                      } as BookmarkModified
+                    }
+                    tags={
+                      [
+                        {
+                          id: 12312312312312321,
+                          name: 'react',
+                          created_at: '2024-02-02T09:09:04.700613+00:00',
+                          updated_at: '2024-02-02T09:09:04.700613+00:00',
+                        },
+                        {
+                          id: 12312312312312323,
+                          name: 'OSS',
+                          created_at: '2024-02-02T09:09:04.700613+00:00',
+                          updated_at: '2024-02-02T09:09:04.700613+00:00',
+                        },
+                        {
+                          id: 12312312312312321123,
+                          name: 'nextjs',
+                          created_at: '2024-02-02T09:09:04.700613+00:00',
+                          updated_at: '2024-02-02T09:09:04.700613+00:00',
+                        },
+                      ] as Tag[]
+                    }
+                  />
+                ),
+              },
+              {
+                title: 'Bookmark',
+                description: 'Bookmark your favorite websites.',
+              },
+              {
+                title: 'Bookmark',
+                description: 'Bookmark your favorite websites.',
+              },
+              {
+                title: 'Bookmark',
+                description: 'Bookmark your favorite websites.',
+              },
+              {
+                title: 'Bookmark',
+                description: 'Bookmark your favorite websites.',
+              },
+            ].map((_, i) => (
+              <div
+                key={i}
+                className={`row-span-1 h-full bg-secondary/30 rounded-xl border p-4 ${
+                  i === 0 ? 'sm:col-span-2' : ''
+                }`}
+              >
+                <h3 className="text-primary text-xl mb-2">{_.title}</h3>
+                {_.Component}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mx-auto my-10 flex flex-col items-center">
+          <h2 className="mt-4 mb-1 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
+            What People Are Saying
+          </h2>
+          <p className="mb-8 text-muted-foreground">
+            Don{"'"}t just take our word for it. Here{"'"}s what people are
+            saying about Bookmark It on Twitter.
+          </p>
           <div className="grid w-full grid-cols-1 sm:grid-cols-3 gap-4 h-full ">
             {[
               {
