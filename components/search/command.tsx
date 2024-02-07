@@ -70,8 +70,6 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
     window.open(url, '_blank');
   };
 
-  const canShare = () => typeof navigator.share === 'function';
-
   const share = async (bookmark: Bookmark, url: URL) => {
     try {
       const shareData = {
@@ -145,7 +143,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                         <CopyIcon className="!w-4 !h-4 text-black dark:text-white" />
                       )}
                     </button>
-                    {canShare() ? (
+                    {!!navigator?.share ? (
                       <button
                         className="rounded-xl active:opacity-50 p-2"
                         onClick={async (event) => {
