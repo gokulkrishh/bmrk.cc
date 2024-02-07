@@ -126,9 +126,9 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                       {humanizeUrl(bookmark.url)}
                     </div>
                   </div>
-                  <CommandShortcut>
+                  <CommandShortcut className="flex items-center justify-center gap-0 -right-1 relative -top-2">
                     <button
-                      className="rounded-xl active:opacity-50 p-3 relative -top-2 -right-5"
+                      className="rounded-xl active:opacity-50 p-2"
                       onClick={async (event) => {
                         event.stopPropagation();
                         setCopiedId(bookmark.id);
@@ -145,7 +145,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                       )}
                     </button>
                     <button
-                      className="rounded-xl active:opacity-50 p-3 relative -top-2 -right-2"
+                      className="rounded-xl active:opacity-50 p-2"
                       onClick={async (event) => {
                         event.stopPropagation();
                         await share(bookmark, url);
