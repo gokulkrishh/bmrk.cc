@@ -87,6 +87,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * Feel free to modify this pattern to include more paths.
      */
-    '/((?!_next/static|_next/image|favicon.ico|manifest.webmanifest|icons|images|api/).*)',
+    '/((?!_next/static|_next/image|favicon.ico|manifest.webmanifest|icons|images|videos|api/).*)',
   ],
 };

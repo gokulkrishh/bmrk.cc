@@ -3,15 +3,13 @@ import Link from 'next/link';
 
 import { urls } from 'config';
 
-import Card from 'components/card';
+import Features from 'components/home/features';
 import Signup from 'components/home/signup';
 import { Tweet } from 'components/tweet/tweets';
 
-import { BookmarkModified, Tag } from 'types/data';
-
 export default async function Page() {
   return (
-    <div className="flex flex-col mx-auto relative homepage">
+    <div className="flex flex-col mx-auto homepage">
       <main className="flex after:bg-grid sm:max-w-4xl py-5 mx-auto flex-col w-full h-fit px-4">
         <header className="flex justify-between items-center">
           <h1 className="font-medium tracking-tight text-lg flex items-center">
@@ -50,116 +48,10 @@ export default async function Page() {
             Effortlessly Bookmark, Categorize, and Favorite your web sites.
           </p>
           <Signup />
-          {/* <Image
-            src="/images/open-graph.jpg"
-            width={500}
-            height={630}
-            alt="Bookmark it"
-            className="rounded-lg mt-20"
-            priority
-            style={{ maxWidth: '100%', objectFit: 'cover' }}
-          /> */}
         </div>
-        <div className="mx-auto my-10 flex flex-col items-center">
-          <h2 className="mt-4 text-3xl mb-1 font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
-            Available{' '}
-            <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent mt-1 inline-flex">
-              Features
-            </span>
-          </h2>
-          <p className="mt-1 mb-10 text-muted-foreground leading-7 sm:text-lg w-[80%] text-center">
-            Here are the list of top features that you can use to manage your
-            bookmarks.
-          </p>
-          <div className="grid w-full mt-6 grid-cols-1 sm:grid-cols-3 gap-4 h-full ">
-            {[
-              {
-                title: 'Timeline based Bookmarks',
-                Component: (
-                  <Card
-                    data={
-                      {
-                        id: 569,
-                        title:
-                          'Fast, composable, unstyled command menu for React — ⌘K',
-                        url: 'https://cmdk.paco.me/',
-                        description:
-                          'Fast, composable, unstyled command menu for React',
-                        metadata: {
-                          ogImageUrl: 'https://cmdk.paco.me/og.png',
-                          twitterImageUrl: 'https://cmdk.paco.me/og.png',
-                        },
-                        user_id: '123',
-                        is_fav: true,
-                        created_at: '2024-02-02T09:09:04.700613+00:00',
-                        updated_at: '2024-02-02T09:09:04.700613+00:00',
-                        bookmarks_tags: [
-                          { tags: { name: 'react', id: 123123123131231 } },
-                          {
-                            tags: { name: 'nextjs', id: 12312312312312321123 },
-                          },
-                        ],
-                      } as BookmarkModified
-                    }
-                    tags={
-                      [
-                        {
-                          id: 12312312312312321,
-                          name: 'react',
-                          created_at: '2024-02-02T09:09:04.700613+00:00',
-                          updated_at: '2024-02-02T09:09:04.700613+00:00',
-                        },
-                        {
-                          id: 12312312312312323,
-                          name: 'OSS',
-                          created_at: '2024-02-02T09:09:04.700613+00:00',
-                          updated_at: '2024-02-02T09:09:04.700613+00:00',
-                        },
-                        {
-                          id: 12312312312312321123,
-                          name: 'nextjs',
-                          created_at: '2024-02-02T09:09:04.700613+00:00',
-                          updated_at: '2024-02-02T09:09:04.700613+00:00',
-                        },
-                      ] as Tag[]
-                    }
-                  />
-                ),
-              },
-              {
-                title: 'Seamless Integration',
-                description: `Import your existing bookmarks from any web browser and start organizing without skipping a beat. Ready to move or backup your collection? Export your bookmarks effortlessly in both CSV and browser-supported HTML for easy sharing and transferring.`,
-              },
-              {
-                title: 'Personalize Your Collection',
-                description: `Make your bookmark collection truly yours. Effortlessly 'Favorite' bookmarks for quick access to your most-loved content. Categorize your finds with custom tags, turning a cluttered list into a well-organized library tailored to your likings.`,
-              },
-              {
-                title: 'Find Anything in Seconds',
-                description: `Say goodbye to endless scrolling. Powerful search feature lets you open any bookmark instantly. Whether you're looking for a specific url, website title, or custom description, finding it is as simple as typing in a keyword.`,
-              },
-              {
-                title: 'Customizable Viewing Experience',
-                description: `Embraces your comfort with both dark and light mode support. Choose the theme that best suits your viewing preference, ensuring an eye-friendly browsing experience at any time of the day.`,
-              },
-            ].map((_, i) => (
-              <div
-                key={i}
-                className={`row-span-1 h-full bg-secondary/30 rounded-xl border p-4 ${
-                  i === 0 ? 'sm:col-span-2' : ''
-                }`}
-              >
-                <h3 className="text-primary font-semibold text-xl mb-2">
-                  {_.title}
-                </h3>
-                <p className="text-balance text-muted-foreground">
-                  {_.description}
-                </p>
-                {_.Component}
-              </div>
-            ))}
-          </div>
-        </div>
+
+        <Features />
+
         <div className="mx-auto w-full h-full relative my-10 flex flex-col items-center">
           <h2 className="mt-4 mb-1 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
             <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent mt-1 inline-flex">
@@ -167,7 +59,7 @@ export default async function Page() {
             </span>{' '}
             Are Saying
           </h2>
-          <p className="mt-1 mb-10 text-muted-foreground leading-7 sm:text-lg w-[80%] text-center">
+          <p className="mt-1 mb-0 text-muted-foreground leading-7 sm:text-lg w-[80%] text-center">
             Don{"'"}t just take our word for it. Here{"'"}s what people are
             saying about Bookmark It on Twitter.
           </p>
