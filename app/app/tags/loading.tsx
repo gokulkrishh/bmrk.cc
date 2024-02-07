@@ -6,7 +6,7 @@ export default function Loading() {
   return (
     <>
       <Header headerText="Tags" />
-      <div className="flex gap-x-3 gap-y-2 items-end px-4 border-r flex-wrap py-3">
+      <div className="flex gap-x-3 gap-y-2 items-end px-4 sm:border-r flex-wrap py-3">
         <Skeleton className="w-20 h-7 bg-accent rounded-full" />
         <Skeleton className="w-20 h-7 bg-accent rounded-full" />
         <Skeleton className="w-20 h-7 bg-accent rounded-full" />

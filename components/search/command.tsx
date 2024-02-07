@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { StarFilledIcon } from '@radix-ui/react-icons';
 import { Command as CommandPrimitive } from 'cmdk';
 import humanizeUrl from 'humanize-url';
-import { CopyIcon } from 'lucide-react';
+import { Check, CopyIcon } from 'lucide-react';
 
 import { getBookmarks } from 'app/actions/bookmarks';
 
@@ -34,6 +34,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
   const [result, setResult] = useState<Bookmark[]>([]);
   const [search, setSearch] = useState('');
+  const [copiedId, setCopiedId] = useState<Bookmark['id'] | null>(null);
 
   const getAllBookmarks = useCallback(async () => {
     try {
@@ -115,12 +116,20 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                   <CommandShortcut>
                     <button
                       className="rounded-xl active:opacity-50 p-3 relative -top-2 -right-2"
-                      onClick={(event) => {
+                      onClick={async (event) => {
                         event.stopPropagation();
-                        navigator.clipboard.writeText(url.href);
+                        setCopiedId(bookmark.id);
+                        await navigator.clipboard.writeText(url.href);
+                        setTimeout(() => {
+                          setCopiedId(null);
+                        }, 1000);
                       }}
                     >
-                      <CopyIcon className="!w-4 !h-4 text-black dark:text-white" />
+                      {copiedId === bookmark.id ? (
+                        <Check className="!w-4 !h-4 text-green-600 dark:text-green-600" />
+                      ) : (
+                        <CopyIcon className="!w-4 !h-4 text-black dark:text-white" />
+                      )}
                     </button>
                   </CommandShortcut>
                 </div>

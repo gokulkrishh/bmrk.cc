@@ -77,7 +77,8 @@ export default function CardMenu({ data }: CardMenuProps) {
   const share = async () => {
     try {
       const shareData = {
-        text: data.title ?? data.description ?? '',
+        text: data.description ?? '',
+        title: data.title ?? '',
         url: siteUrl.href,
       };
       if (navigator.share && navigator.canShare(shareData)) {
@@ -123,6 +124,13 @@ export default function CardMenu({ data }: CardMenuProps) {
             <UpdateIcon className="h-4 w-4  mr-2.5" /> Refresh
           </DropdownMenuItem>
           <DropdownMenuItem
+            onClick={async () => {
+              await share();
+            }}
+          >
+            <Share className="h-4 w-4  mr-2.5" /> Share
+          </DropdownMenuItem>
+          <DropdownMenuItem
             disabled={loading}
             onClick={async () => {
               await onDelete();
@@ -130,14 +138,6 @@ export default function CardMenu({ data }: CardMenuProps) {
             className="!text-red-600 focus:bg-red-100 active:bg-red-100 dark:focus:bg-red-200 dark:active:bg-red-200"
           >
             <Trash2Icon className="h-4 w-4  mr-2.5" /> Delete
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            className="max-sm:flex hidden"
-            onClick={async () => {
-              await share();
-            }}
-          >
-            <Share className="h-4 w-4  mr-2.5" /> Share
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
