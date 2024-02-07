@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { StarFilledIcon } from '@radix-ui/react-icons';
 import { Command as CommandPrimitive } from 'cmdk';
 import humanizeUrl from 'humanize-url';
-import { Check, CopyIcon } from 'lucide-react';
+import { Check, CopyIcon, ShareIcon } from 'lucide-react';
 
 import { getBookmarks } from 'app/actions/bookmarks';
 
@@ -71,6 +71,19 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
     window.open(url, '_blank');
   };
 
+  const share = async (bookmark: Bookmark, url: URL) => {
+    try {
+      const shareData = {
+        text: bookmark.description ?? '',
+        title: bookmark.title ?? '',
+        url: url.href,
+      };
+      await navigator?.share(shareData);
+    } catch (error) {
+      console.log('Sharing failed!', error);
+    }
+  };
+
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
       <CommandInput
@@ -115,7 +128,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                   </div>
                   <CommandShortcut>
                     <button
-                      className="rounded-xl active:opacity-50 p-3 relative -top-2 -right-2"
+                      className="rounded-xl active:opacity-50 p-3 relative -top-2 -right-5"
                       onClick={async (event) => {
                         event.stopPropagation();
                         setCopiedId(bookmark.id);
@@ -130,6 +143,15 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                       ) : (
                         <CopyIcon className="!w-4 !h-4 text-black dark:text-white" />
                       )}
+                    </button>
+                    <button
+                      className="rounded-xl active:opacity-50 p-3 relative -top-2 -right-2"
+                      onClick={async (event) => {
+                        event.stopPropagation();
+                        await share(bookmark, url);
+                      }}
+                    >
+                      <ShareIcon className="!w-4 !h-4 text-black dark:text-white" />
                     </button>
                   </CommandShortcut>
                 </div>

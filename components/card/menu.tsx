@@ -81,11 +81,7 @@ export default function CardMenu({ data }: CardMenuProps) {
         title: data.title ?? '',
         url: siteUrl.href,
       };
-      if (navigator.share && navigator.canShare(shareData)) {
-        await navigator.share(shareData);
-      } else {
-        throw new Error('Share API not supported.');
-      }
+      await navigator?.share(shareData);
     } catch (error) {
       console.log('Sharing failed!', error);
     }
