@@ -119,7 +119,7 @@ export default function CardMenu({ data }: CardMenuProps) {
           >
             <UpdateIcon className="h-4 w-4  mr-2.5" /> Refresh
           </DropdownMenuItem>
-          {!!navigator?.share ? (
+          {typeof window !== 'undefined' && navigator && !!navigator?.share ? (
             <DropdownMenuItem
               onClick={async () => {
                 await share();

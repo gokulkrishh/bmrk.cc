@@ -143,7 +143,9 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                         <CopyIcon className="!w-4 !h-4 text-black dark:text-white" />
                       )}
                     </button>
-                    {!!navigator?.share ? (
+                    {typeof window !== 'undefined' &&
+                    navigator &&
+                    !!navigator?.share ? (
                       <button
                         className="rounded-xl active:opacity-50 p-2"
                         onClick={async (event) => {
