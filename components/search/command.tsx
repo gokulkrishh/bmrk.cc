@@ -1,9 +1,8 @@
+'use client';
+
 import { memo, useCallback, useEffect, useState } from 'react';
 
-import Link from 'next/link';
-
 import { StarFilledIcon } from '@radix-ui/react-icons';
-import { Command as CommandPrimitive } from 'cmdk';
 import humanizeUrl from 'humanize-url';
 import { Check, CopyIcon, ShareIcon } from 'lucide-react';
 
