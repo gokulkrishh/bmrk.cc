@@ -73,6 +73,7 @@ export default function CardMenu({ data }: CardMenuProps) {
 
   const siteUrl = new URL(url);
   siteUrl.searchParams.append('utm_source', 'bmrk.cc');
+  const canShare = () => typeof navigator.share === 'function';
 
   const share = async () => {
     try {
@@ -119,13 +120,15 @@ export default function CardMenu({ data }: CardMenuProps) {
           >
             <UpdateIcon className="h-4 w-4  mr-2.5" /> Refresh
           </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={async () => {
-              await share();
-            }}
-          >
-            <Share className="h-4 w-4  mr-2.5" /> Share
-          </DropdownMenuItem>
+          {canShare() ? (
+            <DropdownMenuItem
+              onClick={async () => {
+                await share();
+              }}
+            >
+              <Share className="h-4 w-4  mr-2.5" /> Share
+            </DropdownMenuItem>
+          ) : null}
           <DropdownMenuItem
             disabled={loading}
             onClick={async () => {
