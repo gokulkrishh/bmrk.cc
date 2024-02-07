@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useOptimistic, useState } from 'react';
 
 import { CheckIcon } from '@radix-ui/react-icons';
 import { toast } from 'sonner';
@@ -27,6 +27,12 @@ type TagListProps = {
 export default function TagList({ data, tags }: TagListProps) {
   const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(false);
+  const [optimisticData, setOptimisticData] =
+    useOptimistic<BookmarkModified>(data);
+
+  useEffect(() => {
+    setOptimisticData(data);
+  }, [data, setOptimisticData]);
 
   const onCreate = async () => {
     const payload = {
@@ -35,22 +41,54 @@ export default function TagList({ data, tags }: TagListProps) {
 
     try {
       setLoading(true);
+      setOptimisticData(
+        (prev) =>
+          ({
+            ...prev,
+            bookmarks_tags: [...prev.bookmarks_tags, { tags: { ...payload } }],
+          }) as BookmarkModified,
+      );
       await createTag(data.id, payload);
       toast.success('Tag is added to bookmark.');
       setSearchText('');
     } catch (error) {
+      setOptimisticData(
+        (prev) =>
+          ({
+            ...prev,
+            bookmarks_tags: prev.bookmarks_tags.filter(
+              ({ tags: { name } }) => name !== payload.name,
+            ),
+          }) as BookmarkModified,
+      );
       toast.error('Unable to create tag. Try again.');
     } finally {
       setLoading(false);
     }
   };
 
-  const onUpdate = async (id: Tag['id'], isChecked: boolean) => {
+  const onUpdate = async (tag: Tag, isChecked: boolean) => {
     try {
       setLoading(true);
-      await addTagToBookmark(data.id, id, isChecked);
+      setOptimisticData(
+        (prev) =>
+          ({
+            ...prev,
+            bookmarks_tags: [...prev.bookmarks_tags, { tags: { ...tag } }],
+          }) as BookmarkModified,
+      );
+      await addTagToBookmark(data.id, tag.id, isChecked);
     } catch {
-      toast.error(`Unable to add/remove tag. Try again.`);
+      toast.error(`Unable to add/remove a tag. Try again.`);
+      setOptimisticData(
+        (prev) =>
+          ({
+            ...prev,
+            bookmarks_tags: prev.bookmarks_tags.filter(
+              ({ tags: { id } }) => id !== tag.id,
+            ),
+          }) as BookmarkModified,
+      );
     } finally {
       setLoading(false);
     }
@@ -72,7 +110,7 @@ export default function TagList({ data, tags }: TagListProps) {
               .sort((a: any, b: any) => a.name.localeCompare(b.name))
               .map((tag: Tag) => {
                 const isChecked = Boolean(
-                  data?.bookmarks_tags?.find(
+                  optimisticData?.bookmarks_tags?.find(
                     ({ tags: { id } }) => id == tag.id,
                   ),
                 );
@@ -81,7 +119,7 @@ export default function TagList({ data, tags }: TagListProps) {
                     disabled={loading}
                     key={tag.id}
                     onSelect={async () => {
-                      await onUpdate(tag.id, isChecked);
+                      await onUpdate(tag, isChecked);
                     }}
                   >
                     <div
