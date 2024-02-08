@@ -57,32 +57,114 @@ export const MoreIcon = ({ className }: { className: string }) => (
 export const Logo = ({ className }: { className?: string }) => (
   <svg
     className={className}
-    version="1.0"
     xmlns="http://www.w3.org/2000/svg"
-    width="50"
-    height="50"
-    viewBox="0 0 512.000000 512.000000"
-    preserveAspectRatio="xMidYMid meet"
+    width="512"
+    height="512"
+    fill="none"
+    viewBox="0 0 512 512"
   >
-    <g
-      transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-      fill="#CB0001"
-      stroke="none"
-    >
+    <g clipPath="url(#clip0_6_3)">
+      <g filter="url(#filter0_dddddd_6_3)">
+        <circle cx="256" cy="256" r="212" fill="#CB0001"></circle>
+      </g>
       <path
-        d="M2395 4674 c-16 -2 -72 -9 -124 -15 -201 -23 -436 -95 -646 -198
--552 -270 -971 -786 -1119 -1380 -46 -184 -60 -302 -61 -516 0 -217 10 -309
-55 -500 178 -756 784 -1371 1539 -1559 978 -245 1987 225 2426 1129 99 203
-154 377 191 610 23 137 25 464 5 605 -99 700 -542 1308 -1176 1615 -292 142
--549 203 -880 210 -99 2 -193 2 -210 -1z m312 -934 c306 -40 513 -268 513
--565 0 -96 -18 -172 -61 -257 -36 -70 -121 -165 -193 -214 l-49 -33 54 -24
-c118 -53 230 -160 290 -279 162 -321 -21 -716 -381 -825 -48 -14 -133 -17
--647 -20 l-593 -4 0 1115 0 1116 498 0 c273 0 529 -5 569 -10z m1166 -1596
-c60 -20 139 -92 168 -152 17 -35 23 -65 24 -117 0 -117 -58 -209 -168 -267
--65 -35 -173 -32 -250 6 -64 31 -126 100 -148 163 -18 52 -15 160 5 206 32 72
-113 145 186 168 43 13 135 10 183 -7z"
-      />
+        fill="#fff"
+        d="M257.205 137.28c14.08 0 25.28 2.133 33.6 6.4 10.027 5.12 17.707 12.16 23.04 21.12 5.547 8.96 8.32 18.987 8.32 30.08 0 10.453-2.773 20.16-8.32 29.12-5.547 8.747-13.12 15.68-22.72 20.8 11.52 4.053 21.227 11.093 29.12 21.12 7.893 10.027 11.84 21.333 11.84 33.92 0 11.093-2.88 21.333-8.64 30.72-5.547 9.173-13.013 16.427-22.4 21.76-4.693 2.56-9.92 4.48-15.68 5.76-5.76 1.28-13.44 1.92-23.04 1.92h-98.56V137.28h93.44zM348.405 324.68c0-7.893 2.773-14.613 8.32-20.16 5.76-5.76 12.693-8.64 20.8-8.64 8.107 0 14.933 2.88 20.48 8.64 5.76 5.547 8.64 12.267 8.64 20.16 0 7.893-2.88 14.72-8.64 20.48-5.547 5.76-12.373 8.64-20.48 8.64-7.893 0-14.72-2.88-20.48-8.64-5.76-5.76-8.64-12.587-8.64-20.48z"
+      ></path>
     </g>
+    <defs>
+      <filter
+        id="filter0_dddddd_6_3"
+        width="584"
+        height="584"
+        x="-36"
+        y="-40"
+        colorInterpolationFilters="sRGB"
+        filterUnits="userSpaceOnUse"
+      >
+        <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
+        <feColorMatrix
+          in="SourceAlpha"
+          result="hardAlpha"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+        ></feColorMatrix>
+        <feOffset dy="-0.111"></feOffset>
+        <feGaussianBlur stdDeviation="1.107"></feGaussianBlur>
+        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0"></feColorMatrix>
+        <feBlend
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_6_3"
+        ></feBlend>
+        <feColorMatrix
+          in="SourceAlpha"
+          result="hardAlpha"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+        ></feColorMatrix>
+        <feOffset dy="-0.266"></feOffset>
+        <feGaussianBlur stdDeviation="2.66"></feGaussianBlur>
+        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0503198 0"></feColorMatrix>
+        <feBlend
+          in2="effect1_dropShadow_6_3"
+          result="effect2_dropShadow_6_3"
+        ></feBlend>
+        <feColorMatrix
+          in="SourceAlpha"
+          result="hardAlpha"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+        ></feColorMatrix>
+        <feOffset dy="-0.501"></feOffset>
+        <feGaussianBlur stdDeviation="5.009"></feGaussianBlur>
+        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0417275 0"></feColorMatrix>
+        <feBlend
+          in2="effect2_dropShadow_6_3"
+          result="effect3_dropShadow_6_3"
+        ></feBlend>
+        <feColorMatrix
+          in="SourceAlpha"
+          result="hardAlpha"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+        ></feColorMatrix>
+        <feOffset dy="-0.893"></feOffset>
+        <feGaussianBlur stdDeviation="8.935"></feGaussianBlur>
+        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.035 0"></feColorMatrix>
+        <feBlend
+          in2="effect3_dropShadow_6_3"
+          result="effect4_dropShadow_6_3"
+        ></feBlend>
+        <feColorMatrix
+          in="SourceAlpha"
+          result="hardAlpha"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+        ></feColorMatrix>
+        <feOffset dy="-1.671"></feOffset>
+        <feGaussianBlur stdDeviation="16.711"></feGaussianBlur>
+        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0282725 0"></feColorMatrix>
+        <feBlend
+          in2="effect4_dropShadow_6_3"
+          result="effect5_dropShadow_6_3"
+        ></feBlend>
+        <feColorMatrix
+          in="SourceAlpha"
+          result="hardAlpha"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+        ></feColorMatrix>
+        <feOffset dy="-4"></feOffset>
+        <feGaussianBlur stdDeviation="40"></feGaussianBlur>
+        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0196802 0"></feColorMatrix>
+        <feBlend
+          in2="effect5_dropShadow_6_3"
+          result="effect6_dropShadow_6_3"
+        ></feBlend>
+        <feBlend
+          in="SourceGraphic"
+          in2="effect6_dropShadow_6_3"
+          result="shape"
+        ></feBlend>
+      </filter>
+      <clipPath id="clip0_6_3">
+        <path fill="#fff" d="M0 0H512V512H0z"></path>
+      </clipPath>
+    </defs>
   </svg>
 );
 

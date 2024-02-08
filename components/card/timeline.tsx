@@ -2,7 +2,7 @@ import { cn } from 'lib/utils';
 
 import { BookmarkModified } from 'types/data';
 
-import CardAvatar from './avatar';
+import CardFavicon from './avatar';
 
 type CardTimelineProps = {
   url: BookmarkModified['url'];
@@ -17,11 +17,7 @@ export default function CardTimeline({ url, title }: CardTimelineProps) {
           `w-4 h-4 shrink-0 relative left-[-8.5px] top-[12px] rounded-full bg-blue-transparent text-white inline-flex items-center justify-center`,
         )}
       >
-        <CardAvatar
-          className="!w-4 !h-4 rounded-full bg-background"
-          url={url}
-          title={title ?? ''}
-        />
+        <CardFavicon className="bg-background" url={url} title={title ?? ''} />
       </span>
     </div>
   );

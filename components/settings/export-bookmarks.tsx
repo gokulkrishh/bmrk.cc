@@ -69,7 +69,7 @@ export default function ExportBookmarks() {
           </div>
         </div>
       </div>
-      <div className="flex w-full justify-end border-t bg-background border-border rounded-bl-lg rounded-br-lg p-1.5 px-3.5">
+      <div className="flex w-full justify-end border-t bg-background border-border rounded-bl-lg rounded-br-lg p-2 px-3.5">
         <DropdownMenu>
           <DropdownMenuTrigger
             disabled={loadingHTML || loadingCSV}

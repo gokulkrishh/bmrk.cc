@@ -6,6 +6,8 @@ import Loader from 'components/loader';
 import { Dialog, DialogContent, DialogHeader } from 'components/ui/dialog';
 import { Input } from 'components/ui/input';
 
+import { cn } from 'lib/utils';
+
 type AddBookmarkProps = {
   open: boolean;
   loading: boolean;
@@ -28,7 +30,7 @@ export default function DeleteAccountModal({
         <DialogHeader className="font-medium !text-left">
           Delete Your Account
         </DialogHeader>
-        <DialogDescription className="-mt-3 text-sm">
+        <DialogDescription className="-mt-2.5 text-sm text-muted-foreground">
           Type this account email to delete your account and its data.
         </DialogDescription>
         <form
@@ -41,20 +43,31 @@ export default function DeleteAccountModal({
           }}
         >
           <Input
-            className="-mt-1"
+            autoComplete="off"
+            id="name"
             type="email"
             placeholder="Email"
-            value={email}
-            inputMode="email"
             onChange={(event: any) => setEmail(event.target.value)}
+            inputMode="email"
+            value={email}
+            required
+            data-1p-ignore
           />
-          <button
-            type="submit"
-            disabled={email !== emailId || loading}
-            className="items-center mt-3 disabled:cursor-not-allowed rounded-lg focus:outline-0 disabled:bg-red-700/60 focus:bg-red-700/80 active:bg-red-700/80 border-0 text-sm flex w-full justify-center py-2.5 px-4 text-white bg-red-700 hover:bg-red-700/80"
-          >
-            {loading ? <Loader /> : 'Confirm Delete'}
-          </button>
+
+          <div className="flex justify-end mt-4">
+            <button
+              type="submit"
+              disabled={email !== emailId || loading}
+              className={cn(
+                'items-center w-[85px] disabled:cursor-not-allowed rounded-full focus:outline-0 disabled:bg-red-700/60 focus:bg-red-700/80 active:bg-red-700/80 border-0 text-sm flex justify-center py-2.5 px-4 text-white bg-red-700 hover:bg-red-700/80',
+                {
+                  '!opacity-50 cursor-not-allowed': loading,
+                },
+              )}
+            >
+              {loading ? <Loader /> : 'Confirm'}
+            </button>
+          </div>
         </form>
       </DialogContent>
     </Dialog>

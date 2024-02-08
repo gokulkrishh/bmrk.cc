@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 
 import { updateBookmark } from 'app/actions/bookmarks';
 
-import CardAvatar from 'components/card/avatar';
+import CardFavicon from 'components/card/avatar';
 import { useMediaQuery } from 'components/hooks/useMediaQuery';
 import Loader from 'components/loader';
 import { Dialog, DialogContent, DialogTitle } from 'components/ui/dialog';
@@ -91,8 +91,8 @@ export default function EditBookmark({
       <div className="flex flex-col gap-1">
         <Label htmlFor="Url" className="flex items-center gap-2">
           Url{' '}
-          <CardAvatar
-            className="!w-4 !h-4 rounded-full bg-background"
+          <CardFavicon
+            className="bg-background"
             url={state.url}
             title={state.url ?? ''}
           />
@@ -136,7 +136,7 @@ export default function EditBookmark({
             loading || !isUrl(state.url) || !state.title?.length || !isEdited()
           }
           className={cn(
-            `rounded-full h-[40px] transition-colors font-medium items-center bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-700 disabled:opacity-40 disabled:active:bg-blue-600 disabled:hover:bg-blue-600 disabled:focus:bg-blue-600 border-0 flex justify-center py-2 px-4 text-white`,
+            `rounded-full w-[88px] h-[40px] transition-colors font-medium items-center bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-700 disabled:opacity-40 disabled:active:bg-blue-600 disabled:hover:bg-blue-600 disabled:focus:bg-blue-600 border-0 flex justify-center py-2 px-4 text-white`,
             {
               '!opacity-50 cursor-not-allowed': loading,
             },

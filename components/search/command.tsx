@@ -8,7 +8,7 @@ import { Check, CopyIcon, ShareIcon } from 'lucide-react';
 
 import { getBookmarks } from 'app/actions/bookmarks';
 
-import CardAvatar from 'components/card/avatar';
+import CardFavicon from 'components/card/avatar';
 import Loader from 'components/loader';
 import {
   CommandDialog,
@@ -111,8 +111,8 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                 key={bookmark.id}
               >
                 <div className="flex gap-2 items-start text-pimary-foreground w-full">
-                  <CardAvatar
-                    className="!w-4 !h-4 rounded-full bg-background"
+                  <CardFavicon
+                    className="bg-background"
                     url={url.href}
                     title={bookmark.title ?? ''}
                   />
