@@ -60,7 +60,7 @@ export default function Features() {
   return (
     <div className="mx-auto my-10 mt-32 flex flex-col items-center">
       <h2 className="mt-4 mb-1 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
-        <span className="bg-gradient-to-r from-pink-400 to-pink-500 bg-clip-text text-transparent mt-1 inline-flex">
+        <span className="bg-gradient-to-r from-neutral-950 to-neutral-950 bg-clip-text text-transparent mt-1 inline-flex">
           Organize, Discover, and Personalize.
         </span>
       </h2>

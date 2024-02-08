@@ -15,10 +15,7 @@ export async function GET(request: NextRequest) {
       return new Response(`The URL ${url} is missing.`, { status: 400 });
     }
     try {
-      const browser = await puppeteer.launch({
-        args: ['--no-sandbox'],
-        headless: true,
-      });
+      const browser = await puppeteer.launch({ headless: true });
       const page = await browser.newPage();
       await page.goto(url, { waitUntil: 'domcontentloaded' });
       const metaTags = await page.evaluate((): MetaTags => {
@@ -55,8 +52,8 @@ export async function GET(request: NextRequest) {
         };
         return tags;
       });
-      page.close();
-      browser.close();
+      await page.close();
+      await browser.close();
       return new Response(JSON.stringify(metaTags), { status: 200 });
     } catch (error) {
       return new Response(JSON.stringify(error), { status: 500 });
