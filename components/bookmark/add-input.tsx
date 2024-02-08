@@ -7,7 +7,7 @@ import { isUrl } from 'check-valid-url';
 import { toast } from 'sonner';
 
 import { createBookmark } from 'app/actions/bookmarks';
-import { OgResponse, getOg } from 'app/actions/og';
+import { getOg } from 'app/actions/og';
 
 import Loader from 'components/loader';
 import UploadModal from 'components/modal/upload';
@@ -16,7 +16,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
 import { cn } from 'lib/utils';
 
-import { BookmarkInsertModified } from 'types/data';
+import { BookmarkInsertModified, MetaTags } from 'types/data';
 
 type AddBookmarkInputProps = {
   className?: string;
@@ -38,14 +38,14 @@ export default function AddBookmarkInput({
   const onSubmit = async (inputUrl: string) => {
     setLoading(true);
     try {
-      const ogData: OgResponse = await getOg(inputUrl);
+      const ogData: MetaTags = await getOg(inputUrl);
       const payload = {
         url: inputUrl,
         description: ogData.description?.trim(),
         title: ogData.title?.trim(),
         metadata: {
-          ogImageUrl: ogData['og:image'] ?? '',
-          twitterImageUrl: ogData['twitter:image'] ?? '',
+          ogImage: ogData.ogImage,
+          twitterImage: ogData.twitterImage,
         },
       } as BookmarkInsertModified;
       await createBookmark(payload);

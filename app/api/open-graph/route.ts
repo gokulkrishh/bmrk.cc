@@ -1,8 +1,10 @@
 import { NextRequest } from 'next/server';
 
-import { parse } from 'node-html-parser';
+import puppeteer from 'puppeteer';
 
 import { checkAuth } from 'lib/auth';
+
+import { MetaTags } from 'types/data';
 
 export async function GET(request: NextRequest) {
   return await checkAuth(async () => {
@@ -13,52 +15,51 @@ export async function GET(request: NextRequest) {
       return new Response(`The URL ${url} is missing.`, { status: 400 });
     }
     try {
-      const siteUrl = new URL(url);
-      const response = await fetch(siteUrl);
-      const html = await response.text();
-      const metatags: { [key: string]: string } = extractMetaTags(html);
-      return new Response(JSON.stringify(metatags), { status: 200 });
+      const browser = await puppeteer.launch({
+        args: ['--no-sandbox'],
+        headless: true,
+      });
+      const page = await browser.newPage();
+      await page.goto(url, { waitUntil: 'domcontentloaded' });
+      const metaTags = await page.evaluate((): MetaTags => {
+        const tags: MetaTags = {
+          title: document.querySelector('title')?.innerText || '',
+          description:
+            document
+              .querySelector('meta[name="description"]')
+              ?.getAttribute('content') || '',
+          ogTitle:
+            document
+              .querySelector('meta[property="og:title"]')
+              ?.getAttribute('content') || '',
+          ogDescription:
+            document
+              .querySelector('meta[property="og:description"]')
+              ?.getAttribute('content') || '',
+          ogImage:
+            document
+              .querySelector('meta[property="og:image"]')
+              ?.getAttribute('content') || '',
+          twitterTitle:
+            document
+              .querySelector('meta[name="twitter:title"]')
+              ?.getAttribute('content') || '',
+          twitterDescription:
+            document
+              .querySelector('meta[name="twitter:description"]')
+              ?.getAttribute('content') || '',
+          twitterImage:
+            document
+              .querySelector('meta[name="twitter:image"]')
+              ?.getAttribute('content') || '',
+        };
+        return tags;
+      });
+      page.close();
+      browser.close();
+      return new Response(JSON.stringify(metaTags), { status: 200 });
     } catch (error) {
       return new Response(JSON.stringify(error), { status: 500 });
     }
   });
-}
-
-function extractMetaTags(html: string) {
-  const root = parse(html);
-  const metaTags: { [key: string]: string } = {};
-
-  const allowedProperties = ['og:', 'twitter:'];
-  const allowedNames = [
-    'description',
-    'twitter:image',
-    'twitter:card',
-    'twitter:title',
-    'twitter:description',
-  ];
-
-  // Extract all meta tags
-  root.querySelectorAll('meta').forEach((meta) => {
-    const property = meta.getAttribute('property');
-    const name = meta.getAttribute('name');
-    const content = meta.getAttribute('content');
-
-    if (
-      property &&
-      content &&
-      allowedProperties.some((allowed) => property.startsWith(allowed))
-    ) {
-      metaTags[property] = content;
-    } else if (name && content && allowedNames.includes(name)) {
-      metaTags[name] = content;
-    }
-  });
-
-  // Extract title tag
-  const titleTag = root.querySelector('title');
-  if (titleTag) {
-    metaTags['title'] = titleTag.text;
-  }
-
-  return metaTags;
 }

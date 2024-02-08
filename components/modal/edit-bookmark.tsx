@@ -6,7 +6,6 @@ import { isUrl } from 'check-valid-url';
 import { toast } from 'sonner';
 
 import { updateBookmark } from 'app/actions/bookmarks';
-import { OgResponse, getOg } from 'app/actions/og';
 
 import CardAvatar from 'components/card/avatar';
 import { useMediaQuery } from 'components/hooks/useMediaQuery';

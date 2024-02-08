@@ -1,13 +1,4 @@
-export type OgResponse = {
-  title: string;
-  description: string;
-  'og:image'?: string;
-  'og:description'?: string;
-  'og:title'?: string;
-  'twitter:image'?: string;
-  'twitter:description'?: string;
-  'twitter:title'?: string;
-};
+import { MetaTags } from 'types/data';
 
 export async function getOg(url: string) {
   const data = await fetch(`/api/open-graph?url=${encodeURIComponent(url)}`, {
@@ -17,5 +8,5 @@ export async function getOg(url: string) {
   if (!data.ok) {
     throw new Error('Failed to fetch data');
   }
-  return await data.json();
+  return (await data.json()) as MetaTags;
 }

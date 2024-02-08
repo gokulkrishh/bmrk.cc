@@ -5,9 +5,14 @@ import { BookmarkModified } from 'types/data';
 
 const blurDataURL = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWGhoYrwEMwAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=`;
 
+function isAbsolutePath(path: string) {
+  // write a regex to check if the path is an absolute URL
+  const regex = /^(http|https):\/\//;
+  return regex.test(path);
+}
+
 export default function CardMedia({ data }: { data: BookmarkModified }) {
-  const imageUrl =
-    data?.metadata?.twitterImageUrl || data?.metadata?.ogImageUrl;
+  const imageUrl = data.metadata.ogImage ?? data.metadata?.twitterImage;
 
   if (!imageUrl?.length) {
     return null;
@@ -26,7 +31,7 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
     >
       <Image
         className="h-full rounded-2xl border border-border"
-        src={imageUrl.startsWith('/') ? `${data.url}/${imageUrl}` : imageUrl}
+        src={isAbsolutePath(imageUrl) ? imageUrl : `${data.url}/${imageUrl}`}
         alt={data.title ?? ''}
         width={350}
         height={180}

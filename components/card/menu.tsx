@@ -22,6 +22,7 @@ import {
   BookmarkInsertModified,
   BookmarkModified,
   BookmarkUpdate,
+  MetaTags,
 } from 'types/data';
 
 type CardMenuProps = {
@@ -36,19 +37,21 @@ export default function CardMenu({ data }: CardMenuProps) {
   const onRefresh = async () => {
     try {
       setLoading(true);
-      const ogData = await getOg(url);
+      const ogData: MetaTags = await getOg(url);
       const payload: BookmarkUpdate = {
         metadata: {
-          ogImageUrl: ogData['og:image'] ?? '',
-          twitterImageUrl: ogData['og:twitter'] ?? '',
+          ogImage: ogData.ogImage,
+          twitterImage: ogData.twitterImage,
         },
       };
 
       if (!payload.description) {
         payload.description =
-          ogData.description ?? ogData['og:description'] ?? '';
+          ogData.description ??
+          ogData.ogDescription ??
+          ogData.twitterDescription ??
+          '';
       }
-
       await refreshBookmark(id, payload);
       toast.success('Bookmark refreshed.');
     } catch {
