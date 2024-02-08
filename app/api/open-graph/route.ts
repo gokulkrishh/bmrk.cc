@@ -19,8 +19,6 @@ export async function GET(request: NextRequest) {
       const response = await fetch(siteUrl);
       const html = await response.text();
       const metatags: { [key: string]: string } = extractMetaTags(html);
-      console.log('metatags -->', metatags);
-
       return new Response(JSON.stringify(metatags), { status: 200 });
     } catch (error) {
       return new Response(JSON.stringify(error), { status: 500 });
