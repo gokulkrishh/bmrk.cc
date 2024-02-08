@@ -131,7 +131,7 @@ export default async function Page() {
       </main>
 
       <footer className="w-full mt-28 p-4 flex justify-between text-[13px] border-t text-primary">
-        <div className="w-full sm:max-w-4xl mx-auto flex justify-between items-center">
+        <div className="w-full sm:max-w-4xl px-2 mx-auto flex justify-between items-center">
           <div>&copy; {new Date().getFullYear()} Bookmark It. </div>
           <div className="flex items-center gap-4">
             <Link
