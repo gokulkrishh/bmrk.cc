@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 
-import puppeteer from 'puppeteer';
+import { parse } from 'node-html-parser';
 
 import { checkAuth } from 'lib/auth';
 
@@ -15,48 +15,69 @@ export async function GET(request: NextRequest) {
       return new Response(`The URL ${url} is missing.`, { status: 400 });
     }
     try {
-      const browser = await puppeteer.launch({ headless: true });
-      const page = await browser.newPage();
-      await page.goto(url, { waitUntil: 'domcontentloaded' });
-      const metaTags = await page.evaluate((): MetaTags => {
-        const tags: MetaTags = {
-          title: document.querySelector('title')?.innerText || '',
-          description:
-            document
-              .querySelector('meta[name="description"]')
-              ?.getAttribute('content') || '',
-          ogTitle:
-            document
-              .querySelector('meta[property="og:title"]')
-              ?.getAttribute('content') || '',
-          ogDescription:
-            document
-              .querySelector('meta[property="og:description"]')
-              ?.getAttribute('content') || '',
-          ogImage:
-            document
-              .querySelector('meta[property="og:image"]')
-              ?.getAttribute('content') || '',
-          twitterTitle:
-            document
-              .querySelector('meta[name="twitter:title"]')
-              ?.getAttribute('content') || '',
-          twitterDescription:
-            document
-              .querySelector('meta[name="twitter:description"]')
-              ?.getAttribute('content') || '',
-          twitterImage:
-            document
-              .querySelector('meta[name="twitter:image"]')
-              ?.getAttribute('content') || '',
-        };
-        return tags;
-      });
-      await page.close();
-      await browser.close();
-      return new Response(JSON.stringify(metaTags), { status: 200 });
+      const siteUrl = new URL(url);
+      const response = await fetch(siteUrl);
+      const html = await response.text();
+      const metatags: { [key: string]: string } = extractMetaTags(html);
+      console.log('metatags -->', metatags);
+
+      return new Response(JSON.stringify(metatags), { status: 200 });
     } catch (error) {
       return new Response(JSON.stringify(error), { status: 500 });
     }
   });
+}
+
+function extractMetaTags(html: string) {
+  const root = parse(html);
+  const metaTags: { [key: string]: string } = {};
+
+  const allowedProperties = ['og:', 'twitter:'];
+  const allowedNames = ['title', 'description', 'og:image', 'twitter:image'];
+
+  const allowedNamesKeys = {
+    title: 'title',
+    description: 'description',
+    'og:image': 'ogImage',
+    'og:description': 'ogDescription',
+    'og:title': 'ogTitle',
+    'twitter:image': 'twitterImage',
+    'twitter:title': 'twitterTitle',
+    'twitter:description': 'twitterDescription',
+  };
+
+  // Extract all meta tags
+  root.querySelectorAll('meta').forEach((meta) => {
+    const property = meta.getAttribute('property');
+    const name: any = meta.getAttribute('name');
+    const content = meta.getAttribute('content');
+    const allowedPropertyKey =
+      allowedNamesKeys[property as keyof typeof allowedNamesKeys];
+    const allowedNameKey =
+      allowedNamesKeys[name as keyof typeof allowedNamesKeys];
+
+    if (
+      property &&
+      content &&
+      allowedProperties.some((allowed) => property.startsWith(allowed)) &&
+      allowedPropertyKey
+    ) {
+      metaTags[allowedPropertyKey] = content;
+    } else if (
+      allowedNamesKeys[name as keyof typeof allowedNamesKeys] &&
+      content &&
+      allowedNames.includes(name) &&
+      allowedNameKey
+    ) {
+      metaTags[allowedNameKey] = content;
+    }
+  });
+
+  // Extract title tag
+  const titleTag = root.querySelector('title');
+  if (titleTag) {
+    metaTags['title'] = titleTag.text;
+  }
+
+  return metaTags as MetaTags;
 }
