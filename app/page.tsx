@@ -9,7 +9,7 @@ import { Tweet } from 'components/tweet/tweets';
 
 export default async function Page() {
   return (
-    <div className="flex flex-col mx-auto homepage">
+    <div className="flex flex-col mx-auto w-full homepage">
       <main className="flex after:bg-grid sm:max-w-4xl py-5 mx-auto flex-col w-full h-fit px-4">
         <header className="flex justify-between items-center">
           <h1 className="font-medium tracking-tight text-lg flex items-center">
@@ -35,7 +35,7 @@ export default async function Page() {
             Sign In
           </Link>
         </header>
-        <div className="mx-auto max-sm:mt-32 mt-40">
+        <div className="mx-auto max-sm:mt-32 mt-32">
           <h2 className="lg:text-6xl md:text-5xl text-4xl text-primary font-black max-w-2xl text-center mx-auto tracking-tight py-4 pb-1">
             Bookmark manager
             <br />
@@ -52,14 +52,14 @@ export default async function Page() {
 
         <Features />
 
-        <div className="mx-auto w-full h-full relative my-10 flex flex-col items-center">
+        <div className="mx-auto w-full h-full relative my-8 mt-32  flex flex-col items-center">
           <h2 className="mt-4 mb-1 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
             <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent mt-1 inline-flex">
               What People
             </span>{' '}
             Are Saying
           </h2>
-          <p className="mt-1 mb-0 text-muted-foreground leading-7 sm:text-lg w-[80%] text-center">
+          <p className="mt-3 mb-0 text-muted-foreground leading-7 sm:text-lg w-[80%] text-center">
             Don{"'"}t just take our word for it. Here{"'"}s what people are
             saying about Bookmark It on Twitter.
           </p>
@@ -98,7 +98,7 @@ export default async function Page() {
           </div>
         </div>
 
-        <div className="mx-auto flex flex-col items-center">
+        <div className="mx-auto mt-16 flex flex-col items-center">
           <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
             Proudly{' '}
             <span className="bg-gradient-to-r from-blue-400 to-sky-600 bg-clip-text text-transparent">
@@ -128,8 +128,10 @@ export default async function Page() {
             Star on Github
           </Link>
         </div>
+      </main>
 
-        <footer className="w-full mt-28 py-4 flex justify-between text-[13px] border-t text-primary">
+      <footer className="w-full mt-28 p-4 flex justify-between text-[13px] border-t text-primary">
+        <div className="w-full sm:max-w-4xl mx-auto flex justify-between items-center">
           <div>&copy; {new Date().getFullYear()} Bookmark It. </div>
           <div className="flex items-center gap-4">
             <Link
@@ -165,8 +167,8 @@ export default async function Page() {
               </svg>
             </Link>
           </div>
-        </footer>
-      </main>
+        </div>
+      </footer>
     </div>
   );
 }
