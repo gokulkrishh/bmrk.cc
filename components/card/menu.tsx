@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import { UpdateIcon } from '@radix-ui/react-icons';
-import { Edit, LinkIcon, Share, Trash2Icon } from 'lucide-react';
+import { Copy, Edit, LinkIcon, Share, Trash2Icon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { deleteBookmark, refreshBookmark } from 'app/actions/bookmarks';
@@ -18,12 +18,7 @@ import {
   DropdownMenuTrigger,
 } from 'components/ui/dropdown-menu';
 
-import {
-  BookmarkInsertModified,
-  BookmarkModified,
-  BookmarkUpdate,
-  MetaTags,
-} from 'types/data';
+import { BookmarkModified, BookmarkUpdate, MetaTags } from 'types/data';
 
 type CardMenuProps = {
   data: BookmarkModified;
@@ -112,7 +107,7 @@ export default function CardMenu({ data }: CardMenuProps) {
               toast.success('Link copied to clipboard.');
             }}
           >
-            <LinkIcon className="h-4 w-4  mr-2.5" /> Copy link
+            <Copy className="h-4 w-4  mr-2.5" /> Copy link
           </DropdownMenuItem>
           <DropdownMenuItem
             disabled={loading}
