@@ -118,9 +118,9 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                   />
                   <div className="flex flex-col">
                     <p className="relative -top-0.5">{bookmark.title}</p>
-                    <div className="text-xs flex items-center mt-0.5 text-muted-foreground">
+                    <div className="text-xs flex max-w-[400px] truncate items-center mt-0.5 w-full text-muted-foreground">
                       {bookmark.is_fav ? (
-                        <StarFilledIcon className="!h-3 !w-3 -ml-1 text-yellow-500 mr-1" />
+                        <StarFilledIcon className="!w-3 !h-3 text-yellow-500 shrink-0 mr-1" />
                       ) : null}
                       {humanizeUrl(bookmark.url)}
                     </div>
