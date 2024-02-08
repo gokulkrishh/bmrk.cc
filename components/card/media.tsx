@@ -12,7 +12,7 @@ function isAbsolutePath(path: string) {
 }
 
 export default function CardMedia({ data }: { data: BookmarkModified }) {
-  const imageUrl = data.metadata.ogImage ?? data.metadata?.twitterImage;
+  const imageUrl = data.metadata?.ogImage ?? data.metadata?.twitterImage;
 
   if (!imageUrl?.length) {
     return null;
