@@ -134,7 +134,7 @@ export default function TagList({ data, tags }: TagListProps) {
                         <CheckIcon className={cn('h-4 w-4')} />
                       ) : null}
                     </div>
-                    {tag.name}
+                    <span>{tag.name}</span>
                   </CommandItem>
                 );
               })}
