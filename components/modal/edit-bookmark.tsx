@@ -24,12 +24,14 @@ type EditBookmarkProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
   data: BookmarkModified;
+  onDone?: () => void;
 };
 
 export default function EditBookmark({
   open,
   setOpen,
   data,
+  onDone,
 }: EditBookmarkProps) {
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState(data);
@@ -49,6 +51,7 @@ export default function EditBookmark({
         metadata: state.metadata,
       } as BookmarkModified;
       await updateBookmark(data.id, payload);
+      onDone?.();
       toast.success(`Bookmark updated.`);
     } catch (error) {
       toast.error(`Unable to update the bookmark, try again.`);

@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 import createClient from 'lib/supabase/actions';
 
@@ -48,7 +48,8 @@ export const createBookmark = async (bookmark: BookmarkInsert) => {
   if (error) {
     return new Error('Unable to create a new bookmark.');
   }
-  revalidatePath('/', 'page');
+
+  revalidateTag('supabase');
 };
 
 export const updateBookmark = async (
@@ -68,7 +69,7 @@ export const updateBookmark = async (
   if (error) {
     return new Error('Unable to update bookmark.');
   }
-  revalidatePath('/', 'page');
+  revalidateTag('supabase');
 };
 
 export const deleteBookmark = async (id: Bookmark['id']) => {
@@ -99,7 +100,7 @@ export const deleteBookmark = async (id: Bookmark['id']) => {
     return new Error('Unable to delete the bookmark.');
   }
 
-  revalidatePath('/', 'page');
+  revalidateTag('supabase');
 };
 
 export const addToFav = async (
@@ -115,7 +116,7 @@ export const addToFav = async (
   if (error) {
     return new Error('Unable to add to fav.');
   }
-  revalidatePath('/', 'page');
+  revalidateTag('supabase');
 };
 
 export const refreshBookmark = async (
@@ -136,7 +137,7 @@ export const refreshBookmark = async (
   if (error) {
     return new Error('Unable to refresh bookmark.');
   }
-  revalidatePath('/');
+  revalidateTag('supabase');
 };
 
 export const getFavBookmarks = async () => {

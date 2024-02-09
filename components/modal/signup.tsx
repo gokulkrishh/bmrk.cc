@@ -70,7 +70,7 @@ export default function AccountModal({ open, onHide }: AccountModalProp) {
       <DialogContent className="max-w-sm w-[calc(100%-20px)] bg-background rounded-xl">
         <DialogHeader>
           <DialogTitle className="tracking-normal items-center flex-col justify-center flex">
-            <Logo />
+            <Logo className="w-16 h-16" />
             <DialogDescription className="mt-1 mb-1 font-medium text-primary">
               Bookmark it.
             </DialogDescription>

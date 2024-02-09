@@ -6,7 +6,9 @@ import { type CookieOptions, createServerClient } from '@supabase/ssr';
 
 import { Database } from 'types/database';
 
-export default async function createClient() {
+import { createFetch } from './cache';
+
+export default async function createClient(cacheTags: string[] = ['supabase']) {
   const cookieStore = cookies();
 
   return createServerClient<Database>(
@@ -23,6 +25,11 @@ export default async function createClient() {
         remove(name: string, options: CookieOptions) {
           cookieStore.set({ name, value: '', ...options });
         },
+      },
+      global: {
+        fetch: createFetch({
+          next: { revalidate: 60, tags: [...cacheTags] },
+        }),
       },
     },
   );

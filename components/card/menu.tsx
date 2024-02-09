@@ -18,13 +18,17 @@ import {
   DropdownMenuTrigger,
 } from 'components/ui/dropdown-menu';
 
+import { cn } from 'lib/utils';
+
 import { BookmarkModified, BookmarkUpdate, MetaTags } from 'types/data';
 
 type CardMenuProps = {
   data: BookmarkModified;
+  className?: string;
+  onDone?: () => void;
 };
 
-export default function CardMenu({ data }: CardMenuProps) {
+export default function CardMenu({ data, className, onDone }: CardMenuProps) {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const { url, id } = data;
@@ -48,6 +52,7 @@ export default function CardMenu({ data }: CardMenuProps) {
           '';
       }
       await refreshBookmark(id, payload);
+      onDone?.();
       toast.success('Bookmark refreshed.');
     } catch {
       toast.error('Unable to refresh, try again.');
@@ -61,6 +66,7 @@ export default function CardMenu({ data }: CardMenuProps) {
     try {
       setLoading(true);
       await deleteBookmark(id);
+      onDone?.();
       toast.success('Bookmark is deleted.');
     } catch {
       toast.error('Unable to delete, try again.');
@@ -86,10 +92,15 @@ export default function CardMenu({ data }: CardMenuProps) {
   };
 
   return (
-    <div className="pr-2">
+    <>
       <DropdownMenu>
-        <DropdownMenuTrigger className="cursor-pointer h-9 w-9 mt-1 flex items-center justify-center transition-colors rounded-full hover:bg-accent hover:border hover:border-input active:bg-accent shrink-0">
-          <MoreIcon className="fill-muted-foreground h-4 w-4 " />
+        <DropdownMenuTrigger
+          className={cn(
+            `cursor-pointer h-9 w-9 mt-1 flex items-center justify-center transition-colors rounded-full hover:bg-accent hover:border hover:border-input active:bg-accent shrink-0`,
+            className,
+          )}
+        >
+          <MoreIcon className="fill-muted-foreground !h-4 !w-4" />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-2 min-w-40">
           <DropdownMenuItem
@@ -137,7 +148,14 @@ export default function CardMenu({ data }: CardMenuProps) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      {open ? <EditBookmark data={data} open={open} setOpen={setOpen} /> : null}
-    </div>
+      {open ? (
+        <EditBookmark
+          onDone={onDone}
+          data={data}
+          open={open}
+          setOpen={setOpen}
+        />
+      ) : null}
+    </>
   );
 }

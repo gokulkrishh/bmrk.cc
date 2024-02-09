@@ -5,7 +5,7 @@ import createClient from 'lib/supabase/actions';
 import { User } from 'types/data';
 
 export const getUser = async () => {
-  const supabase = await createClient();
+  const supabase = await createClient(['user']);
   try {
     const { data } = await supabase.auth.getSession();
     const { session } = data;

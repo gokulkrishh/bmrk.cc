@@ -28,7 +28,9 @@ export default function Card({ data, tags, className }: CardProps) {
       <div className="w-full flex flex-col">
         <div className="flex w-full justify-between">
           <CardInfo data={data} />
-          <CardMenu data={data} />
+          <div className="pr-2">
+            <CardMenu data={data} />
+          </div>
         </div>
         <CardMedia data={data} />
         <CardActions tags={tags} data={data} />
