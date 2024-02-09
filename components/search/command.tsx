@@ -106,11 +106,13 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                   />
                   <div className="flex flex-col">
                     <p className="relative -top-0.5">{bookmark.title}</p>
-                    <div className="text-xs flex max-w-[400px] truncate items-center mt-0.5 w-full text-muted-foreground">
+                    <div className="text-xs flex max-w-[400px] items-center mt-0.5 w-full text-muted-foreground">
                       {bookmark.is_fav ? (
                         <StarFilledIcon className="!w-3 !h-3 text-yellow-500 shrink-0 mr-1" />
                       ) : null}
-                      {humanizeUrl(bookmark.url)}
+                      <span className="block w-full max-sm:max-w-[250px] truncate">
+                        {humanizeUrl(bookmark.url)}
+                      </span>
                     </div>
                   </div>
                   <CommandShortcut
