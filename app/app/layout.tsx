@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { permanentRedirect } from 'next/navigation';
 
 import { urls } from 'config';
+import NextTopLoader from 'nextjs-toploader';
 
 import { getUser } from 'app/actions/user';
 
@@ -72,6 +73,7 @@ export default async function RootLayout({
 
   return (
     <>
+      <NextTopLoader color="#2563eb" showSpinner={false} />
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
