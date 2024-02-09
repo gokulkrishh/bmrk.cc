@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       const root: any = parse(content);
       const bookmarks = bookmarkParser(root);
 
-      const supabase = await createClient(cookies());
+      const supabase = await createClient();
 
       const { data: newTag } = await supabase
         .from('tags')
