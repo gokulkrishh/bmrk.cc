@@ -73,7 +73,12 @@ export default async function RootLayout({
 
   return (
     <>
-      <NextTopLoader color="#cb0000" showSpinner={false} />
+      <NextTopLoader
+        height={2}
+        shadow={false}
+        color="#cb0000"
+        showSpinner={false}
+      />
       <ThemeProvider
         attribute="class"
         defaultTheme="system"

@@ -4,7 +4,7 @@ import { createServerClient } from '@supabase/ssr';
 
 import { createFetch } from './cache';
 
-export default function createClient(cacheTags: string[] = ['supabase']) {
+export default function createClient(cacheTags: string[] = []) {
   const cookieStore = cookies();
 
   return createServerClient(
@@ -18,7 +18,8 @@ export default function createClient(cacheTags: string[] = ['supabase']) {
       },
       global: {
         fetch: createFetch({
-          next: { revalidate: 60, tags: [...cacheTags] },
+          cache: 'force-cache',
+          next: { tags: ['supabase', ...cacheTags] },
         }),
       },
     },
