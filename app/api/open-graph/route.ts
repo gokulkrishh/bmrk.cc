@@ -16,7 +16,11 @@ export async function GET(request: NextRequest) {
     }
     try {
       const siteUrl = new URL(url);
-      const response = await fetch(siteUrl);
+      const response = await fetch(siteUrl, {
+        headers: {
+          'User-Agent': 'bmrk.cc Bot',
+        },
+      });
       const html = await response.text();
       const metatags: { [key: string]: string } = extractMetaTags(html);
       return new Response(JSON.stringify(metatags), { status: 200 });
