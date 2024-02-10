@@ -110,8 +110,8 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                       {bookmark.is_fav ? (
                         <StarFilledIcon className="!w-3 !h-3 text-yellow-500 shrink-0 mr-1" />
                       ) : null}
-                      <span className="block w-full max-sm:max-w-[250px] truncate">
-                        {humanizeUrl(bookmark.url)}
+                      <span className="block w-full tracking-wide max-sm:max-w-[250px] truncate">
+                        {humanizeUrl(url.hostname)}
                       </span>
                     </div>
                   </div>

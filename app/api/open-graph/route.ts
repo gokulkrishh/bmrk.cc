@@ -72,9 +72,7 @@ function extractMetaTags(html: string, url: string) {
     }
   });
 
-  if (!metaTags.title) {
-    metaTags.title = url;
-  }
+  metaTags.title = root.querySelector('title')?.innerText || url;
 
   return metaTags as MetaTags;
 }
