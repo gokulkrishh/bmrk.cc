@@ -47,7 +47,7 @@ function extractMetaTags(html: string, url: string) {
   });
 
   // Extract all link tags
-  root.querySelectorAll('links').forEach(({ attributes }) => {
+  root.querySelectorAll('link').forEach(({ attributes }) => {
     const { rel, href } = attributes;
     objectMap[rel] = href;
   });

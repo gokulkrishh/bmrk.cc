@@ -106,8 +106,8 @@ export default async function Page() {
             </span>
           </h2>
           <p className="mt-3 mb-10 text-muted-foreground leading-7 sm:text-lg w-[80%] text-center">
-            Source code is available on GitHub - feel free to read, review, or
-            contribute to it!
+            A free and open-source project that respects your privacy and
+            security. No ads, no analytics and no nonsense.
           </p>
           <Link
             className="inline-flex items-center justify-center h-[40px] rounded-full px-4 py-2 text-sm font-medium text-slate-900 ring-1 ring-slate-900/10 bg-white hover:bg-gray-200"
