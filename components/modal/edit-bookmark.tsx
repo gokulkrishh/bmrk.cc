@@ -2,7 +2,6 @@
 
 import { SyntheticEvent, useEffect, useState } from 'react';
 
-import { isUrl } from 'check-valid-url';
 import { toast } from 'sonner';
 
 import { updateBookmark } from 'app/actions/bookmarks';
@@ -16,7 +15,7 @@ import { Input } from 'components/ui/input';
 import { Label } from 'components/ui/label';
 import { Textarea } from 'components/ui/textarea';
 
-import { cn } from 'lib/utils';
+import { cn, isValidUrl } from 'lib/utils';
 
 import { BookmarkModified } from 'types/data';
 
@@ -136,7 +135,10 @@ export default function EditBookmark({
         <button
           type="submit"
           disabled={
-            loading || !isUrl(state.url) || !state.title?.length || !isEdited()
+            loading ||
+            !isValidUrl(state.url) ||
+            !state.title?.length ||
+            !isEdited()
           }
           className={cn(
             `rounded-full w-[88px] h-[40px] transition-colors font-medium items-center bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-700 disabled:opacity-40 disabled:active:bg-blue-600 disabled:hover:bg-blue-600 disabled:focus:bg-blue-600 border-0 flex justify-center py-2 px-4 text-white`,

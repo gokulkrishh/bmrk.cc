@@ -3,7 +3,6 @@
 import { ClipboardEvent, SyntheticEvent, useState } from 'react';
 
 import { UploadIcon } from '@radix-ui/react-icons';
-import { isUrl } from 'check-valid-url';
 import { toast } from 'sonner';
 
 import { createBookmark } from 'app/actions/bookmarks';
@@ -14,7 +13,7 @@ import UploadModal from 'components/modal/upload';
 import { Input } from 'components/ui/input';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
-import { cn } from 'lib/utils';
+import { cn, isValidUrl } from 'lib/utils';
 
 import { BookmarkInsertModified, MetaTags } from 'types/data';
 
@@ -61,7 +60,7 @@ export default function AddBookmarkInput({
 
   const onPaste = async (event: ClipboardEvent<HTMLInputElement>) => {
     const pastedText = event.clipboardData?.getData('text');
-    if (isUrl(pastedText)) {
+    if (isValidUrl(pastedText)) {
       await onSubmit(pastedText);
     }
   };
@@ -104,7 +103,7 @@ export default function AddBookmarkInput({
           <div>
             {showUpload ? (
               <button
-                className="w-8 h-8 -left-1.5 relative top-2 inline-flex items-center justify-center"
+                className="w-8 h-8 transition-colors rounded-full hover:bg-accent hover:border hover:border-input active:bg-accent -left-1.5 relative top-2 inline-flex items-center justify-center"
                 type="button"
                 onClick={() => setOpen(true)}
               >
@@ -125,7 +124,7 @@ export default function AddBookmarkInput({
 
           <button
             type="submit"
-            disabled={loading || !isUrl(url)}
+            disabled={loading || !isValidUrl(url)}
             className={cn(
               `rounded-full w-[72px] h-[40px] transition-colors font-medium items-center bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-700 disabled:opacity-40 disabled:active:bg-blue-600 disabled:hover:bg-blue-600 disabled:focus:bg-blue-600 border-0 flex justify-center py-2 px-5 text-white`,
               {

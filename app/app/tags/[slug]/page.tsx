@@ -14,25 +14,26 @@ type MetadataType = {
 };
 
 export async function generateMetadata({ params }: MetadataType) {
-  const { slug: tagName } = params;
+  const { slug } = params;
   return {
-    title: `${title} | Tag: ${tagName}`,
+    title: `${title} | Tag: ${decodeURIComponent(slug)}`,
     description,
   };
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
+  const tagName = decodeURIComponent(slug);
   const [bookmarks, tags] = await Promise.all([
-    await getBookmarksForTag(slug),
+    await getBookmarksForTag(tagName),
     await getTags(),
   ]);
 
-  const filteredBookmarks = filterByTagName(bookmarks, slug);
+  const filteredBookmarks = filterByTagName(bookmarks, tagName);
 
   return (
     <>
-      <Header headerText={`Tag: ${slug}`} />
+      <Header headerText={`Tag: ${tagName}`} />
       <div className="h-full sm:border-r border-border pb-24">
         <CardList bookmarks={filteredBookmarks} tags={tags} />
       </div>

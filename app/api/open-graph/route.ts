@@ -6,6 +6,8 @@ import { checkAuth } from 'lib/auth';
 
 import { MetaTags } from 'types/data';
 
+export const runtime = 'edge';
+
 export async function GET(request: NextRequest) {
   return await checkAuth(async () => {
     const { searchParams } = new URL(request.url);
@@ -71,6 +73,8 @@ function extractMetaTags(html: string, url: string) {
       metaTags[keyName] = objectMap[key];
     }
   });
+
+  console.log('objectMap -->', root?.querySelector('head')?.toString());
 
   metaTags.title = root.querySelector('title')?.innerText || url;
 

@@ -35,9 +35,6 @@ dependencies:
   '@supabase/supabase-js':
     specifier: ^2.39.3
     version: 2.39.3
-  check-valid-url:
-    specifier: ^0.1.0
-    version: 0.1.0
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -2105,10 +2102,6 @@ packages:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
     dev: true
-
-  /check-valid-url@0.1.0:
-    resolution: {integrity: sha512-TbsxeYR666QRXADlM9pCQbH+kqpbTZmg3KWOMy2faBKgD5EJeDqZdMAvPYAJOQn4HAAPLTk9MPVSrVIhVSA04A==}
-    dev: false
 
   /chokidar@3.5.3:
     resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
