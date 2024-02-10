@@ -73,8 +73,6 @@ function extractMetaTags(html: string, url: string) {
     }
   });
 
-  console.log('objectMap -->', root?.querySelector('head')?.toString());
-
   metaTags.title = root.querySelector('title')?.innerText || url;
 
   return metaTags as MetaTags;
