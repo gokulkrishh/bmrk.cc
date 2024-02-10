@@ -3,6 +3,7 @@ import { NextRequest } from 'next/server';
 import { parse } from 'node-html-parser';
 
 import { checkAuth } from 'lib/auth';
+import { isValidUrl } from 'lib/utils';
 
 import { MetaTags } from 'types/data';
 
@@ -10,15 +11,13 @@ export const runtime = 'edge';
 
 export async function GET(request: NextRequest) {
   return await checkAuth(async () => {
-    const { searchParams } = new URL(request.url);
-    const url = searchParams.get('url') ?? '';
+    const url = request.nextUrl.searchParams.get('url');
 
-    if (!url) {
+    if (!url || !isValidUrl(url)) {
       return new Response(`The URL ${url} is missing.`, { status: 400 });
     }
     try {
-      const siteUrl = new URL(url);
-      const response = await fetch(siteUrl, {
+      const response = await fetch(url, {
         headers: { 'User-Agent': 'bmrk.cc Bot' },
       });
       const html = await response.text();
