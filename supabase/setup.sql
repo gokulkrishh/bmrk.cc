@@ -42,7 +42,7 @@ create trigger on_auth_user_created
 create table
   bookmarks (
     id bigint primary key generated always as identity,
-    title text,
+    title text not null,
     url text not null,
     description text,
     metadata json,

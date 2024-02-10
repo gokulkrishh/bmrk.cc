@@ -38,18 +38,13 @@ export default function CardMenu({ data, className, onDone }: CardMenuProps) {
       setLoading(true);
       const ogData: MetaTags = await getOg(url);
       const payload: BookmarkUpdate = {
-        metadata: {
-          ogImage: ogData.ogImage,
-          twitterImage: ogData.twitterImage,
-        },
+        metadata: { image: ogData.image },
       };
-
+      if (!payload.title) {
+        payload.title = ogData.title;
+      }
       if (!payload.description) {
-        payload.description =
-          ogData.description ??
-          ogData.ogDescription ??
-          ogData.twitterDescription ??
-          '';
+        payload.description = ogData.description;
       }
       await refreshBookmark(id, payload);
       onDone?.();

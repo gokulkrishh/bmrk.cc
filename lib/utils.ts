@@ -29,3 +29,16 @@ export const isValidUrl = (url: string) => {
     return false;
   }
 };
+
+// Courtesy: dub.co
+export const setImagePath = (url: string, imageUrl: string) => {
+  if (!imageUrl) {
+    return null;
+  }
+  if (isValidUrl(imageUrl)) {
+    return imageUrl;
+  }
+  const { protocol, host } = new URL(url);
+  const baseURL = `${protocol}//${host}`;
+  return new URL(imageUrl, baseURL).toString();
+};

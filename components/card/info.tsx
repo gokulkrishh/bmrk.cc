@@ -14,7 +14,7 @@ export default function CardInfo({ data }: { data: Bookmark }) {
       prefetch={false}
       className="group items-start justify-between flex-col py-2 mt-1 pt-1.5 pb-0 gap-1 flex text-pimary-foreground w-[calc(100%-60px)]"
     >
-      <h3 className="relative items-center text-primary inline-flex">
+      <h3 className="relative items-center text-primary break-all inline-flex">
         {data.title ?? url?.hostname?.replace('www.', '')}
       </h3>
       <p

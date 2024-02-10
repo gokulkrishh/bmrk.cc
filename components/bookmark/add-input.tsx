@@ -43,8 +43,7 @@ export default function AddBookmarkInput({
         description: ogData.description?.trim(),
         title: ogData.title?.trim(),
         metadata: {
-          ogImage: ogData.ogImage,
-          twitterImage: ogData.twitterImage,
+          image: ogData.image,
         },
       } as BookmarkInsertModified;
       await createBookmark(payload);

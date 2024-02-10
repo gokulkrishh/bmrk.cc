@@ -3,7 +3,7 @@ import { NextRequest } from 'next/server';
 import { parse } from 'node-html-parser';
 
 import { checkAuth } from 'lib/auth';
-import { isValidUrl } from 'lib/utils';
+import { isValidUrl, setImagePath } from 'lib/utils';
 
 import { MetaTags } from 'types/data';
 
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
       const html = await response.text();
       if (!html) {
         return new Response(
-          JSON.stringify({ title: url, description: '', ogImage: '' }),
+          JSON.stringify({ title: url, description: '', image: '' }),
         );
       }
       const metatags: { [key: string]: string } = extractMetaTags(html, url);
@@ -36,28 +36,14 @@ export async function GET(request: NextRequest) {
 
 function extractMetaTags(html: string, url: string) {
   const root = parse(html);
-  const metaTags: { [key: string]: string } = {};
-
-  const allowedKeys = {
-    title: 'title',
-    description: 'description',
-    'og:image': 'ogImage',
-    'og:description': 'ogDescription',
-    'og:title': 'ogTitle',
-    'twitter:image': 'twitterImage',
-    'twitter:title': 'twitterTitle',
-    'twitter:description': 'twitterDescription',
-    image_src: 'ogImage',
-    'shortcut icon': 'ogImage',
-    icon: 'ogImage',
-  } as { [key: string]: string };
-
   const objectMap: { [key: string]: string } = {};
 
   // Extract all meta tags
   root.querySelectorAll('meta').forEach(({ attributes }) => {
     const property = attributes.property || attributes.name || attributes.href;
-    objectMap[property] = attributes.content;
+    if (!objectMap[property]) {
+      objectMap[property] = attributes.content;
+    }
   });
 
   // Extract all link tags
@@ -66,18 +52,25 @@ function extractMetaTags(html: string, url: string) {
     objectMap[rel] = href;
   });
 
-  Object.keys(allowedKeys).map((key) => {
-    const keyName = allowedKeys[key];
-    if (objectMap[key] && !metaTags[keyName]) {
-      metaTags[keyName] = objectMap[key];
-    }
-  });
-
-  metaTags.title =
+  const title =
+    objectMap['og:title'] ||
+    objectMap['twitter:title'] ||
     root.querySelector('title')?.innerText ||
-    metaTags.ogTitle ||
-    metaTags.twitterTitle ||
     url;
 
-  return metaTags as MetaTags;
+  const description =
+    objectMap['og:description'] || objectMap['description'] || '';
+
+  const image =
+    objectMap['og:image'] ||
+    objectMap['twitter:image'] ||
+    objectMap['image_src'] ||
+    objectMap['shortcut icon'] ||
+    objectMap['icon'];
+
+  return {
+    title,
+    description,
+    image: setImagePath(url, image),
+  } as MetaTags;
 }

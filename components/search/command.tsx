@@ -87,7 +87,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
               </div>
             </CommandLoading>
           ) : null}
-          {data.result.map((bookmark: Bookmark) => {
+          {data.result.map((bookmark: Bookmark, index: number) => {
             const url = new URL(bookmark.url);
             url.searchParams.append('utm_source', 'bmrk.cc');
             return (
@@ -96,7 +96,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                 onSelect={() => {
                   openBookmark(url.href);
                 }}
-                key={bookmark.id}
+                key={`${bookmark.id}`}
               >
                 <div className="flex gap-2 items-start text-pimary-foreground w-full">
                   <CardFavicon

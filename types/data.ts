@@ -7,27 +7,20 @@ export type BookmarkUpdate =
   Database['public']['Tables']['bookmarks']['Update'];
 export type BookmarkModified = Bookmark & {
   metadata: {
-    twitterImage: string;
-    ogImage: string;
+    image: string;
   };
   bookmarks_tags: { tags: { id: Tag['id']; name: Tag['name'] } }[];
 };
 export type BookmarkInsertModified = BookmarkInsert & {
   metadata: {
-    twitterImage: string;
-    ogImage: string;
+    image: string;
   };
 };
 
 export type MetaTags = {
   title: string;
   description: string;
-  ogTitle: string;
-  ogDescription: string;
-  ogImage: string;
-  twitterTitle: string;
-  twitterDescription: string;
-  twitterImage: string;
+  image: string;
 };
 
 export type User = Database['public']['Tables']['users']['Row'];
