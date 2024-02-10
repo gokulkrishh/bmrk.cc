@@ -17,27 +17,27 @@ export async function GET(request: NextRequest) {
     try {
       const siteUrl = new URL(url);
       const response = await fetch(siteUrl, {
-        headers: {
-          'User-Agent': 'bmrk.cc Bot',
-        },
+        headers: { 'User-Agent': 'bmrk.cc Bot' },
       });
       const html = await response.text();
-      const metatags: { [key: string]: string } = extractMetaTags(html);
-      return new Response(JSON.stringify(metatags), { status: 200 });
+      if (!html) {
+        return new Response(
+          JSON.stringify({ title: url, description: '', ogImage: '' }),
+        );
+      }
+      const metatags: { [key: string]: string } = extractMetaTags(html, url);
+      return new Response(JSON.stringify(metatags));
     } catch (error) {
       return new Response(JSON.stringify(error), { status: 500 });
     }
   });
 }
 
-function extractMetaTags(html: string) {
+function extractMetaTags(html: string, url: string) {
   const root = parse(html);
   const metaTags: { [key: string]: string } = {};
 
-  const allowedProperties = ['og:', 'twitter:'];
-  const allowedNames = ['title', 'description', 'og:image', 'twitter:image'];
-
-  const allowedNamesKeys = {
+  const allowedKeys = {
     title: 'title',
     description: 'description',
     'og:image': 'ogImage',
@@ -46,39 +46,34 @@ function extractMetaTags(html: string) {
     'twitter:image': 'twitterImage',
     'twitter:title': 'twitterTitle',
     'twitter:description': 'twitterDescription',
-  };
+    image_src: 'ogImage',
+    'shortcut icon': 'ogImage',
+    icon: 'ogImage',
+  } as { [key: string]: string };
+
+  const objectMap: { [key: string]: string } = {};
 
   // Extract all meta tags
-  root.querySelectorAll('meta').forEach((meta) => {
-    const property = meta.getAttribute('property');
-    const name: any = meta.getAttribute('name');
-    const content = meta.getAttribute('content');
-    const allowedPropertyKey =
-      allowedNamesKeys[property as keyof typeof allowedNamesKeys];
-    const allowedNameKey =
-      allowedNamesKeys[name as keyof typeof allowedNamesKeys];
+  root.querySelectorAll('meta').forEach(({ attributes }) => {
+    const property = attributes.property || attributes.name || attributes.href;
+    objectMap[property] = attributes.content;
+  });
 
-    if (
-      property &&
-      content &&
-      allowedProperties.some((allowed) => property.startsWith(allowed)) &&
-      allowedPropertyKey
-    ) {
-      metaTags[allowedPropertyKey] = content;
-    } else if (
-      allowedNamesKeys[name as keyof typeof allowedNamesKeys] &&
-      content &&
-      allowedNames.includes(name) &&
-      allowedNameKey
-    ) {
-      metaTags[allowedNameKey] = content;
+  // Extract all link tags
+  root.querySelectorAll('links').forEach(({ attributes }) => {
+    const { rel, href } = attributes;
+    objectMap[rel] = href;
+  });
+
+  Object.keys(allowedKeys).map((key) => {
+    const keyName = allowedKeys[key];
+    if (objectMap[key] && !metaTags[keyName]) {
+      metaTags[keyName] = objectMap[key];
     }
   });
 
-  // Extract title tag
-  const titleTag = root.querySelector('title');
-  if (titleTag) {
-    metaTags['title'] = titleTag.text;
+  if (!metaTags.title) {
+    metaTags.title = url;
   }
 
   return metaTags as MetaTags;
