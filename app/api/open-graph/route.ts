@@ -73,7 +73,11 @@ function extractMetaTags(html: string, url: string) {
     }
   });
 
-  metaTags.title = root.querySelector('title')?.innerText || url;
+  metaTags.title =
+    root.querySelector('title')?.innerText ||
+    metaTags.ogTitle ||
+    metaTags.twitterTitle ||
+    url;
 
   return metaTags as MetaTags;
 }
