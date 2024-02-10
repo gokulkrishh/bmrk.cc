@@ -25,7 +25,7 @@ const SettingsLink = ({ className }: { className?: string }) => (
 
 export default function Sidebar() {
   return (
-    <nav className="flex fixed sm:top-0 max-sm:bottom-0 max-sm:dark:bg-black max-sm:bg-background max-sm:border-t max-sm:h-[86px] z-10 justify-center sm:justify-between max-sm:px-4 sm:flex-col sm:h-full bottom-t sm:border-r sm:w-[70px] w-full border-border">
+    <nav className="flex fixed sm:top-0 max-sm:bottom-0 max-sm:dark:bg-black max-sm:bg-background max-sm:border-t max-sm:h-[86px] z-10 justify-center sm:justify-between max-sm:px-4 sm:flex-col sm:min-h-dvh bottom-t sm:border-r sm:w-[70px] w-full border-border">
       <div className="flex sm:flex-col items-center max-sm:pb-[calc(env(safe-area-inset-bottom)/3)] max-sm:gap-6 gap-3 text-primary">
         <Link
           href="/"
