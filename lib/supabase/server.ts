@@ -18,7 +18,6 @@ export default function createClient(cacheTags: string[] = []) {
       },
       global: {
         fetch: createFetch({
-          cache: 'force-cache',
           next: { tags: ['supabase', ...cacheTags] },
         }),
       },
