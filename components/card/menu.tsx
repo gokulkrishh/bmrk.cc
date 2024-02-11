@@ -40,10 +40,10 @@ export default function CardMenu({ data, className, onDone }: CardMenuProps) {
       const payload: BookmarkUpdate = {
         metadata: { image: ogData.image },
       };
-      if (!payload.title) {
+      if (!data.title) {
         payload.title = ogData.title;
       }
-      if (!payload.description) {
+      if (!data.description) {
         payload.description = ogData.description;
       }
       await refreshBookmark(id, payload);
