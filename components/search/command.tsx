@@ -125,6 +125,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                       className="mt-0"
                       onDone={() => setShouldRender(!shouldRender)}
                       data={bookmark as BookmarkModified}
+                      isSearch
                     />
                   </CommandShortcut>
                 </div>

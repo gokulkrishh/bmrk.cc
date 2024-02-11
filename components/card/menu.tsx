@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import { UpdateIcon } from '@radix-ui/react-icons';
-import { Copy, Edit, LinkIcon, Share, Trash2Icon } from 'lucide-react';
+import { StarFilledIcon, UpdateIcon } from '@radix-ui/react-icons';
+import { Edit, Link, Share, Trash2Icon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { deleteBookmark, refreshBookmark } from 'app/actions/bookmarks';
@@ -26,9 +26,15 @@ type CardMenuProps = {
   data: BookmarkModified;
   className?: string;
   onDone?: () => void;
+  isSearch?: boolean;
 };
 
-export default function CardMenu({ data, className, onDone }: CardMenuProps) {
+export default function CardMenu({
+  data,
+  className,
+  onDone,
+  isSearch,
+}: CardMenuProps) {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const { url, id } = data;
@@ -86,6 +92,23 @@ export default function CardMenu({ data, className, onDone }: CardMenuProps) {
     }
   };
 
+  const onFav = async () => {
+    try {
+      setLoading(true);
+      const payload: BookmarkUpdate = {
+        is_fav: !data.is_fav,
+      };
+      await refreshBookmark(id, payload);
+      onDone?.();
+      toast.success('Bookmark added as favorite.');
+    } catch {
+      toast.error('Unable to add as favorite, try again.');
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
+  };
+
   return (
     <>
       <DropdownMenu>
@@ -113,7 +136,7 @@ export default function CardMenu({ data, className, onDone }: CardMenuProps) {
               toast.success('Link copied to clipboard.');
             }}
           >
-            <Copy className="h-4 w-4  mr-2.5" /> Copy link
+            <Link className="h-4 w-4  mr-2.5" /> Copy link
           </DropdownMenuItem>
           <DropdownMenuItem
             disabled={loading}
@@ -123,6 +146,17 @@ export default function CardMenu({ data, className, onDone }: CardMenuProps) {
           >
             <UpdateIcon className="h-4 w-4  mr-2.5" /> Refresh
           </DropdownMenuItem>
+          {isSearch ? (
+            <DropdownMenuItem
+              disabled={loading}
+              onClick={async () => {
+                await onFav();
+              }}
+            >
+              <StarFilledIcon className="h-4 w-4  mr-2.5" />{' '}
+              {data.is_fav ? 'Remove' : 'Add'} favorite
+            </DropdownMenuItem>
+          ) : null}
           {typeof window !== 'undefined' && navigator && !!navigator?.share ? (
             <DropdownMenuItem
               onClick={async () => {
@@ -137,7 +171,7 @@ export default function CardMenu({ data, className, onDone }: CardMenuProps) {
             onClick={async () => {
               await onDelete();
             }}
-            className="!text-red-600 focus:bg-red-100 active:bg-red-100 dark:focus:bg-red-200 dark:active:bg-red-200"
+            className="!text-red-600 focus:bg-red-100 active:bg-red-100 dark:focus:bg-red-300 dark:active:bg-red-300"
           >
             <Trash2Icon className="h-4 w-4  mr-2.5" /> Delete
           </DropdownMenuItem>
