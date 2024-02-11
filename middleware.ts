@@ -63,9 +63,6 @@ export async function middleware(request: NextRequest) {
   const user = session?.user;
 
   if (currentHost === 'app') {
-    if (url.pathname === '/extensions') {
-      return response;
-    }
     if (url.pathname === '/account') {
       if (user) {
         url.pathname = '/';
