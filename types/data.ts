@@ -8,6 +8,7 @@ export type BookmarkUpdate =
 export type BookmarkModified = Bookmark & {
   metadata: {
     image: string;
+    is_via_extension?: boolean;
   };
   bookmarks_tags: { tags: { id: Tag['id']; name: Tag['name'] } }[];
 };
