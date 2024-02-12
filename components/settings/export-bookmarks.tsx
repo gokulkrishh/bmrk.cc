@@ -21,7 +21,11 @@ import { formatDate } from 'lib/date';
 
 import SettingsCard from './settings-card';
 
-const dateOptions = { day: 'numeric', month: 'numeric', year: 'numeric' };
+const dateOptions = {
+  day: 'numeric',
+  month: 'numeric',
+  year: 'numeric',
+} as Intl.DateTimeFormatOptions;
 
 export default function ExportBookmarks() {
   const [loadingHTML, setLoadingHTML] = useState(false);

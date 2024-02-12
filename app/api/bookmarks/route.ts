@@ -10,7 +10,11 @@ import createClient from 'lib/supabase/server';
 
 import { BookmarkInsert, TagInsert, User } from 'types/data';
 
-const dateOptions = { day: 'numeric', month: 'numeric', year: 'numeric' };
+const dateOptions = {
+  day: 'numeric',
+  month: 'numeric',
+  year: 'numeric',
+} as Intl.DateTimeFormatOptions;
 
 export async function POST(request: NextRequest) {
   return await checkAuth(async (user: User) => {
