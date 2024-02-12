@@ -18,7 +18,7 @@ export default function CardInfo({ data }: { data: Bookmark }) {
         {data.title ?? url?.hostname?.replace('www.', '')}
       </h3>
       <p
-        className="text-muted-foreground mb-1 text-sm line-clamp-3 max-w-sm"
+        className="text-muted-foreground mb-1 text-sm line-clamp-3 max-w-sm break-all"
         title={data.description ?? ''}
       >
         {data.description}

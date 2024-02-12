@@ -18,6 +18,7 @@ import {
   DropdownMenuTrigger,
 } from 'components/ui/dropdown-menu';
 
+import { refreshBookmarksInChromeExt } from 'lib/chrome-extension';
 import { cn } from 'lib/utils';
 
 import { BookmarkModified, BookmarkUpdate, MetaTags } from 'types/data';
@@ -54,6 +55,7 @@ export default function CardMenu({
       }
       await refreshBookmark(id, payload);
       onDone?.();
+      refreshBookmarksInChromeExt();
       toast.success('Bookmark refreshed.');
     } catch {
       toast.error('Unable to refresh, try again.');

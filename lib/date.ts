@@ -2,7 +2,7 @@ const dateOptions = {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
-} as any;
+} as Intl.DateTimeFormatOptions;
 
 export const formatDate = (
   dateString: string | Date | null,
