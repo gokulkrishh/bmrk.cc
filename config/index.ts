@@ -10,6 +10,7 @@ export const urls = {
   home: `${protocol}${home}`,
   authCallback: `${protocol}app.${home}/auth/callback/`,
   account: `${protocol}app.${home}/account`,
+  intro: `${protocol}app.${home}/intro`,
   app: `${protocol}app.${home}`,
   api: `${protocol}${home}`,
   twitter: 'https://twitter.com/gokul_i',

@@ -4,6 +4,8 @@ import { NextResponse } from 'next/server';
 import { type CookieOptions, createServerClient } from '@supabase/ssr';
 import { urls } from 'config';
 
+import { User } from 'types/data';
+
 export async function GET(request: Request) {
   const cookieStore = cookies();
   const { searchParams, origin } = new URL(request.url);
@@ -29,8 +31,17 @@ export async function GET(request: Request) {
         },
       },
     );
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+    const { user } = data;
+    const { data: userData } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', user?.id)
+      .single();
     if (!error) {
+      if (!userData?.has_welcomed) {
+        return NextResponse.redirect(urls.intro);
+      }
       return NextResponse.redirect(urls.app);
     }
   }

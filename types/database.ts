@@ -136,6 +136,7 @@ export interface Database {
           full_name: string | null;
           id: string;
           updated_at: string | null;
+          has_welcomed?: boolean | null;
           usage: number | null;
         };
         Insert: {
@@ -145,6 +146,7 @@ export interface Database {
           full_name?: string | null;
           id: string;
           updated_at?: string | null;
+          has_welcomed?: boolean | null;
           usage?: number | null;
         };
         Update: {
@@ -154,6 +156,7 @@ export interface Database {
           full_name?: string | null;
           id?: string;
           updated_at?: string | null;
+          has_welcomed?: boolean | null;
           usage?: number | null;
         };
         Relationships: [

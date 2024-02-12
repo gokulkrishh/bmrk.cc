@@ -108,13 +108,13 @@ export default function AddBookmarkInput({
                 type="button"
                 onClick={() => setOpen(true)}
               >
-                <Tooltip>
+                <Tooltip delayDuration={500}>
                   <TooltipTrigger asChild>
-                    <UploadIcon className="w-[19px] h-[19px] transition-colors duration-200 text-muted-foreground group-hover:text-blue-700 group-active:text-blue-500" />
+                    <UploadIcon className="w-[19px] h-[19px] transition-colors duration-200 text-muted-foreground group-hover:text-white group-active:text-white" />
                   </TooltipTrigger>
                   <TooltipContent
                     side="bottom"
-                    className="flex items-center mt-1 text-white dark:text-black"
+                    className="flex items-center mt-1.5 text-white dark:text-black"
                   >
                     Upload bookmarks
                   </TooltipContent>

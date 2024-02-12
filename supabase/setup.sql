@@ -14,6 +14,7 @@ create table users (
   avatar_url text,
   updated_at timestamp with time zone default current_timestamp,
   created_at timestamp with time zone default current_timestamp,
+  has_welcomed boolean default false,
   usage integer default 0
 );
 -- Set up Row Level Security (RLS)
