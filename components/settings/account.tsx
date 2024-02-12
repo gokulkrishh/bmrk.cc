@@ -1,22 +1,13 @@
 'use client';
 
-import { urls } from 'config';
-import { LogOut } from 'lucide-react';
-
 import { useAuth } from 'components/context/auth';
-import Loader from 'components/loader';
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';
 import { Skeleton } from 'components/ui/skeleton';
 
 import SettingsCard from './settings-card';
 
 export default function SettingsAccount() {
-  const { user, supabase } = useAuth();
-
-  const signOut = async () => {
-    await supabase.auth.signOut();
-    window.location.href = urls.account;
-  };
+  const { user } = useAuth();
 
   return (
     <SettingsCard className="h-[86px] px-3">

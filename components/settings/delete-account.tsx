@@ -10,6 +10,8 @@ import { useAuth } from 'components/context/auth';
 import DeleteAccountModal from 'components/modal/delete-account';
 import { Skeleton } from 'components/ui/skeleton';
 
+import { refreshInChromeExt } from 'lib/chrome-extension';
+
 import SettingsCard from './settings-card';
 
 export default function DeleteAccount() {
@@ -27,6 +29,7 @@ export default function DeleteAccount() {
       if (!response.ok) {
         throw new Error('Unable to delete your account, try again.');
       }
+      refreshInChromeExt();
       await supabase.auth.signOut();
       window.location.href = urls.account;
     } catch {

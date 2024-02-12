@@ -1,6 +1,6 @@
 const extensionId = process.env.NEXT_PUBLIC_CHROME_EXTENSION_ID;
 
-export const refreshBookmarksInChromeExt = () => {
+export const refreshInChromeExt = () => {
   window?.chrome?.runtime?.sendMessage?.(
     extensionId,
     { refresh: true },

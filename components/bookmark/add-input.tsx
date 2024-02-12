@@ -13,6 +13,7 @@ import UploadModal from 'components/modal/upload';
 import { Input } from 'components/ui/input';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
+import { refreshInChromeExt } from 'lib/chrome-extension';
 import { cn, isValidUrl } from 'lib/utils';
 
 import { BookmarkInsertModified, MetaTags } from 'types/data';
@@ -48,6 +49,7 @@ export default function AddBookmarkInput({
       } as BookmarkInsertModified;
       await createBookmark(payload);
       toast.success(`Bookmark added.`);
+      refreshInChromeExt();
       setUrl('');
     } catch (error) {
       toast.error(`Unable to add bookmark, try again.`);

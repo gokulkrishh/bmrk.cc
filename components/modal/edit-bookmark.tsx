@@ -15,6 +15,7 @@ import { Input } from 'components/ui/input';
 import { Label } from 'components/ui/label';
 import { Textarea } from 'components/ui/textarea';
 
+import { refreshInChromeExt } from 'lib/chrome-extension';
 import { cn, isValidUrl } from 'lib/utils';
 
 import { BookmarkModified } from 'types/data';
@@ -51,6 +52,7 @@ export default function EditBookmark({
       } as BookmarkModified;
       await updateBookmark(data.id, payload);
       onDone?.();
+      refreshInChromeExt();
       toast.success(`Bookmark updated.`);
     } catch (error) {
       toast.error(`Unable to update the bookmark, try again.`);
