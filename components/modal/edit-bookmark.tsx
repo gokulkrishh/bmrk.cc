@@ -18,7 +18,7 @@ import { Textarea } from 'components/ui/textarea';
 import { refreshInChromeExt } from 'lib/chrome-extension';
 import { cn, isValidUrl } from 'lib/utils';
 
-import { BookmarkModified } from 'types/data';
+import { BookmarkModified, BookmarkUpdate } from 'types/data';
 
 type EditBookmarkProps = {
   open: boolean;
@@ -49,7 +49,7 @@ export default function EditBookmark({
         title: state.title?.trim(),
         description: state.description?.trim(),
         metadata: state.metadata,
-      } as BookmarkModified;
+      } as BookmarkUpdate;
       await updateBookmark(data.id, payload);
       onDone?.();
       refreshInChromeExt();
@@ -84,7 +84,7 @@ export default function EditBookmark({
           id="title"
           type="text"
           placeholder="Netflix or Twitter"
-          onChange={(event: any) => {
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setState((prev) => ({ ...prev, title: event.target.value }));
           }}
           value={state.title ?? ''}
@@ -124,7 +124,7 @@ export default function EditBookmark({
           </span>
         </Label>
         <Textarea
-          onChange={(event: any) => {
+          onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
             setState((prev) => ({
               ...prev,
               description: event.target.value,

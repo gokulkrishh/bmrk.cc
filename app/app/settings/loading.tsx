@@ -1,4 +1,3 @@
-import CardSkeleton from 'components/card/skeleton';
 import Header from 'components/header';
 
 export default function Loading() {

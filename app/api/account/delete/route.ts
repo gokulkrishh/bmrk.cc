@@ -1,10 +1,9 @@
 import { NextRequest } from 'next/server';
 
-import { createClient } from '@supabase/supabase-js';
+import { User, createClient } from '@supabase/supabase-js';
 
 import { checkAuth } from 'lib/auth';
 
-import { User } from 'types/data';
 import { Database } from 'types/database';
 
 const errorMessage = 'Unable to delete your account, try again.';

@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const getBrowserName = () => {
-  let userAgent = navigator.userAgent;
+  const userAgent = navigator.userAgent;
   let browserName;
 
   if (userAgent.match(/chrome|chromium|crios/i)) {

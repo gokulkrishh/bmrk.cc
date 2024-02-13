@@ -3,13 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from 'components/ui/accordion';
-
 export default function Extensions() {
   return (
     <div className="mx-auto my-8 mt-10 flex flex-col items-center">

@@ -29,7 +29,6 @@ export const Tweet = ({
   ...props
 }: TweetProps) => (
   <Suspense fallback={fallback}>
-    {/* @ts-ignore: Async components are valid in the app directory */}
     <TweetContent {...props} />
   </Suspense>
 );

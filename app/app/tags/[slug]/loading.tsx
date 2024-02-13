@@ -1,6 +1,5 @@
 import CardSkeleton from 'components/card/skeleton';
 import Header from 'components/header';
-import { Skeleton } from 'components/ui/skeleton';
 
 export default function Loading() {
   return (

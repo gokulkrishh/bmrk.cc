@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { Badge } from 'components/ui/badge';
 
-import { BookmarkModified, Tag } from 'types/data';
+import { BookmarkModified } from 'types/data';
 
 export default function TagBadge({ data }: { data: BookmarkModified }) {
   return (

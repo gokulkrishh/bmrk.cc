@@ -33,7 +33,7 @@ export default async function Page() {
       <UploadBookmarks />
       <Link
         href="/"
-        className="items-center hover:text-white active:text-white underline text-muted-foreground mt-2 h-[40px] tracking-wide text-sm flex justify-center py-2 px-5 transition-colors"
+        className="items-center hover:text-primary active:text-primary underline text-muted-foreground mt-2 h-[40px] tracking-wide text-sm flex justify-center py-2 px-5 transition-colors"
       >
         Skip
       </Link>

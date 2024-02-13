@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 
-import { FileIcon, FileTextIcon } from '@radix-ui/react-icons';
 import { Download } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -102,11 +101,11 @@ export default function ExportBookmarks() {
                   width="44"
                   height="44"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M14 3v4a1 1 0 0 0 1 1h4" />
@@ -137,11 +136,11 @@ export default function ExportBookmarks() {
                   width="44"
                   height="44"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M14 3v4a1 1 0 0 0 1 1h4" />

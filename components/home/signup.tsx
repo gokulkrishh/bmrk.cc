@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
+import { User } from '@supabase/supabase-js';
 import { urls } from 'config';
 import { ArrowRight } from 'lucide-react';
 
@@ -13,7 +14,7 @@ import createClient from 'lib/supabase/client';
 
 export default function Account() {
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const supabase = createClient();
 
   useEffect(() => {

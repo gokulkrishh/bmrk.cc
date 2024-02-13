@@ -16,7 +16,7 @@ import { cn, getBrowserName } from 'lib/utils';
 
 type UploadModalProps = {
   onHide?: (open: boolean) => void;
-  SubmitBtn?: any;
+  SubmitBtn?: React.FC<{ children: React.ReactNode; disabled: boolean }>;
 };
 
 const helpLinks: { [key: string]: string } = {
@@ -53,8 +53,8 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
       } else {
         router.refresh();
       }
-    } catch (error: any) {
-      toast.error(error?.message);
+    } catch (error) {
+      toast.error((error as Error)?.message);
     } finally {
       setLoading(false);
     }
@@ -100,7 +100,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
         onSubmit();
       }}
     >
-      <div className="relative h-48 border border-border border-dashed rounded-lg">
+      <div className="relative h-48 border border-neutral-300 dark:border-neutral-600 border-dashed rounded-lg">
         <Input
           className="opacity-0"
           type="file"
@@ -115,15 +115,14 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
           }}
           className="flex w-full justify-center flex-col items-center"
         >
-          <ArrowUpCircle
-            strokeWidth={1}
-            className="text-muted-foreground w-10 h-10"
-          />
+          <ArrowUpCircle strokeWidth={1} className="w-10 h-10" />
           <p className="text-sm mt-2 font-medium">Click to browse</p>
         </button>
         <div className="text-sm mt-2 text-muted-foreground text-center">
           {fileName.length ? (
-            <span className="text-primary font-medium">{fileName}</span>
+            <span className="text-primary underline font-medium">
+              {fileName}
+            </span>
           ) : (
             <>
               Know how to export your bookmarks{' '}
@@ -131,7 +130,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
                 <TooltipTrigger
                   onClick={(event) => {
                     event.stopPropagation();
-                    let name = getBrowserName();
+                    const name = getBrowserName();
                     const link = helpLinks[name] ?? helpLinks['chrome'];
                     window.open(link, '_blank');
                   }}

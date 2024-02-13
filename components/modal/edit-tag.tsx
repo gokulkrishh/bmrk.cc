@@ -6,12 +6,9 @@ import { toast } from 'sonner';
 
 import { updateTag } from 'app/actions/tags';
 
-import { useMediaQuery } from 'components/hooks/useMediaQuery';
 import Loader from 'components/loader';
-import { Dialog, DialogContent, DialogTitle } from 'components/ui/dialog';
-import { Drawer, DrawerContent, DrawerHeader } from 'components/ui/drawer';
+import { Dialog, DialogContent } from 'components/ui/dialog';
 import { Input } from 'components/ui/input';
-import { Label } from 'components/ui/label';
 
 import { cn } from 'lib/utils';
 
@@ -27,7 +24,6 @@ type EditTag = {
 export default function EditBookmark({ open, setOpen, id, name }: EditTag) {
   const [loading, setLoading] = useState(false);
   const [tagName, setTagName] = useState(name);
-  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   useEffect(() => {
     setTagName(name);
@@ -69,7 +65,7 @@ export default function EditBookmark({ open, setOpen, id, name }: EditTag) {
             id="name"
             type="text"
             placeholder="youtube or oss"
-            onChange={(event: any) => {
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setTagName(event.target.value);
             }}
             value={tagName ?? ''}
@@ -80,7 +76,7 @@ export default function EditBookmark({ open, setOpen, id, name }: EditTag) {
         <div className={cn(`flex justify-end mx-0.5 relative bottom-1.5`)}>
           <button
             type="submit"
-            disabled={loading || !Boolean(tagName?.length) || !isEdited()}
+            disabled={loading || !tagName?.length || !isEdited()}
             className={cn(
               `rounded-full w-[86px] h-[40px] transition-colors font-medium items-center bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-700 disabled:opacity-40 disabled:active:bg-blue-600 disabled:hover:bg-blue-600 disabled:focus:bg-blue-600 border-0 flex justify-center py-2 px-5 text-white`,
               {

@@ -1,8 +1,8 @@
 'use server';
 
-import createClient from 'lib/supabase/actions';
+import { User } from '@supabase/supabase-js';
 
-import { User } from 'types/data';
+import createClient from 'lib/supabase/actions';
 
 export const getUser = async () => {
   const supabase = await createClient(['user']);

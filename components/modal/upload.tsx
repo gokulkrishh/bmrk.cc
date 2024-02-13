@@ -1,32 +1,11 @@
 'use client';
 
-import { SyntheticEvent, useRef, useState } from 'react';
-
-import { useRouter } from 'next/navigation';
-
-import { FileIcon, QuestionMarkCircledIcon } from '@radix-ui/react-icons';
-import { ArrowUpCircle } from 'lucide-react';
-import { toast } from 'sonner';
-
 import UploadForm from 'components/form/upload';
-import Loader from 'components/loader';
 import { Dialog, DialogContent, DialogTitle } from 'components/ui/dialog';
-import { Input } from 'components/ui/input';
-import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
-
-import { cn, getBrowserName } from 'lib/utils';
 
 type UploadModalProps = {
   open: boolean;
   onHide: (open: boolean) => void;
-};
-
-const helpLinks: { [key: string]: string } = {
-  chrome: 'https://support.google.com/chrome/answer/96816?hl=en',
-  safari:
-    'https://www.idownloadblog.com/2016/10/17/exporting-safari-bookmarks-from-iphone-ipad-mac-pc/',
-  firefox:
-    'https://support.mozilla.org/en-US/kb/export-firefox-bookmarks-to-backup-or-transfer',
 };
 
 export default function UploadModal({ open, onHide }: UploadModalProps) {

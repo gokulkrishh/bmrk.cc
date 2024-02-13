@@ -1,4 +1,3 @@
-import { cookies } from 'next/headers';
 import { NextRequest } from 'next/server';
 
 import { parse } from 'node-html-parser';
@@ -17,13 +16,13 @@ const dateOptions = {
 } as Intl.DateTimeFormatOptions;
 
 export async function POST(request: NextRequest) {
-  return await checkAuth(async (user: User) => {
+  return await checkAuth(async (user) => {
     const { content } = await request.json();
     if (!content) {
       return new Response('Content missing.', { status: 400 });
     }
     try {
-      const root: any = parse(content);
+      const root = parse(content) as unknown as HTMLElement;
       const bookmarks = bookmarkParser(root);
 
       const supabase = await createClient();

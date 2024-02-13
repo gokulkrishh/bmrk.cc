@@ -87,7 +87,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
               </div>
             </CommandLoading>
           ) : null}
-          {data.result.map((bookmark: Bookmark, index: number) => {
+          {data.result.map((bookmark: Bookmark) => {
             const url = new URL(bookmark.url);
             url.searchParams.append('utm_source', 'bmrk.cc');
             return (

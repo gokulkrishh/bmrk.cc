@@ -90,7 +90,7 @@ export default function AddBookmarkInput({
             type="url"
             pattern="https://.*|http://.*"
             placeholder="Just paste or type here."
-            onChange={(event: any) => {
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setUrl(event.target.value);
             }}
             onPaste={onPaste}
@@ -110,11 +110,11 @@ export default function AddBookmarkInput({
               >
                 <Tooltip delayDuration={500}>
                   <TooltipTrigger asChild>
-                    <UploadIcon className="w-[19px] h-[19px] transition-colors duration-200 text-muted-foreground group-hover:text-white group-active:text-white" />
+                    <UploadIcon className="w-[19px] h-[19px] transition-colors duration-200 text-muted-foreground group-hover:text-primary group-active:text-primary" />
                   </TooltipTrigger>
                   <TooltipContent
                     side="bottom"
-                    className="flex items-center mt-1.5 text-white dark:text-black"
+                    className="flex items-center mt-2 text-white dark:text-black"
                   >
                     Upload bookmarks
                   </TooltipContent>

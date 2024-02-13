@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { HelpCircleIcon, Settings, StarIcon, Tags } from 'lucide-react';
+import { Settings, StarIcon, Tags } from 'lucide-react';
 
 import { cn } from 'lib/utils';
 

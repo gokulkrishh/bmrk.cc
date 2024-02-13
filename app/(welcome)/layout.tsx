@@ -1,4 +1,3 @@
-import type { Metadata, Viewport } from 'next';
 import { permanentRedirect } from 'next/navigation';
 
 import { urls } from 'config';

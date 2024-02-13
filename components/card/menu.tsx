@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import { StarFilledIcon, UpdateIcon } from '@radix-ui/react-icons';
-import { Edit, Link, Share, Trash2Icon } from 'lucide-react';
+import { Edit, Link, Share, StarIcon, Trash2Icon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { deleteBookmark, refreshBookmark } from 'app/actions/bookmarks';
@@ -156,7 +156,7 @@ export default function CardMenu({
                 await onFav();
               }}
             >
-              <StarFilledIcon className="h-4 w-4  mr-2.5" />{' '}
+              <StarIcon className="h-4 w-4  mr-2.5" />{' '}
               {data.is_fav ? 'Remove' : 'Add'} favorite
             </DropdownMenuItem>
           ) : null}

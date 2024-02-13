@@ -41,9 +41,7 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
-export default async function NotFound({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default async function NotFound() {
   return (
     <html lang="en" className="h-full" suppressHydrationWarning>
       <body className={`${inter.className} flex h-full bg-background`}>

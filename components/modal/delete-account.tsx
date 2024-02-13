@@ -47,7 +47,9 @@ export default function DeleteAccountModal({
             id="name"
             type="email"
             placeholder="Email"
-            onChange={(event: any) => setEmail(event.target.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setEmail(event.target.value);
+            }}
             inputMode="email"
             value={email}
             required

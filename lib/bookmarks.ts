@@ -8,7 +8,7 @@ const buildTagHierarchy = (bookmarks: BookmarkModified[]) => {
   const root = {};
 
   bookmarks.forEach((bookmark: BookmarkModified) => {
-    let currentLevel: any = root;
+    let currentLevel: { [key: string]: any } = root;
     bookmark.bookmarks_tags.forEach(({ tags }) => {
       const { name = 'Bookmarks' } = tags;
       if (!currentLevel[name]) {
@@ -82,7 +82,7 @@ export const bookmarkParser = (rootNode: HTMLElement) => {
       return;
     }
     const url = node.getAttribute('href');
-    const created_at: any = node.getAttribute('ADD_DATE');
+    const created_at: string | null = node.getAttribute('ADD_DATE');
     const title = node.textContent;
     if (url?.length && title) {
       const bookmark = {
@@ -91,7 +91,9 @@ export const bookmarkParser = (rootNode: HTMLElement) => {
       } as BookmarkModified;
 
       if (created_at) {
-        bookmark['created_at'] = new Date(created_at * 1000).toISOString();
+        bookmark['created_at'] = new Date(
+          Number(created_at) * 1000,
+        ).toISOString();
       }
       bookmarks.push(bookmark);
     }
