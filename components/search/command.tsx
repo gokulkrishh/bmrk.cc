@@ -88,8 +88,16 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
             </CommandLoading>
           ) : null}
           {data.result.map((bookmark: Bookmark) => {
-            const url = new URL(bookmark.url);
-            url.searchParams.append('utm_source', 'bmrk.cc');
+            let url: URL | { hostname: string; href: string } = {
+              hostname: bookmark.url,
+              href: `${bookmark.url}?utm_source=bmrk.cc`,
+            };
+            try {
+              const url = new URL(bookmark.url);
+              url.searchParams.append('utm_source', 'bmrk.cc');
+            } catch {
+              console.error('Invalid URL', bookmark.url);
+            }
             return (
               <CommandItem
                 className="flex flex-col items-start w-full"
