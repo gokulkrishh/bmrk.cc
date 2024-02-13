@@ -92,7 +92,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
               <CommandItem
                 className="flex flex-col items-start w-full"
                 onSelect={() => {
-                  openBookmark(url.href);
+                  openBookmark(`${bookmark.url}?utm_source=bmrk.cc`);
                 }}
                 key={`${bookmark.id}`}
               >
