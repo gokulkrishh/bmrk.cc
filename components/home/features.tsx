@@ -85,7 +85,7 @@ export default function Features() {
             </AccordionItem>
           ))}
         </Accordion>
-        <div className="flex mx-auto bg-white max-w-sm w-full rounded-lg border-2 border-input">
+        <div className="flex h-[390px] mx-auto bg-white max-w-sm w-full rounded-lg border-2 border-input">
           <video
             className="rounded-lg px-0 border-2 border-white"
             playsInline

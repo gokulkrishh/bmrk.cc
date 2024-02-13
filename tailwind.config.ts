@@ -86,7 +86,7 @@ const config = {
         marquee2: 'marquee2 20s linear infinite',
       },
       fontSize: {
-        base: '0.625rem',
+        base: '1rem',
       },
     },
   },
