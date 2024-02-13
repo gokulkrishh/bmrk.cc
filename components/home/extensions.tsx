@@ -21,7 +21,7 @@ export default function Extensions() {
       <p className="text-muted-foreground leading-7 mt-3 sm:text-lg mx-auto max-w-xl tracking-normal text-center">
         Add and browse bookmarks without having to leave the tab.
       </p>
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="mt-10 grid grid-cols-1 gap-4">
         <div className="flex items-center flex-col justify-center">
           <h3 className="text-lg font-medium mb-2">Supported Browsers</h3>
           <div className="flex items-center gap-2">

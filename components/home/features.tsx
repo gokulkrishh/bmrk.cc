@@ -37,7 +37,7 @@ const featuresList = [
     screenshotUrl: `/images/fav.png`,
   },
   {
-    name: 'Bookmark on single click',
+    name: 'Bookmark with one click',
     description:
       'Bookmark any site with single click, open and browse your bookmarks wihout leaving your tab with our chrome extension.',
     videoUrl: `/videos/chrome-ext.mp4`,
