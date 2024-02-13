@@ -6,6 +6,14 @@ import { Logo } from 'components/icons';
 
 import UploadBookmarks from './upload';
 
+const title = 'Bookmark it. | Import Bookmarks';
+const description = 'Bookmark manager for the modern web.';
+
+export const metadata = {
+  title,
+  description,
+};
+
 export default async function Page() {
   await setWelcomed();
 
@@ -19,7 +27,7 @@ export default async function Page() {
           Import Bookmarks.
         </h1>
         <p className="text-lg mt-4 text-muted-foreground text-center">
-          Seamlessly import your current browser bookmarks.
+          Seamlessly import your bookmarks from web browser.
         </p>
       </div>
       <UploadBookmarks />

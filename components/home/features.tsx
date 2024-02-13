@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 
-import { urls } from 'config';
-
 import {
   Accordion,
   AccordionContent,
@@ -15,12 +13,12 @@ const featuresList = [
   {
     name: 'Twitter-like timeline',
     description:
-      'Bookmarks are stored in a timeline view to effortlessly navigate around.',
+      'Bookmarks are arranged in a timeline for easy historical browsing.',
     videoUrl: `/videos/add.mp4`,
     screenshotUrl: `/images/timeline.png`,
   },
   {
-    name: 'Seemless Integration',
+    name: 'Seemless integration',
     description: 'Easily import your existing bookmarks from web browser.',
     videoUrl: `/videos/import-bookmarks.mp4`,
     screenshotUrl: `/images/import-bookmarks.png`,
@@ -39,14 +37,14 @@ const featuresList = [
     screenshotUrl: `/images/fav.png`,
   },
   {
-    name: 'Search and Open any bookmark',
+    name: 'Bookmark on single click',
     description:
-      'Effortlessly find, share and access your bookmarks in seconds.',
-    videoUrl: `/videos/search.mp4`,
-    screenshotUrl: `/images/search.png`,
+      'Bookmark any site with single click, open and browse your bookmarks wihout leaving your tab with our chrome extension.',
+    videoUrl: `/videos/chrome-ext.mp4`,
+    screenshotUrl: `/images/chrome-ext.png`,
   },
   {
-    name: 'Customizable Viewing Experience',
+    name: 'Customizable viewing experience',
     description:
       'Choose between light and dark mode for better viewing experience.',
     videoUrl: `/videos/themes.mp4`,

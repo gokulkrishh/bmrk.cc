@@ -1,12 +1,18 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
-import Header from 'components/header';
 import { Logo } from 'components/icons';
+
+const title = 'Bookmark it. | Intro';
+const description = 'Bookmark manager for the modern web.';
+
+export const metadata = {
+  title,
+  description,
+};
 
 export default async function Page() {
   return (
-    <div className="h-full pb-24 flex flex-col justify-center items-center">
+    <div className="h-full pb-24 flex flex-col justify-center items-center homepage-white">
       <header className="mt-10">
         <Logo className="w-40 h-40" />
       </header>

@@ -126,7 +126,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
             <span className="text-primary font-medium">{fileName}</span>
           ) : (
             <>
-              Select exported HTML bookmark file{' '}
+              Know how to export your bookmarks{' '}
               <Tooltip>
                 <TooltipTrigger
                   onClick={(event) => {
@@ -139,7 +139,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
                   <QuestionMarkCircledIcon className="w-3.5 relative -top-0.5 h-3.5 text-blue-700 " />
                 </TooltipTrigger>
                 <TooltipContent className="text-white dark:text-black">
-                  Know how to export bookmarks in web browsers.
+                  Click here
                 </TooltipContent>
               </Tooltip>
             </>

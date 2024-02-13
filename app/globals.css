@@ -77,21 +77,6 @@
     scroll-behavior: smooth;
   }
 
-  .homepage::after {
-    background-image: url(/images/grid.svg);
-    opacity: 0.03;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    filter: unset;
-    display: block;
-    content: '';
-    z-index: -2;
-    height: 100dvh;
-  }
-
   textarea {
     @apply block resize-none;
   }
@@ -135,5 +120,27 @@
 
   .animation-pause {
     animation-play-state: paused;
+  }
+}
+
+.homepage::after {
+  background-image: url(/images/grid.svg);
+  opacity: 0.03;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  filter: unset;
+  display: block;
+  content: '';
+  z-index: -2;
+  height: 100dvh;
+}
+
+.dark {
+  .homepage::after {
+    background-image: url(/images/grid-white.svg);
+    opacity: 0.1;
   }
 }
