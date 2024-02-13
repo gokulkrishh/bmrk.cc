@@ -1,10 +1,10 @@
 <a href="https://bmrk.cc">
-<p align="center"><img alt="Bookmark It. – An open source bookmark manager application." width="100" height="100" src="./public/icons/icon.svg"></p>
+<p align="center"><img alt="Bookmark It. – An open source bookmark manager web application." width="100" height="100" src="./public/icons/icon.svg"></p>
   <h1 align="center">Bookmark It.</h1>
 </a>
 
 <p align="center">
-  Bookmark It. – An open source bookmark manager application.
+  Bookmark It. – An open source bookmark manager web application.
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@
 
 ## Introduction
 
-Bookmark It. – An open source bookmark manager application.
+Bookmark It. – An open source bookmark manager web application.
 
 ### Tech Stack
 

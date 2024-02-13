@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import { urls } from 'config';
 
+import Extensions from 'components/home/extensions';
 import Faq from 'components/home/faq';
 import Features from 'components/home/features';
 import Footer from 'components/home/footer';
@@ -66,7 +67,7 @@ export default async function Page() {
 
         <Features />
 
-        <div className="mx-auto w-full h-full relative my-8 mt-32  flex flex-col items-center">
+        <div className="mx-auto w-full h-full relative my-8 mt-10 sm:mt-20   flex flex-col items-center">
           <h2 className="mt-4 mb-1 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
             <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent mt-1 inline-flex">
               What People
@@ -90,7 +91,10 @@ export default async function Page() {
           </div>
         </div>
 
-        <div className="mx-auto mt-16 flex flex-col items-center">
+        <Extensions />
+        <Faq />
+
+        <div className="mx-auto mt-0 sm:mt-16  flex flex-col items-center">
           <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
             Proudly{' '}
             <span className="bg-gradient-to-r from-blue-400 to-sky-600 bg-clip-text text-transparent">
@@ -120,7 +124,6 @@ export default async function Page() {
             Star on Github
           </Link>
         </div>
-        <Faq />
       </main>
 
       <Footer />

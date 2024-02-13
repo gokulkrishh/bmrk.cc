@@ -56,7 +56,7 @@ export default function Features() {
   const [state, setState] = useState(0);
 
   return (
-    <div className="mx-auto my-8 mt-32 flex flex-col items-center">
+    <div className="mx-auto my-8 mt-20 sm:mt-32 flex flex-col items-center">
       <h2 className="mt-4 mb-1 text-3xl font-extrabold text-center tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
         <span className="bg-gradient-to-r from-neutral-950 to-neutral-950 bg-clip-text text-transparent mt-1 inline-flex">
           Organize, Discover, and Personalize.
@@ -66,13 +66,13 @@ export default function Features() {
         Simple yet powerful features to unlock the full potential of your
         bookmarking experience.
       </p>
-      <div className="grid gap-12 items-center grid-cols-1 lg:grid-cols-2 mt-10 overflow-hidden relative w-full">
+      <div className="grid gap-12 items-center grid-cols-1 lg:grid-cols-2 mt-10 overflow-hidden relative w-full justify-center">
         <Accordion
           onValueChange={(value: string) => {
             const index = parseInt(value.split('-')[1], 10) - 1;
             setState(index);
           }}
-          className="max-w-sm"
+          className="max-w-sm w-full mx-auto mt-2 flex justify-center flex-col"
           type="single"
           defaultValue="item-1"
         >
@@ -85,7 +85,7 @@ export default function Features() {
             </AccordionItem>
           ))}
         </Accordion>
-        <div className="flex bg-white max-w-sm w-full rounded-lg border-2 border-input">
+        <div className="flex mx-auto bg-white max-w-sm w-full rounded-lg border-2 border-input">
           <video
             className="rounded-lg px-0 border-2 border-white"
             playsInline
