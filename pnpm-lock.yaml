@@ -31,10 +31,10 @@ dependencies:
     version: 1.0.7(@types/react-dom@18.2.19)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
   '@supabase/ssr':
     specifier: ^0.1.0
-    version: 0.1.0(@supabase/supabase-js@2.39.3)
+    version: 0.1.0(@supabase/supabase-js@2.39.4)
   '@supabase/supabase-js':
-    specifier: ^2.39.3
-    version: 2.39.3
+    specifier: ^2.39.4
+    version: 2.39.4
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -1614,8 +1614,8 @@ packages:
     resolution: {integrity: sha512-RbhOOTCNoCrbfkRyoXODZp75MlpiHMgbE5MEBZAnnnLyQNgrigEj4p0lzsMDyc1zVsJDLrivB58tgg3emX0eEA==}
     dev: true
 
-  /@supabase/functions-js@2.2.0:
-    resolution: {integrity: sha512-lAmxD/mZ8vk2mg1CmXQWzK5mOHk7kDxAnxoyqUj2BVPvacEZ52P8nFkInEuSMqx6P6FKy64selW1Vyhui9racA==}
+  /@supabase/functions-js@2.1.5:
+    resolution: {integrity: sha512-BNzC5XhCzzCaggJ8s53DP+WeHHGT/NfTsx2wUSSGKR2/ikLFQTBCDzMvGz/PxYMqRko/LwncQtKXGOYp1PkPaw==}
     dependencies:
       '@supabase/node-fetch': 2.6.15
     dev: false
@@ -1651,12 +1651,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@supabase/ssr@0.1.0(@supabase/supabase-js@2.39.3):
+  /@supabase/ssr@0.1.0(@supabase/supabase-js@2.39.4):
     resolution: {integrity: sha512-bIVrkqjAK5G3KjkIMKYKtAOlCgRRplEWjrlyRyXSOYtgDieiOhk2ZyNAPsEOa1By9OZVxuX5eAW1fitdnuxayw==}
     peerDependencies:
       '@supabase/supabase-js': ^2.33.1
     dependencies:
-      '@supabase/supabase-js': 2.39.3
+      '@supabase/supabase-js': 2.39.4
       cookie: 0.5.0
       ramda: 0.29.1
     dev: false
@@ -1667,10 +1667,10 @@ packages:
       '@supabase/node-fetch': 2.6.15
     dev: false
 
-  /@supabase/supabase-js@2.39.3:
-    resolution: {integrity: sha512-NoltJSaJNKDJNutO5sJPAAi5RIWrn1z2XH+ig1+cHDojT6BTN7TvZPNa3Kq3gFQWfO5H1N9El/bCTZJ3iFW2kQ==}
+  /@supabase/supabase-js@2.39.4:
+    resolution: {integrity: sha512-sLORcbtZX1/YX1lRJZZ+GjkkxUR4w+gQ4bUgcNWsHcRi/78wyK/pjpEz2xig6jV3HmaSK2EYpuRlG5b7S2pwmA==}
     dependencies:
-      '@supabase/functions-js': 2.2.0
+      '@supabase/functions-js': 2.1.5
       '@supabase/gotrue-js': 2.62.2
       '@supabase/node-fetch': 2.6.15
       '@supabase/postgrest-js': 1.9.2
