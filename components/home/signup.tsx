@@ -8,12 +8,9 @@ import { User } from '@supabase/supabase-js';
 import { urls } from 'config';
 import { ArrowRight } from 'lucide-react';
 
-import AccountModal from 'components/modal/signup';
-
 import createClient from 'lib/supabase/client';
 
 export default function Account() {
-  const [open, setOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const supabase = createClient();
 
@@ -60,7 +57,6 @@ export default function Account() {
         </svg>
         Star on Github
       </Link>
-      {open ? <AccountModal open={open} onHide={setOpen} /> : null}
     </div>
   );
 }

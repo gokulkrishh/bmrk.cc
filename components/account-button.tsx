@@ -31,7 +31,7 @@ export default function AccountButton() {
   return (
     <button
       className={cn(
-        `items-center max-w-xs justify-center text-sm transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-40 hover:bg-primary/80 active:scale-[0.98] rounded-xl bg-primary px-6 py-3 text-secondary font-medium flex space-x-2 w-full`,
+        `items-center max-w-sm justify-center text-sm transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-40 hover:bg-primary/80 active:scale-[0.98] rounded-xl bg-primary px-6 py-3.5 text-secondary font-medium flex space-x-2 w-full`,
         {
           'bg-primary/80 cursor-default': loading,
         },

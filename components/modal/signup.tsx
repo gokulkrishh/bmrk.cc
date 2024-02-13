@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import Link from 'next/link';
+
 import { DialogDescription } from '@radix-ui/react-dialog';
 import { urls } from 'config';
 
@@ -85,6 +87,17 @@ export default function AccountModal({ open, onHide }: AccountModalProp) {
           clickHandler={clickHandler}
           Icon={GoogleIcon}
         />
+        <p className="text-muted-foreground text-xs max-w-[360px] w-full leading-5 text-left">
+          By clicking continue, you acknowledge that you have read and agree to{' '}
+          <Link className="underline" href={`${urls.home}/terms`}>
+            Terms of Service
+          </Link>{' '}
+          &{' '}
+          <Link className="underline" href={`${urls.home}/privacy`}>
+            Privacy Policy
+          </Link>
+          .
+        </p>
       </DialogContent>
     </Dialog>
   );

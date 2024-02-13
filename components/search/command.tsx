@@ -88,16 +88,6 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
             </CommandLoading>
           ) : null}
           {data.result.map((bookmark: Bookmark) => {
-            let url: URL | { hostname: string; href: string } = {
-              hostname: bookmark.url,
-              href: `${bookmark.url}?utm_source=bmrk.cc`,
-            };
-            try {
-              const url = new URL(bookmark.url);
-              url.searchParams.append('utm_source', 'bmrk.cc');
-            } catch {
-              console.error('Invalid URL', bookmark.url);
-            }
             return (
               <CommandItem
                 className="flex flex-col items-start w-full"
@@ -109,7 +99,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                 <div className="flex gap-2 items-start text-pimary-foreground w-full">
                   <CardFavicon
                     className="bg-background"
-                    url={url.href}
+                    url={`${bookmark.url}?utm_source=bmrk.cc`}
                     title={bookmark.title ?? ''}
                   />
                   <div className="flex flex-col">
@@ -119,7 +109,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                         <StarFilledIcon className="!w-3 !h-3 text-yellow-500 shrink-0 mr-1" />
                       ) : null}
                       <span className="block w-full tracking-wide max-sm:max-w-[250px] truncate">
-                        {humanizeUrl(url.hostname)}
+                        {humanizeUrl(bookmark.url)}
                       </span>
                     </div>
                   </div>

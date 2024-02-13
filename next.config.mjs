@@ -10,6 +10,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: '**', port: '', pathname: '**' },
+      { protocol: 'http', hostname: '**', port: '', pathname: '**' },
     ],
     deviceSizes: [640, 750],
     minimumCacheTTL: 60,

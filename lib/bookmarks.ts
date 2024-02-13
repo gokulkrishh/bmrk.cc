@@ -81,12 +81,14 @@ export const bookmarkParser = (rootNode: HTMLElement) => {
     if (!node) {
       return;
     }
-    const url = node.getAttribute('href');
+    let url = node.getAttribute('href') || '';
     const created_at: string | null = node.getAttribute('ADD_DATE');
     const title = node.textContent;
-    if (url?.length && title) {
+
+    try {
+      url = new URL(url).href;
       const bookmark = {
-        title,
+        title: title || url,
         url,
       } as BookmarkModified;
 
@@ -96,6 +98,8 @@ export const bookmarkParser = (rootNode: HTMLElement) => {
         ).toISOString();
       }
       bookmarks.push(bookmark);
+    } catch {
+      console.error('Error parsing bookmark', title, url);
     }
   };
 

@@ -47,7 +47,7 @@ export default function AddIcon({ className }: { className?: string }) {
       </button>
 
       {open ? (
-        user ? (
+        false ? (
           <AddBookmark open={open} onHide={setOpen} />
         ) : (
           <AccountModal open={open} onHide={setOpen} />
