@@ -50,6 +50,20 @@ const featuresList = [
     videoUrl: `/videos/themes.mp4`,
     screenshotUrl: `/images/themes.png`,
   },
+  {
+    name: 'Export bookmarks',
+    description:
+      'Export your bookmarks as CSV or HTML file for easy sharing and backup.',
+    videoUrl: `/videos/export.mp4`,
+    screenshotUrl: `/images/export.jpg`,
+  },
+  {
+    name: 'Data privacy',
+    description:
+      'Your data is yours, choose to delete your account and its associated data anytime. And there is no analystics on this application.',
+    videoUrl: `/videos/delete-account.mp4`,
+    screenshotUrl: `/images/delete-account.jpg`,
+  },
 ];
 
 export default function Features() {
