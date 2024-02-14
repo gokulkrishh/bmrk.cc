@@ -109,9 +109,7 @@ export default function TagList({ data, tags }: TagListProps) {
     <Command>
       <CommandInput
         value={searchText}
-        onValueChange={(value: string) => {
-          setSearchText(value);
-        }}
+        onValueChange={setSearchText}
         placeholder="Create or Search tags"
       />
       <CommandList className="max-h-56 overflow-y-auto">
@@ -132,6 +130,7 @@ export default function TagList({ data, tags }: TagListProps) {
                     onSelect={async () => {
                       await onUpdate(tag, isChecked);
                     }}
+                    value={tag.name}
                   >
                     <div
                       className={cn(
@@ -163,6 +162,7 @@ export default function TagList({ data, tags }: TagListProps) {
               onSelect={async () => {
                 await onCreate();
               }}
+              value={searchText}
             >
               {searchText}
             </CommandItem>
