@@ -2,26 +2,39 @@ import Link from 'next/link';
 
 import { urls } from 'config';
 
-export default function Footer() {
+import { cn } from 'lib/utils';
+
+export default function Footer({ className }: { className?: string }) {
   return (
-    <footer className="w-full mt-28 p-4 flex justify-between text-[13px] border-t">
+    <footer
+      className={cn(
+        'w-full mt-28 p-4 flex justify-between text-[13px] border-t',
+        className,
+      )}
+    >
       <div className="w-full sm:max-w-4xl flex-col sm:flex-row sm:gap-2 gap-4 px-2 mx-auto flex justify-between items-center text-muted-foreground">
         <div>
           &copy; {new Date().getFullYear()} Bookmark It. All rights reserved.
         </div>
         <div className="flex items-center gap-4">
-          <Link className="hover:underline" href={`${urls.home}/terms`}>
+          <Link
+            className="hover:underline hover:text-primary active:text-primary"
+            href={`${urls.home}/terms`}
+          >
             Terms
           </Link>
           <div className="h-4 w-px bg-neutral-500/30" />
-          <Link className="hover:underline" href={`${urls.home}/privacy`}>
+          <Link
+            className="hover:underline hover:text-primary active:text-primary"
+            href={`${urls.home}/privacy`}
+          >
             Privacy
           </Link>
           <div className="h-4 w-px bg-neutral-500/30"></div>
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            className=" "
+            className="hover:text-primary active:text-primary"
             href="https://x.com/@gokul_i"
           >
             <svg viewBox="0 0 16 16" aria-hidden="true" className="h-4 w-4">
@@ -35,7 +48,7 @@ export default function Footer() {
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            className=" "
+            className="hover:text-primary active:text-primary"
             href="https://github.com/gokulkrishh/bmrk.cc"
           >
             <svg

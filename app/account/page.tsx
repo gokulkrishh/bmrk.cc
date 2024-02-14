@@ -28,24 +28,30 @@ export default async function Page() {
             Bookmark It.
           </h1>
           <p className="text-muted-foreground w-full text-center medium mx-auto mt-1.5 tracking-normal mb-5">
-            The bookmark manager for the modern web.
+            Bookmark manager for the modern web.
           </p>
           <AccountButton />
           <p className="text-muted-foreground text-xs mt-4 px-1 sm:px-2 max-w-[360px] w-full leading-5 text-left">
             By clicking continue, you acknowledge that you have read and agree
             to{' '}
-            <Link className="underline" href={`${urls.home}/terms`}>
+            <Link
+              className="underline hover:text-primary active:text-primary"
+              href={`${urls.home}/terms`}
+            >
               Terms of Service
             </Link>{' '}
             &{' '}
-            <Link className="underline" href={`${urls.home}/privacy`}>
+            <Link
+              className="underline hover:text-primary active:text-primary"
+              href={`${urls.home}/privacy`}
+            >
               Privacy Policy
             </Link>
             .
           </p>
         </div>
       </main>
-      <Footer />
+      <Footer className="mt-0" />
     </div>
   );
 }

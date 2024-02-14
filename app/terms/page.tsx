@@ -5,7 +5,7 @@ import Footer from 'components/home/footer';
 
 export default function TermsPage() {
   return (
-    <div className="flex flex-col mx-auto w-full homepage lex after:bg-grid sm:max-w-4xl pt-5 h-fit px-4">
+    <div className="flex flex-col mx-auto w-full homepage after:bg-grid sm:max-w-4xl pt-5 h-fit px-4">
       <header className="flex justify-between items-center">
         <h1 className="font-medium tracking-tight text-lg flex items-center">
           <Link
