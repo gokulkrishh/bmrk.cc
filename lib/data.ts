@@ -2,13 +2,6 @@ import groupBy from 'object.groupby';
 
 import { BookmarkModified } from 'types/data';
 
-export const groupByKey = (data: unknown[], key: string) => {
-  return data.reduce((acc: { [key: string]: unknown }, datum: any) => {
-    acc[datum[key] as string] = datum;
-    return acc;
-  }, {});
-};
-
 export const groupByDate = (data: BookmarkModified[]) => {
   if (!data) return {};
   return groupBy(data, ({ created_at }) => {

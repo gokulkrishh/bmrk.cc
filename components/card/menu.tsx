@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { StarFilledIcon, UpdateIcon } from '@radix-ui/react-icons';
+import { UpdateIcon } from '@radix-ui/react-icons';
 import { Edit, Link, Share, StarIcon, Trash2Icon } from 'lucide-react';
 import { toast } from 'sonner';
 

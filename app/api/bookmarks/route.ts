@@ -7,7 +7,7 @@ import { bookmarkParser } from 'lib/bookmarks';
 import { formatDate } from 'lib/date';
 import createClient from 'lib/supabase/server';
 
-import { BookmarkInsert, TagInsert, User } from 'types/data';
+import { BookmarkInsert, TagInsert } from 'types/data';
 
 const dateOptions = {
   day: 'numeric',

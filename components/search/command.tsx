@@ -30,18 +30,14 @@ type SearchCommandProps = {
 
 function SearchCommand({ open, setOpen }: SearchCommandProps) {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<{ [key: string]: Bookmark[] }>({
-    result: [],
-    bookmarks: [],
-  });
-  const [search, setSearch] = useState('');
+  const [data, setData] = useState<BookmarkModified[]>([]);
   const [shouldRender, setShouldRender] = useState(false);
 
   const getAllBookmarks = useCallback(async () => {
     try {
       setLoading(true);
       const data = await getBookmarks();
-      setData({ result: data, bookmarks: data });
+      setData(data);
     } finally {
       setLoading(false);
     }
@@ -51,33 +47,13 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
     getAllBookmarks();
   }, [getAllBookmarks, shouldRender]);
 
-  const onValueChange = (value: string) => {
-    if (!value.length) {
-      setData({ ...data, result: data.bookmarks });
-    } else {
-      const filteredResult = data.bookmarks.filter((bookmark: Bookmark) => {
-        const searchValue = value.toLowerCase();
-        return (
-          bookmark?.title?.toLowerCase().includes(searchValue) ||
-          bookmark?.url?.toLowerCase().includes(searchValue)
-        );
-      });
-      setData({ ...data, result: filteredResult });
-    }
-    setSearch(value);
-  };
-
   const openBookmark = (url: string) => {
     window.open(url, '_blank');
   };
 
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
-      <CommandInput
-        value={search}
-        onValueChange={onValueChange}
-        placeholder="Search bookmarks"
-      />
+      <CommandInput placeholder="Search bookmarks" />
       <CommandList>
         <CommandGroup heading="All Bookmarks">
           {loading ? (
@@ -87,7 +63,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
               </div>
             </CommandLoading>
           ) : null}
-          {data.result.map((bookmark: Bookmark) => {
+          {data.map((bookmark: Bookmark) => {
             return (
               <CommandItem
                 className="flex flex-col items-start w-full"
@@ -95,6 +71,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                   openBookmark(`${bookmark.url}?utm_source=bmrk.cc`);
                 }}
                 key={`${bookmark.id}`}
+                value={`${bookmark.title}-${bookmark.url}`}
               >
                 <div className="flex gap-2 items-start text-pimary-foreground w-full">
                   <CardFavicon

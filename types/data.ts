@@ -13,6 +13,7 @@ export type BookmarkModified = Bookmark & {
   bookmarks_tags: { tags: { id: Tag['id']; name: Tag['name'] } }[];
 };
 export type BookmarkInsertModified = BookmarkInsert & {
+  user_id?: string;
   metadata: {
     image: string;
   };

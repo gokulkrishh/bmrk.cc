@@ -4,11 +4,24 @@ type TagHierarchy = {
   [key: string]: TagHierarchy | { _links: BookmarkModified[] };
 };
 
+type currentLevelLinkType =
+  | {
+      title?: string | null;
+      url?: string | undefined;
+      created_at?: number | undefined;
+    }[]
+  | undefined;
+
+type currentLevelType = {
+  _links?: currentLevelLinkType;
+  [key: string]: NonNullable<unknown> | null | undefined;
+};
+
 const buildTagHierarchy = (bookmarks: BookmarkModified[]) => {
   const root = {};
 
   bookmarks.forEach((bookmark: BookmarkModified) => {
-    let currentLevel: { [key: string]: any } = root;
+    let currentLevel: currentLevelType = root;
     bookmark.bookmarks_tags.forEach(({ tags }) => {
       const { name = 'Bookmarks' } = tags;
       if (!currentLevel[name]) {
@@ -32,11 +45,13 @@ const generateHTMLForTags = (
 ) => {
   let htmlContent = `<DT><H3>${tagName}</H3>\n<DL><p>\n`;
 
-  Object.entries(tagHierarchy).forEach(([tag, content]: any) => {
+  Object.entries(tagHierarchy).forEach(([tag, content]) => {
     if (tag === '_links') {
-      content.forEach((link: BookmarkModified) => {
-        htmlContent += `<DT><A ADD_DATE="${link.created_at}" HREF="${link.url}">${link.title}</A>\n`;
-      });
+      if (Array.isArray(content)) {
+        content.forEach((link: BookmarkModified) => {
+          htmlContent += `<DT><A ADD_DATE="${link.created_at}" HREF="${link.url}">${link.title}</A>\n`;
+        });
+      }
     } else {
       htmlContent += generateHTMLForTags(content as TagHierarchy, tag);
     }

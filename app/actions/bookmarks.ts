@@ -6,7 +6,7 @@ import createClient from 'lib/supabase/actions';
 
 import {
   Bookmark,
-  BookmarkInsert,
+  BookmarkInsertModified,
   BookmarkModified,
   BookmarkUpdate,
 } from 'types/data';
@@ -34,7 +34,7 @@ export const getBookmarks = async () => {
   return data;
 };
 
-export const createBookmark = async (bookmark: BookmarkInsert) => {
+export const createBookmark = async (bookmark: BookmarkInsertModified) => {
   const user = await getUser();
   if (!user) {
     return new Error('User is not authenticated.');
@@ -43,7 +43,7 @@ export const createBookmark = async (bookmark: BookmarkInsert) => {
   const supabase = await createClient();
   const { error } = await supabase
     .from('bookmarks')
-    .insert({ ...bookmark, user_id: user.id } as BookmarkInsert);
+    .insert({ ...bookmark, user_id: user.id });
 
   if (error) {
     return new Error('Unable to create a new bookmark.');
