@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+const chromiumExtensionLink = `https://chromewebstore.google.com/detail/bookmark-it/fgnmdiklfcddmhmmmppepijecbljfjbm?utm_source=bmrk.cc`;
+
 export default function Extensions() {
   return (
     <div className="mx-auto my-8 mt-10 flex flex-col items-center">
@@ -20,26 +22,26 @@ export default function Extensions() {
           <div className="flex items-center gap-2">
             <Link
               title="Chrome Browser"
-              href="#"
+              href={chromiumExtensionLink}
               className="rounded-2xl border border-transparent transition-all hover:border-input bg-white p-2 active:opacity-80"
             >
               <Image
                 src={'/images/browsers/chrome.svg'}
                 width={60}
                 height={60}
-                alt="Chrome Extension"
+                alt="Chrome Browser Extension"
               />
             </Link>
             <Link
               title="Brave Browser"
-              href="#"
+              href={chromiumExtensionLink}
               className="rounded-2xl border border-transparent transition-all hover:border-input bg-white p-2 active:opacity-80"
             >
               <Image
                 src={'/images/browsers/brave.svg'}
                 width={60}
                 height={60}
-                alt="Chrome Extension"
+                alt="Brave Browser Extension"
               />
             </Link>
           </div>
