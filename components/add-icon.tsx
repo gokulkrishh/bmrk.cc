@@ -22,29 +22,29 @@ export default function AddIcon({ className }: { className?: string }) {
   });
 
   return (
-    <div>
-      <button
-        onClick={() => setOpen(true)}
-        className={cn(
-          'rounded-full flex justify-center p-2 max-sm:p-3 text-white bg-blue-600 hover:bg-blue-500',
-          className,
-        )}
-      >
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Plus className="text-white w-6 h-6" />
-          </TooltipTrigger>
-          <TooltipContent
-            side="right"
-            className="flex items-center ml-4 font-medium text-white dark:text-black"
+    <>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button
+            onClick={() => setOpen(true)}
+            className={cn(
+              'rounded-full flex justify-center p-2 max-sm:p-3 text-white bg-blue-600 hover:bg-blue-500',
+              className,
+            )}
           >
-            Add{' '}
-            <kbd className="pointer-events-none ml-2 border dark:text-black text-white border-input inline-flex h-4 select-none items-center gap-1 rounded  px-1 font-mono text-[10px] font-medium text-primary opacity-100">
-              A
-            </kbd>
-          </TooltipContent>
-        </Tooltip>
-      </button>
+            <Plus className="text-white w-6 h-6" />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent
+          side="right"
+          className="flex items-center ml-4 font-medium text-white dark:text-black"
+        >
+          Add{' '}
+          <kbd className="pointer-events-none ml-2 border dark:text-black text-white border-input inline-flex h-4 select-none items-center gap-1 rounded  px-1 font-mono text-[10px] font-medium text-primary opacity-100">
+            A
+          </kbd>
+        </TooltipContent>
+      </Tooltip>
 
       {open ? (
         user ? (
@@ -53,6 +53,6 @@ export default function AddIcon({ className }: { className?: string }) {
           <AccountModal open={open} onHide={setOpen} />
         )
       ) : null}
-    </div>
+    </>
   );
 }

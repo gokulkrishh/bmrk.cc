@@ -28,28 +28,28 @@ export default function SearchIcon({ className }: { className?: string }) {
 
   return (
     <>
-      <button
-        onClick={() => setOpen(!open)}
-        className={cn(
-          'p-2.5 inline-block rounded-xl transition-colors text-center hover:bg-accent group',
-          className,
-        )}
-      >
-        <Tooltip>
-          <TooltipTrigger className="text-primary" asChild>
-            <Search className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
-          </TooltipTrigger>
-          <TooltipContent
-            side={'right'}
-            className="flex items-center ml-4 text-white dark:text-black"
+      <Tooltip>
+        <TooltipTrigger className="text-primary" asChild>
+          <button
+            onClick={() => setOpen(!open)}
+            className={cn(
+              'p-2.5 inline-block rounded-xl transition-colors text-center hover:bg-accent group',
+              className,
+            )}
           >
-            Search{' '}
-            <kbd className="pointer-events-none ml-2 border dark:text-black text-white border-input inline-flex h-4 select-none items-center gap-1 rounded px-1 font-mono text-[10px] font-medium text-primary opacity-100">
-              K
-            </kbd>
-          </TooltipContent>
-        </Tooltip>
-      </button>
+            <Search className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent
+          side={'right'}
+          className="flex items-center ml-4 text-white dark:text-black"
+        >
+          Search{' '}
+          <kbd className="pointer-events-none ml-2 border dark:text-black text-white border-input inline-flex h-4 select-none items-center gap-1 rounded px-1 font-mono text-[10px] font-medium text-primary opacity-100">
+            K
+          </kbd>
+        </TooltipContent>
+      </Tooltip>
 
       {open ? (
         user ? (

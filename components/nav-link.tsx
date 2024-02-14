@@ -29,46 +29,47 @@ export default function NavLink(props: NavLinkProps) {
 
   if (target === 'external') {
     return (
-      <a
-        href={href}
-        className={cn(
-          `p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary hover:bg-accent`,
-          {
-            'bg-accent': pathname === href,
-          },
-          className,
-        )}
-      >
-        <Tooltip>
-          <TooltipTrigger asChild>{children}</TooltipTrigger>
-          <TooltipContent
-            className="ml-4 text-white dark:text-black"
-            side={side}
-          >
-            {title}
-          </TooltipContent>
-        </Tooltip>
-      </a>
-    );
-  }
-
-  return (
-    <Link
-      href={href}
-      className={cn(
-        `p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary hover:bg-accent`,
-        {
-          'bg-accent': pathname === href,
-        },
-        className,
-      )}
-    >
       <Tooltip>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
+        <TooltipTrigger asChild>
+          <a
+            href={href}
+            className={cn(
+              `p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary hover:bg-accent`,
+              {
+                'bg-accent': pathname === href,
+              },
+              className,
+            )}
+          >
+            {children}{' '}
+          </a>
+        </TooltipTrigger>
         <TooltipContent className="ml-4 text-white dark:text-black" side={side}>
           {title}
         </TooltipContent>
       </Tooltip>
-    </Link>
+    );
+  }
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Link
+          href={href}
+          className={cn(
+            `p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary hover:bg-accent`,
+            {
+              'bg-accent': pathname === href,
+            },
+            className,
+          )}
+        >
+          {children}
+        </Link>
+      </TooltipTrigger>
+      <TooltipContent className="ml-4 text-white dark:text-black" side={side}>
+        {title}
+      </TooltipContent>
+    </Tooltip>
   );
 }
