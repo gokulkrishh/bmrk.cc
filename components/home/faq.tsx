@@ -9,26 +9,26 @@ import {
 
 const faqs = [
   {
-    question: 'How to I save a bookmark?',
+    question: 'How to save a bookmark?',
     answer:
-      'Copy the URL of the page you want to save, then just paste it into the input field or use our chrome extension to save bookmarks with single click.',
+      'Copy the URL of the page you want to save,  paste it into the input field or use our chrome extension to save bookmarks with a single click.',
   },
   {
     question: 'Can I import my existings bookmarks?',
-    answer: `Yes, you can import your existing bookmarks from your web browser. To do this, click the upload icon in home page and follow the instructions.`,
+    answer: `Yes, you can import your existing bookmarks from your web browser. To import, click the upload icon in input field and follow the instructions.`,
   },
   {
     question: 'How do I delete a bookmark?',
-    answer: `To delete a bookmark, go to the bookmark you wish to remove, click on the options menu (usually represented by three dots), and select "Delete".`,
+    answer: `To delete any bookmark, click on the options menu (represented by three dots) and then select "Delete".`,
   },
   {
     question: 'Can I access my bookmarks from different devices?',
-    answer: `Yes, you can access your saved bookmarks from any device, anytime, as long as you have internet access.`,
+    answer: `Yes, you can access your saved bookmarks from any device via web browser, anytime, as long as you have internet access.`,
   },
   {
     question: 'Do you have a browser extension?',
     answer:
-      'Yes, we have a chrome extension at the moment, more browser support is coming soon. You can download it from the Chrome Web Store by searching it or click the link in browser extensions section above.',
+      'Yes, you can download it from the Web Store by searching it or click the link in browser extensions section above.',
   },
   {
     question: 'Is there a limit to how many bookmarks I can save?',
@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     question: 'I have more questions, how can I contact you?',
-    answer: `If you have more questions, you can contact us through the app\'s "Help" section in profile menu or send us an email at support@bmrk.cc.`,
+    answer: `You can contact us through the app\'s "Help" section in profile menu or send us an email at "support@bmrk.cc".`,
   },
 ];
 

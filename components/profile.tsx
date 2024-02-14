@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 import { urls } from 'config';
-import { HelpCircleIcon, LogOut, Settings } from 'lucide-react';
+import { Bug, HelpCircleIcon, LogOut, Settings } from 'lucide-react';
 
 import { cn } from 'lib/utils';
 
@@ -44,6 +44,17 @@ export default function Profile({ className }: { className?: string }) {
           </AvatarFallback>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-2">
+          <DropdownMenuItem
+            className="flex items-center cursor-pointer"
+            onClick={() => {
+              window.open(
+                `https://github.com/gokulkrishh/bmrk.cc/issues`,
+                '_blank',
+              );
+            }}
+          >
+            <Bug className="h-4 w-4 mr-2.5" /> File a bug
+          </DropdownMenuItem>
           <DropdownMenuItem
             className="flex items-center cursor-pointer"
             onClick={() => {
