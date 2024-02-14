@@ -118,7 +118,7 @@ export default function TagList({ data, tags }: TagListProps) {
         {tags.length ? (
           <CommandGroup heading="All tags">
             {tags
-              .sort((a: Tag, b: Tag) => a.name.localeCompare(b.name))
+              .sort((a: Tag, b: Tag) => a?.name?.localeCompare(b?.name))
               .map((tag: Tag) => {
                 const isChecked = Boolean(
                   optimisticData?.bookmarks_tags?.find(

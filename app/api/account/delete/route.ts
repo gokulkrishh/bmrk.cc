@@ -4,7 +4,7 @@ import { User, createClient } from '@supabase/supabase-js';
 
 import { checkAuth } from 'lib/auth';
 
-import { Database } from 'types/database';
+import { Database } from 'types/supabase';
 
 const errorMessage = 'Unable to delete your account, try again.';
 

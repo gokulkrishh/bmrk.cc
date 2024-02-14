@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 
 import { type CookieOptions, createServerClient } from '@supabase/ssr';
 
-import { Database } from 'types/database';
+import { Database } from 'types/supabase';
 
 import { createFetch } from './cache';
 

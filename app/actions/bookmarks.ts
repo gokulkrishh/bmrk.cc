@@ -63,7 +63,7 @@ export const updateBookmark = async (
   const supabase = await createClient();
   const { error } = await supabase
     .from('bookmarks')
-    .update({ ...bookmark, user_id: user.id } as BookmarkUpdate)
+    .update({ ...bookmark, user_id: user.id })
     .eq('id', id);
 
   if (error) {

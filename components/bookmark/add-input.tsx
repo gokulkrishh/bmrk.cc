@@ -39,14 +39,14 @@ export default function AddBookmarkInput({
     setLoading(true);
     try {
       const ogData: MetaTags = await getOg(inputUrl);
-      const payload = {
+      const payload: any = {
         url: inputUrl,
         description: ogData.description?.trim(),
         title: ogData.title?.trim(),
         metadata: {
           image: ogData.image,
         },
-      } as BookmarkInsertModified;
+      };
       await createBookmark(payload);
       toast.success(`Bookmark added.`);
       refreshInChromeExt();

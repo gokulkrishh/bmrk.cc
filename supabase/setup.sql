@@ -65,7 +65,7 @@ create policy "Allow operations for authenticated users only" on bookmarks
 create table
   tags (
     id bigint primary key generated always as identity,
-    name text not null unique,
+    name text not null,
     user_id uuid references users on delete cascade not null,
     created_at timestamp with time zone default current_timestamp not null,
     updated_at timestamp with time zone default current_timestamp not null

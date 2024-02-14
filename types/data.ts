@@ -1,4 +1,4 @@
-import { Database } from './database';
+import { Database } from './supabase';
 
 export type Bookmark = Database['public']['Tables']['bookmarks']['Row'];
 export type BookmarkInsert =
