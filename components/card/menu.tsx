@@ -123,7 +123,7 @@ export default function CardMenu({
         >
           <MoreIcon className="fill-muted-foreground !h-4 !w-4" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="mr-2 min-w-40">
+        <DropdownMenuContent className="mr-2 max-sm:min-w-44 min-w-40">
           <DropdownMenuItem
             onClick={() => {
               setOpen(true);

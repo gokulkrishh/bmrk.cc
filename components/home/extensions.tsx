@@ -46,14 +46,19 @@ export default function Extensions() {
           </div>
         </div>
         <div className="flex bg-white overflow-hidden max-w-lg w-full  mt-4 rounded-xl border-2 border-input">
-          <Image
+          <video
             className="relative top-3 -left-3"
-            src="/images/chrome-ext.png"
-            loading="lazy"
-            width={508}
-            height={633}
-            alt="Chrome Extension"
-          />
+            playsInline
+            autoPlay
+            muted
+            loop
+            width="1200"
+            height="400"
+            src={`/demo/chrome-ext.mp4`}
+            poster={`/demo/chrome-ext.png`}
+          >
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </div>

@@ -44,7 +44,7 @@ export default function Profile({ className }: { className?: string }) {
             {user.user_metadata.name[0]}
           </AvatarFallback>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="max-sm:mr-2 min-w-[160px]">
+        <DropdownMenuContent className="max-sm:mr-2 max-sm:min-w-44 min-w-40">
           <DropdownMenuItem
             className="flex items-center cursor-pointer"
             onClick={() => {

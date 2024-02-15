@@ -51,7 +51,6 @@ export default async function Page() {
           </p>
         </div>
       </main>
-      <Footer className="mt-0" />
     </div>
   );
 }

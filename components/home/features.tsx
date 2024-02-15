@@ -14,55 +14,55 @@ const featuresList = [
     name: 'Twitter-like timeline',
     description:
       'Bookmarks are arranged in a timeline for easy historical browsing.',
-    videoUrl: `/videos/add.mp4`,
-    screenshotUrl: `/images/timeline.png`,
+    videoUrl: `/demo/timeline.mp4`,
+    screenshotUrl: `/demo/timeline.png`,
   },
   {
     name: 'Seemless integration',
     description: 'Easily import your existing bookmarks from web browser.',
-    videoUrl: `/videos/import-bookmarks.mp4`,
-    screenshotUrl: `/images/import-bookmarks.png`,
+    videoUrl: `/demo/import.mp4`,
+    screenshotUrl: `/demo/import.png`,
   },
   {
     name: 'Personalise your bookmarks',
     description:
       'Organize your bookmarks with custom tags for easy navigation.',
-    videoUrl: `/videos/tags.mp4`,
-    screenshotUrl: `/images/tags.png`,
+    videoUrl: `/demo/personalise.mp4`,
+    screenshotUrl: `/demo/personalise.png`,
   },
   {
     name: 'Favorite your bookmarks',
     description: 'Quickly access your most-loved content with a simple click.',
-    videoUrl: `/videos/fav.mp4`,
-    screenshotUrl: `/images/fav.png`,
+    videoUrl: `/demo/fav.mp4`,
+    screenshotUrl: `/demo/fav.png`,
   },
   {
     name: 'Bookmark with one click',
     description:
       'Bookmark any site with a single click, open and browse your bookmarks wihout leaving your tab with our chrome extension.',
-    videoUrl: `/videos/chrome-ext.mp4`,
-    screenshotUrl: `/images/chrome-ext.png`,
+    videoUrl: `/demo/bookmark-one-click.mp4`,
+    screenshotUrl: `/demo/bookmark-one-click.png`,
   },
   {
     name: 'Customizable viewing experience',
     description:
       'Choose between light and dark mode for better viewing experience.',
-    videoUrl: `/videos/themes.mp4`,
-    screenshotUrl: `/images/themes.png`,
+    videoUrl: `/demo/themes.mp4`,
+    screenshotUrl: `/demo/themes.png`,
   },
   {
     name: 'Export bookmarks',
     description:
       'Export your bookmarks as CSV or HTML file for easy sharing and backup.',
-    videoUrl: `/videos/export.mp4`,
-    screenshotUrl: `/images/export.jpg`,
+    videoUrl: `/demo/export.mp4`,
+    screenshotUrl: `/demo/export.jpg`,
   },
   {
     name: 'Data privacy',
     description:
       'Your data is yours, choose to delete your account and its associated data anytime.',
-    videoUrl: `/videos/delete-account.mp4`,
-    screenshotUrl: `/images/delete-account.jpg`,
+    videoUrl: `/demo/delete-account.mp4`,
+    screenshotUrl: `/demo/delete-account.jpg`,
   },
 ];
 
