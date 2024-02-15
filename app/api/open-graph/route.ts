@@ -26,7 +26,10 @@ export async function GET(request: NextRequest) {
           JSON.stringify({ title: url, description: '', image: '' }),
         );
       }
-      const metatags: { [key: string]: string } = extractMetaTags(html, url);
+      const metatags: { [key: string]: string | boolean } = extractMetaTags(
+        html,
+        url,
+      );
       return new Response(JSON.stringify(metatags));
     } catch (error) {
       return new Response(JSON.stringify(error), { status: 500 });

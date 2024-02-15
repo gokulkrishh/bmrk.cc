@@ -42,7 +42,7 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
         onError={() => {
           if (ref.current?.src) {
             ref.current.src = `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${data.url}&size=128`;
-            ref.current.style.objectFit = 'scale-down';
+            ref.current.style.objectFit = 'none';
           }
         }}
         blurDataURL={blurDataURL}
