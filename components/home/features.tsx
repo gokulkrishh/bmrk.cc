@@ -101,7 +101,7 @@ export default function Features() {
         </Accordion>
         <div className="flex h-[390px] mx-auto bg-white max-w-sm w-full rounded-lg border-2 border-input">
           <video
-            className="rounded-lg px-0 border-2 border-white"
+            className="rounded-lg px-0 object-cover border-2 border-white"
             playsInline
             autoPlay
             muted

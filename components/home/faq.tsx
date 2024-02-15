@@ -9,11 +9,6 @@ import {
 
 const faqs = [
   {
-    question: 'How to save a bookmark?',
-    answer:
-      'Copy the URL of the page you want to save,  paste it into the input field or use our chrome extension to save bookmarks with a single click.',
-  },
-  {
     question: 'Can I import my existings bookmarks?',
     answer: `Yes, you can import your existing bookmarks from your web browser. To import, click the upload icon in input field and follow the instructions.`,
   },

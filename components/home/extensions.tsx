@@ -14,16 +14,16 @@ export default function Extensions() {
         </span>
       </h2>
       <p className="text-muted-foreground leading-7 mt-3 sm:text-lg mx-auto max-w-xl tracking-normal text-center">
-        Add and browse bookmarks without having to leave the tab.
+        Add and browse bookmarks without having to leave your tab.
       </p>
       <div className="mt-10 grid grid-cols-1 gap-4">
         <div className="flex items-center flex-col justify-center">
-          <h3 className="text-lg font-medium mb-2">Supported Browsers</h3>
-          <div className="flex items-center gap-2">
+          {/* <h3 className="text-lg font-medium mb-2">Supported Browsers</h3> */}
+          <div className="flex items-center gap-8">
             <Link
               title="Chrome Browser"
               href={chromiumExtensionLink}
-              className="rounded-2xl border border-transparent transition-all hover:border-input bg-white p-2 active:opacity-80"
+              className="rounded-2xl border transition-all border-input bg-white p-2 active:opacity-80"
             >
               <Image
                 src={'/images/browsers/chrome.svg'}
@@ -35,7 +35,7 @@ export default function Extensions() {
             <Link
               title="Brave Browser"
               href={chromiumExtensionLink}
-              className="rounded-2xl border border-transparent transition-all hover:border-input bg-white p-2 active:opacity-80"
+              className="rounded-2xl border transition-all border-input bg-white p-2 active:opacity-80"
             >
               <Image
                 src={'/images/browsers/brave.svg'}
@@ -46,13 +46,16 @@ export default function Extensions() {
             </Link>
           </div>
         </div>
-        <Image
-          className="flex bg-white mt-4 max-w-md w-full rounded-lg border-2 border-input"
-          src="/images/chrome-ext.jpg"
-          width={800}
-          height={600}
-          alt="Chrome Extension"
-        />
+        <div className="flex bg-white overflow-hidden max-w-lg w-full  mt-4 rounded-xl border-2 border-input">
+          <Image
+            className="relative top-3 -left-3"
+            src="/images/chrome-ext.png"
+            loading="lazy"
+            width={508}
+            height={633}
+            alt="Chrome Extension"
+          />
+        </div>
       </div>
     </div>
   );
