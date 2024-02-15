@@ -9,6 +9,7 @@ import { getBookmarks } from 'app/actions/bookmarks';
 
 import CardFavicon from 'components/card/favicon';
 import CardMenu from 'components/card/menu';
+import TagBadge from 'components/card/tag-badge';
 import Loader from 'components/loader';
 import {
   CommandDialog,
@@ -21,7 +22,7 @@ import {
   CommandShortcut,
 } from 'components/ui/command';
 
-import { Bookmark, BookmarkModified } from 'types/data';
+import { Bookmark, BookmarkModified, Tag } from 'types/data';
 
 type SearchCommandProps = {
   open: boolean;
@@ -53,8 +54,8 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
 
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
-      <CommandInput placeholder="Search bookmarks" />
-      <CommandList>
+      <CommandInput placeholder="Search by bookmarks or tags" />
+      <CommandList className="w-full">
         <CommandGroup heading="All Bookmarks">
           {loading ? (
             <CommandLoading>
@@ -63,7 +64,10 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
               </div>
             </CommandLoading>
           ) : null}
-          {data.map((bookmark: Bookmark) => {
+          {data.map((bookmark: BookmarkModified) => {
+            const tags = bookmark.bookmarks_tags
+              .map(({ tags: { name } }) => name)
+              .join('-');
             return (
               <CommandItem
                 className="flex flex-col items-start w-full"
@@ -71,11 +75,11 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                   openBookmark(`${bookmark.url}?utm_source=bmrk.cc`);
                 }}
                 key={`${bookmark.id}`}
-                value={`${bookmark.title}-${bookmark.url}`}
+                value={`${bookmark.title}-${bookmark.url}-${tags}`}
               >
                 <div className="flex gap-2 items-start text-pimary-foreground w-full">
                   <CardFavicon
-                    className="bg-background"
+                    className="bg-background w-5 h-5"
                     url={`${bookmark.url}?utm_source=bmrk.cc`}
                     title={bookmark.title ?? ''}
                   />
@@ -88,6 +92,12 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                       <span className="block w-full tracking-wide max-sm:max-w-[250px] truncate">
                         {humanizeUrl(bookmark.url)}
                       </span>
+                    </div>
+                    <div className="mt-2 -ml-0.5 text-xs">
+                      <TagBadge
+                        avoidHover
+                        data={bookmark as BookmarkModified}
+                      />
                     </div>
                   </div>
                   <CommandShortcut
