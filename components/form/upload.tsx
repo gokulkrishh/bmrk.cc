@@ -29,7 +29,10 @@ const helpLinks: { [key: string]: string } = {
 
 export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
   const [loading, setLoading] = useState(false);
-  const [fileName, setFileName] = useState('');
+  const [fileDetails, setFileDetails] = useState({
+    name: '',
+    size: 0,
+  });
   const hiddenInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -65,7 +68,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
     if (files && files.length) {
       const file = files[0];
       if (file) {
-        setFileName(file.name);
+        setFileDetails({ name: file.name, size: file.size });
       }
     }
   };
@@ -73,7 +76,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
   const onSubmit = () => {
     try {
       const files = hiddenInputRef.current?.files ?? [];
-      if (files && files.length) {
+      if (files && files.length && isFileAllowed) {
         const file = files[0];
         if (file) {
           toast.info(`Don't refresh this page.`, {
@@ -92,6 +95,10 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
       toast.error('Error occurred, try again');
     }
   };
+
+  const allowedSize = 200;
+  const fileSize = Math.ceil(fileDetails.size / 1024);
+  const isFileAllowed = fileSize <= allowedSize;
 
   return (
     <form
@@ -114,34 +121,50 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
           onClick={() => {
             hiddenInputRef.current?.click();
           }}
-          className="flex w-full justify-center flex-col items-center"
+          className="flex w-full -mt-3 justify-center flex-col items-center"
         >
           <ArrowUpCircle strokeWidth={1} className="w-10 h-10" />
           <p className="text-sm mt-2 font-medium">Click to browse</p>
         </button>
-        <div className="text-sm mt-2 text-muted-foreground text-center">
-          {fileName.length ? (
-            <span className="text-primary underline font-medium">
-              {fileName}
-            </span>
+        <div className="text-sm flex flex-col mt-2 text-muted-foreground text-center">
+          {fileDetails.name?.length ? (
+            <>
+              <span className="text-primary">{fileDetails.name}</span>
+              <span className="text-xs mt-1.5 text-muted-foreground">
+                File Size:{' '}
+                <span
+                  className={cn(`font-medium`, {
+                    'text-red-600': !isFileAllowed,
+                  })}
+                >
+                  {!isFileAllowed ? 'Greater than 200 KB' : fileSize + ' KB'}
+                </span>
+              </span>
+            </>
           ) : (
             <>
-              Know how to export your bookmarks{' '}
-              <Tooltip>
-                <TooltipTrigger
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    const name = getBrowserName();
-                    const link = helpLinks[name] ?? helpLinks['chrome'];
-                    window.open(link, '_blank');
-                  }}
-                >
-                  <QuestionMarkCircledIcon className="w-3.5 relative -top-0.5 h-3.5 text-blue-700 " />
-                </TooltipTrigger>
-                <TooltipContent className="text-white dark:text-black">
-                  Click here
-                </TooltipContent>
-              </Tooltip>
+              <span>
+                {' '}
+                Export your bookmarks from your browser.
+                <Tooltip>
+                  <TooltipTrigger
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      const name = getBrowserName();
+                      const link = helpLinks[name] ?? helpLinks['chrome'];
+                      window.open(link, '_blank');
+                    }}
+                  >
+                    <QuestionMarkCircledIcon className="w-3.5 relative -top-0.5 h-3.5 text-blue-700 " />
+                  </TooltipTrigger>
+                  <TooltipContent className="text-white dark:text-black">
+                    Click to know how.
+                  </TooltipContent>
+                </Tooltip>
+              </span>
+              <span className="text-xs mt-1.5 text-muted-foreground">
+                Max File Size: <span className="font-medium">200 KB</span>
+              </span>
             </>
           )}
         </div>
@@ -150,7 +173,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
         <div className="flex w-full justify-end mt-3 mb-1">
           <button
             type="submit"
-            disabled={loading || !fileName.length}
+            disabled={loading || !fileDetails.name?.length || !isFileAllowed}
             className={cn(
               `rounded-full w-[86px] h-[40px] transition-colors font-medium items-center bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-700 disabled:opacity-40 disabled:active:bg-blue-600 disabled:hover:bg-blue-600 disabled:focus:bg-blue-600 border-0 flex justify-center py-2 px-4 text-white`,
               {
@@ -163,10 +186,12 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
         </div>
       ) : (
         <div className="flex w-full justify-center">
-          <SubmitBtn disabled={loading || !fileName.length}>
+          <SubmitBtn
+            disabled={loading || !fileDetails.name?.length || !isFileAllowed}
+          >
             {loading ? (
               <>
-                <Loader className="mr-2" /> Submitting...
+                <Loader className="mr-2" /> Submit
               </>
             ) : (
               'Submit'
