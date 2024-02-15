@@ -29,18 +29,18 @@ export const metadata: Metadata = {
     title,
     description,
     creator: '@gokul_i',
-    images: ['/images/open-graph.jpg'],
+    images: ['/images/og.jpg'],
   },
   openGraph: {
     type: 'website',
     title,
     description,
     url: 'https://bmrk.cc',
-    images: ['/images/open-graph.jpg'],
+    images: ['/images/og.jpg'],
   },
   icons: {
     icon: '/icons/favicon-32x32.png',
-    shortcut: '/icons/favicon.svg',
+    shortcut: '/icons/favicon.ico',
     apple: '/icons/apple-touch-icon.png',
   },
   appleWebApp: {

@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     title,
     description,
     creator: '@gokul_i',
-    images: ['https://bmrk.cc/images/open-graph.jpg'],
+    images: ['https://bmrk.cc/images/og.jpg'],
   },
   openGraph: {
     type: 'website',
     title,
     description,
     url: 'https://bmrk.cc',
-    images: ['https://bmrk.cc/images/open-graph.jpg'],
+    images: ['https://bmrk.cc/images/og.jpg'],
   },
   icons: {
     icon: '/icons/favicon.ico',
