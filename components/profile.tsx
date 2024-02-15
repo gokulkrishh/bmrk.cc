@@ -48,17 +48,16 @@ export default function Profile({ className }: { className?: string }) {
             {user.user_metadata.name[0]}
           </AvatarFallback>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="mr-2">
+        <DropdownMenuContent className="max-sm:mr-2 min-w-[160px]">
           <DropdownMenuItem
             className="flex items-center cursor-pointer"
             onClick={() => {
               window.open(urls.extensions.chrome, '_blank');
             }}
           >
-            <ExtensionsIcon className="h-4 w-4 mr-2.5" />{' '}
+            <ExtensionsIcon className="h-4 w-4 mr-2.5 text-primary" />{' '}
             <span className="mr-2">Extensions</span>
           </DropdownMenuItem>
-
           <DropdownMenuItem
             className="flex items-center cursor-pointer"
             onClick={() => {
