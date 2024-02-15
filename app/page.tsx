@@ -27,17 +27,17 @@ export default async function Page() {
     <div className="flex flex-col mx-auto w-full homepage">
       <main className="flex after:bg-grid sm:max-w-4xl py-5 mx-auto flex-col w-full h-fit px-4">
         <header className="flex justify-between items-center">
-          <h1 className="font-medium tracking-tight text-lg flex items-center">
+          <h1 className="font-semibold text-xl flex items-center">
             <Link
               className="flex text-primary items-center active:opacity-80"
               href="/"
             >
               <Image
                 src="/icons/icon.svg"
-                width={44}
-                height={44}
+                width={40}
+                height={40}
                 alt="Bookmark it"
-                className="mr-2 "
+                className="mr-2.5 rounded-full"
                 priority
               />
               Bookmark It.

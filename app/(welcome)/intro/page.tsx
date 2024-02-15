@@ -14,7 +14,7 @@ export default async function Page() {
   return (
     <div className="h-full pb-24 flex flex-col justify-center items-center homepage-white">
       <header className="mt-10">
-        <Logo className="w-40 h-40" />
+        <Logo className="w-36 h-36" />
       </header>
       <div className="flex mt-10 flex-col items-center text-center justify-center">
         <h1 className="sm:text-4xl text-2xl font-bold tracking-wide ">

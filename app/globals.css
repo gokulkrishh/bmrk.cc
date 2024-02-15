@@ -141,6 +141,6 @@
 .dark {
   .homepage::after {
     background-image: url(/images/grid-white.svg);
-    opacity: 0.1;
+    opacity: 0.09;
   }
 }

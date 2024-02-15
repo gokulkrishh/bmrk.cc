@@ -1,3 +1,5 @@
+import { cn } from 'lib/utils';
+
 export function ExternalLinkIcon({ className = '' }: { className?: string }) {
   return (
     <svg
@@ -56,115 +58,22 @@ export const MoreIcon = ({ className }: { className: string }) => (
 
 export const Logo = ({ className }: { className?: string }) => (
   <svg
-    className={className}
-    xmlns="http://www.w3.org/2000/svg"
-    width="512"
-    height="512"
+    className={cn('rounded-full sm:mt-1', className)}
+    width="686"
+    height="686"
+    viewBox="0 0 686 686"
     fill="none"
-    viewBox="0 0 512 512"
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <g clipPath="url(#clip0_6_3)">
-      <g filter="url(#filter0_dddddd_6_3)">
-        <circle cx="256" cy="256" r="212" fill="#CB0001"></circle>
-      </g>
-      <path
-        fill="#fff"
-        d="M257.205 137.28c14.08 0 25.28 2.133 33.6 6.4 10.027 5.12 17.707 12.16 23.04 21.12 5.547 8.96 8.32 18.987 8.32 30.08 0 10.453-2.773 20.16-8.32 29.12-5.547 8.747-13.12 15.68-22.72 20.8 11.52 4.053 21.227 11.093 29.12 21.12 7.893 10.027 11.84 21.333 11.84 33.92 0 11.093-2.88 21.333-8.64 30.72-5.547 9.173-13.013 16.427-22.4 21.76-4.693 2.56-9.92 4.48-15.68 5.76-5.76 1.28-13.44 1.92-23.04 1.92h-98.56V137.28h93.44zM348.405 324.68c0-7.893 2.773-14.613 8.32-20.16 5.76-5.76 12.693-8.64 20.8-8.64 8.107 0 14.933 2.88 20.48 8.64 5.76 5.547 8.64 12.267 8.64 20.16 0 7.893-2.88 14.72-8.64 20.48-5.547 5.76-12.373 8.64-20.48 8.64-7.893 0-14.72-2.88-20.48-8.64-5.76-5.76-8.64-12.587-8.64-20.48z"
-      ></path>
-    </g>
-    <defs>
-      <filter
-        id="filter0_dddddd_6_3"
-        width="584"
-        height="584"
-        x="-36"
-        y="-40"
-        colorInterpolationFilters="sRGB"
-        filterUnits="userSpaceOnUse"
-      >
-        <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-        <feColorMatrix
-          in="SourceAlpha"
-          result="hardAlpha"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-        ></feColorMatrix>
-        <feOffset dy="-0.111"></feOffset>
-        <feGaussianBlur stdDeviation="1.107"></feGaussianBlur>
-        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0"></feColorMatrix>
-        <feBlend
-          in2="BackgroundImageFix"
-          result="effect1_dropShadow_6_3"
-        ></feBlend>
-        <feColorMatrix
-          in="SourceAlpha"
-          result="hardAlpha"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-        ></feColorMatrix>
-        <feOffset dy="-0.266"></feOffset>
-        <feGaussianBlur stdDeviation="2.66"></feGaussianBlur>
-        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0503198 0"></feColorMatrix>
-        <feBlend
-          in2="effect1_dropShadow_6_3"
-          result="effect2_dropShadow_6_3"
-        ></feBlend>
-        <feColorMatrix
-          in="SourceAlpha"
-          result="hardAlpha"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-        ></feColorMatrix>
-        <feOffset dy="-0.501"></feOffset>
-        <feGaussianBlur stdDeviation="5.009"></feGaussianBlur>
-        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0417275 0"></feColorMatrix>
-        <feBlend
-          in2="effect2_dropShadow_6_3"
-          result="effect3_dropShadow_6_3"
-        ></feBlend>
-        <feColorMatrix
-          in="SourceAlpha"
-          result="hardAlpha"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-        ></feColorMatrix>
-        <feOffset dy="-0.893"></feOffset>
-        <feGaussianBlur stdDeviation="8.935"></feGaussianBlur>
-        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.035 0"></feColorMatrix>
-        <feBlend
-          in2="effect3_dropShadow_6_3"
-          result="effect4_dropShadow_6_3"
-        ></feBlend>
-        <feColorMatrix
-          in="SourceAlpha"
-          result="hardAlpha"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-        ></feColorMatrix>
-        <feOffset dy="-1.671"></feOffset>
-        <feGaussianBlur stdDeviation="16.711"></feGaussianBlur>
-        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0282725 0"></feColorMatrix>
-        <feBlend
-          in2="effect4_dropShadow_6_3"
-          result="effect5_dropShadow_6_3"
-        ></feBlend>
-        <feColorMatrix
-          in="SourceAlpha"
-          result="hardAlpha"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-        ></feColorMatrix>
-        <feOffset dy="-4"></feOffset>
-        <feGaussianBlur stdDeviation="40"></feGaussianBlur>
-        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0196802 0"></feColorMatrix>
-        <feBlend
-          in2="effect5_dropShadow_6_3"
-          result="effect6_dropShadow_6_3"
-        ></feBlend>
-        <feBlend
-          in="SourceGraphic"
-          in2="effect6_dropShadow_6_3"
-          result="shape"
-        ></feBlend>
-      </filter>
-      <clipPath id="clip0_6_3">
-        <path fill="#fff" d="M0 0H512V512H0z"></path>
-      </clipPath>
-    </defs>
+    <rect width="686" height="686" fill="#CB0001" />
+    <path
+      d="M450.854 342.973C450.845 342.981 450.856 342.996 450.867 342.99C479.108 326.591 498.043 296.557 498.043 262.152C498.111 211.967 457.863 171.122 407.205 168.273C407.133 168.269 407.076 168.209 407.076 168.136V168.136C407.076 168.061 407.015 168 406.939 168H267C229.288 168 210.431 168 198.716 179.716C187 191.431 187 210.288 187 248V438C187 475.712 187 494.569 198.716 506.284C210.431 518 229.288 518 267 518H406.939C407.015 518 407.076 517.939 407.076 517.864V517.864C407.076 517.791 407.133 517.731 407.205 517.727C457.863 514.878 498.111 474.033 498.111 423.848C498.111 389.415 479.078 359.361 450.867 342.971C450.863 342.969 450.857 342.969 450.854 342.973V342.973Z"
+      fill="#FFEEE9"
+    />
+    <path
+      d="M224.5 281.785V191C224.5 172.144 224.5 162.716 230.358 156.858C236.216 151 245.644 151 264.5 151H313.491C332.347 151 341.775 151 347.633 156.858C353.491 162.716 353.491 172.144 353.491 191V281.584C353.491 296.97 353.491 304.663 348.494 307.55C343.497 310.438 336.832 306.595 323.502 298.911L299.303 284.961C294.455 282.167 292.031 280.769 289.369 280.762C286.706 280.756 284.275 282.141 279.413 284.911L254.401 299.162C241.101 306.74 234.451 310.529 229.475 307.638C224.5 304.746 224.5 297.093 224.5 281.785Z"
+      fill="#FF652F"
+    />
   </svg>
 );
 
