@@ -95,6 +95,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                     </div>
                     <div className="mt-2 -ml-0.5 text-xs">
                       <TagBadge
+                        className="!max-sm:max-w-[300px]"
                         avoidHover
                         data={bookmark as BookmarkModified}
                       />

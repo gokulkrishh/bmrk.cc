@@ -9,12 +9,16 @@ import { BookmarkModified } from 'types/data';
 export default function TagBadge({
   data,
   avoidHover,
+  className,
 }: {
   data: BookmarkModified;
   avoidHover?: boolean;
+  className?: string;
 }) {
   return (
-    <div className="flex gap-y-1.5 items-center overflow-x-scroll max-sm:max-w-[200px] max-w-[350px] w-full hidden-scrollbar mask-start-and-end">
+    <div
+      className={`flex gap-y-1.5 items-center overflow-x-scroll max-sm:max-w-[200px] max-w-[350px] w-full hidden-scrollbar mask-start-and-end ${className}`}
+    >
       {data?.bookmarks_tags?.map(({ tags: { id, name } }) => {
         return (
           <Link
