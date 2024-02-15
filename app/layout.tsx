@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 
 import './globals.css';
 
@@ -50,6 +51,8 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
+const GOOGLE_ANALYTICS_ID = process.env.GA4_ANALYTICS_ID;
+
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -58,6 +61,19 @@ export default async function RootLayout({
       <body className={`${inter.className} flex h-full bg-background`}>
         {children}
       </body>
+
+      {/* <!-- Google tag (gtag.js) --> */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="ga4" strategy="afterInteractive">
+        {`window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '${GOOGLE_ANALYTICS_ID}');`}
+      </Script>
     </html>
   );
 }

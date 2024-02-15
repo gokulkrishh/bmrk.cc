@@ -27,24 +27,25 @@ export default function TermsPage() {
       <main className="w-full flex flex-col px-2 my-6">
         <h2 className="font-semibold text-xl my-2">Terms &amp; Conditions</h2>
         <p className="my-1 leading-7">
-          By downloading or using the app, these terms will automatically apply
-          to you – you should make sure therefore that you read them carefully
-          before using the app. You’re not allowed to copy or modify the app,
-          any part of the app, or our trademarks in any way. You’re not allowed
-          to attempt to extract the source code of the app, and you also
-          shouldn’t try to translate the app into other languages or make
-          derivative versions. The app itself, and all the trademarks,
-          copyright, database rights, and other intellectual property rights
-          related to it, still belong to bmrk.cc.
+          By downloading or using the app, chrome extension and website, these
+          terms will automatically apply to you – you should make sure therefore
+          that you read them carefully before using the app. You’re not allowed
+          to copy or modify the app, any part of the app, or our trademarks in
+          any way. You’re not allowed to attempt to extract the source code of
+          the app, and you also shouldn’t try to translate the app into other
+          languages or make derivative versions. The app itself, and all the
+          trademarks, copyright, database rights, and other intellectual
+          property rights related to it, still belong to Bookmark It. under
+          their licenses provide.
         </p>
         <p className="my-1 leading-7">
-          bmrk.cc (&quot;bmrk.cc&quot;, &quot;we&quot;, &quot;us&quot;, and/or
-          &quot;our&quot;) built the Bookmark It. is committed to ensuring that
-          the app is as useful and efficient as possible. For that reason, we
-          reserve the right to make changes to the app or to charge for its
-          services, at any time and for any reason. We will never charge you for
-          the app or its services without making it very clear to you exactly
-          what you’re paying for.
+          Bookmark It. (&quot;bmrk.cc&quot;, &quot;we&quot;, &quot;us&quot;,
+          and/or &quot;our&quot;) built the Bookmark It. is committed to
+          ensuring that the app is as useful and efficient as possible. For that
+          reason, we reserve the right to make changes to the app or to charge
+          for its services, at any time and for any reason. We will never charge
+          you for the app or its services without making it very clear to you
+          exactly what you’re paying for.
         </p>
         <p className="my-1 leading-7">
           The Bookmark It. app stores and processes personal data that you have
@@ -57,6 +58,21 @@ export default function TermsPage() {
           security features and it could mean that the Bookmark It. app won’t
           work properly or at all.
         </p>
+        <p className="my-1 leading-7">
+          The app does use third-party services that declare their Terms and
+          Conditions. Link to Terms and Conditions of third-party service
+          providers used by the app
+        </p>
+        <ul className="px-6 my-1 list-disc leading-7">
+          <li>
+            <a
+              className="cursor-pointer text-blue-700 underline"
+              href="https://policies.google.com/privacy?hl=en-US"
+            >
+              Google Analytics
+            </a>
+          </li>
+        </ul>
         <p className="my-1 leading-7">
           You should be aware that there are certain things that bmrk.cc will
           not take responsibility for. Certain functions of the app will require
@@ -113,10 +129,10 @@ export default function TermsPage() {
           Changes to This Terms and Conditions
         </h3>
         <p className="my-1 leading-7">
-          bmrk.cc may update our Terms and Conditions from time to time. Thus,
-          you are advised to review this page periodically for any changes. I
-          will notify you of any changes by posting the new Terms and Conditions
-          on this page.
+          Bookmar It. may update our Terms and Conditions from time to time.
+          Thus, you are advised to review this page periodically for any
+          changes. I will notify you of any changes by posting the new Terms and
+          Conditions on this page.
         </p>
         <p className="my-1 leading-7">
           This policy is effective as of{' '}

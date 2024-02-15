@@ -60,7 +60,7 @@ const featuresList = [
   {
     name: 'Data privacy',
     description:
-      'Your data is yours, choose to delete your account and its associated data anytime. And there is no analystics on this application.',
+      'Your data is yours, choose to delete your account and its associated data anytime.',
     videoUrl: `/videos/delete-account.mp4`,
     screenshotUrl: `/images/delete-account.jpg`,
   },

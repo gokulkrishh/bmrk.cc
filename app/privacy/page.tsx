@@ -27,9 +27,9 @@ export default function PrivacyPage() {
       <main className="w-full flex flex-col px-2 my-6">
         <h2 className="font-semibold text-xl my-2">Privacy Policy</h2>
         <p className="my-1 leading-7">
-          bmrk.cc (&quot;bmrk.cc&quot;, &quot;we&quot;, &quot;us&quot;, and/or
-          &quot;our&quot;) built the Bookmark It. app as a Freemium app. This
-          SERVICE is provided at no cost and is intended for use as is.
+          Bookmark It. (&quot;bmrk.cc&quot;, &quot;we&quot;, &quot;us&quot;,
+          and/or &quot;our&quot;) built the Bookmark It. app as a Freemium app.
+          This SERVICE is provided at no cost and is intended for use as is.
         </p>
         <p className="my-1 leading-7">
           This page is used to inform visitors regarding my policies with the
@@ -55,8 +55,23 @@ export default function PrivacyPage() {
           For a better experience, while using our Service, I may require you to
           provide us with certain personally identifiable information, including
           but not limited to Email Id, Profile Photo and Full name via Google
-          OAuth Login by you. We do not use third-party cookies on our Site.
+          OAuth Login by you. The app does use third-party services that may
+          collect information used to identify you.
         </p>
+        <p className="my-1 leading-7">
+          Link to the privacy policy of third-party service providers used by
+          the
+        </p>
+        <ul className="px-6 my-1 list-disc leading-7">
+          <li>
+            <a
+              className="cursor-pointer text-blue-700 underline"
+              href="https://policies.google.com/privacy?hl=en-US"
+            >
+              Google Analytics
+            </a>
+          </li>
+        </ul>
         <h3 className="font-semibold text-lg my-2">Log Data</h3>
         <p className="my-1 leading-7">
           I want to inform you that whenever you use my Service, in a case of an
@@ -66,6 +81,18 @@ export default function PrivacyPage() {
           device name, operating system version, the configuration of the app
           when utilizing my Service, the time and date of your use of the
           Service, and other statistics.
+        </p>
+        <h3 className="font-semibold text-lg my-2">Cookies</h3>
+        <p className="my-1 leading-7">
+          Cookies are files with a small amount of data that are commonly used
+          as anonymous unique identifiers. These are sent to your browser from
+          the websites that you visit and are stored on your device's internal
+          memory. This Service does not use these “cookies” explicitly. However,
+          the app may use third-party code and libraries that use “cookies” to
+          collect information and improve their services. You have the option to
+          either accept or refuse these cookies and know when a cookie is being
+          sent to your device. If you choose to refuse our cookies, you may not
+          be able to use some portions of this Service.
         </p>
         <h3 className="font-semibold text-lg my-2">Service Providers</h3>
         <p className="my-1 leading-7">
