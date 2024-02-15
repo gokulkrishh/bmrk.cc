@@ -1,3 +1,7 @@
+'use client';
+
+import { useRef } from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,6 +12,7 @@ import { BookmarkModified } from 'types/data';
 const blurDataURL = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWGhoYrwEMwAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=`;
 
 export default function CardMedia({ data }: { data: BookmarkModified }) {
+  const ref = useRef<HTMLImageElement>(null);
   if (!data.metadata?.image) {
     return null;
   }
@@ -24,6 +29,7 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
       prefetch={false}
     >
       <Image
+        ref={ref}
         className="h-full rounded-2xl max-sm:w-full border border-border"
         src={data.metadata?.image}
         alt={data.title ?? ''}
@@ -31,6 +37,11 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
         height={180}
         loading="lazy"
         placeholder="blur"
+        onError={(e) => {
+          if (ref.current?.src) {
+            ref.current.src = `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${data.url}&size=128`;
+          }
+        }}
         blurDataURL={blurDataURL}
         style={{ maxWidth: '100%', objectFit: 'cover' }}
       />
