@@ -64,9 +64,9 @@ function extractMetaTags(html: string, url: string) {
   const image =
     objectMap['og:image'] ||
     objectMap['twitter:image'] ||
-    objectMap['image_src'] ||
-    objectMap['shortcut icon'] ||
-    objectMap['icon'];
+    objectMap['apple-touch-icon'] ||
+    objectMap['icon'] ||
+    objectMap['shortcut icon'];
 
   return {
     title,

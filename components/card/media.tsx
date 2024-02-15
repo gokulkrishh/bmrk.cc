@@ -24,13 +24,14 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
       prefetch={false}
     >
       <Image
-        className="h-full rounded-2xl border border-border"
+        className="h-full rounded-2xl max-sm:w-full border border-border"
         src={data.metadata?.image}
         alt={data.title ?? ''}
         width={350}
         height={180}
         loading="lazy"
-        placeholder={blurDataURL}
+        placeholder="blur"
+        blurDataURL={blurDataURL}
         style={{ maxWidth: '100%', objectFit: 'cover' }}
       />
       <span className="bg-black/50 text-[11px] w-fit tracking-wide text-white flex p-0.5 px-1 rounded-md absolute bottom-2 left-2">
