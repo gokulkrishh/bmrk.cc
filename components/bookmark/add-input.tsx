@@ -44,6 +44,7 @@ export default function AddBookmarkInput({
         description: ogData.description?.trim(),
         title: ogData.title?.trim(),
         metadata: {
+          is_fallback: ogData.is_fallback,
           image: ogData.image,
         },
       };

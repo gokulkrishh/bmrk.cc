@@ -28,7 +28,7 @@ const nextConfig = {
 
 const ContentSecurityPolicy = `
     default-src 'self' bmrk.cc;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
     media-src 'self';

@@ -7,7 +7,7 @@ import humanizeUrl from 'humanize-url';
 
 import { getBookmarks } from 'app/actions/bookmarks';
 
-import CardFavicon from 'components/card/avatar';
+import CardFavicon from 'components/card/favicon';
 import CardMenu from 'components/card/menu';
 import Loader from 'components/loader';
 import {

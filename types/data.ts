@@ -8,6 +8,7 @@ export type BookmarkUpdate =
 export type BookmarkModified = Bookmark & {
   metadata: {
     image: string;
+    is_fallback?: boolean;
     is_via_extension?: boolean;
   };
   bookmarks_tags: { tags: { id: Tag['id']; name: Tag['name'] } }[];
@@ -23,6 +24,7 @@ export type MetaTags = {
   title: string;
   description: string;
   image: string;
+  is_fallback: boolean;
 };
 
 export type User = Database['public']['Tables']['users']['Row'];

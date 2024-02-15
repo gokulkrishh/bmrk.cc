@@ -45,7 +45,7 @@ export default function CardMenu({
       setLoading(true);
       const ogData: MetaTags = await getOg(url);
       const payload: BookmarkUpdate = {
-        metadata: { image: ogData.image },
+        metadata: { image: ogData.image, is_fallback: ogData.is_fallback },
       };
       if (!data.title) {
         payload.title = ogData.title;

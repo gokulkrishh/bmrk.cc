@@ -2,7 +2,7 @@ import { cn } from 'lib/utils';
 
 import { BookmarkModified } from 'types/data';
 
-import CardFavicon from './avatar';
+import CardFavicon from './favicon';
 
 type CardTimelineProps = {
   url: BookmarkModified['url'];

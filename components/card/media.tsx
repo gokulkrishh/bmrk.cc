@@ -13,6 +13,7 @@ const blurDataURL = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAA
 
 export default function CardMedia({ data }: { data: BookmarkModified }) {
   const ref = useRef<HTMLImageElement>(null);
+
   if (!data.metadata?.image) {
     return null;
   }
@@ -37,13 +38,18 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
         height={180}
         loading="lazy"
         placeholder="blur"
-        onError={(e) => {
+        onLoad={() => {}}
+        onError={() => {
           if (ref.current?.src) {
             ref.current.src = `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${data.url}&size=128`;
+            ref.current.style.objectFit = 'scale-down';
           }
         }}
         blurDataURL={blurDataURL}
-        style={{ maxWidth: '100%', objectFit: 'cover' }}
+        style={{
+          maxWidth: '100%',
+          objectFit: data.metadata?.is_fallback ? 'none' : 'cover',
+        }}
       />
       <span className="bg-black/50 text-[11px] w-fit tracking-wide text-white flex p-0.5 px-1 rounded-md absolute bottom-2 left-2">
         {humanizeUrl(url.hostname)}

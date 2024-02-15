@@ -77,16 +77,24 @@ function extractMetaTags(html: string, url: string) {
   const description =
     objectMap['og:description'] || objectMap['description'] || '';
 
-  const image =
+  const imageSrc =
     objectMap['og:image'] ||
     objectMap['twitter:image'] ||
     objectMap['apple-touch-icon'] ||
     objectMap['icon'] ||
     objectMap['shortcut icon'];
 
+  const favIconImage =
+    objectMap['apple-touch-icon'] ||
+    objectMap['icon'] ||
+    objectMap['shortcut icon'];
+
+  const image = setImagePath(url, imageSrc);
+
   return {
     title,
     description,
-    image: setImagePath(url, image),
+    image,
+    ...(image && { is_fallback: imageSrc == favIconImage }),
   } as MetaTags;
 }

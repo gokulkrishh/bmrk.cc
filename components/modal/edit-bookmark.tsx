@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 
 import { updateBookmark } from 'app/actions/bookmarks';
 
-import CardFavicon from 'components/card/avatar';
+import CardFavicon from 'components/card/favicon';
 import { useMediaQuery } from 'components/hooks/useMediaQuery';
 import Loader from 'components/loader';
 import { Dialog, DialogContent, DialogTitle } from 'components/ui/dialog';
