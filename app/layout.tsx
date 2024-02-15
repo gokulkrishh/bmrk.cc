@@ -6,7 +6,7 @@ import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
-const title = 'Bookmark it.';
+const title = 'Bookmark it. | Bookmark manager for the modern web.';
 const description = 'Bookmark manager for the modern web.';
 
 export const metadata: Metadata = {
