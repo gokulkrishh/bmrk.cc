@@ -34,6 +34,20 @@ export async function GET(request: NextRequest) {
   });
 }
 
+const allowedTags = [
+  'title',
+  'og:title',
+  'twitter:title',
+  'description',
+  'og:description',
+  'twitter:description',
+  'og:image',
+  'twitter:image',
+  'icon',
+  'apple-touch-icon',
+  'shortcut icon',
+];
+
 function extractMetaTags(html: string, url: string) {
   const root = parse(html);
   const objectMap: { [key: string]: string } = {};
@@ -41,7 +55,7 @@ function extractMetaTags(html: string, url: string) {
   // Extract all meta tags
   root.querySelectorAll('meta').forEach(({ attributes }) => {
     const property = attributes.property || attributes.name || attributes.href;
-    if (!objectMap[property]) {
+    if (!objectMap[property] && allowedTags.includes(property)) {
       objectMap[property] = attributes.content;
     }
   });
@@ -49,7 +63,9 @@ function extractMetaTags(html: string, url: string) {
   // Extract all link tags
   root.querySelectorAll('link').forEach(({ attributes }) => {
     const { rel, href } = attributes;
-    objectMap[rel] = href;
+    if (rel && href && allowedTags.includes(rel)) {
+      objectMap[rel] = href;
+    }
   });
 
   const title =
