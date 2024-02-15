@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const chromiumExtensionLink = `https://chromewebstore.google.com/detail/bookmark-it/fgnmdiklfcddmhmmmppepijecbljfjbm?utm_source=bmrk.cc`;
+import { urls } from 'config';
 
 export default function Extensions() {
   return (
@@ -18,11 +18,10 @@ export default function Extensions() {
       </p>
       <div className="mt-10 grid grid-cols-1 gap-4">
         <div className="flex items-center flex-col justify-center">
-          {/* <h3 className="text-lg font-medium mb-2">Supported Browsers</h3> */}
           <div className="flex items-center gap-8">
             <Link
               title="Chrome Browser"
-              href={chromiumExtensionLink}
+              href={urls.extensions.chrome}
               className="rounded-2xl border transition-all border-input bg-white p-2 active:opacity-80"
             >
               <Image
@@ -34,7 +33,7 @@ export default function Extensions() {
             </Link>
             <Link
               title="Brave Browser"
-              href={chromiumExtensionLink}
+              href={urls.extensions.chrome}
               className="rounded-2xl border transition-all border-input bg-white p-2 active:opacity-80"
             >
               <Image

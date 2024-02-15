@@ -15,4 +15,8 @@ export const urls = {
   api: `${protocol}${home}`,
   twitter: 'https://twitter.com/gokul_i',
   github: 'https://github.com/gokulkrishh/bmrk.cc',
+  extensions: {
+    chrome:
+      'https://chromewebstore.google.com/detail/bookmark-it/fgnmdiklfcddmhmmmppepijecbljfjbm?utm_source=bmrk.cc',
+  },
 };

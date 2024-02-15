@@ -8,11 +8,16 @@ import { Bug, HelpCircleIcon, LogOut, Settings } from 'lucide-react';
 import { cn } from 'lib/utils';
 
 import { useAuth } from './context/auth';
+import { ChromeIcon, ExtensionsIcon } from './icons';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 
@@ -44,6 +49,16 @@ export default function Profile({ className }: { className?: string }) {
           </AvatarFallback>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-2">
+          <DropdownMenuItem
+            className="flex items-center cursor-pointer"
+            onClick={() => {
+              window.open(urls.extensions.chrome, '_blank');
+            }}
+          >
+            <ExtensionsIcon className="h-4 w-4 mr-2.5" />{' '}
+            <span className="mr-2">Extensions</span>
+          </DropdownMenuItem>
+
           <DropdownMenuItem
             className="flex items-center cursor-pointer"
             onClick={() => {
