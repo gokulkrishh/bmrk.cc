@@ -24,11 +24,11 @@ const featuresList = [
     screenshotUrl: `/demo/import.png`,
   },
   {
-    name: 'Personalise your bookmarks',
+    name: 'Personalize your bookmarks',
     description:
       'Organize your bookmarks with custom tags for easy navigation.',
-    videoUrl: `/demo/personalise.mp4`,
-    screenshotUrl: `/demo/personalise.png`,
+    videoUrl: `/demo/personalize.mp4`,
+    screenshotUrl: `/demo/personalize.png`,
   },
   {
     name: 'Favorite your bookmarks',

@@ -20,6 +20,8 @@ export default function Extensions() {
         <div className="flex items-center flex-col justify-center">
           <div className="flex items-center gap-8">
             <Link
+              rel="noopener noreferrer"
+              target="_blank"
               title="Chrome Browser"
               href={urls.extensions.chrome}
               className="rounded-2xl border transition-all border-input bg-white p-2 active:opacity-80"
@@ -32,6 +34,8 @@ export default function Extensions() {
               />
             </Link>
             <Link
+              rel="noopener noreferrer"
+              target="_blank"
               title="Brave Browser"
               href={urls.extensions.chrome}
               className="rounded-2xl border transition-all border-input bg-white p-2 active:opacity-80"

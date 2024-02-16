@@ -10,6 +10,8 @@ import { cn } from 'lib/utils';
 import PlanTooltip from './plan-help';
 import SettingsCard from './settings-card';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Plan() {
   const user = await getUser();
 
