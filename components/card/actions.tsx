@@ -53,7 +53,11 @@ export default function CardActions({
         <form
           className="self-end"
           action={async () => {
-            await incrementFavUsage();
+            if (data.is_fav) {
+              await incrementFavUsage(-1);
+            } else {
+              await incrementFavUsage();
+            }
             await addToFav(data.id, !data.is_fav);
           }}
         >

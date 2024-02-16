@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 
 import { deleteBookmark, refreshBookmark } from 'app/actions/bookmarks';
 import { getOg } from 'app/actions/og';
+import { incrementBookmarkUsage } from 'app/actions/user';
 
 import { MoreIcon } from 'components/icons';
 import EditBookmark from 'components/modal/edit-bookmark';
@@ -68,6 +69,7 @@ export default function CardMenu({
   const onDelete = async () => {
     try {
       setLoading(true);
+      await incrementBookmarkUsage(-1);
       await deleteBookmark(id);
       onDone?.();
       refreshInChromeExt();

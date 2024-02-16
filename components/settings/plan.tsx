@@ -30,6 +30,14 @@ export default async function Plan() {
     ? plans.free.limit
     : plans.pro.limit;
 
+  const bookmarkPercentage = Math.floor(
+    (user.usage.bookmarks / bookmarks) * 100,
+  );
+  const tagPercentage = Math.floor((user.usage.tags / tags) * 100);
+  const favoritePercentage = Math.floor(
+    (user.usage.favorites / favorites) * 100,
+  );
+
   return (
     <SettingsCard className="flex flex-col items-start gap-0 p-0">
       <div className="py-3 px-4 border-b w-full text-sm flex text-muted-foreground">
@@ -65,16 +73,10 @@ export default async function Plan() {
           <div className="flex w-full justify-between">
             <span className="text-muted-foreground mb-2 text-sm">
               {user.usage.bookmarks} of {bookmarks}
-              <span className="text-xs ml-1.5">
-                ({Math.floor((user.usage.bookmarks / bookmarks) * 100)}%)
-              </span>
+              <span className="text-xs ml-1.5">({bookmarkPercentage}%)</span>
             </span>
           </div>
-          <Progress
-            className="h-3 mt-1"
-            value={user.usage.bookmarks}
-            max={bookmarks}
-          />
+          <Progress className="h-3 mt-1" value={bookmarkPercentage} />
         </div>
         <div className="flex justify-between mt-3 border-t">
           <div className="w-full border-r p-4 pb-6">
@@ -84,12 +86,10 @@ export default async function Plan() {
             <div className="flex w-full justify-between">
               <span className="text-muted-foreground flex items-center mb-2 text-sm">
                 {user.usage.tags} of {tags}{' '}
-                <span className="text-xs ml-1.5">
-                  ({Math.floor((user.usage.tags / tags) * 100)}%)
-                </span>
+                <span className="text-xs ml-1.5">({tagPercentage}%)</span>
               </span>
             </div>
-            <Progress className="h-3 mt-1" value={user.usage.tags} max={tags} />
+            <Progress className="h-3 mt-1" value={tagPercentage} />
           </div>
           <div className="w-full p-4 pb-6">
             <h3 className="font-medium mb-2 text-sm flex items-center">
@@ -99,16 +99,10 @@ export default async function Plan() {
             <div className="flex w-full justify-between">
               <span className="text-muted-foreground mb-2 text-sm">
                 {user.usage.favorites} of {favorites}
-                <span className="text-xs ml-1.5">
-                  ({Math.floor((user.usage.favorites / favorites) * 100)}%)
-                </span>
+                <span className="text-xs ml-1.5">({favoritePercentage}%)</span>
               </span>
             </div>
-            <Progress
-              className="h-3 mt-1"
-              value={user.usage.favorites}
-              max={favorites}
-            />
+            <Progress className="h-3 mt-1" value={favoritePercentage} />
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { deleteTag } from 'app/actions/tags';
+import { incrementTagUsage } from 'app/actions/user';
 
 import Loader from 'components/loader';
 
@@ -16,6 +17,7 @@ export default function DeleteTag({ id }: { id: Tag['id'] }) {
   const onDelete = async (id: Tag['id']) => {
     try {
       setLoading(true);
+      await incrementTagUsage(-1);
       await deleteTag(id);
       toast.success('Tag has been deleted.');
     } catch {
