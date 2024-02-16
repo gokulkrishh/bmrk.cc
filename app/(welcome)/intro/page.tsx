@@ -22,8 +22,8 @@ export default async function Page() {
           Welcome to Bookmark It.
         </h1>
         <p className="text-lg mt-4 text-muted-foreground">
-          Bookmark It. is an open-source bookmark manager to organize and
-          personalize your bookmarking experience.
+          Bookmark It. is an open-source bookmark manager to organize, discover
+          and personalize your bookmarking experience.
         </p>
       </div>
       <Link

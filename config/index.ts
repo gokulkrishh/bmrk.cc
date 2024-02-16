@@ -35,9 +35,9 @@ export const plans = {
     type: 'pro',
     name: 'Pro',
     limit: {
-      bookmarks: 500,
-      tags: 500,
-      favorites: 500,
+      bookmarks: 250,
+      tags: 250,
+      favorites: 250,
     },
   },
 };

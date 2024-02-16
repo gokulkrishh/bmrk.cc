@@ -4,10 +4,16 @@ import { getUser } from 'app/actions/user';
 
 import { Progress } from 'components/ui/progress';
 
-import { formatDate } from 'lib/date';
+import { addYears, formatDate } from 'lib/date';
 
 import PlanTooltip from './plan-help';
 import SettingsCard from './settings-card';
+
+const dateOptions = {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+} as Intl.DateTimeFormatOptions;
 
 export default async function Plan() {
   const user = await getUser();
@@ -30,24 +36,33 @@ export default async function Plan() {
   return (
     <SettingsCard className="flex flex-col items-start gap-0 p-0">
       <div className="py-3 px-4 border-b w-full text-sm flex text-muted-foreground">
-        You currently on
-        <span className="mx-1 text-black dark:text-white font-medium">
-          {user.plan_status}
-        </span>{' '}
-        plan.{' '}
-        {!isFreePlan ? (
-          <>
-            Next billing cycle is
-            <span className="ml-1 text-black dark:text-white font-medium">
-              {formatDate(user.pro_plan_start_date || new Date())}
+        <div className="flex max-sm:flex-col max-sm:gap-1">
+          <div>
+            You are currently on
+            <span className="mx-1 text-black dark:text-white font-medium">
+              {user.plan_status}
             </span>
-          </>
-        ) : null}
+            plan.
+          </div>
+          <div>
+            {!isFreePlan ? (
+              <>
+                <span className="sm:ml-1">Next billing:</span>
+                <span className="ml-1 text-black dark:text-white font-medium">
+                  {formatDate(
+                    addYears(user.free_plan_start_date, 1),
+                    dateOptions,
+                  )}
+                </span>
+              </>
+            ) : null}
+          </div>
+        </div>
       </div>
       <div className="flex flex-col w-full">
         <div className="p-4">
           <h3 className="font-medium mb-2 text-sm flex items-center">
-            Bookmarks <PlanTooltip text="The number of bookmarks created." />
+            Bookmarks <PlanTooltip text="The number of bookmarks created" />
           </h3>
           <div className="flex w-full justify-between">
             <span className="text-muted-foreground mb-2 text-sm">
@@ -66,7 +81,7 @@ export default async function Plan() {
         <div className="flex justify-between mt-3 border-t">
           <div className="w-full border-r p-4 pb-6">
             <h3 className="font-medium mb-2 text-sm flex items-center">
-              Tags <PlanTooltip text="The number of tags created." />
+              Tags <PlanTooltip text="The number of tags created" />
             </h3>
             <div className="flex w-full justify-between">
               <span className="text-muted-foreground mb-2 text-sm">
@@ -81,7 +96,7 @@ export default async function Plan() {
           <div className="w-full p-4 pb-6">
             <h3 className="font-medium mb-2 text-sm flex items-center">
               Favorites{' '}
-              <PlanTooltip text="The number of bookmarks marked as favorite." />
+              <PlanTooltip text="The number of bookmarks that can be marked as favorite" />
             </h3>
             <div className="flex w-full justify-between">
               <span className="text-muted-foreground mb-2 text-sm">
