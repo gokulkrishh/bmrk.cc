@@ -64,7 +64,7 @@ export default async function Plan() {
             <span className="text-muted-foreground mb-2 text-sm">
               {user.usage.bookmarks} of {bookmarks}
               <span className="text-xs ml-1.5">
-                ({(user.usage.bookmarks / bookmarks) * 100}%)
+                ({Math.floor((user.usage.bookmarks / bookmarks) * 100)}%)
               </span>
             </span>
           </div>
@@ -83,7 +83,7 @@ export default async function Plan() {
               <span className="text-muted-foreground flex items-center mb-2 text-sm">
                 {user.usage.tags} of {tags}{' '}
                 <span className="text-xs ml-1.5">
-                  ({(user.usage.tags / tags) * 100}%)
+                  ({Math.floor((user.usage.tags / tags) * 100)}%)
                 </span>
               </span>
             </div>
@@ -98,7 +98,7 @@ export default async function Plan() {
               <span className="text-muted-foreground mb-2 text-sm">
                 {user.usage.favorites} of {favorites}
                 <span className="text-xs ml-1.5">
-                  ({(user.usage.favorites / favorites) * 100}%)
+                  ({Math.floor((user.usage.favorites / favorites) * 100)}%)
                 </span>
               </span>
             </div>
