@@ -6,6 +6,7 @@ import { CheckIcon } from '@radix-ui/react-icons';
 import { toast } from 'sonner';
 
 import { addTagToBookmark, createTag } from 'app/actions/tags';
+import { incrementTagUsage } from 'app/actions/user';
 
 import {
   Command,
@@ -53,6 +54,7 @@ export default function TagList({ data, tags }: TagListProps) {
             }) as BookmarkModified,
         ),
       );
+      await incrementTagUsage();
       await createTag(data.id, payload);
       toast.success('Tag is added to bookmark.');
       setSearchText('');

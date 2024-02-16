@@ -99,3 +99,31 @@ alter table bookmarks_tags
 
 create policy "Allow operations for authenticated users only" on bookmarks_tags
   for all using (auth.uid () = user_id);
+
+-- Create a stored procudure to update usage stats in users table by using supabse.rpc
+create
+or replace function increment_bookmarks_usage (user_id uuid, count int) returns void as $$
+BEGIN
+    UPDATE users
+    SET usage = usage || jsonb_build_object('bookmarks', COALESCE((usage->>'bookmarks')::int, 0) + count)
+    WHERE id = user_id;
+END;
+$$ language plpgsql;
+
+create
+or replace function increment_tags_usage (user_id uuid, count int) returns void as $$
+BEGIN
+    UPDATE users
+    SET usage = usage || jsonb_build_object('tags', COALESCE((usage->>'tags')::int, 0) + count)
+    WHERE id = user_id;
+END;
+$$ language plpgsql;
+
+create
+or replace function increment_favorites_usage (user_id uuid, count int) returns void as $$
+BEGIN
+    UPDATE users
+    SET usage = usage || jsonb_build_object('favorites', COALESCE((usage->>'favorites')::int, 0) + count)
+    WHERE id = user_id;
+END;
+$$ language plpgsql;

@@ -7,7 +7,9 @@ import { toast } from 'sonner';
 
 import { createBookmark } from 'app/actions/bookmarks';
 import { getOg } from 'app/actions/og';
+import { incrementBookmarkUsage } from 'app/actions/user';
 
+import { useAuth } from 'components/context/auth';
 import Loader from 'components/loader';
 import UploadModal from 'components/modal/upload';
 import { Input } from 'components/ui/input';
@@ -16,7 +18,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 import { refreshInChromeExt } from 'lib/chrome-extension';
 import { cn, isValidUrl } from 'lib/utils';
 
-import { BookmarkInsertModified, MetaTags } from 'types/data';
+import { MetaTags } from 'types/data';
 
 type AddBookmarkInputProps = {
   className?: string;
@@ -48,6 +50,7 @@ export default function AddBookmarkInput({
           image: ogData.image,
         },
       };
+      await incrementBookmarkUsage();
       await createBookmark(payload);
       toast.success(`Bookmark added.`);
       refreshInChromeExt();

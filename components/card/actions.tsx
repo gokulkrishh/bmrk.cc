@@ -4,6 +4,7 @@ import { StarFilledIcon, StarIcon } from '@radix-ui/react-icons';
 import { useFormStatus } from 'react-dom';
 
 import { addToFav } from 'app/actions/bookmarks';
+import { incrementFavUsage } from 'app/actions/user';
 
 import { cn } from 'lib/utils';
 
@@ -52,6 +53,7 @@ export default function CardActions({
         <form
           className="self-end"
           action={async () => {
+            await incrementFavUsage();
             await addToFav(data.id, !data.is_fav);
           }}
         >
