@@ -8,7 +8,7 @@ import { Logo } from 'components/icons';
 
 const title = 'Bookmark it. | Account';
 const description =
-  'Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience';
+  'Bookmark It. is an open-source bookmark manager to organize, discover and personalize your bookmarking experience';
 
 export const metadata = {
   title,

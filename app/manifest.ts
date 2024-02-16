@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: 'bmrk it.',
     name: 'Bookmark It',
     description:
-      'Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience',
+      'Bookmark It. is an open-source bookmark manager to organize, discover and personalize your bookmarking experience',
     display: 'standalone',
     orientation: 'portrait',
     icons: [

@@ -8,7 +8,7 @@ import { filterByTagName } from 'lib/data';
 
 const title = 'Bookmark it.';
 const description =
-  'Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience';
+  'Bookmark It. is an open-source bookmark manager to organize, discover and personalize your bookmarking experience';
 
 type MetadataType = {
   params: { slug: string };

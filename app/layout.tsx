@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const title = 'Bookmark It. | Bookmark manager for the modern web.';
 const description =
-  'Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience.';
+  'Bookmark It. is an open-source bookmark manager to organize, discover and personalize your bookmarking experience.';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://bmrk.cc'),
