@@ -16,7 +16,7 @@ import UploadModal from 'components/modal/upload';
 import { Input } from 'components/ui/input';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
-import { refreshInChromeExt } from 'lib/chrome-extension';
+import { logoutInChromeExt, refreshInChromeExt } from 'lib/chrome-extension';
 import { cn, isValidUrl } from 'lib/utils';
 
 import { MetaTags } from 'types/data';

@@ -6,6 +6,7 @@ import Loader from 'components/loader';
 import { Dialog, DialogContent, DialogHeader } from 'components/ui/dialog';
 import { Input } from 'components/ui/input';
 
+import { logoutInChromeExt } from 'lib/chrome-extension';
 import { cn } from 'lib/utils';
 
 type AddBookmarkProps = {
@@ -38,6 +39,7 @@ export default function DeleteAccountModal({
           onSubmit={(event: SyntheticEvent<HTMLFormElement>) => {
             event.preventDefault();
             if (email === emailId) {
+              logoutInChromeExt();
               onSubmit(email);
             }
           }}

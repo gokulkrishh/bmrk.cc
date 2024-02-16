@@ -6,7 +6,19 @@ export const refreshInChromeExt = () => {
     { refresh: true },
     (response) => {
       if (!response.success) {
-        console.error('Failed to refresh extension');
+        console.error('Failed to refresh the extension');
+      }
+    },
+  );
+};
+
+export const logoutInChromeExt = () => {
+  window?.chrome?.runtime?.sendMessage?.(
+    extensionId,
+    { logout: true },
+    (response) => {
+      if (!response.success) {
+        console.error('Failed to logout the extension');
       }
     },
   );
