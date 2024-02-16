@@ -10,12 +10,6 @@ import { cn } from 'lib/utils';
 import PlanTooltip from './plan-help';
 import SettingsCard from './settings-card';
 
-const dateOptions = {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
-} as Intl.DateTimeFormatOptions;
-
 export default async function Plan() {
   const user = await getUser();
 
@@ -23,7 +17,7 @@ export default async function Plan() {
     return null;
   }
 
-  const isFreePlan = user.plan_status !== plans.free.type;
+  const isFreePlan = user.plan_status === plans.free.type;
 
   const isProPlanExpired =
     !isFreePlan &&
@@ -54,10 +48,7 @@ export default async function Plan() {
               <>
                 <span className="sm:ml-1">Next billing cycle is</span>
                 <span className="ml-1 text-black dark:text-white font-medium">
-                  {formatDate(
-                    addYears(user.free_plan_start_date, 1),
-                    dateOptions,
-                  )}
+                  {formatDate(addYears(user.free_plan_start_date, 1))}
                 </span>
               </>
             ) : null}
@@ -67,7 +58,7 @@ export default async function Plan() {
       <div className="flex flex-col w-full">
         <div className="p-4">
           <h3 className="font-medium mb-2 text-sm flex items-center">
-            Bookmarks <PlanTooltip text="The number of bookmarks created" />
+            Bookmarks <PlanTooltip text="The number of bookmarks added." />
           </h3>
           <div className="flex w-full justify-between">
             <span className="text-muted-foreground mb-2 text-sm">
@@ -86,7 +77,7 @@ export default async function Plan() {
         <div className="flex justify-between mt-3 border-t">
           <div className="w-full border-r p-4 pb-6">
             <h3 className="font-medium mb-2 text-sm flex items-center">
-              Tags <PlanTooltip text="The number of tags created" />
+              Tags <PlanTooltip text="The number of tags added." />
             </h3>
             <div className="flex w-full justify-between">
               <span className="text-muted-foreground mb-2 text-sm">
@@ -101,7 +92,7 @@ export default async function Plan() {
           <div className="w-full p-4 pb-6">
             <h3 className="font-medium mb-2 text-sm flex items-center">
               Favorites{' '}
-              <PlanTooltip text="The number of bookmarks that can be marked as favorite" />
+              <PlanTooltip text="The number of bookmarks marked as favorites." />
             </h3>
             <div className="flex w-full justify-between">
               <span className="text-muted-foreground mb-2 text-sm">
