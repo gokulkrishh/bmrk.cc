@@ -3,10 +3,11 @@ import { permanentRedirect } from 'next/navigation';
 import { urls } from 'config';
 import NextTopLoader from 'nextjs-toploader';
 
-import { getAuthUser } from 'app/actions/user';
+import { getAuthUser, getUser } from 'app/actions/user';
 
 import { AuthProvider } from 'components/context/auth';
 import { ThemeProvider } from 'components/context/theme';
+import { UserProvider } from 'components/context/user';
 import { Toaster } from 'components/ui/sonner';
 import { TooltipProvider } from 'components/ui/tooltip';
 
@@ -15,9 +16,12 @@ import '../globals.css';
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const user = await getAuthUser();
+  const [authUser, user] = await Promise.all([
+    await getAuthUser(),
+    await getUser(),
+  ]);
 
-  if (!user) {
+  if (!authUser || !user) {
     permanentRedirect(urls.account);
   }
 
@@ -29,20 +33,22 @@ export default async function RootLayout({
         enableSystem
         disableTransitionOnChange
       >
-        <AuthProvider user={user}>
-          <div className="max-w-[600px] m-auto flex min-h-dvh w-full homepage">
-            <TooltipProvider delayDuration={200}>
-              <main className="flex flex-col w-full min-h-[100vh] ">
-                <NextTopLoader
-                  height={2}
-                  shadow={false}
-                  color="#cb0000"
-                  showSpinner={false}
-                />
-                {children}
-              </main>
-            </TooltipProvider>
-          </div>
+        <AuthProvider authUser={authUser}>
+          <UserProvider user={user}>
+            <div className="max-w-[600px] m-auto flex min-h-dvh w-full homepage">
+              <TooltipProvider delayDuration={200}>
+                <main className="flex flex-col w-full min-h-[100vh] ">
+                  <NextTopLoader
+                    height={2}
+                    shadow={false}
+                    color="#cb0000"
+                    showSpinner={false}
+                  />
+                  {children}
+                </main>
+              </TooltipProvider>
+            </div>
+          </UserProvider>
         </AuthProvider>
       </ThemeProvider>
       <Toaster richColors />
