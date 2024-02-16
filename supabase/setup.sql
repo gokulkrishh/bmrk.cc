@@ -15,7 +15,11 @@ create table users (
   updated_at timestamp with time zone default current_timestamp,
   created_at timestamp with time zone default current_timestamp,
   has_welcomed boolean default false,
-  usage integer default 0
+  usage jsonb default '{"bookmarks": 0, "tags": 0, "favorites": 0, "sessions": 0}',
+  plan_status text default 'free',
+  free_plan_start_date timestamp with time zone default current_timestamp,
+  pro_plan_start_date timestamp with time zone,
+  order_info jsonb default '{"status": "", "number": 0, "store_id": 0}'
 );
 -- Set up Row Level Security (RLS)
 -- See https://supabase.com/docs/guides/auth/row-level-security for more details.
