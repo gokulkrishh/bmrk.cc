@@ -32,7 +32,7 @@ export default function DeleteTag({ id }: { id: Tag['id'] }) {
       className="rounded-full flex w-7 h-7 hover:bg-red-100 active:bg-red-100 max-sm:flex items-center justify-center"
     >
       {loading ? (
-        <Loader className="h-4 w-4 text-muted-foreground dark:text-muted" />
+        <Loader className="h-4 w-4 text-black dark:text-white" />
       ) : (
         <Trash2 className="text-red-500" size={16} />
       )}
