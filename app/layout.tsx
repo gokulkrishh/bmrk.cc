@@ -11,24 +11,39 @@ const description = 'Bookmark manager for the modern web.';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://bmrk.cc'),
-  alternates: {
-    canonical: '/',
-  },
   title,
   description,
   twitter: {
     card: 'summary_large_image',
     title,
+    site: '@gokul_i',
     description,
     creator: '@gokul_i',
-    images: ['/images/og.jpg'],
+    images: [
+      {
+        type: 'image/jpeg',
+        url: '/images/og.jpg',
+        width: 1920,
+        height: 1080,
+        alt: 'Bookmark it.',
+      },
+    ],
   },
   openGraph: {
     type: 'website',
+    siteName: 'Bookmark it.',
     title,
     description,
     url: 'https://bmrk.cc',
-    images: ['/images/og.jpg'],
+    images: [
+      {
+        type: 'image/jpeg',
+        url: '/images/og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Bookmark it.',
+      },
+    ],
   },
   icons: {
     icon: '/icons/favicon-32x32.png',
