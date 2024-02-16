@@ -20,3 +20,24 @@ export const urls = {
       'https://chromewebstore.google.com/detail/bookmark-it/fgnmdiklfcddmhmmmppepijecbljfjbm?utm_source=bmrk.cc',
   },
 };
+
+export const plans = {
+  free: {
+    type: 'free',
+    name: 'Free',
+    limit: {
+      bookmarks: 25,
+      tags: 10,
+      favorites: 10,
+    },
+  },
+  pro: {
+    type: 'pro',
+    name: 'Pro',
+    limit: {
+      bookmarks: 500,
+      tags: 500,
+      favorites: 500,
+    },
+  },
+};

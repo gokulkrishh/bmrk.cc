@@ -12,21 +12,11 @@ export type BookmarkModified = Bookmark & {
     is_via_extension?: boolean;
   };
   bookmarks_tags: { tags: { id: Tag['id']; name: Tag['name'] } }[];
-  usage: {
-    tags: number;
-    bookmarks: number;
-    favorties: number;
-  };
 };
 export type BookmarkInsertModified = BookmarkInsert & {
   user_id?: string;
   metadata: {
     image: string;
-  };
-  usage: {
-    tags: number;
-    bookmarks: number;
-    favorties: number;
   };
 };
 
@@ -35,6 +25,14 @@ export type MetaTags = {
   description: string;
   image: string;
   is_fallback: boolean;
+};
+
+export type UserModified = User & {
+  usage: {
+    tags: number;
+    bookmarks: number;
+    favorites: number;
+  };
 };
 
 export type User = Database['public']['Tables']['users']['Row'];

@@ -1,24 +1,42 @@
 'use server';
 
-import { User } from '@supabase/supabase-js';
+import { User as AuthUser } from '@supabase/supabase-js';
 
 import createClient from 'lib/supabase/actions';
 
-import { BookmarkInsert, BookmarkInsertModified } from 'types/data';
+import { UserModified } from 'types/data';
 
-export const getUser = async () => {
-  const supabase = await createClient(['user']);
+export const getAuthUser = async () => {
+  const supabase = await createClient(['auth-user']);
   try {
     const { data } = await supabase.auth.getSession();
     const { session } = data;
-    return session?.user as User | undefined;
+    return session?.user as AuthUser | undefined;
   } catch {
     return undefined;
   }
 };
 
+export const getUser = async () => {
+  const supabase = await createClient(['user']);
+  const user = await getAuthUser();
+  if (!user) {
+    return null;
+  }
+  try {
+    const { data } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', user?.id)
+      .single();
+    return data as UserModified | null;
+  } catch {
+    return null;
+  }
+};
+
 export const setWelcomePageAsVisited = async () => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return new Error('User is not authenticated.');
   }
@@ -37,7 +55,7 @@ export const setWelcomePageAsVisited = async () => {
 };
 
 export const incrementBookmarkUsage = async (count: number = 1) => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return new Error('Unable to increment usage.');
   }
@@ -54,7 +72,7 @@ export const incrementBookmarkUsage = async (count: number = 1) => {
 };
 
 export const incrementTagUsage = async (count: number = 1) => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return new Error('Unable to increment usage.');
   }
@@ -71,7 +89,7 @@ export const incrementTagUsage = async (count: number = 1) => {
 };
 
 export const incrementFavUsage = async (count: number = 1) => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return new Error('Unable to increment usage.');
   }

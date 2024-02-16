@@ -6,10 +6,10 @@ import createClient from 'lib/supabase/actions';
 
 import { Bookmark, Tag, TagInsert } from 'types/data';
 
-import { getUser } from './user';
+import { getAuthUser } from './user';
 
 export const getTags = async () => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return [];
   }
@@ -29,7 +29,7 @@ export const getTags = async () => {
 };
 
 export const createTag = async (id: Bookmark['id'], tag: TagInsert) => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return new Error('User is not authenticated.');
   }
@@ -61,7 +61,7 @@ export const addTagToBookmark = async (
   tagId: Tag['id'],
   isChecked: boolean,
 ) => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return new Error('User is not authenticated.');
   }
@@ -94,7 +94,7 @@ export const addTagToBookmark = async (
 };
 
 export const deleteTag = async (tagId: Tag['id']) => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return new Error('User is not authenticated.');
   }
@@ -125,7 +125,7 @@ export const deleteTag = async (tagId: Tag['id']) => {
 };
 
 export const updateTag = async (id: Bookmark['id'], name: Tag['name']) => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return new Error('User is not authenticated.');
   }
@@ -144,7 +144,7 @@ export const updateTag = async (id: Bookmark['id'], name: Tag['name']) => {
 };
 
 export const getTagsWithBookmarkIds = async () => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return {};
   }

@@ -11,10 +11,10 @@ import {
   BookmarkUpdate,
 } from 'types/data';
 
-import { getUser } from './user';
+import { getAuthUser } from './user';
 
 export const getBookmarks = async () => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return [];
   }
@@ -35,7 +35,7 @@ export const getBookmarks = async () => {
 };
 
 export const createBookmark = async (bookmark: BookmarkInsertModified) => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return new Error('User is not authenticated.');
   }
@@ -56,7 +56,7 @@ export const updateBookmark = async (
   id: Bookmark['id'],
   bookmark: BookmarkUpdate,
 ) => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return new Error('User is not authenticated.');
   }
@@ -73,7 +73,7 @@ export const updateBookmark = async (
 };
 
 export const deleteBookmark = async (id: Bookmark['id']) => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return new Error('User is not authenticated.');
   }
@@ -123,7 +123,7 @@ export const refreshBookmark = async (
   id: Bookmark['id'],
   payload: BookmarkUpdate,
 ) => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return new Error('User is not authenticated.');
   }
@@ -141,7 +141,7 @@ export const refreshBookmark = async (
 };
 
 export const getFavBookmarks = async () => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return [];
   }
@@ -162,7 +162,7 @@ export const getFavBookmarks = async () => {
 };
 
 export const getBookmarksForTag = async (slug: string) => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return [];
   }
@@ -187,7 +187,7 @@ export const getBookmarksForTag = async (slug: string) => {
 };
 
 export const getBookmarksAsCSV = async () => {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (!user) {
     return '';
   }

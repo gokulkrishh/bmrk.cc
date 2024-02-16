@@ -4,7 +4,7 @@ import { permanentRedirect } from 'next/navigation';
 import { urls } from 'config';
 import NextTopLoader from 'nextjs-toploader';
 
-import { getUser } from 'app/actions/user';
+import { getAuthUser } from 'app/actions/user';
 
 import { AuthProvider } from 'components/context/auth';
 import { ThemeProvider } from 'components/context/theme';
@@ -66,7 +66,7 @@ export const viewport: Viewport = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const user = await getUser();
+  const user = await getAuthUser();
 
   if (!user) {
     permanentRedirect(urls.account);
