@@ -5,6 +5,7 @@ import { getUser } from 'app/actions/user';
 import { Progress } from 'components/ui/progress';
 
 import { addYears, formatDate } from 'lib/date';
+import { cn } from 'lib/utils';
 
 import PlanTooltip from './plan-help';
 import SettingsCard from './settings-card';
@@ -22,7 +23,7 @@ export default async function Plan() {
     return null;
   }
 
-  const isFreePlan = user.plan_status === plans.free.type;
+  const isFreePlan = user.plan_status !== plans.free.type;
 
   const isProPlanExpired =
     !isFreePlan &&
@@ -36,8 +37,12 @@ export default async function Plan() {
   return (
     <SettingsCard className="flex flex-col items-start gap-0 p-0">
       <div className="py-3 px-4 border-b w-full text-sm flex text-muted-foreground">
-        <div className="flex max-sm:flex-col max-sm:gap-1">
-          <div>
+        <div
+          className={cn(`flex max-sm:flex-col`, {
+            'max-sm:gap-1': !isFreePlan,
+          })}
+        >
+          <div className="flex items-center">
             You are currently on
             <span className="mx-1 text-black dark:text-white font-medium">
               {user.plan_status}
@@ -47,7 +52,7 @@ export default async function Plan() {
           <div>
             {!isFreePlan ? (
               <>
-                <span className="sm:ml-1">Next billing:</span>
+                <span className="sm:ml-1">Next billing cycle is</span>
                 <span className="ml-1 text-black dark:text-white font-medium">
                   {formatDate(
                     addYears(user.free_plan_start_date, 1),
