@@ -2,11 +2,11 @@
 
 import { StarFilledIcon, StarIcon } from '@radix-ui/react-icons';
 import { useFormStatus } from 'react-dom';
+import { toast } from 'sonner';
 
 import { addToFav } from 'app/actions/bookmarks';
-import { incrementFavUsage } from 'app/actions/user';
 
-import { useAuth } from 'components/context/auth';
+import { useUser } from 'components/context/user';
 
 import { cn } from 'lib/utils';
 
@@ -43,6 +43,7 @@ type CardActionsType = {
 };
 
 export default function CardActions({ data, tags }: CardActionsType) {
+  const { user, currentPlan } = useUser();
   const { is_fav } = data;
   return (
     <div className="justify-between mb-2 flex items-center w-full">
@@ -54,6 +55,13 @@ export default function CardActions({ data, tags }: CardActionsType) {
         <form
           className="self-end"
           action={async () => {
+            if (
+              user?.usage.favorites >= currentPlan.limit.favorites &&
+              !data.is_fav
+            ) {
+              toast.error(`Favorites limit reached! Upgrade to add more.`);
+              return;
+            }
             await addToFav(data.id, !data.is_fav);
           }}
         >

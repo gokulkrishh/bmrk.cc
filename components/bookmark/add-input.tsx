@@ -10,6 +10,7 @@ import { getOg } from 'app/actions/og';
 import { incrementBookmarkUsage } from 'app/actions/user';
 
 import { useAuth } from 'components/context/auth';
+import { useUser } from 'components/context/user';
 import Loader from 'components/loader';
 import UploadModal from 'components/modal/upload';
 import { Input } from 'components/ui/input';
@@ -36,10 +37,17 @@ export default function AddBookmarkInput({
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const { user, currentPlan } = useUser();
+  const hasUsageLimitedReached =
+    user?.usage.bookmarks >= currentPlan.limit.bookmarks;
 
   const onSubmit = async (inputUrl: string) => {
-    setLoading(true);
     try {
+      if (hasUsageLimitedReached) {
+        toast.error(`Bookmark limit reached! Upgrade to add more.`);
+        return;
+      }
+      setLoading(true);
       const ogData: MetaTags = await getOg(inputUrl);
       const payload: any = {
         url: inputUrl,
@@ -58,8 +66,10 @@ export default function AddBookmarkInput({
     } catch (error) {
       toast.error(`Unable to add bookmark, try again.`);
     } finally {
-      setLoading(false);
-      onHide?.();
+      if (!hasUsageLimitedReached) {
+        setLoading(false);
+        onHide?.();
+      }
     }
   };
 

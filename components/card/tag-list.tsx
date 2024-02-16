@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { addTagToBookmark, createTag } from 'app/actions/tags';
 import { incrementTagUsage } from 'app/actions/user';
 
+import { useUser } from 'components/context/user';
 import {
   Command,
   CommandGroup,
@@ -26,6 +27,7 @@ type TagListProps = {
 };
 
 export default function TagList({ data, tags }: TagListProps) {
+  const { user, currentPlan } = useUser();
   const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(false);
   const [optimisticData, setOptimisticData] =
@@ -41,6 +43,10 @@ export default function TagList({ data, tags }: TagListProps) {
     } as TagInsert;
 
     try {
+      if (user?.usage.tags >= currentPlan.limit.tags) {
+        toast.error(`Tag limit reached! Upgrade to add more.`);
+        return;
+      }
       setLoading(true);
       startTransition(() =>
         setOptimisticData(

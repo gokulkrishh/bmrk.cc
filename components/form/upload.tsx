@@ -8,6 +8,7 @@ import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 import { ArrowUpCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
+import { useUser } from 'components/context/user';
 import Loader from 'components/loader';
 import { Input } from 'components/ui/input';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
@@ -28,11 +29,9 @@ const helpLinks: { [key: string]: string } = {
 };
 
 export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
+  const { user, currentPlan } = useUser();
   const [loading, setLoading] = useState(false);
-  const [fileDetails, setFileDetails] = useState({
-    name: '',
-    size: 0,
-  });
+  const [fileDetails, setFileDetails] = useState({ name: '', size: 0 });
   const hiddenInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -79,6 +78,10 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
       if (files && files.length && isFileAllowed) {
         const file = files[0];
         if (file) {
+          if (user?.usage.bookmarks >= currentPlan.limit.bookmarks) {
+            toast.error(`Bookmark limit reached! Upgrade to add more.`);
+            return;
+          }
           toast.info(`Don't refresh this page.`, {
             duration: 6000,
           });

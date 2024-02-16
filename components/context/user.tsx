@@ -2,10 +2,12 @@
 
 import { createContext, useContext, useMemo } from 'react';
 
-import { User } from 'types/data';
+import { plans } from 'config';
+
+import { User, UserModified } from 'types/data';
 
 type UserContextType = {
-  user: User;
+  user: UserModified | null;
 } | null;
 
 const UserContext = createContext<UserContextType>(null);
@@ -20,7 +22,11 @@ export const UserProvider = (props: UserProviderProps) => {
   const { user, children } = props;
 
   const value = useMemo(() => {
-    return { user };
+    return {
+      user,
+      currentPlan:
+        user?.plan_status === plans.free.type ? plans.free : plans.pro,
+    };
   }, [user]);
 
   return (
@@ -37,6 +43,7 @@ export const useUser = () => {
   }
 
   return context as {
-    user: User;
+    user: UserModified;
+    currentPlan: typeof plans.free | typeof plans.pro;
   };
 };
