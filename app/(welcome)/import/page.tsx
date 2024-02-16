@@ -1,13 +1,14 @@
 import Link from 'next/link';
 
-import { setWelcomed } from 'app/actions/user';
+import { setWelcomePageAsVisited } from 'app/actions/user';
 
 import { Logo } from 'components/icons';
 
 import UploadBookmarks from './upload';
 
 const title = 'Bookmark it. | Import Bookmarks';
-const description = "Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience".
+const description =
+  'Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience';
 
 export const metadata = {
   title,
@@ -15,7 +16,7 @@ export const metadata = {
 };
 
 export default async function Page() {
-  await setWelcomed();
+  await setWelcomePageAsVisited();
 
   return (
     <div className="h-full pb-24 flex flex-col justify-center items-center">

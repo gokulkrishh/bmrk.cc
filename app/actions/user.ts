@@ -15,7 +15,7 @@ export const getUser = async () => {
   }
 };
 
-export const setWelcomed = async () => {
+export const setWelcomePageAsVisited = async () => {
   const user = await getUser();
   if (!user) {
     return new Error('User is not authenticated.');
