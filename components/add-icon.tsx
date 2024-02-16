@@ -14,7 +14,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
 export default function AddIcon({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
-  const { user } = useAuth();
+  const { authUser } = useAuth();
 
   useHotkeys(['a'], (_, handler) => {
     const keys = handler.keys?.join('');
@@ -47,7 +47,7 @@ export default function AddIcon({ className }: { className?: string }) {
       </Tooltip>
 
       {open ? (
-        user ? (
+        authUser ? (
           <AddBookmark open={open} onHide={setOpen} />
         ) : (
           <AccountModal open={open} onHide={setOpen} />

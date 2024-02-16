@@ -15,7 +15,7 @@ import SearchCommand from './command';
 
 export default function SearchIcon({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
-  const { user } = useAuth();
+  const { authUser } = useAuth();
 
   useHotkeys(
     ['k'],
@@ -52,7 +52,7 @@ export default function SearchIcon({ className }: { className?: string }) {
       </Tooltip>
 
       {open ? (
-        user ? (
+        authUser ? (
           <SearchCommand open={true} setOpen={setOpen} />
         ) : (
           <AccountModal open={true} onHide={setOpen} />

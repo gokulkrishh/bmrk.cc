@@ -6,6 +6,8 @@ import { useFormStatus } from 'react-dom';
 import { addToFav } from 'app/actions/bookmarks';
 import { incrementFavUsage } from 'app/actions/user';
 
+import { useAuth } from 'components/context/auth';
+
 import { cn } from 'lib/utils';
 
 import { BookmarkModified, Tag } from 'types/data';
@@ -35,13 +37,12 @@ function FavButtonIcon({ is_fav }: { is_fav: BookmarkModified['is_fav'] }) {
   );
 }
 
-export default function CardActions({
-  data,
-  tags,
-}: {
+type CardActionsType = {
   data: BookmarkModified;
   tags: Tag[];
-}) {
+};
+
+export default function CardActions({ data, tags }: CardActionsType) {
   const { is_fav } = data;
   return (
     <div className="justify-between mb-2 flex items-center w-full">
@@ -53,11 +54,6 @@ export default function CardActions({
         <form
           className="self-end"
           action={async () => {
-            if (data.is_fav) {
-              await incrementFavUsage(-1);
-            } else {
-              await incrementFavUsage();
-            }
             await addToFav(data.id, !data.is_fav);
           }}
         >

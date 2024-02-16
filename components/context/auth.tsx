@@ -4,23 +4,30 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { Session, SupabaseClient, User } from '@supabase/supabase-js';
+import {
+  Session,
+  SupabaseClient,
+  User as authUser,
+} from '@supabase/supabase-js';
 import { urls } from 'config';
 
 import createClient from 'lib/supabase/client';
 
-type AuthContextType = { user: User; supabase: SupabaseClient } | null;
+type AuthContextType = {
+  authUser: authUser;
+  supabase: SupabaseClient;
+} | null;
 
 const AuthContext = createContext<AuthContextType>(null);
 
 type AuthProviderProps = {
   children: React.ReactNode;
-  user: User;
+  authUser: authUser;
 };
 
 export const AuthProvider = (props: AuthProviderProps) => {
   const { children } = props;
-  const [user, setUser] = useState<User | null>(props.user);
+  const [authUser, setAuthUser] = useState<authUser | null>(props.authUser);
   const supabase = createClient();
   const router = useRouter();
 
@@ -36,7 +43,7 @@ export const AuthProvider = (props: AuthProviderProps) => {
           window.location.href = urls.account;
         }
         if (currentSession?.user) {
-          setUser(currentSession.user);
+          setAuthUser(currentSession.user);
         }
       },
     );
@@ -48,8 +55,8 @@ export const AuthProvider = (props: AuthProviderProps) => {
   }, []);
 
   const value = useMemo(() => {
-    return { user, supabase };
-  }, [user, supabase]);
+    return { authUser, supabase };
+  }, [authUser, supabase]);
 
   return (
     <AuthContext.Provider value={value as AuthContextType}>
@@ -64,5 +71,8 @@ export const useAuth = () => {
     throw new Error(`useAuth must be used within a Auth Context Provider.`);
   }
 
-  return context as { user: User; supabase: SupabaseClient };
+  return context as {
+    authUser: authUser;
+    supabase: SupabaseClient;
+  };
 };

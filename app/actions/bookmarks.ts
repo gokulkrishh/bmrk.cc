@@ -11,7 +11,7 @@ import {
   BookmarkUpdate,
 } from 'types/data';
 
-import { getAuthUser } from './user';
+import { getAuthUser, incrementFavUsage } from './user';
 
 export const getBookmarks = async () => {
   const user = await getAuthUser();
@@ -107,6 +107,11 @@ export const addToFav = async (
   id: Bookmark['id'],
   isFav: Bookmark['is_fav'],
 ) => {
+  if (!isFav) {
+    await incrementFavUsage(-1);
+  } else {
+    await incrementFavUsage();
+  }
   const supabase = await createClient();
   const { error } = await supabase
     .from('bookmarks')
