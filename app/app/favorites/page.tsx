@@ -5,7 +5,8 @@ import CardList from 'components/card-list';
 import Header from 'components/header';
 
 const title = 'Bookmark it. | Favorites';
-const description = 'Bookmark manager for the modern web.';
+const description =
+  'Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience';
 
 export const metadata = {
   title,

@@ -6,39 +6,12 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const title = 'Bookmark it. | Not Found';
-const description = 'Bookmark manager for the modern web.';
+const description =
+  'Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience';
 
 export const metadata: Metadata = {
   title,
   description,
-  twitter: {
-    card: 'summary_large_image',
-    title,
-    description,
-    creator: '@gokul_i',
-    images: ['https://bmrk.cc/images/og.jpg'],
-  },
-  openGraph: {
-    type: 'website',
-    title,
-    description,
-    url: 'https://bmrk.cc',
-    images: ['https://bmrk.cc/images/og.jpg'],
-  },
-  icons: {
-    icon: '/icons/favicon.ico',
-    shortcut: '/icons/icon.svg',
-    apple: '/icons/apple-touch-icon.png',
-  },
-};
-
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
-  themeColor: '#ffffff',
-  userScalable: false,
-  viewportFit: 'cover',
 };
 
 export default async function NotFound() {

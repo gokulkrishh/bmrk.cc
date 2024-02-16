@@ -5,7 +5,8 @@ import DeleteAccount from 'components/settings/delete-account';
 import ExportBookmarks from 'components/settings/export-bookmarks';
 
 const title = 'Bookmark it. | Settings';
-const description = 'Bookmark manager for the modern web.';
+const description =
+  'Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience';
 
 export const metadata = {
   title,

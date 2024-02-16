@@ -4,7 +4,7 @@
 </a>
 
 <p align="center">
-  Bookmark It. – An open source bookmark manager web application.
+  Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience.
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@
 
 ## Introduction
 
-Bookmark It. – An open source bookmark manager web application.
+Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience.
 
 ### Tech Stack
 

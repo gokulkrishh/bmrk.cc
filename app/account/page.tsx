@@ -7,7 +7,8 @@ import Footer from 'components/home/footer';
 import { Logo } from 'components/icons';
 
 const title = 'Bookmark it. | Account';
-const description = 'Bookmark manager for the modern web.';
+const description =
+  'Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience';
 
 export const metadata = {
   title,

@@ -7,7 +7,7 @@ import { Logo } from 'components/icons';
 import UploadBookmarks from './upload';
 
 const title = 'Bookmark it. | Import Bookmarks';
-const description = 'Bookmark manager for the modern web.';
+const description = "Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience".
 
 export const metadata = {
   title,

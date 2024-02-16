@@ -1,5 +1,6 @@
 {
   "name": "bmrk.cc",
+  "description": "Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience",
   "version": "0.1.0",
   "private": true,
   "scripts": {

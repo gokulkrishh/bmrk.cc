@@ -15,7 +15,8 @@ import { TooltipProvider } from 'components/ui/tooltip';
 import '../globals.css';
 
 const title = 'Bookmark it. | Home';
-const description = 'Bookmark manager for the modern web.';
+const description =
+  'Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience.';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://bmrk.cc'),

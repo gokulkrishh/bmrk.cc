@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { Logo } from 'components/icons';
 
 const title = 'Bookmark it. | Intro';
-const description = 'Bookmark manager for the modern web.';
+const description =
+  'Bookmark It. is an open-source bookmark manager to organize and personalize your bookmarking experience';
 
 export const metadata = {
   title,
@@ -21,7 +22,8 @@ export default async function Page() {
           Welcome to Bookmark It.
         </h1>
         <p className="text-lg mt-4 text-muted-foreground">
-          A bookmark manager for the modern web.
+          Bookmark It. is an open-source bookmark manager to organize and
+          personalize your bookmarking experience.
         </p>
       </div>
       <Link
