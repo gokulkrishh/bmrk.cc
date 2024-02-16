@@ -40,4 +40,14 @@ export const plans = {
       favorites: 250,
     },
   },
+} as {
+  [key: string]: {
+    type: string;
+    name: string;
+    limit: {
+      bookmarks: number;
+      tags: number;
+      favorites: number;
+    };
+  };
 };

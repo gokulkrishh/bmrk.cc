@@ -1,13 +1,16 @@
 import { NextRequest } from 'next/server';
 
+import { plans } from 'config';
 import { parse } from 'node-html-parser';
+
+import { getUser } from 'app/actions/user';
 
 import { checkAuth } from 'lib/auth';
 import { bookmarkParser } from 'lib/bookmarks';
 import { formatDate } from 'lib/date';
 import createClient from 'lib/supabase/server';
 
-import { BookmarkInsert, TagInsert } from 'types/data';
+import { BookmarkInsert, TagInsert, UserModified } from 'types/data';
 
 const dateOptions = {
   day: 'numeric',
@@ -24,8 +27,44 @@ export async function POST(request: NextRequest) {
     try {
       const root = parse(content) as unknown as HTMLElement;
       const bookmarks = bookmarkParser(root);
-
       const supabase = await createClient();
+      const userData = await getUser();
+
+      if (!userData) {
+        return new Response(
+          JSON.stringify({
+            message: `Unable to process your request, try again later.`,
+          }),
+          { status: 500 },
+        );
+      }
+
+      const isProPlan = userData?.plan_status === plans.pro.type;
+      const currentPlan = isProPlan ? plans.pro : plans.free;
+
+      const isBookmarkLimitReached =
+        userData?.usage?.bookmarks >= currentPlan.limit.bookmarks ||
+        bookmarks.length > currentPlan.limit.bookmarks;
+
+      if (isBookmarkLimitReached) {
+        return new Response(
+          JSON.stringify({
+            message: `Bookmarks count exceeds the ${isProPlan ? plans.pro.name : plans.free.name} plan limit.`,
+          }),
+          { status: 500 },
+        );
+      }
+
+      const isTagLimitReached = userData?.usage?.tags >= currentPlan.limit.tags;
+
+      if (isTagLimitReached) {
+        return new Response(
+          JSON.stringify({
+            message: `Tags count exceeds the ${isProPlan ? plans.pro.name : plans.free.name} plan limit.`,
+          }),
+          { status: 500 },
+        );
+      }
 
       const { data: newTag } = await supabase
         .from('tags')
