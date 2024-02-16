@@ -44,7 +44,7 @@ export default function TagList({ data, tags }: TagListProps) {
 
     try {
       if (user?.usage.tags >= currentPlan.limit.tags) {
-        toast.error(`Tag limit reached! Upgrade to add more.`);
+        toast.error(`Tag limit reached! Upgrade to create more.`);
         return;
       }
       setLoading(true);
