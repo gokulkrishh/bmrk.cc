@@ -62,10 +62,10 @@ export default async function Plan() {
           </h3>
           <div className="flex w-full justify-between">
             <span className="text-muted-foreground mb-2 text-sm">
-              {user.usage.bookmarks} of {bookmarks}{' '}
-            </span>
-            <span className="text-muted-foreground mb-2 text-sm">
-              {bookmarks - user.usage.bookmarks} entries left
+              {user.usage.bookmarks} of {bookmarks}
+              <span className="text-xs ml-1.5">
+                ({(user.usage.bookmarks / bookmarks) * 100}%)
+              </span>
             </span>
           </div>
           <Progress
@@ -80,11 +80,11 @@ export default async function Plan() {
               Tags <PlanTooltip text="The number of tags added." />
             </h3>
             <div className="flex w-full justify-between">
-              <span className="text-muted-foreground mb-2 text-sm">
-                {user.usage.tags} of {tags}
-              </span>
-              <span className="text-muted-foreground mb-2 text-sm">
-                {tags - user.usage.tags} entries left
+              <span className="text-muted-foreground flex items-center mb-2 text-sm">
+                {user.usage.tags} of {tags}{' '}
+                <span className="text-xs ml-1.5">
+                  ({(user.usage.tags / tags) * 100}%)
+                </span>
               </span>
             </div>
             <Progress className="h-3 mt-1" value={user.usage.tags} max={tags} />
@@ -97,9 +97,9 @@ export default async function Plan() {
             <div className="flex w-full justify-between">
               <span className="text-muted-foreground mb-2 text-sm">
                 {user.usage.favorites} of {favorites}
-              </span>
-              <span className="text-muted-foreground mb-2 text-sm">
-                {favorites - user.usage.favorites} entries left
+                <span className="text-xs ml-1.5">
+                  ({(user.usage.favorites / favorites) * 100}%)
+                </span>
               </span>
             </div>
             <Progress
