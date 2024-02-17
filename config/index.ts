@@ -27,8 +27,8 @@ export const plans = {
     name: 'Free',
     limit: {
       bookmarks: 25,
-      tags: 10,
-      favorites: 10,
+      tags: 25,
+      favorites: 25,
     },
   },
   pro: {
