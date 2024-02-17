@@ -46,7 +46,7 @@ export const plans = {
       favorites: 25,
     },
     pricing: {
-      monthly: 2.99,
+      monthly: 2.49,
       yearly: 1.99,
     },
   },
