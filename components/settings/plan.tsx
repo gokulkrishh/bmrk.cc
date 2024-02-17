@@ -1,10 +1,20 @@
-import { plans } from 'config';
+import { permanentRedirect } from 'next/navigation';
+
+import { urls } from 'config';
 
 import { getUser } from 'app/actions/user';
 
 import { Progress } from 'components/ui/progress';
 
-import { addYears, formatDate } from 'lib/date';
+import {
+  getBookmarkUsage,
+  getFavoriteUsage,
+  getNextBillingDate,
+  getTagUsage,
+  getUserPlan,
+  isPlanExpired,
+  isProPlan,
+} from 'lib/data';
 import { cn } from 'lib/utils';
 
 import PlanTooltip from './plan-help';
@@ -16,27 +26,16 @@ export default async function Plan() {
   const user = await getUser();
 
   if (!user) {
-    return null;
+    return permanentRedirect(urls.account);
   }
 
-  const isFreePlan = user.plan_status === plans.free.type;
+  const isFreePlan = !isProPlan(user);
+  const isProPlanExpired = !isFreePlan && isPlanExpired(user);
+  const { bookmarks, favorites, tags } = getUserPlan(user).limit;
 
-  const isProPlanExpired =
-    !isFreePlan &&
-    user.pro_plan_start_date &&
-    new Date(user.pro_plan_start_date) < new Date();
-
-  const { bookmarks, favorites, tags } = isFreePlan
-    ? plans.free.limit
-    : plans.pro.limit;
-
-  const bookmarkPercentage = Math.floor(
-    (user.usage.bookmarks / bookmarks) * 100,
-  );
-  const tagPercentage = Math.floor((user.usage.tags / tags) * 100);
-  const favoritePercentage = Math.floor(
-    (user.usage.favorites / favorites) * 100,
-  );
+  const bookmarkPercentage = getBookmarkUsage(user);
+  const tagPercentage = getTagUsage(user);
+  const favoritePercentage = getFavoriteUsage(user);
 
   return (
     <SettingsCard className="flex flex-col items-start gap-0 p-0">
@@ -58,7 +57,7 @@ export default async function Plan() {
               <>
                 <span className="sm:ml-1">Next billing cycle is</span>
                 <span className="ml-1 text-black dark:text-white font-medium">
-                  {formatDate(addYears(user.free_plan_start_date, 1))}
+                  {getNextBillingDate(user)}
                 </span>
               </>
             ) : null}

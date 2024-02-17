@@ -2,11 +2,18 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { formatDate } from 'lib/date';
 import createClient from 'lib/supabase/actions';
 
-import { Bookmark, Tag, TagInsert } from 'types/data';
+import { Bookmark, Tag, TagInsert, User } from 'types/data';
 
 import { getAuthUser } from './user';
+
+const dateOptions = {
+  day: 'numeric',
+  month: 'numeric',
+  year: 'numeric',
+} as Intl.DateTimeFormatOptions;
 
 export const getTags = async () => {
   const user = await getAuthUser();
@@ -167,4 +174,27 @@ export const getTagsWithBookmarkIds = async () => {
     }
     return acc;
   }, {});
+};
+
+export const createTagForImport = async () => {
+  const user = await getAuthUser();
+  if (!user) {
+    return null;
+  }
+
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('tags')
+    .insert({
+      name: `imported-on-${formatDate(new Date(), dateOptions)?.replaceAll('/', '-')}`,
+      user_id: user.id,
+    } as TagInsert)
+    .select()
+    .single();
+
+  if (error) {
+    return null;
+  }
+
+  return data;
 };

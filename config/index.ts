@@ -1,3 +1,5 @@
+import { PlansType } from 'types/data';
+
 const isProduction = process.env.NODE_ENV === 'production';
 
 const domain = 'bmrk.cc';
@@ -40,14 +42,11 @@ export const plans = {
       favorites: 250,
     },
   },
-} as {
-  [key: string]: {
-    type: string;
-    name: string;
-    limit: {
-      bookmarks: number;
-      tags: number;
-      favorites: number;
-    };
-  };
+} as PlansType;
+
+export const messages = {
+  bookmarkLimit: (plan: string = plans.free.name) =>
+    `Bookmarks count exceeds the ${plan} plan limit.`,
+  tagLimit: (plan: string = plans.free.name) =>
+    `Tags count exceeds the ${plan} plan limit.`,
 };

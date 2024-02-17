@@ -35,6 +35,18 @@ export type UserModified = User & {
   };
 };
 
+export type PlansType = {
+  [key: string]: {
+    type: string;
+    name: string;
+    limit: {
+      bookmarks: number;
+      tags: number;
+      favorites: number;
+    };
+  };
+};
+
 export type User = Database['public']['Tables']['users']['Row'];
 export type Tag = Database['public']['Tables']['tags']['Row'];
 export type TagInsert = Database['public']['Tables']['tags']['Insert'];
