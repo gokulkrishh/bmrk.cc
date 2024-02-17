@@ -29,17 +29,17 @@ export const plans = {
     name: 'Free',
     limit: {
       bookmarks: 25,
-      tags: 25,
-      favorites: 25,
+      tags: 5,
+      favorites: 5,
     },
   },
   pro: {
     type: 'pro',
     name: 'Pro',
     limit: {
-      bookmarks: 250,
-      tags: 100,
-      favorites: 100,
+      bookmarks: 100,
+      tags: 25,
+      favorites: 25,
     },
   },
 } as PlansType;

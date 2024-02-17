@@ -7,6 +7,7 @@ import Extensions from 'components/home/extensions';
 import Faq from 'components/home/faq';
 import Features from 'components/home/features';
 import Footer from 'components/home/footer';
+import Pricing from 'components/home/pricing';
 import Signup from 'components/home/signup';
 import { Tweet } from 'components/tweet/tweets';
 
@@ -92,6 +93,7 @@ export default async function Page() {
         </div>
 
         <Extensions />
+        <Pricing />
         <Faq />
 
         <div className="mx-auto mt-0 sm:mt-16  flex flex-col items-center">

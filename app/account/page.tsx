@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { urls } from 'config';
 
 import AccountButton from 'components/account-button';
-import Footer from 'components/home/footer';
 import { Logo } from 'components/icons';
 
 const title = 'Bookmark it. | Account';
