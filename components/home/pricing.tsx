@@ -87,7 +87,10 @@ export default function Pricing() {
             </p>
             <div className="my-4">
               <p className="text-4xl tabular-nums font-semibold text-primary">
-                ${planYearly ? 1 : 1.99}{' '}
+                $
+                {planYearly
+                  ? plans.pro.pricing.yearly
+                  : plans.pro.pricing.monthly}{' '}
                 <span className="text-base">/ month</span>{' '}
               </p>
               <span className="text-sm text-muted-foreground">

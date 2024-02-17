@@ -32,6 +32,10 @@ export const plans = {
       tags: 5,
       favorites: 5,
     },
+    pricing: {
+      monthly: 0,
+      yearly: 0,
+    },
   },
   pro: {
     type: 'pro',
@@ -40,6 +44,10 @@ export const plans = {
       bookmarks: 100,
       tags: 25,
       favorites: 25,
+    },
+    pricing: {
+      monthly: 2.99,
+      yearly: 1.99,
     },
   },
 } as PlansType;

@@ -44,6 +44,10 @@ export type PlansType = {
       tags: number;
       favorites: number;
     };
+    pricing: {
+      monthly: number;
+      yearly: number;
+    };
   };
 };
 
