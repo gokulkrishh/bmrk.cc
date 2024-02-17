@@ -35,20 +35,23 @@ export type UserModified = User & {
   };
 };
 
-export type PlansType = {
-  [key: string]: {
-    type: string;
-    name: string;
-    limit: {
-      bookmarks: number;
-      tags: number;
-      favorites: number;
-    };
-    pricing: {
-      monthly: number;
-      yearly: number;
-    };
+export type PlanDetailsType = {
+  type: string;
+  name: string;
+  limit: {
+    bookmarks: number;
+    tags: number;
+    favorites: number;
   };
+  pricing: {
+    monthly: number;
+    yearly: number;
+  };
+};
+
+export type PlansType = {
+  free: PlanDetailsType;
+  pro: PlanDetailsType;
 };
 
 export type User = Database['public']['Tables']['users']['Row'];

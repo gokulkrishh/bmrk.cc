@@ -56,17 +56,17 @@ export default function Pricing() {
               </p>
               <p className="text-gray-600 flex items-center font-normal">
                 <CheckIcon className="text-primary" /> {plans.free.limit.tags}{' '}
-                tags/mo
+                tags creation
               </p>
               <p className="text-gray-600 flex items-center font-normal">
                 <CheckIcon className="text-primary" />{' '}
-                {plans.free.limit.favorites} favorites/mo
+                {plans.free.limit.favorites} favorite bookmarks
               </p>
               <p className="text-gray-600 flex items-center font-normal">
                 <CheckIcon className="text-primary" /> Dark mode support
               </p>
               <p className="text-gray-600 flex items-center font-normal">
-                <CheckIcon className="text-primary" /> Browser Extension
+                <CheckIcon className="text-primary" /> Browser Extensions
               </p>
             </div>
             <div className="mt-6 mb-2">
@@ -107,11 +107,11 @@ export default function Pricing() {
               </p>
               <p className="text-gray-600 flex items-center font-normal">
                 <CheckIcon className="text-primary" /> {plans.pro.limit.tags}{' '}
-                tags/mo
+                tags creation
               </p>
               <p className="text-gray-600 flex items-center font-normal">
                 <CheckIcon className="text-primary" />{' '}
-                {plans.pro.limit.favorites} favorites/mo
+                {plans.pro.limit.favorites} favorite bookmarks
               </p>
               <p className="text-gray-600 flex items-center font-normal">
                 <CheckIcon className="text-primary" /> Export bookmarks CSV or
@@ -123,7 +123,7 @@ export default function Pricing() {
             </div>
             <div className="mt-6 mb-2">
               <Link
-                href={urls.account}
+                href={urls.settings}
                 className="w-full rounded-lg flex justify-center bg-blue-600 text-white p-2"
               >
                 Get started with pro

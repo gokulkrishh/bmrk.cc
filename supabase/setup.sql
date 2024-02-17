@@ -17,8 +17,7 @@ create table users (
   has_welcomed boolean default false,
   usage jsonb default '{"bookmarks": 0, "tags": 0, "favorites": 0, "sessions": 0}',
   plan_status text default 'free',
-  free_plan_start_date timestamp with time zone default current_timestamp,
-  pro_plan_start_date timestamp with time zone,
+  billing_cycle_start_date timestamp default current_timestamp not null,
   order_info jsonb default '{"status": "", "number": 0, "store_id": 0}'
 );
 -- Set up Row Level Security (RLS)

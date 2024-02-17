@@ -13,6 +13,7 @@ export const urls = {
   authCallback: `${protocol}app.${home}/auth/callback/`,
   account: `${protocol}app.${home}/account`,
   intro: `${protocol}app.${home}/intro`,
+  settings: `${protocol}app.${home}/settings`,
   app: `${protocol}app.${home}`,
   api: `${protocol}${home}`,
   twitter: 'https://twitter.com/gokul_i',
@@ -23,7 +24,7 @@ export const urls = {
   },
 };
 
-export const plans = {
+export const plans: PlansType = {
   free: {
     type: 'free',
     name: 'Free',
@@ -42,15 +43,15 @@ export const plans = {
     name: 'Pro',
     limit: {
       bookmarks: 100,
-      tags: 25,
-      favorites: 25,
+      tags: 50,
+      favorites: 50,
     },
     pricing: {
       monthly: 2.49,
       yearly: 1.99,
     },
   },
-} as PlansType;
+};
 
 export const messages = {
   bookmarkLimit: (plan: string = plans.free.name) =>

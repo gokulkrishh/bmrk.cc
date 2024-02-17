@@ -9,12 +9,11 @@ import { Progress } from 'components/ui/progress';
 import {
   getBookmarkUsage,
   getFavoriteUsage,
-  getNextBillingDate,
   getTagUsage,
   getUserPlan,
-  isPlanExpired,
   isProPlan,
 } from 'lib/data';
+import { formatBillingDate, getFirstAndLastDate } from 'lib/date';
 import { cn } from 'lib/utils';
 
 import PlanTooltip from './plan-help';
@@ -30,21 +29,18 @@ export default async function Plan() {
   }
 
   const isFreePlan = !isProPlan(user);
-  const isProPlanExpired = !isFreePlan && isPlanExpired(user);
   const { bookmarks, favorites, tags } = getUserPlan(user).limit;
 
   const bookmarkPercentage = getBookmarkUsage(user);
   const tagPercentage = getTagUsage(user);
   const favoritePercentage = getFavoriteUsage(user);
 
+  const { first, last } = getFirstAndLastDate(user.billing_cycle_start_date);
+
   return (
     <SettingsCard className="flex flex-col items-start gap-0 p-0">
       <div className="py-3 px-4 border-b w-full text-sm flex text-muted-foreground">
-        <div
-          className={cn(`flex max-sm:flex-col`, {
-            'max-sm:gap-1': !isFreePlan,
-          })}
-        >
+        <div className={cn(`flex max-sm:flex-col max-sm:gap-1`)}>
           <div className="flex items-center">
             You are currently on
             <span className="mx-1 text-black dark:text-white font-medium">
@@ -52,22 +48,21 @@ export default async function Plan() {
             </span>
             plan.
           </div>
-          <div>
-            {!isFreePlan ? (
-              <>
-                <span className="sm:ml-1">Next billing cycle is</span>
-                <span className="ml-1 text-black dark:text-white font-medium">
-                  {getNextBillingDate(user)}
-                </span>
-              </>
-            ) : null}
-          </div>
+          {first && last ? (
+            <div>
+              <span className="sm:ml-1 mt-1">Current billing cycle:</span>
+              <span className="ml-1 text-black dark:text-white font-medium">
+                {formatBillingDate(first)} - {formatBillingDate(last)}
+              </span>
+            </div>
+          ) : null}
         </div>
       </div>
       <div className="flex flex-col w-full">
         <div className="p-4">
           <h3 className="font-medium mb-2 text-sm flex items-center">
-            Bookmarks <PlanTooltip text="The number of bookmarks added." />
+            Bookmarks{' '}
+            <PlanTooltip text="The number of bookmarks added on current billing cycle." />
           </h3>
           <div className="flex w-full justify-between">
             <span className="text-muted-foreground mb-2 text-sm">
@@ -106,7 +101,7 @@ export default async function Plan() {
         </div>
       </div>
 
-      {isFreePlan || isProPlanExpired ? (
+      {isFreePlan ? (
         <div className="flex w-full p-3.5 justify-between items-center border-t">
           <p className="text-muted-foreground text-sm">
             For more usage limits, upgrade to the Pro plan.

@@ -128,6 +128,7 @@ export type Database = {
       users: {
         Row: {
           avatar_url: string | null;
+          billing_cycle_start_date: string;
           created_at: string | null;
           email: string | null;
           free_plan_start_date: string | null;
@@ -142,6 +143,7 @@ export type Database = {
         };
         Insert: {
           avatar_url?: string | null;
+          billing_cycle_start_date?: string;
           created_at?: string | null;
           email?: string | null;
           free_plan_start_date?: string | null;
@@ -156,6 +158,7 @@ export type Database = {
         };
         Update: {
           avatar_url?: string | null;
+          billing_cycle_start_date?: string;
           created_at?: string | null;
           email?: string | null;
           free_plan_start_date?: string | null;

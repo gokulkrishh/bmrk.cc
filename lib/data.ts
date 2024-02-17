@@ -1,9 +1,7 @@
 import { plans } from 'config';
 import groupBy from 'object.groupby';
 
-import { BookmarkInsert, BookmarkModified, UserModified } from 'types/data';
-
-import { addYears, formatDate } from './date';
+import { BookmarkModified, UserModified } from 'types/data';
 
 export const groupByDate = (data: BookmarkModified[]) => {
   if (!data) return {};
@@ -31,13 +29,6 @@ export const getUserPlan = (userData: UserModified) => {
 
 export const isProPlan = (userData: UserModified) => {
   return userData?.plan_status === plans.pro.type;
-};
-
-export const isPlanExpired = (userData: UserModified) => {
-  return (
-    userData.pro_plan_start_date &&
-    new Date(userData.pro_plan_start_date) > new Date()
-  );
 };
 
 export const checkBookmarkLimit = (
@@ -74,8 +65,4 @@ export const getFavoriteUsage = (userData: UserModified) => {
   return Math.floor(
     (userData.usage.favorites / currentPlan.limit.favorites) * 100,
   );
-};
-
-export const getNextBillingDate = (userData: UserModified) => {
-  return formatDate(addYears(userData.pro_plan_start_date, 1));
 };
