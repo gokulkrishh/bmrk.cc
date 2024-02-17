@@ -4,7 +4,6 @@ import { createClient } from '@supabase/supabase-js';
 
 import {
   getAdjustedBillingCycleDate,
-  getDate,
   isUserAccountCreatedToday,
 } from 'lib/date';
 import { verifyCronJob } from 'lib/utils';
@@ -38,7 +37,7 @@ export async function GET(request: NextRequest) {
     const currentDay = today.getDate();
 
     // Reset the users usage only if the billing cycle start date matches today date
-    // and user is not created today
+    // and avoid user who got created today
     const billingResetUsers: UserModified[] = data.filter(
       ({ created_at, email, billing_cycle_start_date }) =>
         getAdjustedBillingCycleDate(billing_cycle_start_date) === currentDay &&
