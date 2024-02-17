@@ -2,6 +2,7 @@ import Header from 'components/header';
 import SettingsAccount from 'components/settings/account';
 import Appearance from 'components/settings/appearance';
 import DeleteAccount from 'components/settings/delete-account';
+import DeleteData from 'components/settings/delete-data';
 import ExportBookmarks from 'components/settings/export-bookmarks';
 import Plan from 'components/settings/plan';
 
@@ -33,14 +34,17 @@ export default async function Page() {
           </div>
         </div>
         <div className="flex flex-col">
-          <h2 className="font-medium mb-2">Export</h2>
+          <h2 className="font-medium mb-2">Data</h2>
           <div className="flex flex-col gap-6">
             <ExportBookmarks />
+            <DeleteData />
           </div>
         </div>
         <div>
           <h2 className="font-medium mb-2">Danger Zone</h2>
-          <DeleteAccount />
+          <div className="flex flex-col gap-6">
+            <DeleteAccount />
+          </div>
         </div>
       </div>
     </>

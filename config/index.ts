@@ -38,8 +38,8 @@ export const plans = {
     name: 'Pro',
     limit: {
       bookmarks: 250,
-      tags: 250,
-      favorites: 250,
+      tags: 100,
+      favorites: 100,
     },
   },
 } as PlansType;

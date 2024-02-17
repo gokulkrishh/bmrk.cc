@@ -4,7 +4,12 @@ import { messages, plans } from 'config';
 import { parse } from 'node-html-parser';
 
 import { createTagForImport } from 'app/actions/tags';
-import { getUser } from 'app/actions/user';
+import {
+  getUser,
+  incrementBookmarkUsage,
+  incrementFavUsage,
+  incrementTagUsage,
+} from 'app/actions/user';
 
 import { checkAuth } from 'lib/auth';
 import { bookmarkParser } from 'lib/bookmarks';
@@ -71,6 +76,8 @@ export async function POST(request: NextRequest) {
           throw new Error('Unable to add bookmarks, try again');
         }
 
+        await incrementBookmarkUsage(data.length);
+
         if (data?.length) {
           const { error: bookmarkError } = await supabase
             .from('bookmarks_tags')
@@ -92,6 +99,61 @@ export async function POST(request: NextRequest) {
           );
         }
       }
+    } catch (error) {
+      return new Response(
+        JSON.stringify({
+          message: error?.toString() || 'Error occurried.',
+        }),
+        { status: 500 },
+      );
+    }
+  });
+}
+
+export async function DELETE(request: NextRequest) {
+  return await checkAuth(async (user) => {
+    try {
+      const supabase = await createClient();
+      const { error: bookmarksTagsError } = await supabase
+        .from('bookmarks_tags')
+        .delete()
+        .eq('user_id', user.id);
+
+      if (bookmarksTagsError) {
+        throw new Error('Unable to delete bookmarks, try again');
+      }
+
+      const { error: bookmarkTagsError } = await supabase
+        .from('tags')
+        .delete()
+        .eq('user_id', user.id);
+
+      if (bookmarkTagsError) {
+        throw new Error('Unable to delete bookmarks, try again');
+      }
+
+      const { error: bookmarkError } = await supabase
+        .from('bookmarks')
+        .delete()
+        .eq('user_id', user.id);
+
+      if (bookmarkError) {
+        throw new Error('Unable to delete bookmarks, try again');
+      }
+
+      const { error: bookmarkUsageError } = await supabase
+        .from('users')
+        .update({ usage: { bookmarks: 0, favorites: 0, sessions: 0, tags: 0 } })
+        .eq('id', user.id);
+
+      if (bookmarkUsageError) {
+        throw new Error('Unable to reset your usage, try again');
+      }
+
+      return new Response(
+        JSON.stringify({ message: 'Bookmarks are deleted successfully' }),
+        { status: 200 },
+      );
     } catch (error) {
       return new Response(
         JSON.stringify({
