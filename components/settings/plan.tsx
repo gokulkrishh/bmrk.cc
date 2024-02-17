@@ -17,9 +17,8 @@ import { formatBillingDate, getFirstAndLastDate } from 'lib/date';
 import { cn } from 'lib/utils';
 
 import PlanTooltip from './plan-help';
+import PlanUpgradeButton from './plan-upgrade';
 import SettingsCard from './settings-card';
-
-export const dynamic = 'force-dynamic';
 
 export default async function Plan() {
   const user = await getUser();
@@ -106,9 +105,7 @@ export default async function Plan() {
           <p className="text-muted-foreground text-sm">
             For more usage limits, upgrade to the Pro plan.
           </p>
-          <button className="items-center h-[40px] tracking-wide disabled:cursor-not-allowed disabled:border-border rounded-full text-white border border-blue-600 focus:outline-0 text-sm flex justify-center py-2 px-3 transition-colors bg-blue-600 hover:bg-blue-700 disabled:bg-blue-700 active:bg-blue-700">
-            Upgrade
-          </button>
+          <PlanUpgradeButton />
         </div>
       ) : null}
     </SettingsCard>

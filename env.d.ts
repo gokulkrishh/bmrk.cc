@@ -8,5 +8,6 @@ namespace NodeJS {
     SUPABASE_SERVICE_ROLE_KEY: string;
     GA4_ANALYTICS_ID: string;
     LEMON_SQUEEZY_API_KEY: string;
+    CRON_SECRET: string;
   }
 }
