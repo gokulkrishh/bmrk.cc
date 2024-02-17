@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@lemonsqueezy/lemonsqueezy.js':
-    specifier: ^2.0.0
-    version: 2.0.0
+    specifier: ^2.1.0
+    version: 2.1.0
   '@radix-ui/react-accordion':
     specifier: ^1.1.2
     version: 1.1.2(@types/react-dom@18.2.19)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
@@ -617,8 +617,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@lemonsqueezy/lemonsqueezy.js@2.0.0:
-    resolution: {integrity: sha512-eZcc463vc2qDoRHZE/NKi/wduryl1aHe2T+pVER2H2up8Ed5A4+IYK7KD2S5MPZwVUzVQGPmWJu6mPonh6xreQ==}
+  /@lemonsqueezy/lemonsqueezy.js@2.1.0:
+    resolution: {integrity: sha512-zbItIEHPOOwObWgq6ndVWky10G1OsVgPvtQh6OUEcm5Ew+AtBrtZrLnFqqO+hmPNI/Fe0oQ0dC/zuGR2wSdy3w==}
     engines: {node: '>=18'}
     dev: false
 

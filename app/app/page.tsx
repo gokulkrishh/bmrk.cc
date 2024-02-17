@@ -5,7 +5,7 @@ import AddBookmarkInput from 'components/bookmark/add-input';
 import CardList from 'components/card-list';
 import Header from 'components/header';
 
-export const revalidate = 60000;
+export const revalidate = 3600;
 
 export default async function Page() {
   const [bookmarks, tags] = await Promise.all([
