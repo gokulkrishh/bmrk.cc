@@ -23,7 +23,7 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
 
   return (
     <Link
-      className="group relative w-full mt-2 max-sm:max-w-[calc(100%-30px)] max-w-[calc(100%-16px)] max-h-[185px] max-sm:max-h-[150px] mb-2 rounded-2xl"
+      className="group max-w-[450px] relative w-full mt-2 max-sm:max-w-[calc(100%-30px)] max-sm:max-h-[150px] mb-2 rounded-2xl"
       target="_blank"
       rel="noopener"
       href={url.href}
@@ -31,7 +31,7 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
     >
       <Image
         ref={ref}
-        className="h-full rounded-2xl max-sm:w-full border border-border"
+        className="h-full rounded-2xl w-full border border-border"
         src={data.metadata?.image}
         alt={data.title ?? ''}
         width={350}

@@ -92,7 +92,7 @@ export default async function RootLayout({
       >
         <AuthProvider authUser={authUser}>
           <UserProvider user={user}>
-            <div className="max-w-[600px] m-auto flex min-h-dvh w-full">
+            <div className="max-w-2xl m-auto flex min-h-dvh w-full">
               <TooltipProvider delayDuration={200}>
                 <Sidebar />
                 <main className="flex sm:ml-[69px] max-sm:pb-[69px] flex-col w-full min-h-[100vh] ">
