@@ -1,5 +1,12 @@
+import { NextRequest } from 'next/server';
+
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+
+import { UserModified } from 'types/data';
+
+import { getAdjustedBillingCycleDate } from './date';
+import createClient from './supabase/server';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -41,4 +48,10 @@ export const setImagePath = (url: string, imageUrl: string) => {
   const { protocol, host } = new URL(url);
   const baseURL = `${protocol}//${host}`;
   return new URL(imageUrl, baseURL).toString();
+};
+
+export const verifyCronJob = async (request: NextRequest) => {
+  return (
+    request.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`
+  );
 };

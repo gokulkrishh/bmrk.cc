@@ -42,7 +42,7 @@ export const formatBillingDate = (date: Date) => {
   });
 };
 
-// Following the billing cycle based on Dub.co
+// Following methods are based on Dub.co's code, thank them.
 export const getFirstAndLastDate = (billingCycleStart: string) => {
   const date = new Date();
   const startDay = new Date(billingCycleStart).getDate();
@@ -66,4 +66,38 @@ export const getFirstAndLastDate = (billingCycleStart: string) => {
       last: new Date(current.year, current.month, startDay - 1),
     };
   }
+};
+
+export const getLastDateOfMonth = () => {
+  const today = new Date();
+  const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0); // This will give the last day of the current month
+  return lastDay.getDate();
+};
+
+export const getAdjustedBillingCycleDate = (billingDateStr: string) => {
+  const date = new Date(billingDateStr);
+  const startDate = date.getDate();
+  console.log('startDate -->', startDate);
+
+  const lastDate = getLastDateOfMonth();
+
+  if (startDate > lastDate) {
+    return lastDate;
+  } else {
+    return startDate;
+  }
+};
+
+export const getDate = (date: string) => {
+  return new Date(date).getDate();
+};
+
+export const isUserAccountCreatedToday = (date: string) => {
+  const today = new Date();
+  const createdDate = new Date(date);
+  return (
+    today.getDate() === createdDate.getDate() &&
+    today.getMonth() === createdDate.getMonth() &&
+    today.getFullYear() === createdDate.getFullYear()
+  );
 };
