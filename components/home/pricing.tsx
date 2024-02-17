@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import { plans, urls } from 'config';
+import { ArrowRight } from 'lucide-react';
 
 import { CheckIcon } from 'components/icons';
 import { Switch } from 'components/ui/switch';
@@ -32,8 +33,8 @@ export default function Pricing() {
         Yearly
       </div>
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="min-w-[360px] rounded-lg border border-input bg-white shadow-md text-left sm:mr-8 text-primary">
-          <div className="px-5 p-4">
+        <div className="min-w-[360px] rounded-2xl border border-input bg-white shadow-md text-left sm:mr-8 text-primary">
+          <div className="px-5 p-5">
             <h3 className="text-2xl font-semibold leading-6">Free</h3>
             <p className="text-muted-foreground mt-1.5">
               Free forever with limits
@@ -72,15 +73,15 @@ export default function Pricing() {
             <div className="mt-6 mb-2">
               <Link
                 href={urls.account}
-                className="w-full rounded-lg flex justify-center bg-primary text-white p-2"
+                className="w-full rounded-xl flex text-lg items-center justify-center bg-primary text-white p-2.5 px-6"
               >
-                Start for free
+                Choose Free <ArrowRight className="ml-1.5 w-4 h-4" />
               </Link>
             </div>
           </div>
         </div>
-        <div className="min-w-[330px] rounded-lg border-2 border-blue-600 bg-white shadow-md text-left sm:mr-8 text-primary">
-          <div className="px-5 p-4">
+        <div className="min-w-[330px] bg-gradient-to-r from-sky-50 to-sky-50 via-white rounded-2xl border-2 border-blue-100 bg-white shadow-md text-left sm:mr-8 text-primary">
+          <div className="px-5 p-5">
             <h3 className="text-2xl font-semibold leading-6">Pro</h3>
             <p className="text-muted-foreground mt-1.5">
               Get more out of pro plan
@@ -124,9 +125,9 @@ export default function Pricing() {
             <div className="mt-6 mb-2">
               <Link
                 href={urls.settings}
-                className="w-full rounded-lg flex justify-center bg-blue-600 text-white p-2"
+                className="w-full rounded-xl flex text-lg items-center justify-center bg-blue-600 text-white p-2.5 px-6"
               >
-                Get started with pro
+                Choose Pro <ArrowRight className="ml-1.5 w-4 h-4" />
               </Link>
             </div>
           </div>
