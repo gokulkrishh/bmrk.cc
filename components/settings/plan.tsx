@@ -19,6 +19,7 @@ import { cn } from 'lib/utils';
 import PlanTooltip from './plan-tooltip';
 import PlanUpgradeButton from './plan-upgrade';
 import SettingsCard from './settings-card';
+import FeatureToolip from 'components/features/feature-tooltip';
 
 export default async function Plan() {
   const user = await getUser();
@@ -55,7 +56,7 @@ export default async function Plan() {
               </span>
             </div>
           ) : null}
-          <PlanTooltip
+          <FeatureToolip
             className="absolute right-3 top-3.5"
             text={messages.usageLimitRenewal}
           />

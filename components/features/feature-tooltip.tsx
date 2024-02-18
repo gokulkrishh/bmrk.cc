@@ -10,7 +10,13 @@ import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 import { isProPlan } from 'lib/data';
 import { cn } from 'lib/utils';
 
-export default function FeatureToolip({ className }: { className?: string }) {
+export default function FeatureToolip({
+  className,
+  text,
+}: {
+  className?: string;
+  text?: string;
+}) {
   const { user } = useUser();
   const [open, setOpen] = useState(false);
   const isFeatureEnabled = isProPlan(user);
@@ -32,7 +38,7 @@ export default function FeatureToolip({ className }: { className?: string }) {
         <Info className="w-3.5 h-3.5 ml-2 text-muted-foreground" />
       </TooltipTrigger>
       <TooltipContent side="top" className="text-white dark:text-black">
-        This feature is available only in Pro plan.
+        {text ?? 'This feature is available only in Pro plan.'}
       </TooltipContent>
     </Tooltip>
   );
