@@ -23,7 +23,7 @@ export default function CardSkeleton({ className }: { className?: string }) {
             <Skeleton className="text-accent mt-1 text-sm line-clamp-2 md:w-80 w-40 h-8 bg-accent " />
           </div>
         </div>
-        <Skeleton className="rounded-2xl border border-border mb-3 my-2 object-cover w-[calc(100%-16px)] max-w-[350px] h-[180px] bg-accent " />
+        <Skeleton className="rounded-2xl border border-border mb-3 my-2 object-cover w-[calc(100%-16px)] max-w-[450px] h-[160px] sm:h-[200px] bg-accent " />
         <div className="tracking-wide items-center text-accent text-xs gap-2 flex w-full">
           <Skeleton className="flex items-center -ml-1.5 justify-center gap-1 rounded-full bg-accent shrink-0 w-6 h-6" />
           <div className="tracking-wide text-accent text-xs gap-2 flex">
