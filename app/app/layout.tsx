@@ -103,7 +103,12 @@ export default async function RootLayout({
           </UserProvider>
         </AuthProvider>
       </ThemeProvider>
-      <Toaster richColors toastOptions={{ className: 'max-sm:mb-[4.5rem]' }} />
+      <Toaster
+        richColors
+        expand
+        visibleToasts={2}
+        toastOptions={{ className: 'max-sm:mb-[4.5rem]' }}
+      />
     </>
   );
 }

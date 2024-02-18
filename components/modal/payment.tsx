@@ -71,16 +71,15 @@ export default function PaymentModal({
           </div>
           <div className="flex max-w-xs -ml-3 flex-col w-full items-center gap-4 justify-center my-4">
             <div className="flex w-full flex-col gap-2.5 mt-2 tracking-wide shrink-0">
-              <p className="text-gray-700 gap-2 dark:text-white flex items-center font-medium">
+              <div className="text-gray-700 gap-2 dark:text-white flex items-center font-medium">
                 Pay {type === 'yearly' ? 'Yearly' : 'Monthly'}{' '}
                 <Badge
                   variant="outline"
                   className="py-1 inline-flex items-center"
                 >
-                  ${planPrice}, billed{' '}
-                  {type === 'yearly' ? 'yearly' : 'monthly'}
+                  ${planPrice}, billed one time only.
                 </Badge>
-              </p>
+              </div>
               <p className="text-gray-600 dark:text-white flex items-center font-normal">
                 <CheckIcon className="text-green-500" />{' '}
                 {plans.pro.limit.bookmarks} bookmarks/mo

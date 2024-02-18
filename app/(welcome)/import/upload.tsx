@@ -16,7 +16,7 @@ export default function UploadBookmarks() {
           <button
             disabled={disabled}
             type="submit"
-            className="items-center font-medium disabled:text-primary/50 mt-10 h-[48px] tracking-wide disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 px-5 transition-colors bg-primary-foreground hover:bg-accent"
+            className="items-center disabled:text-primary/50 mt-10 h-[48px] tracking-wide disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 px-5 transition-colors bg-primary-foreground hover:bg-accent"
           >
             {children}
           </button>

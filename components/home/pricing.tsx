@@ -8,7 +8,6 @@ import { plans, urls } from 'config';
 import { ArrowRight } from 'lucide-react';
 
 import { CheckIcon } from 'components/icons';
-import { Switch } from 'components/ui/switch';
 
 export default function Pricing() {
   const [planYearly, setYearly] = useState(true);
@@ -23,7 +22,7 @@ export default function Pricing() {
       <p className="text-muted-foreground leading-7 mt-3 sm:text-lg mx-auto max-w-xl tracking-normal text-center">
         Start for free. Upgrade to paid plan when you need it.
       </p>
-      <div className="flex w-full mt-6 justify-center items-center font-medium">
+      {/* <div className="flex w-full mt-6 justify-center items-center font-medium">
         Monthly{' '}
         <Switch
           checked={planYearly}
@@ -31,7 +30,7 @@ export default function Pricing() {
           onCheckedChange={setYearly}
         />{' '}
         Yearly
-      </div>
+      </div> */}
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="min-w-[360px] rounded-2xl border border-input bg-white shadow-md text-left sm:mr-8 text-primary">
           <div className="px-5 p-5">
@@ -41,7 +40,7 @@ export default function Pricing() {
             </p>
             <div className="my-4">
               <p className="text-4xl tabular-nums font-semibold text-primary">
-                $0 <span className="text-base">/ month</span>
+                $0 <span className="text-base">/ year</span>
               </p>
               <span className="text-sm text-muted-foreground">
                 Free forever
@@ -92,13 +91,13 @@ export default function Pricing() {
                 {planYearly
                   ? plans.pro.pricing.yearly
                   : plans.pro.pricing.monthly}{' '}
-                <span className="text-base">/ month</span>
+                <span className="text-base">/ year</span>
                 <span className="text-xs ml-2 font-normal text-muted-foreground">
                   (Excl. Tax)
                 </span>
               </p>
               <span className="text-sm text-muted-foreground">
-                Billed {planYearly ? 'yearly' : 'monthly'}
+                Billed one time only.
               </span>
             </div>
             <div className="flex flex-col gap-2.5 tracking-wide">

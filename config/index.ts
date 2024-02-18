@@ -48,14 +48,14 @@ export const plans: PlansType = {
     },
     pricing: {
       monthly: 2.49,
-      yearly: 1.99,
+      yearly: 24,
     },
   },
 };
 
 export const messages = {
   bookmarkLimit: (plan: string = plans.free.name) =>
-    `Bookmarks count exceeds the ${plan} plan limit.`,
+    `Bookmarks count exceeds the ${plan} plan limit. Upgrade to Pro plan`,
   tagLimit: (plan: string = plans.free.name) =>
-    `Tags count exceeds the ${plan} plan limit.`,
+    `Tags count exceeds the ${plan} plan limit. Upgrade to Pro plan`,
 };

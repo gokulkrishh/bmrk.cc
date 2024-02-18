@@ -51,7 +51,7 @@ export default async function RootLayout({
           </UserProvider>
         </AuthProvider>
       </ThemeProvider>
-      <Toaster richColors />
+      <Toaster expand visibleToasts={2} richColors />
     </>
   );
 }

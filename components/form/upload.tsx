@@ -13,6 +13,7 @@ import Loader from 'components/loader';
 import { Input } from 'components/ui/input';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
+import { checkBookmarkLimit } from 'lib/data';
 import { cn, getBrowserName } from 'lib/utils';
 
 type UploadModalProps = {
@@ -49,7 +50,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
         throw new Error(data?.message);
       }
       onHide?.(false);
-      toast.success('Bookmarks are successfully created');
+      toast.success('Bookmarks created successfully.');
       if (SubmitBtn) {
         router.replace('/');
       } else {
@@ -78,12 +79,12 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
       if (files && files.length && isFileAllowed) {
         const file = files[0];
         if (file) {
-          if (user?.usage.bookmarks >= currentPlan.limit.bookmarks) {
-            toast.error(`Bookmark limit reached! Upgrade to add more.`);
+          if (checkBookmarkLimit(user, [])) {
+            toast.error(`Bookmarks limit reached! Upgrade to pro plan.`);
             return;
           }
           toast.info(`Don't refresh this page.`, {
-            duration: 6000,
+            duration: 5000,
           });
           setLoading(true);
           const reader = new FileReader();
@@ -178,7 +179,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
             type="submit"
             disabled={loading || !fileDetails.name?.length || !isFileAllowed}
             className={cn(
-              `rounded-full w-[86px] h-[40px] transition-colors font-medium items-center bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-700 disabled:opacity-40 disabled:active:bg-blue-600 disabled:hover:bg-blue-600 disabled:focus:bg-blue-600 border-0 flex justify-center py-2 px-4 text-white`,
+              `rounded-full w-[86px] h-[40px] transition-colors items-center bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-700 disabled:opacity-40 disabled:active:bg-blue-600 disabled:hover:bg-blue-600 disabled:focus:bg-blue-600 border-0 flex justify-center py-2 px-4 text-white`,
               {
                 '!opacity-50 cursor-not-allowed': loading,
               },
