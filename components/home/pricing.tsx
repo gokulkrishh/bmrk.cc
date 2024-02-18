@@ -16,7 +16,7 @@ export default function Pricing() {
   return (
     <div className="mx-auto my-8 mt-10 flex flex-col items-center">
       <h2 className="mt-4 mb-1 text-3xl font-extrabold text-center tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
-        <span className="bg-gradient-to-r from-neutral-950 to-neutral-950 bg-clip-text text-transparent mt-1 inline-flex">
+        <span className="text-neutral-950 bg-clip-text mt-1 inline-flex">
           Our Pricing Plans
         </span>
       </h2>
@@ -80,7 +80,7 @@ export default function Pricing() {
             </div>
           </div>
         </div>
-        <div className="min-w-[330px] bg-gradient-to-r from-sky-50 to-sky-50 via-white rounded-2xl border-2 border-blue-100 bg-white shadow-md text-left sm:mr-8 text-primary">
+        <div className="min-w-[330px] bg-gradient-to-r from-sky-0 to-sky-50 via-white rounded-2xl border-2 border-blue-100 bg-white shadow-md text-left sm:mr-8 text-primary">
           <div className="px-5 p-5">
             <h3 className="text-2xl font-semibold leading-6">Pro</h3>
             <p className="text-muted-foreground mt-1.5">
