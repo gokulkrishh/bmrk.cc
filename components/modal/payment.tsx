@@ -65,7 +65,6 @@ export default function PaymentModal({
                 <SelectValue placeholder="Yearly" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="monthly">Monthly</SelectItem>
                 <SelectItem value="yearly">Yearly</SelectItem>
               </SelectContent>
             </Select>

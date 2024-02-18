@@ -4,19 +4,14 @@ import { messages, plans } from 'config';
 import { parse } from 'node-html-parser';
 
 import { createTagForImport } from 'app/actions/tags';
-import {
-  getUser,
-  incrementBookmarkUsage,
-  incrementFavUsage,
-  incrementTagUsage,
-} from 'app/actions/user';
+import { getUser, incrementBookmarkUsage } from 'app/actions/user';
 
 import { checkAuth } from 'lib/auth';
 import { bookmarkParser } from 'lib/bookmarks';
 import { checkBookmarkLimit, checkTagLimit } from 'lib/data';
 import createClient from 'lib/supabase/server';
 
-import { BookmarkInsert, TagInsert, TagUpdate, UserModified } from 'types/data';
+import { BookmarkInsert } from 'types/data';
 
 export async function POST(request: NextRequest) {
   return await checkAuth(async (user) => {
