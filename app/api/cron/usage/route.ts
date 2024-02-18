@@ -46,16 +46,21 @@ export async function GET(request: NextRequest) {
     );
 
     // Update the usage for the users
-    await Promise.allSettled(
-      billingResetUsers.map(async (user: UserModified) => {
-        return await supabaseAdmin
-          .from('users')
-          .update({
-            usage: { bookmarks: 0, favorites: 0, tags: 0, session: 0 },
-          })
-          .eq('id', user.id);
-      }),
-    );
+    try {
+      await Promise.allSettled(
+        billingResetUsers.map(async (user: UserModified) => {
+          const { error } = await supabaseAdmin.rpc(
+            'update_user_bookmarks_usage',
+            { user_id: user.id, count: 0 },
+          );
+          if (error) {
+            console.error(`Unable to update usage`, error);
+          }
+        }),
+      );
+    } catch (error) {
+      throw error;
+    }
 
     return NextResponse.json({ message: 'Usage is updated successfully!' });
   } catch (error: any) {

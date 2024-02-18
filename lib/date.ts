@@ -77,10 +77,7 @@ export const getLastDateOfMonth = () => {
 export const getAdjustedBillingCycleDate = (billingDateStr: string) => {
   const date = new Date(billingDateStr);
   const startDate = date.getDate();
-  console.log('startDate -->', startDate);
-
   const lastDate = getLastDateOfMonth();
-
   if (startDate > lastDate) {
     return lastDate;
   } else {

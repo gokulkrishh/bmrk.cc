@@ -201,6 +201,13 @@ export type Database = {
         };
         Returns: undefined;
       };
+      update_user_bookmarks_usage: {
+        Args: {
+          user_id: string;
+          count: number;
+        };
+        Returns: undefined;
+      };
     };
     Enums: {
       [_ in never]: never;
