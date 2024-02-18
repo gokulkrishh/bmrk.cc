@@ -6,7 +6,7 @@ import {
   getAdjustedBillingCycleDate,
   isUserAccountCreatedToday,
 } from 'lib/date';
-import { verifyCronJob } from 'lib/utils';
+import { verifyCronAuthorization } from 'lib/utils';
 
 import { UserModified } from 'types/data';
 import { Database } from 'types/supabase';
@@ -18,8 +18,8 @@ const supabaseAdmin = createClient<Database>(
 );
 
 export async function GET(request: NextRequest) {
-  const isValidRequest = await verifyCronJob(request);
-  if (!isValidRequest) {
+  const isAuthorized = await verifyCronAuthorization(request);
+  if (!isAuthorized) {
     return new Response('Unauthorized', { status: 401 });
   }
 

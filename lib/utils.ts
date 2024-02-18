@@ -50,8 +50,7 @@ export const setImagePath = (url: string, imageUrl: string) => {
   return new URL(imageUrl, baseURL).toString();
 };
 
-export const verifyCronJob = async (request: NextRequest) => {
-  return (
-    request.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`
-  );
+export const verifyCronAuthorization = async (request: NextRequest) => {
+  const authHeader = request.headers.get('authorization');
+  return authHeader === `Bearer ${process.env.CRON_SECRET}`;
 };
