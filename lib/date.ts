@@ -24,14 +24,14 @@ export const formatDate = (
   ) as string;
 };
 
-export const addYears = (dateString: string | Date | null, years: number) => {
+export const addYears = (dateString: string | Date, years: number) => {
   if (!dateString) return null;
   let date = new Date(dateString);
   const day = date.getDate(),
     newDate = new Date(
       Date.UTC(date.getFullYear() + years, date.getMonth(), date.getDate(), 0),
     );
-  newDate.getDate() != day && newDate.setDate(0);
+  newDate.getDate() !== day && newDate.setDate(0);
   return newDate;
 };
 

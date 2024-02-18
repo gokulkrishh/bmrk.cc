@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { createClient } from '@supabase/supabase-js';
+import { plans } from 'config';
 
+import { isProPlanExpired } from 'lib/data';
 import {
+  addYears,
   getAdjustedBillingCycleDate,
   isUserAccountCreatedToday,
 } from 'lib/date';
@@ -19,27 +22,59 @@ const supabaseAdmin = createClient<Database>(
 
 export async function GET(request: NextRequest) {
   const isAuthorized = await verifyCronAuthorization(request);
-  if (!isAuthorized) {
+  if (!isAuthorized && process.env.NODE_ENV === 'production') {
     return new Response('Unauthorized', { status: 401 });
   }
 
   try {
-    const { data, error } = await supabaseAdmin
+    const { data: users, error } = await supabaseAdmin
       .from('users')
-      .select(`id,email,usage,billing_cycle_start_date,created_at`)
+      .select('*')
       .returns<UserModified[]>();
 
-    if (error || data.length === 0) {
+    if (error || users.length === 0) {
       return;
     }
 
     const today = new Date();
     const currentDay = today.getDate();
 
+    // Reset the users plan to free plan, if pro plan expired
+    const planResetUsers: UserModified[] = users.filter(isProPlanExpired);
+
+    // Update user to free plan if the billing cycle start date matches today date
+    await Promise.allSettled(
+      planResetUsers.map(async (user: UserModified) => {
+        const { error } = await supabaseAdmin
+          .from('users')
+          .update({
+            billing_cycle_start_date: new Date().toISOString(),
+            plan_status: plans.free.type,
+            usage: {
+              sessions: 0,
+              bookmarks: 0,
+              favorites: 0,
+              tags: 0,
+            },
+            order_info: {
+              status: '',
+              number: 0,
+              store_id: 0,
+              identifier: '',
+            },
+          })
+          .eq('id', user.id);
+        if (error) {
+          console.error(`Unable to update user's plan status`, error);
+        }
+      }),
+    );
+
     // Reset the users usage only if the billing cycle start date matches today date
     // and avoid user who got created today
-    const billingResetUsers: UserModified[] = data.filter(
-      ({ created_at, email, billing_cycle_start_date }) =>
+    const billingResetUsers: UserModified[] = users.filter(
+      ({ created_at, billing_cycle_start_date, usage }) =>
+        usage.bookmarks > 0 &&
         getAdjustedBillingCycleDate(billing_cycle_start_date) === currentDay &&
         created_at &&
         !isUserAccountCreatedToday(created_at),

@@ -4,7 +4,7 @@ import Appearance from 'components/settings/appearance';
 import DeleteAccount from 'components/settings/delete-account';
 import DeleteData from 'components/settings/delete-data';
 import ExportBookmarks from 'components/settings/export-bookmarks';
-import Plan from 'components/settings/plan';
+import Plans from 'components/settings/plans';
 
 const title = 'Bookmark it. | Settings';
 const description =
@@ -30,7 +30,7 @@ export default async function Page() {
         <div className="flex flex-col">
           <h2 className="font-medium mb-2">Plan & Usage</h2>
           <div className="flex flex-col gap-6">
-            <Plan />
+            <Plans />
           </div>
         </div>
         <div className="flex flex-col">

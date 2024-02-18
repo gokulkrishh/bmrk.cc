@@ -3,6 +3,8 @@ import groupBy from 'object.groupby';
 
 import { BookmarkModified, UserModified } from 'types/data';
 
+import { addYears } from './date';
+
 export const groupByDate = (data: BookmarkModified[]) => {
   if (!data) return {};
   return groupBy(data, ({ created_at }) => {
@@ -31,6 +33,15 @@ export const isProPlan = (userData: UserModified) => {
   return (
     userData?.plan_status === plans.pro.type &&
     userData?.order_info?.status === 'paid'
+  );
+};
+
+export const isProPlanExpired = (userData: UserModified) => {
+  const calcualtedRenewalDate = addYears(userData.billing_cycle_start_date, 1);
+  return (
+    isProPlan(userData) &&
+    calcualtedRenewalDate &&
+    new Date() >= calcualtedRenewalDate
   );
 };
 

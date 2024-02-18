@@ -4,7 +4,6 @@ import { messages, urls } from 'config';
 
 import { getUser } from 'app/actions/user';
 
-import FeatureToolip from 'components/features/feature-tooltip';
 import { Progress } from 'components/ui/progress';
 
 import {
@@ -13,6 +12,7 @@ import {
   getTagUsage,
   getUserPlan,
   isProPlan,
+  isProPlanExpired,
 } from 'lib/data';
 import { formatBillingDate, getFirstAndLastDate } from 'lib/date';
 import { cn } from 'lib/utils';
@@ -21,7 +21,7 @@ import PlanTooltip from './plan-tooltip';
 import PlanUpgradeButton from './plan-upgrade';
 import SettingsCard from './settings-card';
 
-export default async function Plan() {
+export default async function Plans() {
   const user = await getUser();
 
   if (!user) {
@@ -29,6 +29,7 @@ export default async function Plan() {
   }
 
   const isFreePlan = !isProPlan(user);
+  const isPlanExpired = isProPlanExpired(user);
   const { bookmarks, favorites, tags } = getUserPlan(user).limit;
 
   const bookmarkPercentage = getBookmarkUsage(user);
@@ -41,14 +42,27 @@ export default async function Plan() {
     <SettingsCard className="flex flex-col items-start gap-0 p-0">
       <div className="py-3 px-4 relative border-b w-full text-sm flex text-muted-foreground">
         <div className={cn(`flex max-sm:flex-col max-sm:gap-1`)}>
-          <div className="flex items-center">
-            Currently on
-            <span className="mx-1 text-black dark:text-white font-medium">
-              {user.plan_status}
-            </span>
-            plan.
-          </div>
-          {first && last ? (
+          {!isPlanExpired ? (
+            <div className="flex items-center">
+              Currently on
+              <span className="mx-1 text-black dark:text-white font-medium">
+                {user.plan_status}
+              </span>
+              plan.
+            </div>
+          ) : (
+            <div className="flex items-center gap-1">
+              <span
+                className={cn({
+                  'text-red-600 dark:text-red-400': true,
+                })}
+              >
+                You pro plan has been expired.
+              </span>
+              <span>Renew again to enjoy all the features.</span>
+            </div>
+          )}
+          {first && last && !isPlanExpired ? (
             <div>
               <span className="sm:ml-1 mt-1">Current billing cycle:</span>
               <span className="ml-1 text-black dark:text-white font-medium">
@@ -106,7 +120,7 @@ export default async function Plan() {
         </div>
       </div>
 
-      {isFreePlan ? (
+      {isFreePlan || isPlanExpired ? (
         <div className="flex w-full p-3.5 justify-between items-center border-t">
           <p className="text-muted-foreground text-sm">
             For more usage limits, upgrade to the Pro plan.
