@@ -101,7 +101,7 @@ export default function PlanPlayment() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="items-center h-[40px] w-[107px] tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-blue-300 disabled:border-blue-300 rounded-full text-white border border-blue-600 focus:outline-0 text-sm flex justify-center py-2 px-3 transition-colors bg-blue-600 hover:bg-blue-700  active:bg-blue-700"
+        className="items-center h-[40px] w-[91px] tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-blue-300 disabled:border-blue-300 rounded-full text-white border border-blue-600 focus:outline-0 text-sm flex justify-center py-2 px-3 transition-colors bg-blue-600 hover:bg-blue-700  active:bg-blue-700"
       >
         Upgrade
       </button>

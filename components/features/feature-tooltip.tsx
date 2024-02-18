@@ -1,24 +1,39 @@
 'use client';
 
+import { useState } from 'react';
+
 import { Info } from 'lucide-react';
 
 import { useUser } from 'components/context/user';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
 import { isProPlan } from 'lib/data';
+import { cn } from 'lib/utils';
 
 export default function FeatureToolip({ className }: { className?: string }) {
   const { user } = useUser();
+  const [open, setOpen] = useState(false);
   const isFeatureEnabled = isProPlan(user);
 
   if (isFeatureEnabled) return null;
 
   return (
-    <Tooltip>
-      <TooltipTrigger className={className}>
-        <Info className="w-3.5 h-3.5 ml-2" />
+    <Tooltip open={open} onOpenChange={setOpen}>
+      <TooltipTrigger
+        className={cn(className)}
+        onClick={() => {
+          setOpen(true);
+        }}
+        onBlur={() => {
+          setOpen(false);
+        }}
+        asChild
+      >
+        <Info className="w-3.5 h-3.5 ml-2 text-muted-foreground" />
       </TooltipTrigger>
-      <TooltipContent>This feature is available on Pro plan.</TooltipContent>
+      <TooltipContent side="top" className="text-white dark:text-black">
+        This feature is available only in Pro plan.
+      </TooltipContent>
     </Tooltip>
   );
   return null;

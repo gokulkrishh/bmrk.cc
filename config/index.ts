@@ -58,4 +58,5 @@ export const messages = {
     `Bookmarks count exceeds the ${plan} plan limit. Upgrade to Pro plan`,
   tagLimit: (plan: string = plans.free.name) =>
     `Tags count exceeds the ${plan} plan limit. Upgrade to Pro plan`,
+  usageLimitRenewal: `Usage limit auto-renews on monthly basis`,
 };

@@ -2,11 +2,12 @@
 
 import { use, useState } from 'react';
 
-import { plans } from 'config';
-import { ArrowRight } from 'lucide-react';
+import { messages, plans } from 'config';
+import { ArrowRight, Info } from 'lucide-react';
 
 import { CheckIcon, Logo } from 'components/icons';
 import Loader from 'components/loader';
+import PlanTooltip from 'components/settings/plan-tooltip';
 import { Badge } from 'components/ui/badge';
 import {
   Dialog,
@@ -77,12 +78,16 @@ export default function PaymentModal({
                   variant="outline"
                   className="py-1 inline-flex items-center"
                 >
-                  ${planPrice}, billed one time only.
+                  ${planPrice} yearly (no auto-renewal)
                 </Badge>
               </div>
               <p className="text-gray-600 dark:text-white flex items-center font-normal">
                 <CheckIcon className="text-green-500" />{' '}
-                {plans.pro.limit.bookmarks} bookmarks/mo
+                {plans.pro.limit.bookmarks} bookmarks/mo{' '}
+                <PlanTooltip
+                  className="ml-1 relative -top-1"
+                  text={messages.usageLimitRenewal}
+                />
               </p>
               <p className="text-gray-600 dark:text-white flex items-center font-normal">
                 <CheckIcon className="text-green-500" /> {plans.pro.limit.tags}{' '}
@@ -109,7 +114,7 @@ export default function PaymentModal({
               }}
               className="items-center [text-transform:capitalize] max-w-xs w-full h-[40px] tracking-wide disabled:cursor-not-allowed disabled:border-border rounded-xl text-white border border-blue-600 focus:outline-0 text-sm flex justify-center py-2 px-3 transition-colors bg-blue-600 hover:bg-blue-700 disabled:bg-blue-700 active:bg-blue-700"
             >
-              {loading ? <Loader /> : null} Pay {type}{' '}
+              {loading ? <Loader /> : null} Pay one-time
               <ArrowRight className="ml-1.5 w-4 h-4 text-white shrink-0" />
             </button>
           </DialogFooter>

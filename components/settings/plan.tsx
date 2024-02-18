@@ -1,6 +1,6 @@
 import { permanentRedirect } from 'next/navigation';
 
-import { urls } from 'config';
+import { messages, urls } from 'config';
 
 import { getUser } from 'app/actions/user';
 
@@ -16,7 +16,7 @@ import {
 import { formatBillingDate, getFirstAndLastDate } from 'lib/date';
 import { cn } from 'lib/utils';
 
-import PlanTooltip from './plan-help';
+import PlanTooltip from './plan-tooltip';
 import PlanUpgradeButton from './plan-upgrade';
 import SettingsCard from './settings-card';
 
@@ -38,10 +38,10 @@ export default async function Plan() {
 
   return (
     <SettingsCard className="flex flex-col items-start gap-0 p-0">
-      <div className="py-3 px-4 border-b w-full text-sm flex text-muted-foreground">
+      <div className="py-3 px-4 relative border-b w-full text-sm flex text-muted-foreground">
         <div className={cn(`flex max-sm:flex-col max-sm:gap-1`)}>
           <div className="flex items-center">
-            You are currently on
+            Currently on
             <span className="mx-1 text-black dark:text-white font-medium">
               {user.plan_status}
             </span>
@@ -55,6 +55,10 @@ export default async function Plan() {
               </span>
             </div>
           ) : null}
+          <PlanTooltip
+            className="absolute right-3 top-3.5"
+            text={messages.usageLimitRenewal}
+          />
         </div>
       </div>
       <div className="flex flex-col w-full">
