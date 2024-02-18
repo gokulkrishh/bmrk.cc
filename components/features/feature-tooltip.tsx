@@ -26,7 +26,7 @@ export default function FeatureToolip({
   return (
     <Tooltip open={open} onOpenChange={setOpen}>
       <TooltipTrigger
-        className={cn(className)}
+        className={cn(`cursor-pointer`, className)}
         onClick={() => {
           setOpen(true);
         }}
