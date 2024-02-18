@@ -92,7 +92,10 @@ export default function Pricing() {
                 {planYearly
                   ? plans.pro.pricing.yearly
                   : plans.pro.pricing.monthly}{' '}
-                <span className="text-base">/ month</span>{' '}
+                <span className="text-base">/ month</span>
+                <span className="text-xs ml-2 font-normal text-muted-foreground">
+                  (Excl. Tax)
+                </span>
               </p>
               <span className="text-sm text-muted-foreground">
                 Billed {planYearly ? 'yearly' : 'monthly'}

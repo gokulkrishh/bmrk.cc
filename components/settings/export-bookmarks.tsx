@@ -82,7 +82,7 @@ export default function ExportBookmarks() {
         <DropdownMenu>
           <DropdownMenuTrigger
             disabled={!isFeatureEnabled || loadingHTML || loadingCSV}
-            className="items-center h-[40px] tracking-wide disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 px-3 transition-colors bg-primary-foreground hover:bg-accent"
+            className="items-center h-[40px] tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 px-3 transition-colors bg-primary-foreground hover:bg-accent"
           >
             {loadingHTML || loadingCSV ? (
               <Loader className="w-4 h-4 mr-1.5" />

@@ -15,7 +15,7 @@ export const urls = {
   intro: `${protocol}app.${home}/intro`,
   settings: `${protocol}app.${home}/settings`,
   app: `${protocol}app.${home}`,
-  api: `${protocol}${home}`,
+  api: `${protocol}app.${home}/api`,
   twitter: 'https://twitter.com/gokul_i',
   github: 'https://github.com/gokulkrishh/bmrk.cc',
   extensions: {

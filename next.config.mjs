@@ -28,9 +28,10 @@ const nextConfig = {
 
 const ContentSecurityPolicy = `
     default-src 'self' bmrk.cc;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.lemonsqueezy.com;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
+    frame-src 'self' bmrkcc.lemonsqueezy.com;
     media-src 'self';
     connect-src *;
     font-src 'self';

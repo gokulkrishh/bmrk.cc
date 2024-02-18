@@ -28,7 +28,10 @@ export const getUserPlan = (userData: UserModified) => {
 };
 
 export const isProPlan = (userData: UserModified) => {
-  return userData?.plan_status === plans.pro.type;
+  return (
+    userData?.plan_status === plans.pro.type &&
+    userData?.order_info?.status === 'paid'
+  );
 };
 
 export const checkBookmarkLimit = (

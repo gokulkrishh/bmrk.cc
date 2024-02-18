@@ -33,6 +33,12 @@ export type UserModified = User & {
     bookmarks: number;
     favorites: number;
   };
+  order_info: {
+    identifier: string;
+    store_id: string;
+    number: string;
+    status: string;
+  };
 };
 
 export type PlanDetailsType = {
@@ -53,6 +59,8 @@ export type PlansType = {
   free: PlanDetailsType;
   pro: PlanDetailsType;
 };
+
+export type PaymentType = 'monthly' | 'yearly';
 
 export type User = Database['public']['Tables']['users']['Row'];
 export type Tag = Database['public']['Tables']['tags']['Row'];

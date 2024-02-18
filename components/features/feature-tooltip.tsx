@@ -18,7 +18,7 @@ export default function FeatureToolip({ className }: { className?: string }) {
       <TooltipTrigger className={className}>
         <Info className="w-3.5 h-3.5 ml-2" />
       </TooltipTrigger>
-      <TooltipContent>This feature is available on Pro plan</TooltipContent>
+      <TooltipContent>This feature is available on Pro plan.</TooltipContent>
     </Tooltip>
   );
   return null;

@@ -18,7 +18,7 @@ create table users (
   usage jsonb default '{"bookmarks": 0, "tags": 0, "favorites": 0, "sessions": 0}',
   plan_status text default 'free',
   billing_cycle_start_date timestamp default current_timestamp not null,
-  order_info jsonb default '{"status": "", "number": 0, "store_id": 0}'
+  order_info jsonb default '{"status": "", "number": 0, "store_id": 0, "identifier":""}'
 );
 -- Set up Row Level Security (RLS)
 -- See https://supabase.com/docs/guides/auth/row-level-security for more details.
