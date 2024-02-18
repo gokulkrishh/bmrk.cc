@@ -61,7 +61,7 @@ export default async function Plan() {
         <div className="p-4">
           <h3 className="font-medium mb-2 text-sm flex items-center">
             Bookmarks{' '}
-            <PlanTooltip text="Number of bookmarks added for your current billing cycle." />
+            <PlanTooltip text="Number of bookmarks created on your current billing cycle." />
           </h3>
           <div className="flex w-full justify-between">
             <span className="text-muted-foreground mb-2 text-sm">
@@ -74,7 +74,7 @@ export default async function Plan() {
         <div className="flex justify-between mt-3 border-t">
           <div className="w-full border-r p-4 pb-6">
             <h3 className="font-medium mb-2 text-sm flex items-center">
-              Tags <PlanTooltip text="Number of tags added." />
+              Tags <PlanTooltip text="Number of tags created." />
             </h3>
             <div className="flex w-full justify-between">
               <span className="text-muted-foreground flex items-center mb-2 text-sm">
