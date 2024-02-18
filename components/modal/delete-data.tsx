@@ -28,14 +28,13 @@ export default function DeleteDataModal({
   return (
     <Dialog open={open} onOpenChange={() => setOpen(false)}>
       <DialogContent className="sm:max-w-md p-4 max-sm:w-[calc(100%-30px)]">
-        <DialogHeader className="font-medium !text-left">
-          Delete Your Data
-        </DialogHeader>
-        <DialogDescription className="-mt-2.5 text-sm text-muted-foreground">
+        <h3 className="font-medium !space-y-0"> Delete Your Data</h3>
+        <p className="-mt-2.5 text-sm text-muted-foreground">
           Type <span className="font-medium text-primary">{phrase}</span> and
           click confirm to delete.
-        </DialogDescription>
+        </p>
         <form
+          className="-mt-1"
           onSubmit={(event: SyntheticEvent<HTMLFormElement>) => {
             event.preventDefault();
             if (phrase === typed) {

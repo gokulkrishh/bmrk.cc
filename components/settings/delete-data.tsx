@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 
-import { urls } from 'config';
+import { useRouter } from 'next/navigation';
+
 import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -20,6 +21,7 @@ export default function DeleteData() {
   const { user } = useUser();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const isDisabled =
     user.usage.bookmarks === 0 &&
@@ -29,18 +31,16 @@ export default function DeleteData() {
   const onSubmit = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/bookmarks', {
+      await fetch('/api/bookmarks', {
         method: 'DELETE',
         body: JSON.stringify({ email: authUser.email }),
       });
-      if (!response.ok) {
-        throw new Error('Unable to delete all your data, try again.');
-      }
-      toast.success('All your data are deleted succesfully.');
+      toast.success('All your data has been deleted.');
       refreshInChromeExt();
       setOpen(false);
-    } catch {
-      toast.error('Unable to delete all your data, try again.');
+      router.refresh();
+    } catch (error) {
+      toast.error((error as Error)?.message);
     } finally {
       setLoading(false);
     }
