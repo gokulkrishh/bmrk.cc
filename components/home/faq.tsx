@@ -13,6 +13,10 @@ const faqs = [
     answer: `Yes, you can import your existing bookmarks from your web browser. To import, click the upload icon in input field and follow the instructions.`,
   },
   {
+    question: 'When does usage reset happens for plans?',
+    answer: `You can view the usage info under settings page and usage reset happens on same day every month once current billings cycle ends.`,
+  },
+  {
     question: 'How do I delete a bookmark?',
     answer: `To delete any bookmark, click on the options menu (represented by three dots) and then select "Delete".`,
   },

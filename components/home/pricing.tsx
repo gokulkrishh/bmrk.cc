@@ -57,14 +57,14 @@ export default function Pricing() {
               </p>
               <p className="text-gray-600 flex items-center font-normal">
                 <CheckIcon className="text-primary" /> {plans.free.limit.tags}{' '}
-                tags creation
+                tags
               </p>
               <p className="text-gray-600 flex items-center font-normal">
                 <CheckIcon className="text-primary" />{' '}
                 {plans.free.limit.favorites} favorite bookmarks
               </p>
               <p className="text-gray-600 flex items-center font-normal">
-                <CheckIcon className="text-primary" /> Dark mode support
+                <CheckIcon className="text-primary" /> Theme Customizations
               </p>
               <p className="text-gray-600 flex items-center font-normal">
                 <CheckIcon className="text-primary" /> Browser Extensions
@@ -108,15 +108,15 @@ export default function Pricing() {
               </p>
               <p className="text-gray-600 flex items-center font-normal">
                 <CheckIcon className="text-primary" /> {plans.pro.limit.tags}{' '}
-                tags creation
+                tags
               </p>
               <p className="text-gray-600 flex items-center font-normal">
                 <CheckIcon className="text-primary" />{' '}
                 {plans.pro.limit.favorites} favorite bookmarks
               </p>
               <p className="text-gray-600 flex items-center font-normal">
-                <CheckIcon className="text-primary" /> Export bookmarks CSV or
-                HTML
+                <CheckIcon className="text-primary" /> Export bookmarks as
+                CSV/HTML
               </p>
               <p className="text-gray-600 flex items-center font-normal">
                 <CheckIcon className="text-primary" /> Email Support

@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 
-import { Download } from 'lucide-react';
+import { Download, Info } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { getBookmarks, getBookmarksAsCSV } from 'app/actions/bookmarks';
 
+import { useUser } from 'components/context/user';
+import FeatureToolip from 'components/features/feature-tooltip';
 import Loader from 'components/loader';
 import {
   DropdownMenu,
@@ -14,8 +16,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from 'components/ui/dropdown-menu';
+import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
 import { exportAsCSV, exportAsHTML } from 'lib/bookmarks';
+import { isProPlan } from 'lib/data';
 import { formatDate } from 'lib/date';
 
 import SettingsCard from './settings-card';
@@ -29,6 +33,8 @@ const dateOptions = {
 export default function ExportBookmarks() {
   const [loadingHTML, setLoadingHTML] = useState(false);
   const [loadingCSV, setLoadingCSV] = useState(false);
+  const { user } = useUser();
+  const isFeatureEnabled = isProPlan(user);
 
   const exportHTML = async () => {
     try {
@@ -65,17 +71,17 @@ export default function ExportBookmarks() {
   return (
     <SettingsCard className="flex flex-col p-0 items-start">
       <div className="flex flex-col p-3.5 pt-3 pb-0 w-full">
-        <div>
-          <h3 className="font-medium">Export Bookmarks</h3>
-          <div className="text-sm mt-1 text-muted-foreground">
-            Instantly export your bookmarks as an HTML or CSV file.
-          </div>
+        <h3 className="font-medium relative">
+          Export Bookmarks <FeatureToolip className="absolute right-0 top-0" />
+        </h3>
+        <div className="text-sm mt-1 text-muted-foreground">
+          Instantly export your bookmarks as an HTML or CSV file.
         </div>
       </div>
       <div className="flex w-full justify-end border-t bg-background border-border rounded-bl-lg rounded-br-lg p-2 px-3.5">
         <DropdownMenu>
           <DropdownMenuTrigger
-            disabled={loadingHTML || loadingCSV}
+            disabled={!isFeatureEnabled || loadingHTML || loadingCSV}
             className="items-center h-[40px] tracking-wide disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 px-3 transition-colors bg-primary-foreground hover:bg-accent"
           >
             {loadingHTML || loadingCSV ? (
@@ -90,7 +96,9 @@ export default function ExportBookmarks() {
               disabled={loadingHTML}
               className="flex items-center cursor-pointer"
               onClick={() => {
-                exportHTML();
+                if (isFeatureEnabled) {
+                  exportHTML();
+                }
               }}
             >
               {loadingHTML ? (
@@ -125,7 +133,9 @@ export default function ExportBookmarks() {
               disabled={loadingCSV}
               className="flex items-center cursor-pointer"
               onClick={() => {
-                exportCSV();
+                if (isFeatureEnabled) {
+                  exportCSV();
+                }
               }}
             >
               {loadingCSV ? (
