@@ -14,7 +14,12 @@ import {
   isProPlan,
   isProPlanExpired,
 } from 'lib/data';
-import { formatBillingDate, getFirstAndLastDate } from 'lib/date';
+import {
+  addYears,
+  formatBillingDate,
+  formatDate,
+  getFirstAndLastDate,
+} from 'lib/date';
 import { cn } from 'lib/utils';
 
 import PlanTooltip from './plan-tooltip';
@@ -35,7 +40,6 @@ export default async function Plans() {
   const bookmarkPercentage = getBookmarkUsage(user);
   const tagPercentage = getTagUsage(user);
   const favoritePercentage = getFavoriteUsage(user);
-
   const { first, last } = getFirstAndLastDate(user.billing_cycle_start_date);
 
   return (
@@ -50,18 +54,7 @@ export default async function Plans() {
               </span>
               plan.
             </div>
-          ) : (
-            <div className="flex items-center gap-1">
-              <span
-                className={cn({
-                  'text-red-600 dark:text-red-400': true,
-                })}
-              >
-                You pro plan has been expired.
-              </span>
-              <span>Renew again to enjoy all the features.</span>
-            </div>
-          )}
+          ) : null}
           {first && last && !isPlanExpired ? (
             <div>
               <span className="sm:ml-1 mt-1">Current billing cycle:</span>
@@ -126,6 +119,19 @@ export default async function Plans() {
             For more usage limits, upgrade to the Pro plan.
           </p>
           <PlanUpgradeButton />
+        </div>
+      ) : !isPlanExpired ? (
+        <div className="flex w-full p-3.5 justify-between items-center border-t">
+          <p className="text-muted-foreground text-sm">
+            Your {user.plan_status} plan will expire on{' '}
+            <span
+              className={cn({
+                'text-red-600 dark:text-red-500': !isPlanExpired,
+              })}
+            >
+              {formatDate(addYears(user.billing_cycle_start_date, 1))}.
+            </span>
+          </p>
         </div>
       ) : null}
     </SettingsCard>
