@@ -98,6 +98,6 @@ function extractMetaTags(html: string, url: string) {
     title,
     description,
     image,
-    ...(image && { is_fallback: imageSrc == favIconImage }),
+    ...(image && { is_fallback: imageSrc === favIconImage }),
   } as MetaTags;
 }
