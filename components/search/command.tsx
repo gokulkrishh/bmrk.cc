@@ -123,19 +123,19 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
         <CommandEmpty>No result.</CommandEmpty>
       </CommandList>
       <CommandSeparator className="max-sm:hidden" />
-      <div className="py-2.5 px-4 max-sm:hidden flex items-center justify-between bg-popover">
+      <div className="py-2 px-4 max-sm:hidden flex items-center justify-between bg-popover">
         <div>
-          <span className="text-sm">Navigate</span>{' '}
-          <kbd className="pointer-events-none h-6 w-6 px-1 pb-0.5 text-base ml-1.5 border text-primary border-input inline-flex justify-center select-none items-center rounded-md font-mono">
+          <span className="text-xs text-muted-foreground">Navigate</span>{' '}
+          <kbd className="pointer-events-none h-6 w-6 px-1 pb-0.5 text-base ml-1.5 border border-input inline-flex justify-center select-none items-center rounded-md font-mono">
             ↓
           </kbd>
-          <kbd className="pointer-events-none h-6 w-6 px-1 pb-0.5 text-base ml-2 border text-primary border-input inline-flex justify-center select-none items-center rounded-md font-mono">
+          <kbd className="pointer-events-none h-6 w-6 px-1 pb-0.5 text-base ml-2 border border-input inline-flex justify-center select-none items-center rounded-md font-mono">
             ↑
           </kbd>
         </div>
         <div>
-          <span className="text-sm">Open with</span>{' '}
-          <kbd className="pointer-events-none h-6 w-6 px-1 pb-1 text-base ml-1.5 border text-primary border-input inline-flex justify-center select-none items-center rounded-md font-mono">
+          <span className="text-xs text-muted-foreground">Open with</span>{' '}
+          <kbd className="pointer-events-none h-6 w-6 px-1 pb-1 text-base ml-1.5 border border-input inline-flex justify-center select-none items-center rounded-md font-mono">
             ↵
           </kbd>
         </div>

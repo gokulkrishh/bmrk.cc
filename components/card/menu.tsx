@@ -109,7 +109,9 @@ export default function CardMenu({
       };
       await refreshBookmark(id, payload);
       onDone?.();
-      toast.success('Bookmark added as favorite.');
+      toast.success(
+        `Bookmark ${!data.is_fav ? 'added' : 'removed'} as favorite.`,
+      );
     } catch {
       toast.error('Unable to add as favorite, try again.');
     } finally {
