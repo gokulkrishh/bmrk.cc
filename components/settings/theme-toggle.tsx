@@ -15,7 +15,16 @@ import {
 import { cn } from 'lib/utils';
 
 export function ThemeToggle() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, theme, resolvedTheme } = useTheme();
+
+  // Fix theme color for ios
+  React.useEffect(() => {
+    let themeColorMeta = document.querySelector(
+      'meta[name="theme-color"]',
+    ) as HTMLMetaElement;
+
+    themeColorMeta.content = resolvedTheme === 'dark' ? '#000000' : '#ffffff';
+  }, [resolvedTheme]);
 
   return (
     <DropdownMenu>
