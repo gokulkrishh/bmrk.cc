@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next';
 import { permanentRedirect } from 'next/navigation';
-import Script from 'next/script';
 
 import { urls } from 'config';
 import NextTopLoader from 'nextjs-toploader';
@@ -59,7 +58,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#fff',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
 };
 
 export default async function RootLayout({
@@ -76,18 +78,6 @@ export default async function RootLayout({
 
   return (
     <>
-      <Script
-        id="theme-color"
-        dangerouslySetInnerHTML={{
-          __html: `
-              try {
-                if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                  document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000000')
-                }
-              } catch (_) {}
-            `,
-        }}
-      ></Script>
       <NextTopLoader
         height={2}
         shadow={false}
