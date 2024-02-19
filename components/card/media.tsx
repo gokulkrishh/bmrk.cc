@@ -23,9 +23,8 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
 
   return (
     <Link
-      className="group max-w-[450px] relative w-full mt-2 max-sm:max-w-[calc(100%-30px)] max-sm:max-h-[150px] mb-2 rounded-2xl"
+      className="group max-w-[450px] relative w-full mt-2 max-sm:max-w-[calc(100%-30px)] mb-2 rounded-2xl"
       target="_blank"
-      rel="noopener"
       href={url.href}
       prefetch={false}
     >
