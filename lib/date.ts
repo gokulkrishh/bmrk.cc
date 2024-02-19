@@ -99,3 +99,11 @@ export const isUserAccountCreatedToday = (date: string) => {
     today.getFullYear() === createdDate.getFullYear()
   );
 };
+
+export const isWithinTwoMonths = (dateToCheck: Date): boolean => {
+  const today = new Date();
+  const twoMonthsAhead = new Date();
+  twoMonthsAhead.setMonth(today.getMonth() + 2);
+
+  return dateToCheck >= today && dateToCheck <= twoMonthsAhead;
+};

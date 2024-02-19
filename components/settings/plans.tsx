@@ -19,6 +19,7 @@ import {
   formatBillingDate,
   formatDate,
   getFirstAndLastDate,
+  isWithinTwoMonths,
 } from 'lib/date';
 import { cn } from 'lib/utils';
 
@@ -41,6 +42,9 @@ export default async function Plans() {
   const tagPercentage = getTagUsage(user);
   const favoritePercentage = getFavoriteUsage(user);
   const { first, last } = getFirstAndLastDate(user.billing_cycle_start_date);
+  const isWithInTwoMonths = isWithinTwoMonths(
+    new Date(user.billing_cycle_start_date),
+  );
 
   return (
     <SettingsCard className="flex flex-col items-start gap-0 p-0">
@@ -125,11 +129,11 @@ export default async function Plans() {
           <p className="text-muted-foreground text-sm">
             Your {user.plan_status} plan will expire on{' '}
             <span
-              className={cn({
-                'text-red-600 dark:text-red-500': !isPlanExpired,
+              className={cn(`text-primary font-medium`, {
+                'text-red-600 dark:text-red-500': isWithInTwoMonths,
               })}
             >
-              {formatDate(addYears(user.billing_cycle_start_date, 1))}.
+              {formatDate(addYears(user.billing_cycle_start_date, 1))}
             </span>
           </p>
         </div>
