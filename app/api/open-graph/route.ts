@@ -72,9 +72,9 @@ function extractMetaTags(html: string, url: string) {
   });
 
   const title =
-    root.querySelector('title')?.innerText ||
     objectMap['og:title'] ||
     objectMap['twitter:title'] ||
+    root.querySelector('title')?.innerText ||
     url;
 
   const description =
