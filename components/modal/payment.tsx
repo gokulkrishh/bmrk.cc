@@ -47,8 +47,8 @@ export default function PaymentModal({
         <DialogHeader className="flex my-0 pb-0 flex-col justify-center border-b py-4 items-center">
           <Logo className="w-16 h-16" />
           <p className="font-medium !mt-3">Upgrade to Pro Plan</p>
-          <p className="text-muted-foreground">
-            Enjoy more limits with all pro features.
+          <p className="text-muted-foreground text-center">
+            Unlock the full potential with Pro plan.
           </p>
         </DialogHeader>
         <div className="px-4 flex items-center flex-col bg-neutral-50 dark:bg-neutral-900 rounded-br-xl rounded-bl-xl">

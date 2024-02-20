@@ -7,7 +7,7 @@ import { Info } from 'lucide-react';
 import { useUser } from 'components/context/user';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
-import { isProPlanExpired } from 'lib/data';
+import { isProPlan, isProPlanExpired } from 'lib/data';
 import { cn } from 'lib/utils';
 
 export default function FeatureToolip({
@@ -19,9 +19,10 @@ export default function FeatureToolip({
 }) {
   const { user } = useUser();
   const [open, setOpen] = useState(false);
-  const isPlanExpired = isProPlanExpired(user);
+  const hasProPlan = isProPlan(user);
+  const isPlanExpired = hasProPlan && isProPlanExpired(user);
 
-  if (!isPlanExpired) return null;
+  if (hasProPlan && !isPlanExpired) return null;
 
   return (
     <Tooltip open={open} onOpenChange={setOpen}>
