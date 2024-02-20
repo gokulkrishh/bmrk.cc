@@ -37,3 +37,7 @@ next-env.d.ts
 
 # husky
 .husky
+
+# sw
+/public/sw.js
+/public/swe-worker-*.js

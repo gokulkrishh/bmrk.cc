@@ -63,6 +63,10 @@ export async function middleware(request: NextRequest) {
   const user = session?.user;
 
   if (currentHost === 'app') {
+    if (url.pathname.includes('swe-worker') || url.pathname.includes('sw.js')) {
+      return response;
+    }
+
     if (url.pathname === '/intro' || url.pathname === '/import') {
       return response;
     }
