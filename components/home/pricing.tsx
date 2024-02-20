@@ -86,7 +86,7 @@ export default function Pricing() {
               </div>
             </div>
           </div>
-          <div className="min-w-[330px] bg-gradient-to-r from-sky-0 to-sky-50 via-white rounded-2xl border-2 border-blue-100 bg-white shadow-md text-left sm:mr-8 text-primary">
+          <div className="min-w-[330px] bg-gradient-to-r from-sky-0 to-sky-50 via-white rounded-2xl border-2 border-sky-100 bg-white shadow-md text-left sm:mr-8 text-primary">
             <div className="px-5 p-5">
               <h3 className="text-2xl font-semibold leading-6">Pro</h3>
               <p className="text-muted-foreground mt-1.5">
