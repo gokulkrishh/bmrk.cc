@@ -9,12 +9,12 @@ import {
 
 const faqs = [
   {
-    question: 'Can I import my existings bookmarks?',
-    answer: `Yes, you can import your existing bookmarks from your web browser. To import, click the upload icon in input field and follow the instructions.`,
+    question: 'Can I Import unlimited bookmarks?',
+    answer: `Yes, for the first time, you can import unlimited bookmarks. Both for free and pro plan, after that, you can import bookmarks within the limit of your plan.`,
   },
   {
-    question: 'When does usage reset happens for plans?',
-    answer: `You can view the usage info under settings page and usage reset happens on same day every month once current billings cycle ends.`,
+    question: 'When does usage reset happens?',
+    answer: `Usage reset happens on same day every month once based current billings cycle. You can view the usage info under settings page.`,
   },
   {
     question: 'How do I delete a bookmark?',
@@ -30,12 +30,8 @@ const faqs = [
       'Yes, you can download it from the Web Store by searching it or click the link in browser extensions section above.',
   },
   {
-    question: 'Is there a limit to how many bookmarks I can save?',
-    answer: `We offers enough storage for all your bookmarks. If you have concerns about storage, consider organizing and removing bookmarks you no longer need.`,
-  },
-  {
     question: 'I have more questions, how can I contact you?',
-    answer: `You can contact us through the app\'s "Help" section in profile menu or send us an email at "support@bmrk.cc".`,
+    answer: `You can contact us through the app\'s "Help" link in profile menu or send us an email to "support@bmrk.cc".`,
   },
 ];
 

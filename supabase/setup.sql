@@ -15,6 +15,7 @@ create table users (
   updated_at timestamp with time zone default current_timestamp,
   created_at timestamp with time zone default current_timestamp,
   has_welcomed boolean default false,
+  upload_count int default 0 not null,
   usage jsonb default '{"bookmarks": 0, "tags": 0, "favorites": 0, "sessions": 0}',
   plan_status text default 'free',
   billing_cycle_start_date timestamp default current_timestamp not null,
@@ -99,7 +100,7 @@ alter table bookmarks_tags
 create policy "Allow operations for authenticated users only" on bookmarks_tags
   for all using (auth.uid () = user_id);
 
--- Create a stored procudure to update usage stats in users table by using supabse.rpc
+-- Create a stored procudure to update usage stats and upload count in users table by using supabse.rpc
 create
 or replace function increment_bookmarks_usage (user_id uuid, count int) returns void as $$
 BEGIN
@@ -124,6 +125,15 @@ BEGIN
     UPDATE users
     SET usage = usage || jsonb_build_object('favorites', GREATEST(COALESCE((usage->>'favorites')::int, 0) + count, 0))
     WHERE id = user_id;
+END;
+$$ language plpgsql;
+
+create
+or replace function increment_upload_count (user_id uuid) returns void as $$
+BEGIN
+  UPDATE users
+  SET upload_count = upload_count + 1
+  WHERE id = user_id;
 END;
 $$ language plpgsql;
 

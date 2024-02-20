@@ -9,7 +9,9 @@ import { ArrowUpCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { useUser } from 'components/context/user';
+import FeatureToolip from 'components/features/feature-tooltip';
 import Loader from 'components/loader';
+import PlanTooltip from 'components/settings/plan-tooltip';
 import { Input } from 'components/ui/input';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
@@ -112,7 +114,14 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
         onSubmit();
       }}
     >
-      <div className="relative h-48 border border-neutral-300 dark:border-neutral-600 border-dashed rounded-lg">
+      <div className="relative h-56 border border-neutral-300 dark:border-neutral-600 border-dashed rounded-lg">
+        <button
+          className="absolute top-0 left-0 w-full h-full bg-transparent z-0 cursor-pointer focus:outline-none"
+          type="button"
+          onClick={() => {
+            hiddenInputRef.current?.click();
+          }}
+        />
         <Input
           className="opacity-0"
           type="file"
@@ -120,16 +129,10 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
           ref={hiddenInputRef}
           onChange={onFileChange}
         />
-        <button
-          type="button"
-          onClick={() => {
-            hiddenInputRef.current?.click();
-          }}
-          className="flex w-full -mt-3 justify-center flex-col items-center"
-        >
+        <div className="flex w-full -mt-4 justify-center flex-col items-center">
           <ArrowUpCircle strokeWidth={1} className="w-10 h-10" />
           <p className="text-sm mt-2 font-medium">Click to browse</p>
-        </button>
+        </div>
         <div className="text-sm flex flex-col mt-2 text-muted-foreground text-center">
           {fileDetails.name?.length ? (
             <>
@@ -141,17 +144,18 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
                     'text-red-600': !isFileAllowed,
                   })}
                 >
-                  {!isFileAllowed ? 'Greater than 200 KB' : fileSize + ' KB'}
+                  {!isFileAllowed ? 'Greater than 500 KB' : fileSize + ' KB'}
                 </span>
               </span>
             </>
           ) : (
             <>
-              <span>
+              <p className="relative">
                 {' '}
-                Export your bookmarks from your browser.
+                Export your bookmarks from your browser{' '}
                 <Tooltip>
                   <TooltipTrigger
+                    className="z-11 absolute -top-0.5 ml-1"
                     onClick={(event) => {
                       event.stopPropagation();
                       const name = getBrowserName();
@@ -159,18 +163,30 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
                       window.open(link, '_blank');
                     }}
                   >
-                    <QuestionMarkCircledIcon className="w-3.5 relative -top-0.5 h-3.5 text-blue-700 " />
+                    <QuestionMarkCircledIcon className="w-3.5 h-3.5" />
                   </TooltipTrigger>
                   <TooltipContent className="text-white dark:text-black">
-                    Click to know how.
+                    Click to know how?
                   </TooltipContent>
                 </Tooltip>
-              </span>
-              <span className="text-xs mt-1.5 text-muted-foreground">
-                Max File Size: <span className="font-medium">200 KB</span>
+              </p>
+              <span className="text-xs mt-2 text-muted-foreground">
+                Max File Size: <span className="font-medium">500 KB</span>
               </span>
             </>
           )}
+          {user.upload_count === 0 ? (
+            <p className="text-xs mt-4">
+              Unlimited bookmarks import:{' '}
+              <span className="text-green-500 relative inline-flex">
+                1 available
+                <PlanTooltip
+                  className="relative -top-1 -left-1"
+                  text="This won't be counted against your monthly usage. One time only."
+                />
+              </span>
+            </p>
+          ) : null}
         </div>
       </div>
       {!SubmitBtn ? (

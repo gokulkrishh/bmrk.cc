@@ -137,6 +137,7 @@ export type Database = {
           order_info: Json | null;
           plan_status: string | null;
           updated_at: string | null;
+          upload_count: number;
           usage: Json | null;
         };
         Insert: {
@@ -150,6 +151,7 @@ export type Database = {
           order_info?: Json | null;
           plan_status?: string | null;
           updated_at?: string | null;
+          upload_count?: number;
           usage?: Json | null;
         };
         Update: {
@@ -163,6 +165,7 @@ export type Database = {
           order_info?: Json | null;
           plan_status?: string | null;
           updated_at?: string | null;
+          upload_count?: number;
           usage?: Json | null;
         };
         Relationships: [
@@ -201,6 +204,19 @@ export type Database = {
         };
         Returns: undefined;
       };
+      increment_upload_count:
+        | {
+            Args: {
+              user_id: number;
+            };
+            Returns: undefined;
+          }
+        | {
+            Args: {
+              user_id: string;
+            };
+            Returns: undefined;
+          };
       update_user_bookmarks_usage: {
         Args: {
           user_id: string;

@@ -59,4 +59,5 @@ export const messages = {
   tagLimit: (plan: string = plans.free.name) =>
     `Tags count exceeds the ${plan} plan limit. Upgrade to Pro plan`,
   usageLimitRenewal: `Usage limit auto-renews on monthly basis`,
+  maxFileSize: `Maximum file size is 500 KB`,
 };

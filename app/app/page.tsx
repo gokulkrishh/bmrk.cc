@@ -1,5 +1,6 @@
 import { getTags } from 'app//actions/tags';
 import { getBookmarks } from 'app/actions/bookmarks';
+import { incrementUploadCount } from 'app/actions/user';
 
 import AddBookmarkInput from 'components/bookmark/add-input';
 import CardList from 'components/card-list';

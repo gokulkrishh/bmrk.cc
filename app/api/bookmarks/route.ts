@@ -4,7 +4,11 @@ import { messages, plans } from 'config';
 import { parse } from 'node-html-parser';
 
 import { createTagForImport } from 'app/actions/tags';
-import { getUser, incrementBookmarkUsage } from 'app/actions/user';
+import {
+  getUser,
+  incrementBookmarkUsage,
+  incrementUploadCount,
+} from 'app/actions/user';
 
 import { checkAuth } from 'lib/auth';
 import { bookmarkParser } from 'lib/bookmarks';
@@ -14,7 +18,7 @@ import createClient from 'lib/supabase/server';
 import { BookmarkInsert } from 'types/data';
 
 export async function POST(request: NextRequest) {
-  return await checkAuth(async (user) => {
+  return await checkAuth(async (authUser, user) => {
     const { content } = await request.json();
     if (!content) {
       return new Response('Content missing.', { status: 400 });
@@ -34,7 +38,7 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      if (checkBookmarkLimit(userData, bookmarks)) {
+      if (user.upload_count > 0 && checkBookmarkLimit(userData, bookmarks)) {
         return new Response(
           JSON.stringify({
             message: messages.bookmarkLimit(
@@ -45,7 +49,7 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      if (checkTagLimit(userData)) {
+      if (user.upload_count > 0 && checkTagLimit(userData)) {
         return new Response(
           JSON.stringify({
             message: messages.tagLimit(userData.plan_status ?? plans.free.name),
@@ -71,7 +75,9 @@ export async function POST(request: NextRequest) {
           throw new Error('Unable to add bookmarks, try again');
         }
 
-        await incrementBookmarkUsage(data.length);
+        if (user.upload_count > 0) {
+          await incrementBookmarkUsage(data.length);
+        }
 
         if (data?.length) {
           const { error: bookmarkError } = await supabase
@@ -87,6 +93,8 @@ export async function POST(request: NextRequest) {
           if (bookmarkError) {
             throw new Error('Unable to add bookmarks, try again');
           }
+
+          await incrementUploadCount();
 
           return new Response(
             JSON.stringify({ message: 'Bookmarks are added successfully' }),

@@ -62,6 +62,14 @@ export default function Pricing() {
                   />
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
+                  <CheckIcon className="text-primary" />
+                  Import unlimited bookmarks, once.
+                  <PlanTooltip
+                    className="ml-1 relative -top-1"
+                    text={messages.maxFileSize}
+                  />
+                </p>
+                <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-primary" /> {plans.free.limit.tags}{' '}
                   tags
                 </p>
@@ -117,6 +125,14 @@ export default function Pricing() {
                   <PlanTooltip
                     className="ml-1 relative -top-1"
                     text={messages.usageLimitRenewal}
+                  />
+                </p>
+                <p className="text-gray-600 flex items-center font-normal">
+                  <CheckIcon className="text-green-500" />
+                  Import unlimited bookmarks, once.
+                  <PlanTooltip
+                    className="ml-1 relative -top-1"
+                    text={messages.maxFileSize}
                   />
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">

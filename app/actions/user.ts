@@ -104,3 +104,19 @@ export const incrementFavUsage = async (count: number = 1) => {
     return new Error('Unable to increment usage.');
   }
 };
+
+export const incrementUploadCount = async (count: number = 1) => {
+  const user = await getAuthUser();
+  if (!user) {
+    return new Error('Unable to increment usage.');
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase.rpc('increment_upload_count', {
+    user_id: user.id,
+  });
+
+  if (error) {
+    return new Error('Unable to increment upload count.');
+  }
+};
