@@ -6,7 +6,11 @@ import { UpdateIcon } from '@radix-ui/react-icons';
 import { Edit, Link, Share, StarIcon, Trash2Icon } from 'lucide-react';
 import { toast } from 'sonner';
 
-import { deleteBookmark, refreshBookmark } from 'app/actions/bookmarks';
+import {
+  addToFav,
+  deleteBookmark,
+  refreshBookmark,
+} from 'app/actions/bookmarks';
 import { getOg } from 'app/actions/og';
 import { incrementBookmarkUsage } from 'app/actions/user';
 
@@ -104,10 +108,7 @@ export default function CardMenu({
   const onFav = async () => {
     try {
       setLoading(true);
-      const payload: BookmarkUpdate = {
-        is_fav: !data.is_fav,
-      };
-      await refreshBookmark(id, payload);
+      await addToFav(id, !data.is_fav);
       onDone?.();
       toast.success(
         `Bookmark ${!data.is_fav ? 'added' : 'removed'} as favorite.`,

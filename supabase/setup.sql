@@ -104,7 +104,7 @@ create
 or replace function increment_bookmarks_usage (user_id uuid, count int) returns void as $$
 BEGIN
     UPDATE users
-    SET usage = usage || jsonb_build_object('bookmarks', COALESCE((usage->>'bookmarks')::int, 0) + count)
+    SET usage = usage || jsonb_build_object('bookmarks', GREATEST(COALESCE((usage->>'bookmarks')::int, 0) + count, 0))
     WHERE id = user_id;
 END;
 $$ language plpgsql;
@@ -113,7 +113,7 @@ create
 or replace function increment_tags_usage (user_id uuid, count int) returns void as $$
 BEGIN
     UPDATE users
-    SET usage = usage || jsonb_build_object('tags', COALESCE((usage->>'tags')::int, 0) + count)
+    SET usage = usage || jsonb_build_object('tags', GREATEST(COALESCE((usage->>'tags')::int, 0) + count, 0))
     WHERE id = user_id;
 END;
 $$ language plpgsql;
@@ -122,7 +122,7 @@ create
 or replace function increment_favorites_usage (user_id uuid, count int) returns void as $$
 BEGIN
     UPDATE users
-    SET usage = usage || jsonb_build_object('favorites', COALESCE((usage->>'favorites')::int, 0) + count)
+    SET usage = usage || jsonb_build_object('favorites', GREATEST(COALESCE((usage->>'favorites')::int, 0) + count, 0))
     WHERE id = user_id;
 END;
 $$ language plpgsql;
