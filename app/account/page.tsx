@@ -38,7 +38,7 @@ export default async function Page() {
               className="underline hover:text-primary active:text-primary"
               href={`${urls.home}/terms`}
             >
-              Terms of Service
+              Terms & Condition
             </Link>{' '}
             &{' '}
             <Link

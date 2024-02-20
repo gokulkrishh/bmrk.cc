@@ -75,7 +75,7 @@ export default function FooterSection() {
                 href={'/terms'}
                 className="hover:underline hover:text-primary active:text-primary text-muted-foreground"
               >
-                Terms of Use
+                Terms & Condition
               </Link>
             </div>
           </div>
