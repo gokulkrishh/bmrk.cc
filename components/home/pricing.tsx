@@ -66,7 +66,7 @@ export default function Pricing() {
                   Import unlimited bookmarks, once.
                   <PlanTooltip
                     className="ml-1 relative -top-1"
-                    text={messages.maxFileSize}
+                    text={`This won't be counted against your monthly usage. One time only.`}
                   />
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
@@ -132,7 +132,7 @@ export default function Pricing() {
                   Import unlimited bookmarks, once.
                   <PlanTooltip
                     className="ml-1 relative -top-1"
-                    text={messages.maxFileSize}
+                    text={`This won't be counted against your monthly usage. One time only.`}
                   />
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
