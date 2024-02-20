@@ -124,6 +124,7 @@ export default function CardMenu({
     <>
       <DropdownMenu>
         <DropdownMenuTrigger
+          aria-label="Menu"
           className={cn(
             `cursor-pointer h-9 w-9 mt-1 flex items-center justify-center transition-colors rounded-full hover:bg-accent hover:border hover:border-input active:bg-accent shrink-0`,
             className,

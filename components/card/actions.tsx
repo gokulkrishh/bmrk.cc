@@ -20,6 +20,7 @@ function FavButtonIcon({ is_fav }: { is_fav: BookmarkModified['is_fav'] }) {
   const { pending } = useFormStatus();
   return (
     <button
+      aria-label="favorite"
       disabled={pending}
       type="submit"
       className={cn(

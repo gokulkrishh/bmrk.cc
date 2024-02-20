@@ -30,7 +30,7 @@ export default function NavLink(props: NavLinkProps) {
   if (target === 'external') {
     return (
       <Tooltip>
-        <TooltipTrigger asChild>
+        <TooltipTrigger aria-label={title} asChild>
           <a
             href={href}
             className={cn(
@@ -53,7 +53,7 @@ export default function NavLink(props: NavLinkProps) {
 
   return (
     <Tooltip>
-      <TooltipTrigger asChild>
+      <TooltipTrigger aria-label={title} asChild>
         <Link
           href={href}
           className={cn(

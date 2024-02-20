@@ -31,6 +31,7 @@ export default function SearchIcon({ className }: { className?: string }) {
       <Tooltip>
         <TooltipTrigger className="text-primary" asChild>
           <button
+            aria-label="Search"
             onClick={() => setOpen(!open)}
             className={cn(
               'p-2.5 inline-block rounded-xl transition-colors text-center hover:bg-accent group',

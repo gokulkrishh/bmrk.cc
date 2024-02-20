@@ -32,6 +32,7 @@ export default function Sidebar() {
           className="active:opacity-85 mt-2 mb-2 hidden sm:block group"
         >
           <Logo className="w-[38px] h-[38px] group-active:scale-95 duration-150 transition-transform" />
+          <span className="sr-only">Home page</span>
         </Link>
         <NavLink href={'/'} title="Home">
           <HomeIcon className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />

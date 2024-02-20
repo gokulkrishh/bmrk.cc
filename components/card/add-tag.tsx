@@ -25,6 +25,7 @@ export default function AddTag({ data, tags }: AddTagProps) {
     >
       <PopoverTrigger asChild>
         <button
+          aria-label="tags"
           className={cn(
             `flex items-center -ml-1.5 justify-center gap-1 rounded-full shrink-0 w-9 h-9 hover:bg-blue-100 hover:border hover:border-blue-200 active:bg-blue-100`,
             { '!opacity-100': open },

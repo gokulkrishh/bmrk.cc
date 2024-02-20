@@ -118,6 +118,7 @@ export default function AddBookmarkInput({
           <div>
             {showUpload ? (
               <button
+                aria-label="Upload bookmarks"
                 className="w-8 h-8 group transition-colors duration-200 rounded-full hover:bg-accent hover:border hover:border-input active:bg-accent -left-1.5 relative top-2 inline-flex items-center justify-center"
                 type="button"
                 onClick={() => setOpen(true)}
