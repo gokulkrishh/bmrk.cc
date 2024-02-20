@@ -107,10 +107,10 @@ export const addToFav = async (
   id: Bookmark['id'],
   isFav: Bookmark['is_fav'],
 ) => {
-  if (isFav) {
-    await incrementFavUsage();
-  } else {
+  if (!isFav) {
     await incrementFavUsage(-1);
+  } else {
+    await incrementFavUsage();
   }
   const supabase = await createClient();
   const { error } = await supabase

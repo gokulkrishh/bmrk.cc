@@ -26,6 +26,8 @@ export async function POST(request: NextRequest) {
         .update({ billing_cycle_start_date, plan_status, order_info })
         .eq('id', user.id);
 
+      console.log('bookmarksTagsError', bookmarksTagsError);
+
       if (bookmarksTagsError) {
         throw new Error(bookmarksTagsError.message);
       }
