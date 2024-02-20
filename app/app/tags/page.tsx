@@ -5,6 +5,7 @@ import { getTags, getTagsWithBookmarkIds } from 'app/actions/tags';
 
 import CardList from 'components/card-list';
 import Header from 'components/header';
+import { EmptyTagsState } from 'components/icons';
 import DeleteTag from 'components/tag/delete-tag';
 import EditTag from 'components/tag/edit-tag';
 import { Badge } from 'components/ui/badge';
@@ -47,7 +48,13 @@ export default async function Page() {
             ))}
           </div>
         ) : null}
-        <CardList bookmarks={bookmarks} tags={tags} />
+        <>
+          {bookmarks.length ? (
+            <CardList bookmarks={bookmarks} tags={tags} />
+          ) : (
+            <EmptyTagsState />
+          )}
+        </>
       </div>
     </>
   );

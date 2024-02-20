@@ -3,6 +3,7 @@ import { getTags } from 'app/actions/tags';
 
 import CardList from 'components/card-list';
 import Header from 'components/header';
+import { EmptyFavoriteState } from 'components/icons';
 
 const title = 'Bookmark it. | Favorites';
 const description =
@@ -23,7 +24,11 @@ export default async function Page() {
     <>
       <Header headerText="Favorites" />
       <div className="min-h-dvh sm:border-r border-border pb-24">
-        <CardList bookmarks={bookmarks} tags={tags} />
+        {bookmarks.length ? (
+          <CardList bookmarks={bookmarks} tags={tags} />
+        ) : (
+          <EmptyFavoriteState />
+        )}
       </div>
     </>
   );

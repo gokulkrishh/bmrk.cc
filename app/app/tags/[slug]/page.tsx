@@ -3,6 +3,7 @@ import { getTags } from 'app/actions/tags';
 
 import CardList from 'components/card-list';
 import Header from 'components/header';
+import { EmptyTagState } from 'components/icons';
 
 import { filterByTagName } from 'lib/data';
 
@@ -36,7 +37,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <>
       <Header headerText={`Tag: ${tagName}`} />
       <div className="h-full sm:border-r border-border pb-24">
-        <CardList bookmarks={filteredBookmarks} tags={tags} />
+        {bookmarks.length ? (
+          <CardList bookmarks={filteredBookmarks} tags={tags} />
+        ) : (
+          <EmptyTagState />
+        )}
       </div>
     </>
   );

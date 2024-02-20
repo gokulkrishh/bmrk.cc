@@ -4,6 +4,7 @@ import { getBookmarks } from 'app/actions/bookmarks';
 import AddBookmarkInput from 'components/bookmark/add-input';
 import CardList from 'components/card-list';
 import Header from 'components/header';
+import { EmptyBookmarkState } from 'components/icons';
 
 export const revalidate = 3600;
 
@@ -18,7 +19,11 @@ export default async function Page() {
       <Header />
       <AddBookmarkInput btnClassname="mx-2" showUpload />
       <div className="h-full sm:border-r border-border pb-24">
-        <CardList bookmarks={bookmarks} tags={tags} />
+        {bookmarks.length ? (
+          <CardList bookmarks={bookmarks} tags={tags} />
+        ) : (
+          <EmptyBookmarkState />
+        )}
       </div>
     </>
   );
