@@ -37,7 +37,7 @@ export default function FooterSection() {
           Organize, Discover, and Personalize.
         </p>
       </div>
-      <div className="flex sm:gap-20 max-w-xs w-fit max-sm:mt-12 max-sm:w-full">
+      <div className="flex gap-20 max-w-xs w-fit max-sm:mt-12 max-sm:w-full">
         <div className="flex flex-col w-fit text-sm">
           <h3 className="font-semibold flex items-center gap-2">Links</h3>
           <div className="flex flex-col gap-2.5 mt-4">

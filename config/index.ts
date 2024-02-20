@@ -2,7 +2,7 @@ import { PlansType } from 'types/data';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const domain = 'bmrk.cc';
+const domain = 'localhost:3000';
 const local = 'localhost:3000';
 const home = isProduction ? domain : local;
 const protocol = isProduction ? 'https://' : 'http://';
