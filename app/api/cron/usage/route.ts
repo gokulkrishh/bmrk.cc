@@ -5,7 +5,6 @@ import { plans } from 'config';
 
 import { isProPlanExpired } from 'lib/data';
 import {
-  addYears,
   getAdjustedBillingCycleDate,
   isUserAccountCreatedToday,
 } from 'lib/date';
@@ -22,7 +21,7 @@ const supabaseAdmin = createClient<Database>(
 
 export async function GET(request: NextRequest) {
   const isAuthorized = await verifyCronAuthorization(request);
-  if (!isAuthorized && process.env.NODE_ENV === 'production') {
+  if (!isAuthorized) {
     return new Response('Unauthorized', { status: 401 });
   }
 
