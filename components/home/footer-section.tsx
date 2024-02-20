@@ -37,21 +37,21 @@ export default function FooterSection() {
           Organize, Discover, and Personalize.
         </p>
       </div>
-      <div className="flex sm:gap-20 max-w-xs w-fit max-sm:mt-12 max-sm:w-full max-sm:justify-between">
+      <div className="flex sm:gap-20 max-w-xs w-fit max-sm:mt-12 max-sm:w-full">
         <div className="flex flex-col w-fit text-sm">
           <h3 className="font-semibold flex items-center gap-2">Links</h3>
           <div className="flex flex-col gap-2.5 mt-4">
-            <Link
-              href={urls.github}
-              className="hover:underline hover:text-primary active:text-primary text-muted-foreground"
-            >
-              Github
-            </Link>
             <Link
               href={urls.extensions.chrome}
               className="hover:underline  hover:text-primary active:text-primary text-muted-foreground"
             >
               Extensions
+            </Link>
+            <Link
+              href={urls.github}
+              className="hover:underline hover:text-primary active:text-primary text-muted-foreground"
+            >
+              Github
             </Link>
             <Link
               href={urls.twitter}
