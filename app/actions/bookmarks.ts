@@ -63,7 +63,11 @@ export const updateBookmark = async (
   const supabase = await createClient();
   const { error } = await supabase
     .from('bookmarks')
-    .update({ ...bookmark, user_id: user.id })
+    .update({
+      ...bookmark,
+      user_id: user.id,
+      updated_at: new Date().toISOString(),
+    })
     .eq('id', id);
 
   if (error) {
@@ -115,7 +119,7 @@ export const addToFav = async (
   const supabase = await createClient();
   const { error } = await supabase
     .from('bookmarks')
-    .update({ is_fav: isFav })
+    .update({ is_fav: isFav, updated_at: new Date().toISOString() })
     .eq('id', id);
 
   if (error) {
@@ -135,7 +139,7 @@ export const refreshBookmark = async (
   const supabase = await createClient();
   const { error } = await supabase
     .from('bookmarks')
-    .update({ ...payload })
+    .update({ ...payload, updated_at: new Date().toISOString() })
     .eq('id', id)
     .eq('user_id', user.id);
 
@@ -157,7 +161,7 @@ export const getFavBookmarks = async () => {
     .select(`*, bookmarks_tags (tags!inner (id,name))`)
     .eq('user_id', user.id)
     .eq('is_fav', true)
-    .order('created_at', { ascending: false })
+    .order('updated_at', { ascending: false })
     .returns<BookmarkModified[]>();
 
   if (error) {
@@ -177,7 +181,7 @@ export const getBookmarksForTag = async (slug: string) => {
     .from('bookmarks')
     .select(`*, bookmarks_tags (tags!inner (id,name))`)
     .eq('user_id', user.id)
-    .order('created_at', { ascending: false })
+    .order('updated_at', { ascending: false })
     .returns<BookmarkModified[]>();
 
   if (error) {

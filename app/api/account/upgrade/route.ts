@@ -23,7 +23,12 @@ export async function POST(request: NextRequest) {
       const supabase = await createClient();
       const { error: bookmarksTagsError } = await supabase
         .from('users')
-        .update({ billing_cycle_start_date, plan_status, order_info })
+        .update({
+          billing_cycle_start_date,
+          plan_status,
+          order_info,
+          updated_at: new Date().toISOString(),
+        })
         .eq('id', user.id);
 
       if (bookmarksTagsError) {
