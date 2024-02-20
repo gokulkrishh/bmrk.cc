@@ -44,7 +44,7 @@ export const setWelcomePageAsVisited = async () => {
   try {
     const { error } = await supabase
       .from('users')
-      .update({ has_welcomed: true, updated_at: new Date().toISOString() })
+      .update({ has_welcomed: true })
       .eq('id', user.id);
     if (error) {
       throw new Error("User hasn't been welcomed");

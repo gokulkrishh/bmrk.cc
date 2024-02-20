@@ -66,7 +66,6 @@ export const updateBookmark = async (
     .update({
       ...bookmark,
       user_id: user.id,
-      updated_at: new Date().toISOString(),
     })
     .eq('id', id);
 
@@ -119,7 +118,7 @@ export const addToFav = async (
   const supabase = await createClient();
   const { error } = await supabase
     .from('bookmarks')
-    .update({ is_fav: isFav, updated_at: new Date().toISOString() })
+    .update({ is_fav: isFav })
     .eq('id', id);
 
   if (error) {
@@ -139,7 +138,7 @@ export const refreshBookmark = async (
   const supabase = await createClient();
   const { error } = await supabase
     .from('bookmarks')
-    .update({ ...payload, updated_at: new Date().toISOString() })
+    .update({ ...payload })
     .eq('id', id)
     .eq('user_id', user.id);
 

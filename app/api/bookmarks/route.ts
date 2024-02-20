@@ -140,7 +140,6 @@ export async function DELETE(request: NextRequest) {
         .from('users')
         .update({
           usage: { bookmarks: 0, favorites: 0, sessions: 0, tags: 0 },
-          updated_at: new Date().toISOString(),
         })
         .eq('id', user.id);
 

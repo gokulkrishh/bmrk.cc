@@ -27,7 +27,6 @@ export async function POST(request: NextRequest) {
           billing_cycle_start_date,
           plan_status,
           order_info,
-          updated_at: new Date().toISOString(),
         })
         .eq('id', user.id);
 

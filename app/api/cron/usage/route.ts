@@ -61,7 +61,6 @@ export async function GET(request: NextRequest) {
               store_id: 0,
               identifier: '',
             },
-            updated_at: new Date().toISOString(),
           })
           .eq('id', user.id);
         if (error) {

@@ -126,3 +126,27 @@ BEGIN
     WHERE id = user_id;
 END;
 $$ language plpgsql;
+
+-- Create a moddtime extension to automatically update the updated_at column
+create extension if not exists moddatetime schema extensions;
+
+-- assuming the table name is "bookmarks", "users" and "tags", and a timestamp column "updated_at"
+-- this trigger will set the "updated_at" column to the current timestamp for every update
+create trigger
+  handle_updated_at_bookmarks before update
+on bookmarks
+for each row execute
+  procedure moddatetime(updated_at);
+
+
+create trigger
+  handle_updated_at_users before update
+on users
+for each row execute
+  procedure moddatetime(updated_at);
+
+create trigger
+  handle_updated_at_tags before update
+on tags
+for each row execute
+  procedure moddatetime(updated_at);
