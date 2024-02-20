@@ -12,7 +12,7 @@ import {
   refreshBookmark,
 } from 'app/actions/bookmarks';
 import { getOg } from 'app/actions/og';
-import { incrementBookmarkUsage } from 'app/actions/user';
+import { incrementBookmarkUsage, incrementFavUsage } from 'app/actions/user';
 
 import { MoreIcon } from 'components/icons';
 import EditBookmark from 'components/modal/edit-bookmark';
@@ -78,6 +78,9 @@ export default function CardMenu({
     try {
       setLoading(true);
       await incrementBookmarkUsage(-1);
+      if (data.is_fav) {
+        await incrementFavUsage(-1);
+      }
       await deleteBookmark(id);
       onDone?.();
       refreshInChromeExt();
