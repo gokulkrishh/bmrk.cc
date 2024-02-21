@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      const newTag = await createTagForImport();
+      const newTag = await createTagForImport(user.upload_count + 1);
 
       if (newTag?.id) {
         if (!isWithInImportLimit) {

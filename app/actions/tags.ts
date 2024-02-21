@@ -176,7 +176,7 @@ export const getTagsWithBookmarkIds = async () => {
   }, {});
 };
 
-export const createTagForImport = async () => {
+export const createTagForImport = async (uploadCount: number) => {
   const user = await getAuthUser();
   if (!user) {
     return null;
@@ -186,7 +186,7 @@ export const createTagForImport = async () => {
   const { data, error } = await supabase
     .from('tags')
     .insert({
-      name: `imported-on-${formatDate(new Date(), dateOptions)?.replaceAll('/', '-')}`,
+      name: `imported-on-${formatDate(new Date(), dateOptions)?.replaceAll('/', '-')}-${uploadCount}`,
       user_id: user.id,
     } as TagInsert)
     .select()
