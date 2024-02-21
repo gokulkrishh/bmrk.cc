@@ -10,15 +10,15 @@ import {
 const faqs = [
   {
     question: 'Can I Import unlimited bookmarks?',
-    answer: `Yes, for the first time, you can import unlimited bookmarks. Both for free and pro plan, after that, you can import bookmarks within the limit of your plan.`,
+    answer: `Yes, based on your plan, the number times you can import unlimited bookmarks varies, after that you can import bookmarks only within the limit of your plan.`,
   },
   {
     question: 'When does usage reset happens?',
     answer: `Usage reset happens on same day every month once based current billings cycle. You can view the usage info under settings page.`,
   },
   {
-    question: 'How do I delete a bookmark?',
-    answer: `To delete any bookmark, click on the options menu (represented by three dots) and then select "Delete".`,
+    question: 'Does deleting my bookmarks reduce usage count?',
+    answer: `Yes after deleting the bookmarks or tags or favorites, usage count will be adjusted accordingly.`,
   },
   {
     question: 'Can I access my bookmarks from different devices?',
