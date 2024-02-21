@@ -35,9 +35,10 @@ export default function Account() {
             window.location.href = urls.account;
           }
         }}
-        className="rounded-full inline-flex text-sm items-center focus:outline-0 bg-black hover:bg-black/80 shadow border border-black px-4 py-2 text-white"
+        className="rounded-full group/signin transition-colors inline-flex text-sm items-center focus:outline-0 bg-black hover:bg-black/80 shadow border border-black px-4 py-2 text-white"
       >
-        Get Started <ArrowRight className="ml-1.5 w-4 h-4" />
+        Get Started{' '}
+        <ArrowRight className="ml-1 transition-all group-hover/signin:translate-x-0.5 w-4 h-4" />
       </button>
       <Link
         className="inline-flex items-center justify-center h-[40px] rounded-full px-4 py-2 text-sm font-medium text-slate-900 ring-1 ring-slate-900/10 bg-white hover:bg-gray-200"

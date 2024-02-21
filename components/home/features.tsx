@@ -19,34 +19,32 @@ const featuresList = [
   },
   {
     name: 'Seemless integration',
-    description: 'Easily import your existing bookmarks from web browser.',
+    description: 'Easily import all your existing bookmarks from web browser.',
     videoUrl: `/demo/import.mp4`,
     screenshotUrl: `/demo/import.png`,
   },
   {
     name: 'Personalize your bookmarks',
-    description:
-      'Organize your bookmarks with custom tags for easy navigation.',
+    description: 'Personalized tags for quick and easy bookmark organization.',
     videoUrl: `/demo/personalize.mp4`,
     screenshotUrl: `/demo/personalize.png`,
   },
   {
     name: 'Favorite your bookmarks',
-    description: 'Quickly access your most-loved content with a simple click.',
+    description: 'Quickly access your most-loved site with a simple click.',
     videoUrl: `/demo/fav.mp4`,
     screenshotUrl: `/demo/fav.png`,
   },
   {
-    name: 'Bookmark with one click',
+    name: 'One-Click Bookmarking',
     description:
-      'Bookmark any site with a single click, open and browse your bookmarks wihout leaving your tab with our chrome extension.',
+      'Bookmark any site with a One-Click and seamless browsing within your tab – try our Chrome extension!',
     videoUrl: `/demo/bookmark-one-click.mp4`,
     screenshotUrl: `/demo/bookmark-one-click.png`,
   },
   {
-    name: 'Customizable viewing experience',
-    description:
-      'Choose between light and dark mode for better viewing experience.',
+    name: 'Optimize your viewing experience',
+    description: 'Choose between light or dark mode.',
     videoUrl: `/demo/themes.mp4`,
     screenshotUrl: `/demo/themes.png`,
   },
@@ -58,9 +56,8 @@ const featuresList = [
     screenshotUrl: `/demo/export.jpg`,
   },
   {
-    name: 'Data privacy',
-    description:
-      'Your data is yours, choose to delete your account and its associated data anytime.',
+    name: 'You control your data',
+    description: 'Delete your account and its data whenever you choose.',
     videoUrl: `/demo/delete-account.mp4`,
     screenshotUrl: `/demo/delete-account.jpg`,
   },
@@ -72,7 +69,7 @@ export default function Features() {
   return (
     <div className="mx-auto my-8 mt-20 sm:mt-32 flex flex-col items-center">
       <h2 className="mt-4 mb-1 text-3xl font-extrabold text-center tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
-        <span className="bg-gradient-to-r from-neutral-950 to-neutral-950 bg-clip-text text-transparent mt-1 inline-flex">
+        <span className="gradient-white mt-1 inline-flex">
           Organize, Discover, and Personalize.
         </span>
       </h2>

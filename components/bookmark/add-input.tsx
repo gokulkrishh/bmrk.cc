@@ -9,14 +9,13 @@ import { createBookmark } from 'app/actions/bookmarks';
 import { getOg } from 'app/actions/og';
 import { incrementBookmarkUsage } from 'app/actions/user';
 
-import { useAuth } from 'components/context/auth';
 import { useUser } from 'components/context/user';
 import Loader from 'components/loader';
 import UploadModal from 'components/modal/upload';
 import { Input } from 'components/ui/input';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
-import { logoutInChromeExt, refreshInChromeExt } from 'lib/chrome-extension';
+import { refreshInChromeExt } from 'lib/chrome-extension';
 import { cn, isValidUrl } from 'lib/utils';
 
 import { MetaTags } from 'types/data';
@@ -37,14 +36,16 @@ export default function AddBookmarkInput({
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  const { user, currentPlan } = useUser();
+  const { user, currentPlan, isProPlan } = useUser();
   const hasUsageLimitedReached =
     user?.usage.bookmarks >= currentPlan.limit.bookmarks;
 
   const onSubmit = async (inputUrl: string) => {
     try {
       if (hasUsageLimitedReached) {
-        toast.error(`Bookmark limit reached! Upgrade to add more.`);
+        toast.error(
+          `Bookmark limit reached! ${isProPlan ? '' : 'Upgrade to pro plan.'}`,
+        );
         return;
       }
       setLoading(true);

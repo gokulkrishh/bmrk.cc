@@ -120,7 +120,7 @@ export default function TagList({ data, tags }: TagListProps) {
         onValueChange={setSearchText}
         placeholder="Create or Search tags"
       />
-      <CommandList className="max-h-56 overflow-y-auto">
+      <CommandList className="max-h-56 overflow-y-auto max-w-[250px] w-full">
         {tags.length ? (
           <CommandGroup heading="All tags">
             {tags

@@ -4,6 +4,8 @@ import { createContext, useContext, useMemo } from 'react';
 
 import { plans } from 'config';
 
+import { isProPlan, isProPlanExpired } from 'lib/data';
+
 import { User, UserModified } from 'types/data';
 
 type UserContextType = {
@@ -14,7 +16,6 @@ const UserContext = createContext<UserContextType>(null);
 
 type UserProviderProps = {
   children: React.ReactNode;
-
   user: User | null;
 };
 
@@ -26,6 +27,8 @@ export const UserProvider = (props: UserProviderProps) => {
       user,
       currentPlan:
         user?.plan_status === plans.free.type ? plans.free : plans.pro,
+      isProPlan: isProPlan(user as UserModified),
+      isProPlanExpired: isProPlanExpired(user as UserModified),
     };
   }, [user]);
 
@@ -45,5 +48,7 @@ export const useUser = () => {
   return context as {
     user: UserModified;
     currentPlan: typeof plans.free | typeof plans.pro;
+    isProPlan: boolean;
+    isProPlanExpired: boolean;
   };
 };

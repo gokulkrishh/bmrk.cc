@@ -39,14 +39,14 @@ export default function Pricing() {
             <div className="px-5 p-5">
               <h3 className="text-2xl font-semibold leading-6">Free</h3>
               <p className="text-muted-foreground mt-1.5">
-                Free forever with limits
+                Free forever with limits.
               </p>
               <div className="my-4">
                 <p className="text-4xl tabular-nums font-semibold text-primary">
                   $0 <span className="text-base">/ year</span>
                 </p>
                 <span className="text-sm text-muted-foreground">
-                  Free forever
+                  Free forever. No card required.
                 </span>
               </div>
               <div className="flex flex-col gap-2.5 tracking-wide">
@@ -63,10 +63,10 @@ export default function Pricing() {
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-primary" />
-                  Import unlimited bookmarks, once.
+                  1 free import, unlimited bookmarks.
                   <PlanTooltip
                     className="ml-1 relative -top-1"
-                    text={`This won't be counted against your monthly usage. One time only.`}
+                    text={messages.importLimitWarning(plans.free.limit.imports)}
                   />
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
@@ -81,7 +81,8 @@ export default function Pricing() {
                   <CheckIcon className="text-primary" /> Theme Customizations
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-primary" /> Browser Extensions
+                  <CheckIcon className="text-primary" /> One-Click Browser
+                  Extensions
                 </p>
               </div>
               <div className="mt-6 mb-2">
@@ -129,10 +130,10 @@ export default function Pricing() {
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-green-500" />
-                  Import unlimited bookmarks, once.
+                  {plans.pro.limit.imports} free imports, unlimited bookmarks.
                   <PlanTooltip
                     className="ml-1 relative -top-1"
-                    text={`This won't be counted against your monthly usage. One time only.`}
+                    text={messages.importLimitWarning(plans.pro.limit.imports)}
                   />
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">

@@ -5,6 +5,7 @@ import { SyntheticEvent, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
+import { messages, plans } from 'config';
 import { ArrowUpCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -15,7 +16,7 @@ import PlanTooltip from 'components/settings/plan-tooltip';
 import { Input } from 'components/ui/input';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
-import { checkBookmarkLimit } from 'lib/data';
+import { checkBookmarkLimit, isProPlanExpired } from 'lib/data';
 import { cn, getBrowserName } from 'lib/utils';
 
 type UploadModalProps = {
@@ -32,7 +33,7 @@ const helpLinks: { [key: string]: string } = {
 };
 
 export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
-  const { user, currentPlan } = useUser();
+  const { user, currentPlan, isProPlan } = useUser();
   const [loading, setLoading] = useState(false);
   const [fileDetails, setFileDetails] = useState({ name: '', size: 0 });
   const hiddenInputRef = useRef<HTMLInputElement>(null);
@@ -59,7 +60,9 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
         router.refresh();
       }
     } catch (error) {
-      toast.error((error as Error)?.message);
+      toast.error((error as Error)?.message, {
+        duration: 5000,
+      });
     } finally {
       setLoading(false);
     }
@@ -82,7 +85,9 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
         const file = files[0];
         if (file) {
           if (checkBookmarkLimit(user, [])) {
-            toast.error(`Bookmarks limit reached! Upgrade to pro plan.`);
+            toast.error(
+              `Bookmark limit reached! ${isProPlan ? '' : 'Upgrade to pro plan.'}`,
+            );
             return;
           }
           toast.info(`Don't refresh this page.`, {
@@ -129,7 +134,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
           ref={hiddenInputRef}
           onChange={onFileChange}
         />
-        <div className="flex w-full -mt-4 justify-center flex-col items-center">
+        <div className="flex w-full justify-center flex-col items-center">
           <ArrowUpCircle strokeWidth={1} className="w-10 h-10" />
           <p className="text-sm mt-2 font-medium">Click to browse</p>
         </div>
@@ -175,14 +180,15 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
               </span>
             </>
           )}
-          {user.upload_count === 0 ? (
+          {user.upload_count < currentPlan.limit.imports ? (
             <p className="text-xs mt-4">
               Unlimited bookmarks import:{' '}
               <span className="text-green-500 relative inline-flex">
-                1 available
+                {Math.abs(currentPlan.limit.imports - user.upload_count)} time
+                {currentPlan.limit.imports > 1 ? 's' : ''} available
                 <PlanTooltip
                   className="relative -top-1 -left-1"
-                  text="This won't be counted against your monthly usage. One time only."
+                  text={messages.importLimitWarning(currentPlan.limit.imports)}
                 />
               </span>
             </p>

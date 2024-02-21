@@ -138,6 +138,14 @@
   height: 100dvh;
 }
 
+.gradient-white {
+  width: 100%;
+  background: linear-gradient(180deg, #555, #000 110%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .dark {
   .homepage::after {
     background-image: url(/images/grid-white.svg);

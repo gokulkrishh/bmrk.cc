@@ -7,12 +7,13 @@ import { createTagForImport } from 'app/actions/tags';
 import {
   getUser,
   incrementBookmarkUsage,
+  incrementTagUsage,
   incrementUploadCount,
 } from 'app/actions/user';
 
 import { checkAuth } from 'lib/auth';
 import { bookmarkParser } from 'lib/bookmarks';
-import { checkBookmarkLimit, checkTagLimit } from 'lib/data';
+import { checkBookmarkLimit, checkTagLimit, isProPlan } from 'lib/data';
 import createClient from 'lib/supabase/server';
 
 import { BookmarkInsert } from 'types/data';
@@ -27,9 +28,13 @@ export async function POST(request: NextRequest) {
       const root = parse(content) as unknown as HTMLElement;
       const bookmarks = bookmarkParser(root);
       const supabase = await createClient();
-      const userData = await getUser();
+      const hasProPlan = isProPlan(user);
+      const allowedUploadCount = hasProPlan
+        ? plans.pro.limit.imports
+        : plans.free.limit.imports;
+      const isWithInImportLimit = user.upload_count < allowedUploadCount;
 
-      if (!userData) {
+      if (!user) {
         return new Response(
           JSON.stringify({
             message: `Unable to process your request, try again later.`,
@@ -38,21 +43,21 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      if (user.upload_count > 0 && checkBookmarkLimit(userData, bookmarks)) {
+      if (!isWithInImportLimit && checkBookmarkLimit(user, bookmarks)) {
         return new Response(
           JSON.stringify({
             message: messages.bookmarkLimit(
-              userData.plan_status ?? plans.free.name,
+              user.plan_status ?? plans.free.name,
             ),
           }),
           { status: 500 },
         );
       }
 
-      if (user.upload_count > 0 && checkTagLimit(userData)) {
+      if (!isWithInImportLimit && checkTagLimit(user)) {
         return new Response(
           JSON.stringify({
-            message: messages.tagLimit(userData.plan_status ?? plans.free.name),
+            message: messages.tagLimit(user.plan_status ?? plans.free.name),
           }),
           { status: 500 },
         );
@@ -61,12 +66,16 @@ export async function POST(request: NextRequest) {
       const newTag = await createTagForImport();
 
       if (newTag?.id) {
+        if (!isWithInImportLimit) {
+          await incrementTagUsage();
+        }
+
         const { error, data } = await supabase
           .from('bookmarks')
           .insert(
             bookmarks.map((bookmark) => ({
               ...bookmark,
-              user_id: user.id,
+              user_id: authUser.id,
             })) as unknown as BookmarkInsert[],
           )
           .select();
@@ -75,7 +84,7 @@ export async function POST(request: NextRequest) {
           throw new Error('Unable to add bookmarks, try again');
         }
 
-        if (user.upload_count > 0) {
+        if (!isWithInImportLimit) {
           await incrementBookmarkUsage(data.length);
         }
 
@@ -86,7 +95,7 @@ export async function POST(request: NextRequest) {
               data.map((datum) => ({
                 bookmark_id: datum.id,
                 tag_id: newTag.id,
-                user_id: user.id,
+                user_id: authUser.id,
               })),
             );
 
@@ -114,13 +123,13 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-  return await checkAuth(async (user) => {
+  return await checkAuth(async (authUser) => {
     try {
       const supabase = await createClient();
       const { error: bookmarksTagsError } = await supabase
         .from('bookmarks_tags')
         .delete()
-        .eq('user_id', user.id);
+        .eq('user_id', authUser.id);
 
       if (bookmarksTagsError) {
         throw new Error('Unable to delete bookmarks, try again');
@@ -129,7 +138,7 @@ export async function DELETE(request: NextRequest) {
       const { error: bookmarkTagsError } = await supabase
         .from('tags')
         .delete()
-        .eq('user_id', user.id);
+        .eq('user_id', authUser.id);
 
       if (bookmarkTagsError) {
         throw new Error('Unable to delete bookmarks, try again');
@@ -138,7 +147,7 @@ export async function DELETE(request: NextRequest) {
       const { error: bookmarkError } = await supabase
         .from('bookmarks')
         .delete()
-        .eq('user_id', user.id);
+        .eq('user_id', authUser.id);
 
       if (bookmarkError) {
         throw new Error('Unable to delete bookmarks, try again');
@@ -147,9 +156,10 @@ export async function DELETE(request: NextRequest) {
       const { error: bookmarkUsageError } = await supabase
         .from('users')
         .update({
+          upload_count: 0,
           usage: { bookmarks: 0, favorites: 0, sessions: 0, tags: 0 },
         })
-        .eq('id', user.id);
+        .eq('id', authUser.id);
 
       if (bookmarkUsageError) {
         throw new Error('Unable to reset your usage, try again');

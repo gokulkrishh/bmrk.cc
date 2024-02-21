@@ -48,6 +48,8 @@ export type PlanDetailsType = {
     bookmarks: number;
     tags: number;
     favorites: number;
+    sessions: number;
+    imports: number;
   };
   pricing: {
     monthly: number;

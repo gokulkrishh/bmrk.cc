@@ -31,10 +31,14 @@ export default function DeleteData() {
   const onSubmit = async () => {
     try {
       setLoading(true);
-      await fetch('/api/bookmarks', {
+      const res = await fetch('/api/bookmarks', {
         method: 'DELETE',
         body: JSON.stringify({ email: authUser.email }),
       });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message);
+      }
       toast.success('All your data has been deleted.');
       refreshInChromeExt();
       setOpen(false);

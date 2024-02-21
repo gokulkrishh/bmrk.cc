@@ -52,7 +52,7 @@ export const checkBookmarkLimit = (
   const currentPlan = getUserPlan(userData);
   const isLimitReached =
     userData.usage.bookmarks >= currentPlan.limit.bookmarks ||
-    bookmarks.length >=
+    bookmarks.length >
       Math.abs(currentPlan.limit.bookmarks - userData.usage.bookmarks);
 
   return isLimitReached;

@@ -32,6 +32,8 @@ export const plans: PlansType = {
       bookmarks: 25,
       tags: 5,
       favorites: 5,
+      sessions: 0,
+      imports: 1,
     },
     pricing: {
       monthly: 0,
@@ -45,6 +47,8 @@ export const plans: PlansType = {
       bookmarks: 100,
       tags: 50,
       favorites: 50,
+      sessions: 0,
+      imports: 5,
     },
     pricing: {
       monthly: 2.49,
@@ -55,9 +59,11 @@ export const plans: PlansType = {
 
 export const messages = {
   bookmarkLimit: (plan: string = plans.free.name) =>
-    `Bookmarks count exceeds the ${plan} plan limit. Upgrade to Pro plan`,
+    `Bookmarks in the import exceeds the allowed usage limit.`,
   tagLimit: (plan: string = plans.free.name) =>
-    `Tags count exceeds the ${plan} plan limit. Upgrade to Pro plan`,
-  usageLimitRenewal: `Usage limit auto-renews on monthly basis`,
+    `Tags count exceeds the allowed monhtly usage limit.`,
+  usageLimitRenewal: `Usage limit auto-renews on basis`,
   maxFileSize: `Maximum file size is 500 KB`,
+  importLimitWarning: (count: number = 1) =>
+    `Importing ${count} time${count > 1 ? 's' : ''} – doesn't count towards your monthly usage.`,
 };

@@ -7,7 +7,7 @@ import createClient from 'lib/supabase/actions';
 
 import { Bookmark, Tag, TagInsert, User } from 'types/data';
 
-import { getAuthUser, incrementTagUsage } from './user';
+import { getAuthUser } from './user';
 
 const dateOptions = {
   day: 'numeric',
@@ -191,8 +191,6 @@ export const createTagForImport = async () => {
     } as TagInsert)
     .select()
     .single();
-
-  await incrementTagUsage();
 
   if (error) {
     return null;
