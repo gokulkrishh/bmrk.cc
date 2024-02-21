@@ -46,7 +46,7 @@ export default function Pricing() {
                   $0 <span className="text-base">/ year</span>
                 </p>
                 <span className="text-sm text-muted-foreground">
-                  Free forever. No card required.
+                  Free forever.
                 </span>
               </div>
               <div className="flex flex-col gap-2.5 tracking-wide">
@@ -63,7 +63,7 @@ export default function Pricing() {
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-primary" />
-                  1 free import, unlimited bookmarks.
+                  {plans.free.limit.imports} time unlimited bookmarks import.
                   <PlanTooltip
                     className="ml-1 relative -top-1"
                     text={messages.importLimitWarning(plans.free.limit.imports)}
@@ -130,7 +130,7 @@ export default function Pricing() {
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-green-500" />
-                  {plans.pro.limit.imports} free imports, unlimited bookmarks.
+                  {plans.pro.limit.imports} times unlimited bookmarks import.
                   <PlanTooltip
                     className="ml-1 relative -top-1"
                     text={messages.importLimitWarning(plans.pro.limit.imports)}
