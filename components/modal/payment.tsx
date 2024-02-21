@@ -52,9 +52,9 @@ export default function PaymentModal({
           </p>
         </DialogHeader>
         <div className="px-4 flex items-center flex-col bg-neutral-50 dark:bg-neutral-900 rounded-br-xl rounded-bl-xl">
-          <div className="flex max-w-md gap-6 w-full justify-center mt-6">
+          <div className="flex gap-6 w-full justify-center mt-6">
             <Select defaultValue="pro">
-              <SelectTrigger className="w-[160px]">
+              <SelectTrigger className="w-full mx-2 max-w-[160px]">
                 <SelectValue placeholder="Select Plan" />
               </SelectTrigger>
               <SelectContent>
@@ -62,7 +62,7 @@ export default function PaymentModal({
               </SelectContent>
             </Select>
             <Select defaultValue="yearly" onValueChange={setType}>
-              <SelectTrigger className="w-[160px]">
+              <SelectTrigger className="w-full mx-2 max-w-[160px]">
                 <SelectValue placeholder="Yearly" />
               </SelectTrigger>
               <SelectContent>
@@ -70,52 +70,58 @@ export default function PaymentModal({
               </SelectContent>
             </Select>
           </div>
-          <div className="flex max-w-xs -ml-3 flex-col w-full items-center gap-4 justify-center my-4">
-            <div className="flex w-full flex-col gap-2.5 mt-2 tracking-wide shrink-0">
-              <div className="text-gray-700 gap-2 dark:text-white flex items-center font-medium">
-                Pay {type === 'yearly' ? 'Yearly' : 'Monthly'}{' '}
-                <Badge
-                  variant="outline"
-                  className="py-1 inline-flex items-center"
-                >
-                  ${planPrice} yearly (no auto-renewal)
-                </Badge>
-              </div>
-              <p className="text-gray-600 dark:text-white flex items-center font-normal">
-                <CheckIcon className="text-green-500" />{' '}
-                {plans.pro.limit.bookmarks} bookmarks/mo{' '}
-                <PlanTooltip
-                  className="ml-1 relative -top-1"
-                  text={messages.usageLimitRenewal}
-                />
-              </p>
-              <p className="text-gray-600 dark:text-white flex items-center font-normal">
-                <CheckIcon className="text-green-500" /> {plans.pro.limit.tags}{' '}
-                tags
-              </p>
-              <p className="text-gray-600 dark:text-white flex items-center font-normal">
-                <CheckIcon className="text-green-500" />{' '}
-                {plans.pro.limit.favorites} favorite bookmarks
-              </p>
-              <p className="text-gray-600 dark:text-white flex items-center font-normal">
-                <CheckIcon className="text-green-500" /> Export bookmarks as
-                CSV/HTML
-              </p>
-              <p className="text-gray-600 dark:text-white flex items-center font-normal">
-                <CheckIcon className="text-green-500" /> Email Support
-              </p>
+          <div className="flex flex-col sm:w-[390px] w-full items-star gap-3 justify-center my-4">
+            <div className="text-gray-700 gap-2 dark:text-white flex items-center font-medium">
+              Pay {type === 'yearly' ? 'Yearly' : 'Monthly'}{' '}
+              <Badge
+                variant="outline"
+                className="py-1 mt-2 inline-flex items-center"
+              >
+                ${planPrice} yearly (no auto-renewal)
+              </Badge>
+            </div>
+            <div className="text-white mt-2 flex items-center font-normal">
+              <CheckIcon className="text-green-500" />{' '}
+              {plans.pro.limit.bookmarks} bookmarks/mo{' '}
+              <PlanTooltip
+                className="ml-1 relative -top-1"
+                text={messages.usageLimitRenewal}
+              />
+            </div>
+            <div className="text-white flex items-center font-normal">
+              <CheckIcon className="text-green-500" />
+              {plans.pro.limit.imports} times unlimited bookmarks import.
+              <PlanTooltip
+                className="ml-1 relative -top-1"
+                text={messages.importLimitWarning(plans.pro.limit.imports)}
+              />
+            </div>
+            <div className="text-white flex items-center font-normal">
+              <CheckIcon className="text-green-500" /> {plans.pro.limit.tags}{' '}
+              tags
+            </div>
+            <div className="text-white flex items-center font-normal">
+              <CheckIcon className="text-green-500" />{' '}
+              {plans.pro.limit.favorites} favorite bookmarks
+            </div>
+            <div className="text-white flex items-center font-normal">
+              <CheckIcon className="text-green-500" /> Export bookmarks as
+              CSV/HTML
+            </div>
+            <div className="text-white flex items-center font-normal">
+              <CheckIcon className="text-green-500" /> Email Support
             </div>
           </div>
-          <DialogFooter className="max-w-xs w-full flex mb-6 mt-1">
+          <DialogFooter className="w-full flex mb-6 px-6 mt-1">
             <button
               onClick={() => {
                 onHide(false);
                 onClick(type as PaymentType);
               }}
-              className="items-center [text-transform:capitalize] max-w-xs w-full h-[40px] tracking-wide disabled:cursor-not-allowed disabled:border-border rounded-xl text-white border border-blue-600 focus:outline-0 text-sm flex justify-center py-2 px-3 transition-colors bg-blue-600 hover:bg-blue-700 disabled:bg-blue-700 active:bg-blue-700"
+              className="items-center group/pay [text-transform:capitalize] w-full h-[40px] tracking-wide disabled:cursor-not-allowed disabled:border-border rounded-xl text-white border border-blue-600 focus:outline-0 text-sm flex justify-center py-2 px-3 transition-colors bg-blue-600 hover:bg-blue-700 disabled:bg-blue-700 active:bg-blue-700"
             >
               {loading ? <Loader /> : null} Pay one-time
-              <ArrowRight className="ml-1.5 w-4 h-4 text-white shrink-0" />
+              <ArrowRight className="ml-1.5 w-4 h-4 text-white shrink-0 transition-all group-hover/pay:translate-x-0.5" />
             </button>
           </DialogFooter>
         </div>

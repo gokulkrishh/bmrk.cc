@@ -37,7 +37,6 @@ export default async function Page() {
           <h2 className="font-medium mb-2">Data</h2>
           <div className="flex flex-col gap-6">
             <ExportBookmarks />
-            {/* <DeleteData /> */}
           </div>
         </div>
         <div>

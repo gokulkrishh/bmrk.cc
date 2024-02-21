@@ -45,7 +45,7 @@ type OrderType = {
 const checkoutMonthlyUrl = `https://bmrkcc.lemonsqueezy.com/checkout/buy/${process.env.NEXT_PUBLIC_LEMON_SQUEEZY_CHECKOUT_ID_MONTHLY}?embed=1&dark=1`;
 const checkoutYearlyUrl = `https://bmrkcc.lemonsqueezy.com/checkout/buy/${process.env.NEXT_PUBLIC_LEMON_SQUEEZY_CHECKOUT_ID_YEARLY}?embed=1&dark=1`;
 
-export default function PlanPlayment() {
+export default function PlanUpgradeButton() {
   const [open, setOpen] = useState(false);
 
   const onPaymentSuccess = async ({ order }: { order: OrderType }) => {
