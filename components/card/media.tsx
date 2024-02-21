@@ -9,7 +9,8 @@ import humanizeUrl from 'humanize-url';
 
 import { BookmarkModified } from 'types/data';
 
-const blurDataURL = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWGhoYrwEMwAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=`;
+// https://stackoverflow.com/a/33919020/266535
+const blurDataURL = `data:image/gif;base64,R0lGODlhAQABAPAAABsbG////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
 
 export default function CardMedia({ data }: { data: BookmarkModified }) {
   const ref = useRef<HTMLImageElement>(null);
@@ -37,9 +38,7 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
         height={180}
         loading="lazy"
         placeholder="blur"
-        onLoad={() => {}}
         onError={(eror) => {
-          console.log('error', data.title, eror);
           if (ref.current) {
             ref.current.srcset = `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${data.url}&size=128`;
             ref.current.style.objectFit = 'none';
