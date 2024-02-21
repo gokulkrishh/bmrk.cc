@@ -68,7 +68,7 @@ export default function Features() {
 
   return (
     <div className="mx-auto my-8 mt-20 sm:mt-32 flex flex-col items-center">
-      <h2 className="mt-4 mb-1 text-3xl font-extrabold text-center tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
+      <h2 className="mt-4 mb-0 text-3xl font-extrabold text-center tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
         <span className="gradient-white mt-1 inline-flex">
           Organize, Discover, and Personalize.
         </span>

@@ -17,7 +17,7 @@ export default function Pricing() {
   return (
     <TooltipProvider>
       <div className="mx-auto my-8 mt-10 flex flex-col items-center">
-        <h2 className="mt-4 mb-1 text-3xl font-extrabold text-center tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
+        <h2 className="mt-4 mb-0 text-3xl font-extrabold text-center tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
           <span className="text-neutral-950 bg-clip-text mt-1 inline-flex">
             Our Pricing Plans
           </span>
@@ -88,9 +88,10 @@ export default function Pricing() {
               <div className="mt-6 mb-2">
                 <Link
                   href={urls.account}
-                  className="w-full rounded-xl flex text-lg items-center justify-center bg-primary text-white p-2 px-6"
+                  className="w-full group/free font-normal hover:bg-primary/90 rounded-xl flex text-lg items-center justify-center bg-primary text-white p-2 px-6"
                 >
-                  Choose Free <ArrowRight className="ml-1.5 w-4 h-4" />
+                  Choose Free{' '}
+                  <ArrowRight className="ml-1.5 w-4 h-4  transition-all group-hover/free:translate-x-0.5" />
                 </Link>
               </div>
             </div>
@@ -155,9 +156,10 @@ export default function Pricing() {
               <div className="mt-6 mb-2">
                 <Link
                   href={urls.settings}
-                  className="w-full rounded-xl flex text-lg items-center justify-center bg-blue-600 text-white p-2 px-6"
+                  className="w-full group/pro font-normal hover:bg-blue-600/90 rounded-xl flex text-lg items-center justify-center bg-blue-600 text-white p-2 px-6"
                 >
-                  Choose Pro <ArrowRight className="ml-1.5 w-4 h-4" />
+                  Choose Pro{' '}
+                  <ArrowRight className="ml-1.5 w-4 h-4 transition-all group-hover/pro:translate-x-0.5" />
                 </Link>
               </div>
             </div>

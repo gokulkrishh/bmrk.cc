@@ -61,7 +61,7 @@ export default async function Page() {
             </span>
           </h2>
           <p className="text-muted-foreground leading-7 mt-3 sm:text-lg mx-auto max-w-xl tracking-normal text-center">
-            Effortlessly Bookmark, Categorize, and Favorite your web sites.
+            Effortlessly Bookmark, Categorize, and Favorite your websites.
           </p>
           <Signup />
         </div>
@@ -69,7 +69,7 @@ export default async function Page() {
         <Features />
 
         <div className="mx-auto w-full h-full relative my-8 mt-10 sm:mt-20   flex flex-col items-center">
-          <h2 className="mt-4 mb-1 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
+          <h2 className="mt-4 mb-0 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
             <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent mt-1 inline-flex">
               What People
             </span>{' '}
@@ -77,7 +77,7 @@ export default async function Page() {
           </h2>
           <p className="mt-3 mb-0 text-muted-foreground leading-7 sm:text-lg w-[80%] text-center">
             Don{"'"}t just take our word for it. Here{"'"}s what people are
-            saying about Bookmark It on Twitter.
+            saying on Twitter.
           </p>
           <div className="flex overflow-hidden relative w-full">
             <div className="animate-marquee gap-6 hover:animation-pause items-center w-full max-w-[90vw] flex">
@@ -108,7 +108,7 @@ export default async function Page() {
             security. No ads, and no nonsense.
           </p>
           <Link
-            className="inline-flex items-center justify-center h-[40px] rounded-full px-4 py-2 text-sm font-medium text-slate-900 ring-1 ring-slate-900/10 bg-white hover:bg-gray-200"
+            className="inline-flex transition-colors items-center justify-center h-[40px] rounded-full px-4 py-2 text-sm font-medium text-slate-900 ring-1 ring-slate-900/10 bg-white hover:bg-gray-200"
             target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/gokulkrishh/bmrk.cc"

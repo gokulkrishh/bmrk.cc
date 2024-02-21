@@ -8,7 +8,7 @@ import { urls } from 'config';
 export default function Extensions() {
   return (
     <div className="mx-auto my-8 mt-10 flex flex-col items-center">
-      <h2 className="mt-4 mb-1 text-3xl font-extrabold text-center tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
+      <h2 className="mt-4 mb-0 text-3xl font-extrabold text-center tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
         <span className="bg-gradient-to-r from-neutral-950 to-neutral-950 bg-clip-text text-transparent mt-1 inline-flex">
           Browser Extensions
         </span>
