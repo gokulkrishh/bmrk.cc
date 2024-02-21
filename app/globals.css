@@ -123,7 +123,8 @@
   }
 }
 
-.homepage::after {
+.homepage::after,
+.homepage-account::after {
   background-image: url(/images/grid.svg);
   opacity: 0.03;
   position: fixed;
@@ -138,6 +139,10 @@
   height: 100dvh;
 }
 
+.homepage-account::after {
+  opacity: 0.03;
+}
+
 .gradient-white {
   width: 100%;
   background: linear-gradient(180deg, #555, #000 110%);
@@ -150,5 +155,10 @@
   .homepage::after {
     background-image: url(/images/grid-white.svg);
     opacity: 0.09;
+  }
+
+  .homepage-account::after {
+    background-image: url(/images/grid-white.svg);
+    opacity: 0.04;
   }
 }

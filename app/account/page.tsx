@@ -16,19 +16,17 @@ export const metadata = {
 
 export default async function Page() {
   return (
-    <div className="flex flex-col mx-auto w-full homepage">
+    <div className="flex flex-col mx-auto w-full homepage-account">
       <main className="flex max-w-md mx-auto flex-col justify-center h-full px-4 items-center">
         <div className="flex justify-center w-full">
-          <Link className="mb-2" href={urls.home}>
+          <Link className="mb-4" href={urls.home}>
             <Logo className="w-20 h-20" />
           </Link>
         </div>
         <div className="flex flex-col w-full justify-center items-center">
-          <h1 className="font-bold text-center tracking-tight text-2xl mb-1">
-            Bookmark It.
-          </h1>
+          <h1 className="font-bold text-center text-2xl mb-1">Bookmark It.</h1>
           <p className="text-muted-foreground w-full text-center medium mx-auto mt-1.5 tracking-normal mb-5">
-            Bookmark manager for the modern web.
+            Bookmark manager for the modern web
           </p>
           <AccountButton />
           <p className="text-muted-foreground text-xs mt-4 px-1 sm:px-2 max-w-[360px] w-full leading-5 text-left">
@@ -40,7 +38,7 @@ export default async function Page() {
             >
               Terms & Condition
             </Link>{' '}
-            &{' '}
+            and{' '}
             <Link
               className="underline hover:text-primary active:text-primary"
               href={`${urls.home}/privacy`}

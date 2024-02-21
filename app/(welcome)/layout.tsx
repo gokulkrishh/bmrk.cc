@@ -13,7 +13,7 @@ import { TooltipProvider } from 'components/ui/tooltip';
 
 import '../globals.css';
 
-export default async function RootLayout({
+export default async function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const [authUser, user] = await Promise.all([
