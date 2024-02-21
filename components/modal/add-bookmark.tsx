@@ -9,13 +9,14 @@ type AddBookmarkProps = {
 export default function AddBookmark({ open, onHide }: AddBookmarkProps) {
   return (
     <Dialog open={open} onOpenChange={() => onHide(false)}>
-      <DialogContent className="sm:max-w-md py-2 px-2 max-w-[calc(100%-6px)]">
+      <DialogContent className="sm:max-w-md py-2 pb-0 px-2 max-w-[calc(100%-6px)]">
         <AddBookmarkInput
-          btnClassname="mx-0.5 relative -bottom-1.5"
           onHide={() => {
             onHide(false);
           }}
+          isInModal
           className="!border-none px-0"
+          btnClassname="relative top-2.5"
         />
       </DialogContent>
     </Dialog>

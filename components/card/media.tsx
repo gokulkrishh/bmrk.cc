@@ -38,9 +38,10 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
         loading="lazy"
         placeholder="blur"
         onLoad={() => {}}
-        onError={() => {
-          if (ref.current?.src) {
-            ref.current.src = `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${data.url}&size=128`;
+        onError={(eror) => {
+          console.log('error', data.title, eror);
+          if (ref.current) {
+            ref.current.srcset = `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${data.url}&size=128`;
             ref.current.style.objectFit = 'none';
           }
         }}

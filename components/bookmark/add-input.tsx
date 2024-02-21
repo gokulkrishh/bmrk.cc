@@ -24,14 +24,14 @@ type AddBookmarkInputProps = {
   className?: string;
   btnClassname?: string;
   onHide?: () => void;
-  showUpload?: boolean;
+  isInModal?: boolean;
 };
 
 export default function AddBookmarkInput({
   className,
   btnClassname = '',
   onHide,
-  showUpload,
+  isInModal = false,
 }: AddBookmarkInputProps) {
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
@@ -98,7 +98,10 @@ export default function AddBookmarkInput({
         <div className="flex flex-col items-center justify-center w-full">
           <Input
             className={cn(
-              `mt-2 bg-transparent focus-visible:ring-0 w-full pt-0 px-2 pb-1 !outline-none !focus:outline-none !focus:border-none !border-none !shadow-none placeholder:text-stone-500 text-lg font-normal`,
+              `bg-transparent focus-visible:ring-0 mt-0 w-full pt-0 px-1 pb-1 !outline-none !focus:outline-none !focus:border-none !border-none !shadow-none placeholder:text-stone-500 text-lg font-normal`,
+              {
+                'mt-1.5': !isInModal,
+              },
             )}
             autoComplete="off"
             inputMode="text"
@@ -113,31 +116,30 @@ export default function AddBookmarkInput({
             data-1p-ignore
           />
         </div>
-        <div
-          className={cn(`flex mb-2 items-center justify-between`, btnClassname)}
-        >
-          <div>
-            {showUpload ? (
-              <button
-                aria-label="Upload bookmarks"
-                className="w-8 h-8 group transition-colors duration-200 rounded-full hover:bg-accent hover:border hover:border-input active:bg-accent -left-1.5 relative top-2 inline-flex items-center justify-center"
-                type="button"
-                onClick={() => setOpen(true)}
+        <div className={`flex mb-3 justify-between`}>
+          <button
+            aria-label="Upload bookmarks"
+            className={cn(
+              `w-8 h-8 group transition-colors duration-200 rounded-full hover:bg-accent hover:border hover:border-input active:bg-accent -left-1.5 relative top-2 inline-flex items-center justify-center`,
+              btnClassname,
+            )}
+            type="button"
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            <Tooltip delayDuration={500}>
+              <TooltipTrigger asChild>
+                <UploadIcon className="w-[19px] h-[19px] transition-colors duration-200 text-muted-foreground group-hover:text-primary group-active:text-primary" />
+              </TooltipTrigger>
+              <TooltipContent
+                side="bottom"
+                className="flex items-center mt-2 text-white dark:text-black"
               >
-                <Tooltip delayDuration={500}>
-                  <TooltipTrigger asChild>
-                    <UploadIcon className="w-[19px] h-[19px] transition-colors duration-200 text-muted-foreground group-hover:text-primary group-active:text-primary" />
-                  </TooltipTrigger>
-                  <TooltipContent
-                    side="bottom"
-                    className="flex items-center mt-2 text-white dark:text-black"
-                  >
-                    Upload bookmarks
-                  </TooltipContent>
-                </Tooltip>
-              </button>
-            ) : null}
-          </div>
+                Upload bookmarks
+              </TooltipContent>
+            </Tooltip>
+          </button>
 
           <button
             type="submit"

@@ -18,7 +18,7 @@ export default async function Page() {
   return (
     <>
       <Header />
-      <AddBookmarkInput btnClassname="mx-2" showUpload />
+      <AddBookmarkInput className="px-3" btnClassname="relative top-3" />
       <div className="h-full sm:border-r border-border pb-24">
         {bookmarks.length ? (
           <CardList bookmarks={bookmarks} tags={tags} />
