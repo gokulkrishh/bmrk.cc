@@ -19,7 +19,7 @@ const featuresList = [
   },
   {
     name: 'Seemless integration',
-    description: 'Easily import all your existing bookmarks from web browser.',
+    description: 'Easily import all your existing bookmarks.',
     videoUrl: `/demo/import.mp4`,
     screenshotUrl: `/demo/import.png`,
   },
@@ -38,7 +38,7 @@ const featuresList = [
   {
     name: 'One-Click Bookmarking',
     description:
-      'Bookmark any site with a One-Click and seamless browsing within your tab – try our Chrome extension!',
+      'Bookmark any site with One-Click and enjoy seamless browsing without leaving your tab – try our Chrome extension!',
     videoUrl: `/demo/bookmark-one-click.mp4`,
     screenshotUrl: `/demo/bookmark-one-click.png`,
   },

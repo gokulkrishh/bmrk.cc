@@ -9,12 +9,12 @@ import {
 
 const faqs = [
   {
-    question: 'Can I Import unlimited bookmarks?',
-    answer: `Yes, based on your plan, the number times you can import unlimited bookmarks varies, after that you can import bookmarks only within the limit of your plan.`,
+    question: 'Can I import unlimited bookmarks?',
+    answer: `Yes, the number of times you can import unlimited bookmarks varies depending on your plan. Afterwards, you can only import bookmarks within your plan's limit.`,
   },
   {
-    question: 'When does usage reset happens?',
-    answer: `Usage reset happens on same day every month once based current billings cycle. You can view the usage info under settings page.`,
+    question: 'When does the usage reset happen?',
+    answer: `Usage reset happens on the same day every month, once based on the current billing cycle. You can view the usage info under the settings page.`,
   },
   {
     question: 'Does deleting my bookmarks reduce usage count?',
