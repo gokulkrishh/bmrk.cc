@@ -25,10 +25,10 @@ export default async function Page() {
       </header>
       <div className="flex mt-10 flex-col items-center justify-center">
         <h1 className="sm:text-4xl text-2xl font-bold tracking-wide">
-          Import Bookmarks.
+          Import Bookmarks
         </h1>
         <p className="text-lg mt-4 text-muted-foreground text-center">
-          Seamlessly import your bookmarks from web browser.
+          Seamlessly import your existing bookmarks
         </p>
       </div>
       <UploadBookmarks />

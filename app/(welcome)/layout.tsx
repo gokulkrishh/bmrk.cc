@@ -35,7 +35,7 @@ export default async function Layout({
       >
         <AuthProvider authUser={authUser}>
           <UserProvider user={user}>
-            <div className="max-w-[600px] m-auto flex min-h-dvh w-full homepage">
+            <div className="max-w-[600px] m-auto flex min-h-dvh w-full homepage-account">
               <TooltipProvider delayDuration={200}>
                 <main className="flex flex-col w-full min-h-[100vh] ">
                   <NextTopLoader
