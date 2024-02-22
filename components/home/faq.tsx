@@ -9,6 +9,10 @@ import {
 
 const faqs = [
   {
+    question: 'How to export bookmarks from web browser?',
+    answer: `To export bookmarks from your web browser, access the bookmarks manager, usually found in the toolbar, then select the option to export bookmarks as HTML file.`,
+  },
+  {
     question: 'Can I import unlimited bookmarks?',
     answer: `Yes, the number of times you can import unlimited bookmarks varies depending on your plan. Afterwards, you can only import bookmarks within your plan's limit.`,
   },
