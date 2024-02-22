@@ -11,7 +11,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
     },
     {
-      url: `https://app.bmrk.cc`,
+      url: `https://bmrk.cc/terms`,
+      lastModified: new Date(),
+    },
+    {
+      url: `https://bmrk.cc/privacy`,
       lastModified: new Date(),
     },
   ];
