@@ -22,7 +22,7 @@ export default function TagBadge({
       {data?.bookmarks_tags?.map(({ tags: { id, name } }) => {
         return (
           <Link
-            className="border hover:bg-accent/80 dark:hover:bg-accent dark:active:bg-accent  transition-colors focus:bg-accent/80 rounded-full mr-2"
+            className="border hover:bg-accent/80 dark:hover:bg-accent dark:active:bg-accent transition-colors focus:bg-accent/80 rounded-full mr-2"
             key={id}
             href={`/tags/${name}`}
           >

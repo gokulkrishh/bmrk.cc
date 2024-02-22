@@ -31,15 +31,18 @@ export default async function Page() {
       <Header headerText="Tags" />
       <div className="min-h-dvh sm:border-r border-border pb-24">
         {tags.length ? (
-          <div className="flex flex-row gap-1.5 items-end px-4 max-h-[8rem] overflow-y-scroll scrollbar flex-wrap py-3 border-b border-border">
+          <div className="flex flex-row gap-2 items-end px-4 max-h-[8rem] overflow-y-scroll scrollbar flex-wrap py-3 border-b border-border">
             {tags.map(({ id, name }) => (
               <div key={id} className="inline-flex w-auto items-center">
                 <Link
-                  className="flex items-center w-auto"
+                  className="flex rounded-full items-center w-auto hover:bg-accent/80 dark:hover:bg-accent dark:active:bg-accent transition-colors focus:bg-accent/80"
                   href={`/tags/${name}`}
                 >
                   <Badge className="font-normal py-1.5" variant="secondary">
-                    {name} ({groupedByTagId[id]?.length ?? 0})
+                    {name}
+                    <span className="font-medium ml-1">
+                      ({groupedByTagId[id]?.length ?? 0})
+                    </span>
                   </Badge>
                 </Link>
                 <EditTag id={id} name={name} />

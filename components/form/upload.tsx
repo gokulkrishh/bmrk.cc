@@ -35,9 +35,18 @@ const helpLinks: { [key: string]: string } = {
 export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
   const { user, currentPlan, isProPlan } = useUser();
   const [loading, setLoading] = useState(false);
-  const [fileDetails, setFileDetails] = useState({ name: '', size: 0 });
+  const [fileDetails, setFileDetails] = useState({
+    name: '',
+    size: 0,
+    type: '',
+  });
   const hiddenInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
+  const allowedSize = 200;
+  const fileSize = Math.ceil(fileDetails.size / 1024);
+  const isFileAllowed = fileSize <= allowedSize;
+  const isFileTypeAllowed = fileDetails.type === 'text/html';
 
   const createBookmarks = async (content: string | ArrayBuffer | null) => {
     if (!content) {
@@ -73,7 +82,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
     if (files && files.length) {
       const file = files[0];
       if (file) {
-        setFileDetails({ name: file.name, size: file.size });
+        setFileDetails({ name: file.name, size: file.size, type: file.type });
       }
     }
   };
@@ -81,7 +90,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
   const onSubmit = () => {
     try {
       const files = hiddenInputRef.current?.files ?? [];
-      if (files && files.length && isFileAllowed) {
+      if (files && files.length && isFileAllowed && isFileTypeAllowed) {
         const file = files[0];
         if (file) {
           if (checkBookmarkLimit(user, [])) {
@@ -107,10 +116,6 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
     }
   };
 
-  const allowedSize = 200;
-  const fileSize = Math.ceil(fileDetails.size / 1024);
-  const isFileAllowed = fileSize <= allowedSize;
-
   return (
     <form
       className="flex flex-col w-full"
@@ -119,7 +124,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
         onSubmit();
       }}
     >
-      <div className="relative h-56 border border-neutral-300 dark:border-neutral-600 border-dashed rounded-lg">
+      <div className="relative h-56 flex flex-col justify-center border border-neutral-300 dark:border-neutral-600 border-dashed rounded-lg">
         <button
           className="absolute top-0 left-0 w-full h-full bg-transparent z-0 cursor-pointer focus:outline-none"
           type="button"
@@ -128,7 +133,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
           }}
         />
         <Input
-          className="opacity-0"
+          className="opacity-0 absolute inset-0 flex h-full w-full"
           type="file"
           accept=".html"
           ref={hiddenInputRef}
@@ -138,15 +143,24 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
           <ArrowUpCircle strokeWidth={1} className="w-10 h-10" />
           <p className="text-sm mt-2 font-medium">Click to browse</p>
         </div>
-        <div className="text-sm flex flex-col mt-2 text-muted-foreground text-center">
+        <div className="text-sm flex flex-col mt-2 text-muted-foreground text-center px-4">
           {fileDetails.name?.length ? (
             <>
-              <span className="text-primary">{fileDetails.name}</span>
-              <span className="text-xs mt-1.5 text-muted-foreground">
+              <span
+                className={cn(`text-primary`, {
+                  'text-red-600': !isFileTypeAllowed,
+                })}
+                title={fileDetails.name}
+              >
+                {isFileTypeAllowed
+                  ? fileDetails.name
+                  : `File type ${fileDetails.type} not allowed`}
+              </span>
+              <span className="text-xs mt-1.5 text-muted-foreground truncate">
                 File Size:{' '}
                 <span
                   className={cn(`font-medium`, {
-                    'text-red-600': !isFileAllowed,
+                    'text-red-600': !isFileAllowed || !isFileTypeAllowed,
                   })}
                 >
                   {!isFileAllowed ? 'Greater than 500 KB' : fileSize + ' KB'}
@@ -156,8 +170,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
           ) : (
             <>
               <p className="relative">
-                {' '}
-                Export your bookmarks from your browser{' '}
+                Drop your html file here or select a file
                 <Tooltip>
                   <TooltipTrigger
                     className="z-11 absolute -top-0.5 ml-1"
@@ -171,21 +184,21 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
                     <QuestionMarkCircledIcon className="w-3.5 h-3.5" />
                   </TooltipTrigger>
                   <TooltipContent className="text-white dark:text-black">
-                    Click to know how?
+                    Click me to know how to export your bookmarks
                   </TooltipContent>
                 </Tooltip>
               </p>
               <span className="text-xs mt-2 text-muted-foreground">
-                Max File Size: <span className="font-medium">500 KB</span>
+                Max file size: <span className="font-medium">500 KB</span>
               </span>
             </>
           )}
           {user.upload_count < currentPlan.limit.imports ? (
-            <p className="text-xs mt-4">
-              Unlimited bookmarks import:{' '}
-              <span className="text-green-500 relative inline-flex">
+            <p className="text-sm mt-4">
+              Import unlimited bookmarks up to{' '}
+              <span className="text-green-600 relative inline-flex">
                 {Math.abs(currentPlan.limit.imports - user.upload_count)} time
-                {currentPlan.limit.imports > 1 ? 's' : ''} available
+                {currentPlan.limit.imports > 1 ? 's' : ''}.
                 <PlanTooltip
                   className="relative -top-1 -left-1"
                   text={messages.importLimitWarning(currentPlan.limit.imports)}

@@ -38,7 +38,10 @@ export default function PlanTooltip({
           <QuestionMarkCircledIcon className="w-3.5 h-3.5 ml-1.5 cursor-pointer text-muted-foreground" />
         )}
       </TooltipTrigger>
-      <TooltipContent side="top" className="text-white dark:text-black">
+      <TooltipContent
+        side="top"
+        className="text-white dark:text-black max-w-[300px]"
+      >
         {text}
       </TooltipContent>
     </Tooltip>
