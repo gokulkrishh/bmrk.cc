@@ -26,7 +26,7 @@ create table users (
 alter table users
   enable row level security;
 
-create policy "Allow operations for authenticated users only" on users
+create policy "Allow operations for users table for authenticated users only" on users
   for all using (auth.uid () = id);
 
 -- This trigger automatically creates a user profile entry when a new user signs up via Supabase Auth.
@@ -62,7 +62,7 @@ create table
 alter table bookmarks
   enable row level security;
 
-create policy "Allow operations for authenticated users only" on bookmarks
+create policy "Allow operations for bookmarks table for authenticated users only" on bookmarks
   for all using (auth.uid () = user_id);
 
 -- Create a table for tags
@@ -80,7 +80,7 @@ create table
 alter table tags
   enable row level security;
 
-create policy "Allow operations for authenticated users only" on tags
+create policy "Allow operations for tags table for authenticated users only" on tags
   for all using (auth.uid () = user_id);
 
 -- Create a table for bookmarks tags for many to many relationship
@@ -97,7 +97,7 @@ create table
 alter table bookmarks_tags
   enable row level security;
 
-create policy "Allow operations for authenticated users only" on bookmarks_tags
+create policy "Allow operations for bookmarks_tags table for authenticated users only" on bookmarks_tags
   for all using (auth.uid () = user_id);
 
 -- Create a stored procudure to update usage stats and upload count in users table by using supabse.rpc
