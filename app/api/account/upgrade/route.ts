@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
           billing_cycle_start_date,
           plan_status,
           order_info,
+          upload_count: 0,
         })
         .eq('id', user.id);
 

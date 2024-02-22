@@ -1,9 +1,9 @@
 'use client';
 
-import { use, useState } from 'react';
+import { useState } from 'react';
 
 import { messages, plans } from 'config';
-import { ArrowRight, Info } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 import { CheckIcon, Logo } from 'components/icons';
 import Loader from 'components/loader';
@@ -36,7 +36,6 @@ export default function PaymentModal({
   onHide,
   onClick,
 }: PaymentModalType) {
-  const [loading, setLoading] = useState(false);
   const [type, setType] = useState('yearly');
   const planPrice =
     type === 'yearly' ? plans.pro.pricing.yearly : plans.pro.pricing.monthly;
@@ -120,7 +119,7 @@ export default function PaymentModal({
               }}
               className="items-center group/pay [text-transform:capitalize] w-full h-[40px] tracking-wide disabled:cursor-not-allowed disabled:border-border rounded-xl text-white border border-blue-600 focus:outline-0 text-sm flex justify-center py-2 px-3 transition-colors bg-blue-600 hover:bg-blue-700 disabled:bg-blue-700 active:bg-blue-700"
             >
-              {loading ? <Loader /> : null} Pay one-time
+              Pay one-time
               <ArrowRight className="ml-1.5 w-4 h-4 text-white shrink-0 transition-all group-hover/pay:translate-x-0.5" />
             </button>
           </DialogFooter>
