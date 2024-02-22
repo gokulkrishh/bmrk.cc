@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/private/',
+      disallow: '/api/',
     },
     sitemap: 'https://bmrk.cc/sitemap.xml',
   };
