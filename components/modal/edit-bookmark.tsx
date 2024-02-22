@@ -170,7 +170,7 @@ export default function EditBookmark({
     return (
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerContent className="px-4 pb-6">
-          <DrawerHeader className="text-left pt-2 px-0 font-medium">
+          <DrawerHeader className="text-left pt-2 px-0 font-semibold">
             Edit Bookmark
           </DrawerHeader>
           {Form()}
