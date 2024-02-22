@@ -15,7 +15,7 @@ export default function AddBookmark({ open, onHide }: AddBookmarkProps) {
             onHide(false);
           }}
           isInModal
-          className="!border-none px-0"
+          className="!border-none px-1"
           btnClassname="relative top-2.5"
         />
       </DialogContent>
