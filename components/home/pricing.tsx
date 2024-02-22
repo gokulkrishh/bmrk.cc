@@ -35,7 +35,7 @@ export default function Pricing() {
         Yearly
       </div> */}
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="min-w-[360px] rounded-2xl border border-input bg-white shadow-md text-left sm:mr-8 text-primary">
+          <div className="sm:min-w-[360px] max-w-full rounded-2xl border border-input bg-white shadow-md text-left sm:mr-8 text-primary">
             <div className="px-5 p-5">
               <h3 className="text-2xl font-semibold leading-6">Free</h3>
               <p className="text-muted-foreground mt-1.5">

@@ -68,8 +68,8 @@ export default async function Page() {
 
         <Features />
 
-        <div className="mx-auto w-full h-full relative my-8 mt-10 sm:mt-20   flex flex-col items-center">
-          <h2 className="mt-4 mb-0 text-3xl font-extrabold tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
+        <div className="mx-auto w-full h-full relative my-8 mt-10 sm:mt-20  flex flex-col items-center">
+          <h2 className="mt-4 mb-0 text-3xl font-extrabold tracking-[-0.03em] text-center text-primary sm:text-4xl sm:leading-[3.5rem]">
             <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent mt-1 inline-flex">
               What People
             </span>{' '}
