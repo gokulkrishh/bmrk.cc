@@ -61,7 +61,7 @@ export default function DeleteAccountModal({
               type="submit"
               disabled={email !== emailId || loading}
               className={cn(
-                'items-center w-[85px] disabled:text-white/60 disabled:cursor-not-allowed rounded-full focus:outline-0 disabled:bg-red-700/60 focus:bg-red-700/80 active:bg-red-700/80 border-0 text-sm flex justify-center py-2.5 px-4 text-white bg-red-700 hover:bg-red-700/80',
+                'items-center w-[85px] disabled:text-white disabled:cursor-not-allowed rounded-full focus:outline-0 disabled:bg-red-600/60 focus:bg-red-600/80 active:bg-red-600/80 border-0 text-sm flex justify-center py-2.5 px-4 text-white bg-red-600 hover:bg-red-600/80',
                 {
                   '!opacity-50 cursor-not-allowed': loading,
                 },
