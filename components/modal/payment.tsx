@@ -69,7 +69,7 @@ export default function PaymentModal({
               </SelectContent>
             </Select>
           </div>
-          <div className="flex flex-col sm:w-[390px] w-full items-star gap-3 justify-center my-4">
+          <div className="flex flex-col sm:w-[350px] w-full items-star gap-3 justify-center my-4">
             <div className="text-gray-700 gap-2 dark:text-white flex items-center font-medium">
               Pay {type === 'yearly' ? 'Yearly' : 'Monthly'}{' '}
               <Badge
@@ -117,7 +117,7 @@ export default function PaymentModal({
                 onHide(false);
                 onClick(type as PaymentType);
               }}
-              className="items-center group/pay [text-transform:capitalize] w-full h-[40px] tracking-wide disabled:cursor-not-allowed disabled:border-border rounded-xl text-white border border-blue-600 focus:outline-0 text-sm flex justify-center py-2 px-3 transition-colors bg-blue-600 hover:bg-blue-700 disabled:bg-blue-700 active:bg-blue-700"
+              className="items-center group/pay [text-transform:capitalize] w-full h-[40px] tracking-wide disabled:cursor-not-allowed disabled:border-border rounded-full text-white border border-blue-600 focus:outline-0 text-sm flex justify-center py-2 px-3 transition-colors bg-blue-600 hover:bg-blue-700 disabled:bg-blue-700 active:bg-blue-700"
             >
               Pay one-time
               <ArrowRight className="ml-1.5 w-4 h-4 text-white shrink-0 transition-all group-hover/pay:translate-x-0.5" />

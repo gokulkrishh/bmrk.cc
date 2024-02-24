@@ -30,8 +30,8 @@ export const plans: PlansType = {
     name: 'Free',
     limit: {
       bookmarks: 25,
-      tags: 5,
-      favorites: 5,
+      tags: 15,
+      favorites: 15,
       sessions: 0,
       imports: 1,
     },
