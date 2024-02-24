@@ -70,7 +70,7 @@ export default function PaymentModal({
             </Select>
           </div>
           <div className="flex flex-col sm:w-[350px] w-full items-star gap-3 justify-center my-4">
-            <div className="text-gray-700 gap-2 dark:text-white flex items-center font-medium">
+            <div className="text-gray-700 gap-2 dark:text-white text-primary flex items-center font-medium">
               Pay {type === 'yearly' ? 'Yearly' : 'Monthly'}{' '}
               <Badge
                 variant="outline"
@@ -79,7 +79,7 @@ export default function PaymentModal({
                 ${planPrice} yearly (no auto-renewal)
               </Badge>
             </div>
-            <div className="text-white mt-2 flex items-center font-normal">
+            <div className="dark:text-white text-primary mt-2 flex items-center font-normal">
               <CheckIcon className="text-green-500" />{' '}
               {plans.pro.limit.bookmarks} bookmarks/mo{' '}
               <PlanTooltip
@@ -87,7 +87,7 @@ export default function PaymentModal({
                 text={messages.usageLimitRenewal}
               />
             </div>
-            <div className="text-white flex items-center font-normal">
+            <div className="dark:text-white text-primary flex items-center font-normal">
               <CheckIcon className="text-green-500" />
               {plans.pro.limit.imports} times unlimited bookmarks import.
               <PlanTooltip
@@ -95,19 +95,19 @@ export default function PaymentModal({
                 text={messages.importLimitWarning(plans.pro.limit.imports)}
               />
             </div>
-            <div className="text-white flex items-center font-normal">
+            <div className="dark:text-white text-primary flex items-center font-normal">
               <CheckIcon className="text-green-500" /> {plans.pro.limit.tags}{' '}
               tags
             </div>
-            <div className="text-white flex items-center font-normal">
+            <div className="dark:text-white text-primary flex items-center font-normal">
               <CheckIcon className="text-green-500" />{' '}
               {plans.pro.limit.favorites} favorite bookmarks
             </div>
-            <div className="text-white flex items-center font-normal">
+            <div className="dark:text-white text-primary flex items-center font-normal">
               <CheckIcon className="text-green-500" /> Export bookmarks as
               CSV/HTML
             </div>
-            <div className="text-white flex items-center font-normal">
+            <div className="dark:text-white text-primary flex items-center font-normal">
               <CheckIcon className="text-green-500" /> Email Support
             </div>
           </div>
