@@ -81,9 +81,12 @@ export default async function Plans() {
             <PlanTooltip text="Number of bookmarks created on your current billing cycle." />
           </h3>
           <div className="flex w-full justify-between">
-            <span className="text-muted-foreground mb-2 text-sm">
-              {user.usage.bookmarks} of {bookmarks}
-              <span className="text-xs ml-1.5">({bookmarkPercentage}%)</span>
+            <span className="mb-2 text-sm tabular-nums">
+              {user.usage.bookmarks}
+              <span className="text-muted-foreground ml-1">/ {bookmarks}</span>
+              <span className="text-muted-foreground text-xs ml-1.5">
+                ({bookmarkPercentage}%)
+              </span>
             </span>
           </div>
           <Progress className="h-3 mt-1" value={bookmarkPercentage} />
@@ -94,9 +97,12 @@ export default async function Plans() {
               Tags <PlanTooltip text="Number of tags created." />
             </h3>
             <div className="flex w-full justify-between">
-              <span className="text-muted-foreground flex items-center mb-2 text-sm">
-                {user.usage.tags} of {tags}{' '}
-                <span className="text-xs ml-1.5">({tagPercentage}%)</span>
+              <span className="flex items-center mb-2 text-sm tabular-nums">
+                {user.usage.tags}
+                <span className="text-muted-foreground ml-1">/ {tags}</span>
+                <span className="text-muted-foreground text-xs ml-1.5">
+                  ({tagPercentage}%)
+                </span>
               </span>
             </div>
             <Progress className="h-3 mt-1" value={tagPercentage} />
@@ -107,9 +113,14 @@ export default async function Plans() {
               <PlanTooltip text="Number of bookmarks marked as favorite." />
             </h3>
             <div className="flex w-full justify-between">
-              <span className="text-muted-foreground mb-2 text-sm">
-                {user.usage.favorites} of {favorites}
-                <span className="text-xs ml-1.5">({favoritePercentage}%)</span>
+              <span className="mb-2 text-sm tabular-nums">
+                {user.usage.favorites}
+                <span className="text-muted-foreground ml-1">
+                  / {favorites}
+                </span>
+                <span className="text-muted-foreground  text-xs ml-1.5">
+                  ({favoritePercentage}%)
+                </span>
               </span>
             </div>
             <Progress className="h-3 mt-1" value={favoritePercentage} />
