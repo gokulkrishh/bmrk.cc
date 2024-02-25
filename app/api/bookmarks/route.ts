@@ -5,7 +5,6 @@ import { parse } from 'node-html-parser';
 
 import { createTagForImport } from 'app/actions/tags';
 import {
-  getUser,
   incrementBookmarkUsage,
   incrementTagUsage,
   incrementUploadCount,
