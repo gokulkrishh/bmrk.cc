@@ -5,7 +5,12 @@ import Link from 'next/link';
 
 import { urls } from 'config';
 
+import { useIntersectionObserver } from 'components/hooks/useInteraction';
+
 export default function Extensions() {
+  const { isIntersecting, ref } = useIntersectionObserver({
+    threshold: 0.5,
+  });
   return (
     <div className="mx-auto my-8 mt-10 flex flex-col items-center">
       <h2 className="mt-4 mb-0 text-3xl font-extrabold text-center tracking-[-0.03em] text-primary sm:text-4xl sm:leading-[3.5rem]">
@@ -49,7 +54,10 @@ export default function Extensions() {
             </Link>
           </div>
         </div>
-        <div className="flex bg-white overflow-hidden max-w-lg w-full  mt-4 rounded-xl border-2 border-input">
+        <div
+          ref={ref}
+          className="flex bg-white overflow-hidden max-w-lg w-full  mt-4 rounded-xl border-2 border-input"
+        >
           <video
             autoPlay={false}
             muted
@@ -57,7 +65,7 @@ export default function Extensions() {
             controls
             width="500"
             height="500"
-            src={`/demo/chrome-ext.mp4`}
+            src={`${isIntersecting ? `/demo/chrome-ext.mp4` : ''}`}
             poster={`/demo/chrome-ext.png`}
           >
             Your browser does not support the video tag.
