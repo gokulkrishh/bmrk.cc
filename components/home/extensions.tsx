@@ -51,13 +51,12 @@ export default function Extensions() {
         </div>
         <div className="flex bg-white overflow-hidden max-w-lg w-full  mt-4 rounded-xl border-2 border-input">
           <video
-            className="relative top-3 -left-3"
-            playsInline
-            autoPlay
+            autoPlay={false}
             muted
             loop
-            width="1200"
-            height="400"
+            controls
+            width="500"
+            height="500"
             src={`/demo/chrome-ext.mp4`}
             poster={`/demo/chrome-ext.png`}
           >

@@ -123,39 +123,35 @@ export default function TagList({ data, tags }: TagListProps) {
       <CommandList className="max-h-56 overflow-y-auto max-w-[250px] w-full">
         {tags.length ? (
           <CommandGroup heading="All tags">
-            {tags
-              .sort((a: Tag, b: Tag) => a?.name?.localeCompare(b?.name))
-              .map((tag: Tag) => {
-                const isChecked = Boolean(
-                  optimisticData?.bookmarks_tags?.find(
-                    ({ tags: { id } }) => id == tag.id,
-                  ),
-                );
-                return (
-                  <CommandItem
-                    disabled={loading}
-                    key={tag.id}
-                    onSelect={async () => {
-                      await onUpdate(tag, isChecked);
-                    }}
-                    value={tag.name}
+            {tags.map((tag: Tag) => {
+              const isChecked = Boolean(
+                optimisticData?.bookmarks_tags?.find(
+                  ({ tags: { id } }) => id == tag.id,
+                ),
+              );
+              return (
+                <CommandItem
+                  disabled={loading}
+                  key={tag.id}
+                  onSelect={async () => {
+                    await onUpdate(tag, isChecked);
+                  }}
+                  value={tag.name}
+                >
+                  <div
+                    className={cn(
+                      'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-blue-600 dark:border-white',
+                      isChecked
+                        ? 'bg-blue-700 dark:bg-white text-primary-foreground'
+                        : 'bg-background text-tranparent',
+                    )}
                   >
-                    <div
-                      className={cn(
-                        'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-blue-600 dark:border-white',
-                        isChecked
-                          ? 'bg-blue-700 dark:bg-white text-primary-foreground'
-                          : 'bg-background text-tranparent',
-                      )}
-                    >
-                      {isChecked ? (
-                        <CheckIcon className={cn('h-4 w-4')} />
-                      ) : null}
-                    </div>
-                    <span>{tag.name}</span>
-                  </CommandItem>
-                );
-              })}
+                    {isChecked ? <CheckIcon className={cn('h-4 w-4')} /> : null}
+                  </div>
+                  <span>{tag.name}</span>
+                </CommandItem>
+              );
+            })}
           </CommandGroup>
         ) : (
           <div className="text-sm flex py-4 justify-center">No tags.</div>
