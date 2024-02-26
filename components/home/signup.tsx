@@ -16,10 +16,10 @@ export default function Account() {
 
   useEffect(() => {
     async function getSession() {
-      const { data } = await supabase.auth.getSession();
-      const { session } = data;
-      if (session?.user) {
-        setUser(session.user);
+      const { data } = await supabase.auth.getUser();
+      const { user } = data;
+      if (user) {
+        setUser(user);
       }
     }
     getSession();

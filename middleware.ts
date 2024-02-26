@@ -57,10 +57,8 @@ export async function middleware(request: NextRequest) {
   );
 
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  const user = session?.user;
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (currentHost === 'app') {
     if (url.pathname === '/intro' || url.pathname === '/import') {

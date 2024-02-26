@@ -26,10 +26,10 @@ export default function HomeAccount() {
   useEffect(() => {
     async function getSession() {
       setLoading(true);
-      const { data } = await supabase.auth.getSession();
-      const { session } = data;
-      if (session?.user) {
-        setUser(session.user);
+      const { data } = await supabase.auth.getUser();
+      const { user } = data;
+      if (user) {
+        setUser(user);
       }
       setLoading(false);
     }

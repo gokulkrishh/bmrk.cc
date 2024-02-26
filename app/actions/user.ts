@@ -11,9 +11,9 @@ import { UserModified } from 'types/data';
 export const getAuthUser = async () => {
   const supabase = await createClient(['auth-user']);
   try {
-    const { data } = await supabase.auth.getSession();
-    const { session } = data;
-    return session?.user as AuthUser | undefined;
+    const { data } = await supabase.auth.getUser();
+    const { user } = data;
+    return user as AuthUser | undefined;
   } catch {
     return undefined;
   }

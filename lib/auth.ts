@@ -15,18 +15,18 @@ export const checkAuth = async (
   ) => Promise<Response | undefined>,
 ) => {
   const supabase = await createClient();
-  const { data } = await supabase.auth.getSession();
+  const { data } = await supabase.auth.getUser();
   const user = await getUser();
-  const { session } = data;
+  const { user: authUser } = data;
 
-  if (!session || !session?.user || !user) {
+  if (!authUser || !user) {
     return NextResponse.json(
       { message: 'Unauthorized request' },
       { status: 401 },
     );
   }
 
-  if (session?.user) {
-    return callback(session.user, user);
+  if (authUser) {
+    return callback(authUser, user);
   }
 };
