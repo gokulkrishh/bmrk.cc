@@ -58,19 +58,7 @@ export async function middleware(request: NextRequest) {
 
   const {
     data: { user },
-    error,
   } = await supabase.auth.getUser();
-
-  // To fix AuthApiError: Invalid Refresh Token: Refresh Token Not Found
-  if (error?.message.match('Invalid Refresh Token')) {
-    const allCookies = request.cookies.getAll();
-    allCookies.forEach((cookie) => {
-      // Delete all Supabase cookies starting with 'sb-'
-      if (cookie.name.startsWith('sb-')) {
-        response.cookies.delete(cookie.name);
-      }
-    });
-  }
 
   if (currentHost === 'app') {
     if (url.pathname === '/intro' || url.pathname === '/import') {

@@ -1,9 +1,10 @@
 import { cookies } from 'next/headers';
 
-import { createServerClient } from '@supabase/ssr';
+import { type CookieOptions, createServerClient } from '@supabase/ssr';
+
+import { Database } from 'types/supabase';
 
 import { createFetch } from './cache';
-import { Database } from 'types/supabase';
 
 export default function createClient(cacheTags: string[] = []) {
   const cookieStore = cookies();
@@ -15,6 +16,24 @@ export default function createClient(cacheTags: string[] = []) {
       cookies: {
         get(name: string) {
           return cookieStore.get(name)?.value;
+        },
+        set(name: string, value: string, options: CookieOptions) {
+          try {
+            cookieStore.set({ name, value, ...options });
+          } catch (error) {
+            // The `set` method was called from a Server Component.
+            // This can be ignored if you have middleware refreshing
+            // user sessions.
+          }
+        },
+        remove(name: string, options: CookieOptions) {
+          try {
+            cookieStore.set({ name, value: '', ...options });
+          } catch (error) {
+            // The `delete` method was called from a Server Component.
+            // This can be ignored if you have middleware refreshing
+            // user sessions.
+          }
         },
       },
       global: {

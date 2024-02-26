@@ -9,7 +9,7 @@ import createClient from 'lib/supabase/actions';
 import { UserModified } from 'types/data';
 
 export const getAuthUser = async () => {
-  const supabase = await createClient(['auth-user']);
+  const supabase = await createClient();
   try {
     const { data } = await supabase.auth.getUser();
     const { user } = data;
@@ -20,7 +20,7 @@ export const getAuthUser = async () => {
 };
 
 export const getUser = async () => {
-  const supabase = await createClient(['user']);
+  const supabase = await createClient();
   const user = await getAuthUser();
   if (!user) {
     return null;
