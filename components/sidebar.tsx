@@ -1,6 +1,12 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 import Link from 'next/link';
 
 import { Settings, StarIcon, Tags } from 'lucide-react';
+
+import { useMediaQuery } from 'components/hooks/useMediaQuery';
 
 import { cn } from 'lib/utils';
 
@@ -24,8 +30,56 @@ const SettingsLink = ({ className }: { className?: string }) => (
 );
 
 export default function Sidebar() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+
+  useEffect(() => {
+    let timeoutId: undefined | ReturnType<typeof setTimeout>;
+
+    const throttle = (cb: any, delay: number) => {
+      let wait = false;
+      return (...args: any[]) => {
+        if (wait) {
+          return;
+        }
+        cb(...args);
+        wait = true;
+        setTimeout(() => {
+          wait = false;
+        }, delay);
+      };
+    };
+
+    if (!isDesktop && ref.current !== null) {
+      let lastScrollTop: number;
+      const scrollHandler = () => {
+        console.log('scrolling');
+
+        if (ref.current) {
+          const scrollTop = document.documentElement.scrollTop;
+          if (scrollTop > lastScrollTop) {
+            ref.current.style.opacity = '0.3';
+          } else {
+            ref.current.style.opacity = '1';
+          }
+          lastScrollTop = scrollTop;
+        }
+      };
+      window.addEventListener('scroll', throttle(scrollHandler, 500));
+      return () => {
+        window.removeEventListener('scroll', throttle(scrollHandler, 500));
+      };
+    }
+  }, [isDesktop]);
+
   return (
-    <nav className="flex fixed sm:top-0 max-sm:bottom-0 max-sm:dark:bg-black max-sm:bg-background max-sm:border-t max-sm:h-[86px] z-10 justify-center sm:justify-between max-sm:px-4 sm:flex-col sm:min-h-dvh bottom-t sm:border-r sm:w-[70px] w-full border-border">
+    <nav
+      onClick={() => {
+        if (ref.current && !isDesktop) ref.current.style.opacity = '1';
+      }}
+      ref={ref}
+      className="flex transition-opacity duration-150 ease-out fixed sm:top-0 max-sm:bottom-0 max-sm:dark:bg-black max-sm:bg-background max-sm:border-t max-sm:h-[86px] z-10 justify-center sm:justify-between max-sm:px-4 sm:flex-col sm:min-h-dvh bottom-t sm:border-r sm:w-[70px] w-full border-border"
+    >
       <div className="flex sm:flex-col items-center max-sm:pb-[calc(env(safe-area-inset-bottom)/3)] max-sm:gap-6 gap-3 text-primary">
         <Link
           href="/"
