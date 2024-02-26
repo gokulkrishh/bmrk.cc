@@ -1,7 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-
 import { cn } from 'lib/utils';
 
 type CardFaviconProps = {
@@ -16,10 +14,11 @@ export default function CardFavicon({
   className,
 }: CardFaviconProps) {
   return (
-    <Image
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      loading="lazy"
       src={`https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${url}&size=128`}
       alt={title}
-      loading="lazy"
       width={16}
       height={16}
       className={cn('rounded-full w-4 h-4', className)}
