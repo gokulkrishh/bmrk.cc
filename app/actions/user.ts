@@ -1,5 +1,7 @@
 'use server';
 
+import { revalidateTag } from 'next/cache';
+
 import { User as AuthUser } from '@supabase/supabase-js';
 
 import createClient from 'lib/supabase/actions';
@@ -51,6 +53,26 @@ export const setWelcomePageAsVisited = async () => {
     }
   } catch {
     throw new Error("User hasn't been welcomed");
+  }
+};
+
+export const setImagePreview = async (preview_image: boolean) => {
+  const user = await getAuthUser();
+  if (!user) {
+    return new Error('User is not authenticated.');
+  }
+  const supabase = await createClient();
+  try {
+    const { error } = await supabase
+      .from('users')
+      .update({ preview_image })
+      .eq('id', user.id);
+    if (error) {
+      throw new Error("Couldn't turn on image preview");
+    }
+    revalidateTag('supabase');
+  } catch {
+    throw new Error("Couldn't turn on image preview");
   }
 };
 

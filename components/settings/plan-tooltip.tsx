@@ -3,10 +3,9 @@
 import { useState } from 'react';
 
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
-import { TooltipTrigger } from '@radix-ui/react-tooltip';
 import { Info } from 'lucide-react';
 
-import { Tooltip, TooltipContent } from 'components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
 import { cn } from 'lib/utils';
 

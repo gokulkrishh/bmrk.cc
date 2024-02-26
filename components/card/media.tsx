@@ -7,15 +7,18 @@ import Link from 'next/link';
 
 import humanizeUrl from 'humanize-url';
 
+import { useUser } from 'components/context/user';
+
 import { BookmarkModified } from 'types/data';
 
 // https://stackoverflow.com/a/33919020/266535
 const blurDataURL = `data:image/gif;base64,R0lGODlhAQABAPAAABsbG////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
 
 export default function CardMedia({ data }: { data: BookmarkModified }) {
+  const { user } = useUser();
   const ref = useRef<HTMLImageElement>(null);
 
-  if (!data.metadata?.image) {
+  if (!data.metadata?.image || !user.preview_image) {
     return null;
   }
 

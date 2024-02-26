@@ -136,6 +136,7 @@ export type Database = {
           id: string;
           order_info: Json | null;
           plan_status: string | null;
+          preview_image: boolean | null;
           updated_at: string | null;
           upload_count: number;
           usage: Json | null;
@@ -150,6 +151,7 @@ export type Database = {
           id: string;
           order_info?: Json | null;
           plan_status?: string | null;
+          preview_image?: boolean | null;
           updated_at?: string | null;
           upload_count?: number;
           usage?: Json | null;
@@ -164,6 +166,7 @@ export type Database = {
           id?: string;
           order_info?: Json | null;
           plan_status?: string | null;
+          preview_image?: boolean | null;
           updated_at?: string | null;
           upload_count?: number;
           usage?: Json | null;
@@ -204,19 +207,12 @@ export type Database = {
         };
         Returns: undefined;
       };
-      increment_upload_count:
-        | {
-            Args: {
-              user_id: number;
-            };
-            Returns: undefined;
-          }
-        | {
-            Args: {
-              user_id: string;
-            };
-            Returns: undefined;
-          };
+      increment_upload_count: {
+        Args: {
+          user_id: string;
+        };
+        Returns: undefined;
+      };
       update_user_bookmarks_usage: {
         Args: {
           user_id: string;

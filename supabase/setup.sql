@@ -15,6 +15,7 @@ create table users (
   updated_at timestamp with time zone default current_timestamp,
   created_at timestamp with time zone default current_timestamp,
   has_welcomed boolean default false,
+  preview_image boolean default false,
   upload_count int default 0 not null,
   usage jsonb default '{"bookmarks": 0, "tags": 0, "favorites": 0, "sessions": 0}',
   plan_status text default 'free',
