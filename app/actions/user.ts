@@ -4,7 +4,7 @@ import { revalidateTag } from 'next/cache';
 
 import { User as AuthUser } from '@supabase/supabase-js';
 
-import createClient from 'lib/supabase/actions';
+import createClient from 'lib/supabase/server';
 
 import { UserModified } from 'types/data';
 

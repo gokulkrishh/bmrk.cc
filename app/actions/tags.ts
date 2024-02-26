@@ -3,7 +3,7 @@
 import { revalidateTag } from 'next/cache';
 
 import { formatDate } from 'lib/date';
-import createClient from 'lib/supabase/actions';
+import createClient from 'lib/supabase/server';
 
 import { Bookmark, Tag, TagInsert, User } from 'types/data';
 

@@ -2,7 +2,7 @@
 
 import { revalidateTag } from 'next/cache';
 
-import createClient from 'lib/supabase/actions';
+import createClient from 'lib/supabase/server';
 
 import {
   Bookmark,

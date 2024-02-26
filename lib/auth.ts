@@ -6,7 +6,7 @@ import { getUser } from 'app/actions/user';
 
 import { UserModified } from 'types/data';
 
-import createClient from './supabase/actions';
+import createClient from './supabase/server';
 
 export const checkAuth = async (
   callback: (
