@@ -40,7 +40,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {bookmarks.length ? (
           <CardList bookmarks={filteredBookmarks} tags={tags} />
         ) : (
-          <EmptyTagState />
+          <EmptyTagState tagName={tagName} />
         )}
       </div>
     </>

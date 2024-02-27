@@ -175,10 +175,10 @@ export const EmptyBookmarkState = ({ className }: { className?: string }) => {
         />
       </svg>
       <h3 className="text-primary mt-3 tracking-wide font-medium">
-        No bookmarks yet
+        You don{"'"}t have any bookmarks yet!
       </h3>
-      <p className="mt-2 text-muted-foreground">
-        Click {"'"}Add{"'"} to save your bookmarks.
+      <p className="mt-2 text-muted-foreground text-center">
+        Just paste or type the url in input box above.
       </p>
     </div>
   );
@@ -189,9 +189,11 @@ export const EmptyFavoriteState = ({ className }: { className?: string }) => {
     <div className="flex flex-col h-80 justify-center items-center">
       <StarIcon className="text-primary w-8 h-8" />
       <h3 className="text-primary mt-3 tracking-wide font-medium">
-        No favorites yet!
+        You don{"'"}t have any favorites yet!
       </h3>
-      <p className="mt-2 text-muted-foreground">Add bookmarks as favorite.</p>
+      <p className="mt-2 text-muted-foreground text-center">
+        Add a favorite by clicking the star icon in the bookmark.
+      </p>
     </div>
   );
 };
@@ -201,23 +203,31 @@ export const EmptyTagsState = ({ className }: { className?: string }) => {
     <div className="flex flex-col h-80 justify-center items-center">
       <TagsIcon className="text-primary w-10 h-10" />
       <h3 className="text-primary mt-3 tracking-wide font-medium">
-        No bookmark with tags yet!
+        You don{"'"}t have bookmarks with tags yet!
       </h3>
-      <p className="mt-2 text-muted-foreground">
-        Create and Organize with tags.
+      <p className="mt-2 text-muted-foreground text-center">
+        Create tags and assign to organize your bookmarks.
       </p>
     </div>
   );
 };
 
-export const EmptyTagState = ({ className }: { className?: string }) => {
+export const EmptyTagState = ({
+  className,
+  tagName,
+}: {
+  className?: string;
+  tagName: string;
+}) => {
   return (
-    <div className="flex flex-col h-80 justify-center items-center">
+    <div className="flex flex-col h-80 justify-center items-center px-4 text-center">
       <TagIcon className="text-primary w-8 h-8" />
       <h3 className="text-primary mt-3 tracking-wide font-medium">
-        No bookmarks!
+        You don{"'"}t any bookmarks on {tagName} tag yet!
       </h3>
-      <p className="mt-2 text-muted-foreground">Add bookmarks to this tag.</p>
+      <p className="mt-2 text-muted-foreground text-center">
+        Assign this tag to your bookmarks to see it here.
+      </p>
     </div>
   );
 };
