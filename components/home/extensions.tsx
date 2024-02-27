@@ -65,7 +65,7 @@ export default function Extensions() {
             controls
             width="500"
             height="500"
-            src={`${isIntersecting ? `/demo/chrome-ext.mp4` : ''}`}
+            src={`${isIntersecting ? `/demo/chrome-ext.mp4` : null}`}
             poster={`/demo/chrome-ext.png`}
           >
             Your browser does not support the video tag.
