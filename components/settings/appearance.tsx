@@ -60,7 +60,7 @@ export default function Appearance() {
           <div>
             <h3 className="font-medium">Image Preview</h3>
             <div className="text-sm mt-1 text-muted-foreground max-sm:w-[90%]">
-              Turn on to view the image preview associated with each bookmark.
+              Turn on or off the image preview associated with each bookmark.
             </div>
           </div>
           <Switch
