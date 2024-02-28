@@ -158,7 +158,7 @@ export default function EditBookmark({
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={(hide) => setOpen(hide)}>
-        <DialogContent className="sm:max-w-md py-4 px-5 max-sm:w-[calc(100%-30px)]">
+        <DialogContent className="sm:max-w-md py-4 px-5 max-sm:w-[calc(100%-30px)] !top-[30%]">
           <DialogTitle className="text-lg font-medium">
             Edit Bookmark
           </DialogTitle>
