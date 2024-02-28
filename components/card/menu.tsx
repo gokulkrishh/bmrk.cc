@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import { UpdateIcon } from '@radix-ui/react-icons';
-import { Edit, Link, Share, StarIcon, Trash2Icon } from 'lucide-react';
+import { EyeClosedIcon, UpdateIcon } from '@radix-ui/react-icons';
+import { Edit, Eye, Link, Share, StarIcon, Trash2Icon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import {
@@ -68,6 +68,22 @@ export default function CardMenu({
       toast.success('Bookmark refreshed.');
     } catch {
       toast.error('Unable to refresh, try again.');
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
+  };
+
+  const hidePreview = async () => {
+    try {
+      setLoading(true);
+      const payload: BookmarkUpdate = {
+        preview_image: !Boolean(data.preview_image),
+      };
+      await refreshBookmark(id, payload);
+      onDone?.();
+    } catch {
+      toast.error('Unable to hide preview, try again.');
     } finally {
       setLoading(false);
       setOpen(false);
@@ -161,6 +177,19 @@ export default function CardMenu({
             }}
           >
             <UpdateIcon className="h-4 w-4  mr-2.5" /> Refresh
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            disabled={loading}
+            onClick={async () => {
+              await hidePreview();
+            }}
+          >
+            {data.preview_image ? (
+              <EyeClosedIcon className="h-4 w-4  mr-2.5" />
+            ) : (
+              <Eye className="h-4 w-4  mr-2.5" />
+            )}
+            {data.preview_image ? 'Hide' : 'Show'} preview
           </DropdownMenuItem>
           {isSearch ? (
             <DropdownMenuItem

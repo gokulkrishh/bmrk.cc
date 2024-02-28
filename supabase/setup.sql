@@ -56,6 +56,7 @@ create table
     is_fav boolean default false,
     created_at timestamp with time zone default current_timestamp not null,
     updated_at timestamp with time zone default current_timestamp not null
+    preview_image boolean default false,
   );
 
 -- Set up Row Level Security (RLS)

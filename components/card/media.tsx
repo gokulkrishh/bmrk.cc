@@ -18,7 +18,7 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
   const { user } = useUser();
   const ref = useRef<HTMLImageElement>(null);
 
-  if (!data.metadata?.image || !user.preview_image) {
+  if (!data.metadata?.image || !data.preview_image || !user.preview_image) {
     return null;
   }
 

@@ -16,6 +16,7 @@ export type Database = {
           id: number;
           is_fav: boolean | null;
           metadata: Json | null;
+          preview_image: boolean | null;
           title: string | null;
           updated_at: string;
           url: string;
@@ -27,6 +28,7 @@ export type Database = {
           id?: never;
           is_fav?: boolean | null;
           metadata?: Json | null;
+          preview_image?: boolean | null;
           title?: string | null;
           updated_at?: string;
           url: string;
@@ -38,6 +40,7 @@ export type Database = {
           id?: never;
           is_fav?: boolean | null;
           metadata?: Json | null;
+          preview_image?: boolean | null;
           title?: string | null;
           updated_at?: string;
           url?: string;
