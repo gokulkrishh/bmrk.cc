@@ -41,8 +41,9 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
         height={180}
         loading="lazy"
         placeholder="blur"
-        onError={(eror) => {
+        onError={() => {
           if (ref.current) {
+            ref.current.style.height = '160px';
             ref.current.srcset = `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${data.url}&size=128`;
             ref.current.style.objectFit = 'none';
           }
@@ -50,6 +51,7 @@ export default function CardMedia({ data }: { data: BookmarkModified }) {
         blurDataURL={blurDataURL}
         style={{
           maxWidth: '100%',
+          ...(data.metadata?.is_fallback ? { height: '160px' } : {}),
           objectFit: data.metadata?.is_fallback ? 'none' : 'cover',
         }}
       />
