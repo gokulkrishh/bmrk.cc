@@ -193,9 +193,9 @@ export default function CardMenu({
             }}
           >
             {data.preview_image ? (
-              <Eye className="h-4 w-4  mr-2.5" />
-            ) : (
               <EyeOff className="h-4 w-4  mr-2.5" />
+            ) : (
+              <Eye className="h-4 w-4  mr-2.5" />
             )}
             {data.preview_image ? 'Hide' : 'Show'} preview
           </DropdownMenuItem>
