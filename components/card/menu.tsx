@@ -2,8 +2,16 @@
 
 import { useState } from 'react';
 
-import { EyeClosedIcon, UpdateIcon } from '@radix-ui/react-icons';
-import { Edit, Eye, Link, Share, StarIcon, Trash2Icon } from 'lucide-react';
+import { UpdateIcon } from '@radix-ui/react-icons';
+import {
+  Edit,
+  Eye,
+  EyeOff,
+  Link,
+  Share,
+  StarIcon,
+  Trash2Icon,
+} from 'lucide-react';
 import { toast } from 'sonner';
 
 import {
@@ -185,9 +193,9 @@ export default function CardMenu({
             }}
           >
             {data.preview_image ? (
-              <EyeClosedIcon className="h-4 w-4  mr-2.5" />
-            ) : (
               <Eye className="h-4 w-4  mr-2.5" />
+            ) : (
+              <EyeOff className="h-4 w-4  mr-2.5" />
             )}
             {data.preview_image ? 'Hide' : 'Show'} preview
           </DropdownMenuItem>
