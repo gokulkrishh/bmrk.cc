@@ -2,7 +2,6 @@
 
 import { ClipboardEvent, SyntheticEvent, useState } from 'react';
 
-import { UploadIcon } from '@radix-ui/react-icons';
 import { Upload } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -108,7 +107,7 @@ export default function AddBookmarkInput({
             inputMode="text"
             type="url"
             pattern="https://.*|http://.*"
-            placeholder="Just paste or type here."
+            placeholder="Just paste or type url."
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setUrl(event.target.value);
             }}
