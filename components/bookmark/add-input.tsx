@@ -3,6 +3,7 @@
 import { ClipboardEvent, SyntheticEvent, useState } from 'react';
 
 import { UploadIcon } from '@radix-ui/react-icons';
+import { Upload } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { createBookmark } from 'app/actions/bookmarks';
@@ -130,7 +131,7 @@ export default function AddBookmarkInput({
           >
             <Tooltip delayDuration={500}>
               <TooltipTrigger asChild>
-                <UploadIcon className="w-[19px] h-[19px] transition-colors duration-200 text-muted-foreground group-hover:text-primary group-active:text-primary" />
+                <Upload className="w-[19px] h-[19px] transition-colors duration-200 text-muted-foreground group-hover:text-primary group-active:text-primary" />
               </TooltipTrigger>
               <TooltipContent
                 side="bottom"
