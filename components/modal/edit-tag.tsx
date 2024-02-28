@@ -93,7 +93,9 @@ export default function EditBookmark({ open, setOpen, id, name }: EditTag) {
 
   return (
     <Dialog open={open} onOpenChange={(hide) => setOpen(hide)}>
-      <DialogContent className="sm:max-w-md py-2 px-2">{Form()}</DialogContent>
+      <DialogContent className="sm:max-w-md py-2 px-2 max-w-[calc(100%-6px)] !top-[30%]">
+        {Form()}
+      </DialogContent>
     </Dialog>
   );
 }
