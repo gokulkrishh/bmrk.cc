@@ -34,7 +34,7 @@ export default function SearchIcon({ className }: { className?: string }) {
             aria-label="Search"
             onClick={() => setOpen(!open)}
             className={cn(
-              'p-2.5 inline-block rounded-xl transition-colors text-center hover:bg-accent group',
+              'p-2.5 inline-block rounded-xl transition-colors text-primary/50 text-center hover:text-primary hover:bg-accent group',
               className,
             )}
           >
