@@ -53,8 +53,6 @@ export default function Sidebar() {
     if (!isDesktop && ref.current !== null) {
       let lastScrollTop: number;
       const scrollHandler = () => {
-        console.log('scrolling');
-
         if (ref.current) {
           const scrollTop = document.documentElement.scrollTop;
           if (scrollTop > lastScrollTop) {

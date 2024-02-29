@@ -65,3 +65,10 @@ export const generateImportTagName = (): string => {
   const seconds = now.getSeconds().toString().padStart(2, '0');
   return `imported-on-${day}-${month}-${year}-${hours}-${minutes}-${seconds}`;
 };
+
+const unitlist = ['', 'K', 'M', 'G'];
+
+export const formatNumber = (value: number) => {
+  const formatter = Intl.NumberFormat('en', { notation: 'compact' });
+  return formatter.format(value);
+};
