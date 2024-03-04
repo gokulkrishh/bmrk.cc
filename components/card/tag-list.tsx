@@ -85,29 +85,55 @@ export default function TagList({ data, tags }: TagListProps) {
   const onUpdate = async (tag: Tag, isChecked: boolean) => {
     try {
       setLoading(true);
-      startTransition(() =>
-        setOptimisticData(
-          (prev) =>
-            ({
-              ...prev,
-              bookmarks_tags: [...prev.bookmarks_tags, { tags: { ...tag } }],
-            }) as BookmarkModified,
-        ),
-      );
+      if (isChecked) {
+        startTransition(() =>
+          setOptimisticData(
+            (prev) =>
+              ({
+                ...prev,
+                bookmarks_tags: prev.bookmarks_tags.filter(
+                  ({ tags: { id } }) => id !== tag.id,
+                ),
+              }) as BookmarkModified,
+          ),
+        );
+      } else {
+        startTransition(() =>
+          setOptimisticData(
+            (prev) =>
+              ({
+                ...prev,
+                bookmarks_tags: [...prev.bookmarks_tags, { tags: { ...tag } }],
+              }) as BookmarkModified,
+          ),
+        );
+      }
       await addTagToBookmark(data.id, tag.id, isChecked);
     } catch {
       toast.error(`Unable to add/remove a tag. Try again.`);
-      startTransition(() =>
-        setOptimisticData(
-          (prev) =>
-            ({
-              ...prev,
-              bookmarks_tags: prev.bookmarks_tags.filter(
-                ({ tags: { id } }) => id !== tag.id,
-              ),
-            }) as BookmarkModified,
-        ),
-      );
+      if (isChecked) {
+        startTransition(() =>
+          setOptimisticData(
+            (prev) =>
+              ({
+                ...prev,
+                bookmarks_tags: [...prev.bookmarks_tags, { tags: { ...tag } }],
+              }) as BookmarkModified,
+          ),
+        );
+      } else {
+        startTransition(() =>
+          setOptimisticData(
+            (prev) =>
+              ({
+                ...prev,
+                bookmarks_tags: prev.bookmarks_tags.filter(
+                  ({ tags: { id } }) => id !== tag.id,
+                ),
+              }) as BookmarkModified,
+          ),
+        );
+      }
     } finally {
       setLoading(false);
     }
