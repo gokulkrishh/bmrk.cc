@@ -27,7 +27,7 @@ const buildTagHierarchy = (bookmarks: BookmarkModified[]) => {
       if (!currentLevel[name]) {
         currentLevel[name] = { _links: [] };
       }
-      currentLevel = currentLevel[name];
+      currentLevel = currentLevel[name] as currentLevelType;
     });
     currentLevel?._links?.push({
       title: bookmark.title,
