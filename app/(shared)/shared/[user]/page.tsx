@@ -1,6 +1,5 @@
 // import { getSharedBookmarks } from 'app/actions/shared';
-import { checkSharedUser, getSharedBookmarksByTag } from 'app/actions/shared';
-
+// import { checkSharedUser, getSharedBookmarksByTag } from 'app/actions/shared';
 import Header from './header';
 
 const title = 'Bookmark it.';
