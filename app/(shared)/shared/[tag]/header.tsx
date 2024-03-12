@@ -6,9 +6,7 @@ import { Logo } from 'components/icons';
 
 import { formatDate } from 'lib/date';
 
-import BackLink from './backlink';
-
-export default function Header({ hasBackLink }: { hasBackLink?: boolean }) {
+export default function Header() {
   return (
     <div className="border-b border-l border-border sm:border-r w-full items-center flex justify-between">
       <div className="flex w-full items-center justify-between">
@@ -24,7 +22,6 @@ export default function Header({ hasBackLink }: { hasBackLink?: boolean }) {
             {formatDate(new Date())}
           </span>
         </h2>
-        {hasBackLink ? <BackLink /> : null}
       </div>
     </div>
   );

@@ -8,9 +8,12 @@ export const getSharedBookmarks = async (hash: string) => {
   const data = await fetch(
     `${urls.nonAppApi}/shared/bookmarks?hash=${encodeURIComponent(hash)}`,
     {
-      next: { revalidate: 300 },
+      cache: 'no-cache',
     },
   );
+  if (data.status === 429) {
+    throw new Error('Rate limit exceeded');
+  }
   if (!data.ok) {
     return [] as BookmarkModified[];
   }

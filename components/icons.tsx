@@ -1,4 +1,4 @@
-import { StarIcon, TagIcon, TagsIcon } from 'lucide-react';
+import { Hourglass, StarIcon, TagIcon, TagsIcon } from 'lucide-react';
 
 import { cn } from 'lib/utils';
 
@@ -257,6 +257,18 @@ export const EmptyBookmarkSharedState = ({
       </h3>
       <p className="mt-2 text-muted-foreground text-center">
         This tag doesn{"'"}t have any shared bookmarks yet!
+      </p>
+    </div>
+  );
+};
+
+export const RateLimitState = ({ className }: { className?: string }) => {
+  return (
+    <div className="flex flex-col h-80 justify-center items-center">
+      <Hourglass className="text-primary w-8 h-8" />
+      <h3 className="text-primary mt-3 tracking-wide font-medium">Hold on!</h3>
+      <p className="mt-2 text-muted-foreground text-center">
+        Wait for few seconds and refresh.
       </p>
     </div>
   );

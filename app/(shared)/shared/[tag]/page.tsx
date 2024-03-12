@@ -11,8 +11,9 @@ import { cn } from 'lib/utils';
 
 import { BookmarkModified } from 'types/data';
 
-import Header from '../header';
 import CardMedia from './card-media';
+import CardMenu from './card-menu';
+import Header from './header';
 
 const title = 'Bookmark it.';
 const description =
@@ -21,6 +22,8 @@ const description =
 type MetadataType = {
   params: { tag: string };
 };
+
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: MetadataType) {
   const { tag } = params;
@@ -38,7 +41,7 @@ export default async function Page({ params }: { params: { tag: string } }) {
 
   return (
     <>
-      <Header hasBackLink />
+      <Header />
       <div className="h-full sm:border-r border-border pb-24">
         {bookmarks?.length ? (
           <div className="h-full border-border pb-24">
@@ -67,6 +70,9 @@ export default async function Page({ params }: { params: { tag: string } }) {
                       <div className="w-full flex flex-col">
                         <div className="flex w-full justify-between">
                           <CardInfo data={bookmark} />
+                          <div className="pr-2">
+                            <CardMenu data={bookmark} />
+                          </div>
                         </div>
                         <CardMedia data={bookmark} />
                         <div className="justify-between mb-2 flex items-center w-full">
