@@ -25,13 +25,16 @@
     "@radix-ui/react-tooltip": "^1.0.7",
     "@supabase/ssr": "^0.1.0",
     "@supabase/supabase-js": "^2.39.7",
+    "@upstash/ratelimit": "^1.0.1",
+    "@vercel/kv": "^1.0.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cmdk": "1.0.0",
     "cssnano": "^6.1.0",
     "debounce": "^2.0.0",
     "humanize-url": "^3.0.0",
-    "lucide-react": "^0.352.0",
+    "lucide-react": "^0.354.0",
+    "nanoid": "^5.0.6",
     "next": "14.2.0-canary.11",
     "next-themes": "^0.2.1",
     "nextjs-toploader": "^1.6.6",
@@ -64,5 +67,5 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5.4.2"
   },
-  "packageManager": "pnpm@8.15.1"
+  "packageManager": "pnpm@8.15.4"
 }

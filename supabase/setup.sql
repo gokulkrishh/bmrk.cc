@@ -55,8 +55,8 @@ create table
     user_id uuid references users on delete cascade not null,
     is_fav boolean default false,
     created_at timestamp with time zone default current_timestamp not null,
-    updated_at timestamp with time zone default current_timestamp not null
-    preview_image boolean default false,
+    updated_at timestamp with time zone default current_timestamp not null,
+    preview_image boolean default true
   );
 
 -- Set up Row Level Security (RLS)
@@ -74,7 +74,9 @@ create table
     name text not null,
     user_id uuid references users on delete cascade not null,
     created_at timestamp with time zone default current_timestamp not null,
-    updated_at timestamp with time zone default current_timestamp not null
+    updated_at timestamp with time zone default current_timestamp not null,
+    public boolean default false,
+    public_hash text default null
   );
 
 -- Set up Row Level Security (RLS)
@@ -149,7 +151,6 @@ create trigger
 on bookmarks
 for each row execute
   procedure moddatetime(updated_at);
-
 
 create trigger
   handle_updated_at_users before update
