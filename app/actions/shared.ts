@@ -1,5 +1,7 @@
 'use server';
 
+import { notFound } from 'next/navigation';
+
 import { urls } from 'config';
 
 import { BookmarkModified, Tag } from 'types/data';
@@ -12,7 +14,10 @@ export const getSharedBookmarks = async (hash: string) => {
     },
   );
   if (data.status === 429) {
-    throw new Error('Rate limit exceeded');
+    throw new Error('ratelimitexceeded');
+  }
+  if (data.status === 404) {
+    notFound();
   }
   if (!data.ok) {
     return [] as BookmarkModified[];

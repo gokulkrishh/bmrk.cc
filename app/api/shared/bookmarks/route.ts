@@ -37,6 +37,10 @@ export async function GET(request: NextRequest) {
         .eq('public_hash', parsedHash)
         .returns<Tag[]>();
 
+      if (!tagData || tagData?.length === 0) {
+        return new Response('Not found', { status: 404 });
+      }
+
       if (tagError) {
         throw new Error('Failed to fetch data');
       }
@@ -54,6 +58,10 @@ export async function GET(request: NextRequest) {
         throw new Error('Failed to fetch data');
       }
 
+      if (!bookmarksTags || bookmarksTags?.length === 0) {
+        return new Response('Not found', { status: 404 });
+      }
+
       const bookmarkIds = bookmarksTags.map((bookmark) => bookmark.bookmark_id);
 
       const { data, error } = await supabaseAdmin
@@ -69,6 +77,10 @@ export async function GET(request: NextRequest) {
 
       if (error) {
         throw new Error('Failed to fetch data');
+      }
+
+      if (!data || data?.length === 0) {
+        return new Response('Not found', { status: 404 });
       }
 
       return Response.json(data, { status: 200 });

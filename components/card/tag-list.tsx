@@ -180,7 +180,7 @@ export default function TagList({ data, tags }: TagListProps) {
                     <span>{tag.name}</span>
                     {tag.public ? (
                       <>
-                        <PublicIcon className="h-3 w-3" />
+                        <PublicIcon className="h-4 w-4" />
                         <span className="sr-only">Shared publically</span>
                       </>
                     ) : null}
