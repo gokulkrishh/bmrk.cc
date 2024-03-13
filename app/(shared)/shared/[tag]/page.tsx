@@ -42,7 +42,7 @@ export default async function Page({ params }: { params: { tag: string } }) {
   return (
     <>
       <Header />
-      <div className="h-full sm:border-r border-border pb-24">
+      <div className="h-full sm:border-r sm:border-border pb-24">
         {bookmarks?.length ? (
           <div className="h-full border-border pb-24">
             {Object.keys(data).map((dateKey: string) => {

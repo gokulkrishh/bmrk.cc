@@ -8,7 +8,7 @@ import { formatDate } from 'lib/date';
 
 export default function Header() {
   return (
-    <div className="border-b border-l border-border sm:border-r w-full items-center flex justify-between">
+    <div className="border-b sm:border-l border-border sm:border-r w-full items-center flex justify-between">
       <div className="flex w-full items-center justify-between">
         <Link href={urls.app} className="active:opacity-85 ml-2 sm:hidden">
           <Logo className="w-[36px] h-[36px]" />

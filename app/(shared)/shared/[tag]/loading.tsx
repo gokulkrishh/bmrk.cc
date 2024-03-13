@@ -6,11 +6,11 @@ export default function Loading() {
   return (
     <>
       <Header />
-      <div className="min-h-dvh border-r border-l border-border">
+      <div className="min-h-dvh sm:border-r sm:border-l sm:border-border">
         <CardSkeleton />
         <CardSkeleton />
         <CardSkeleton />
-        <CardSkeleton className="border-b border-border" />
+        <CardSkeleton className="sm:border-b border-border" />
       </div>
     </>
   );
