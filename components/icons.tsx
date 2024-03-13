@@ -298,20 +298,9 @@ export const SharePublicIcon = ({ className }: { className?: string }) => (
 export const NotFoundIcon = ({ className }: { className?: string }) => {
   return (
     <div className="flex flex-col h-80 justify-center items-center">
-      <svg
-        className={cn('text-primary', className)}
-        width="20"
-        height="26"
-        viewBox="0 0 20 26"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0 20.2782V6.20199C0 3.27834 0 1.81652 0.90826 0.90826C1.81652 0 3.27834 0 6.20198 0H13.798C16.7217 0 18.1835 0 19.0917 0.90826C20 1.81652 20 3.27834 20 6.20199V20.247C20 22.6326 20 23.8254 19.2252 24.2731C18.4504 24.7207 17.417 24.125 15.3503 22.9336L15.3503 22.9336L11.5982 20.7706C10.8465 20.3373 10.4707 20.1207 10.0579 20.1196C9.64508 20.1186 9.26816 20.3333 8.51433 20.7628L8.51432 20.7629L4.63614 22.9725C2.57394 24.1475 1.54284 24.735 0.771421 24.2867C0 23.8383 0 22.6516 0 20.2782Z"
-          fill="currentColor"
-        />
-      </svg>
-      <h3 className="text-primary mt-3 tracking-wide font-medium">Not Found</h3>
+      <h3 className="text-primary mt-3 tracking-wide text-xl font-medium">
+        404
+      </h3>
       <p className="mt-2 text-muted-foreground text-center">
         Could not find requested resource.
       </p>

@@ -178,7 +178,7 @@ export default function TagList({ data, tags }: TagListProps) {
                   </div>
                   <div className="flex w-full items-center justify-between">
                     <span>{tag.name}</span>
-                    {tag.public ? (
+                    {tag.shared ? (
                       <>
                         <PublicIcon className="h-4 w-4" />
                         <span className="sr-only">Shared publically</span>

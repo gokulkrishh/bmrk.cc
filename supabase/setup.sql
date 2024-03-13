@@ -75,8 +75,8 @@ create table
     user_id uuid references users on delete cascade not null,
     created_at timestamp with time zone default current_timestamp not null,
     updated_at timestamp with time zone default current_timestamp not null,
-    public boolean default false,
-    public_hash text default null
+    shared boolean default false,
+    shared_hash text default null
   );
 
 -- Set up Row Level Security (RLS)

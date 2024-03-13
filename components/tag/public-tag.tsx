@@ -5,11 +5,11 @@ import { PublicIcon } from 'components/icons';
 import { Tag } from 'types/data';
 
 type PublicTagProps = {
-  isPublic: Tag['public'];
+  shared: Tag['shared'];
 };
 
-export default function PublicTag({ isPublic }: PublicTagProps) {
-  if (!isPublic) return null;
+export default function PublicTag({ shared }: PublicTagProps) {
+  if (!shared) return null;
 
   return (
     <>

@@ -41,11 +41,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <>
       <Header
         icon={
-          tag?.public ? (
+          tag?.shared ? (
             <PublicIcon className="h-3 w-3 relative -top-0.5" />
           ) : null
         }
-        shareIcon={tag?.public ? <ShareIcon tag={tag} /> : null}
+        shareIcon={<ShareIcon tag={tag} />}
         headerText={`Tag: ${tagName}`}
       />
       <div className="h-full sm:border-r border-border pb-24">

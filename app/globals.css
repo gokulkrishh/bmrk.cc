@@ -151,6 +151,11 @@
   -webkit-text-fill-color: transparent;
 }
 
+.blur-text {
+  color: transparent;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
 .dark {
   .homepage::after {
     background-image: url(/images/grid-white.svg);
@@ -160,5 +165,10 @@
   .homepage-account::after {
     background-image: url(/images/grid-white.svg);
     opacity: 0.04;
+  }
+
+  .blur-text {
+    color: transparent;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   }
 }

@@ -33,7 +33,7 @@ export default async function Page() {
       <div className="min-h-dvh sm:border-r border-border pb-24">
         {tags.length ? (
           <div className="flex flex-row gap-2 items-end px-4 max-h-[8rem] overflow-y-scroll scrollbar flex-wrap py-3 border-b border-border">
-            {tags.map(({ id, name, public: isPublic }) => (
+            {tags.map(({ id, name, shared }) => (
               <div key={id} className="inline-flex w-auto items-center">
                 <Link
                   className="flex rounded-full items-center w-auto hover:bg-accent/80 dark:hover:bg-accent dark:active:bg-accent transition-colors focus:bg-accent/80"
@@ -46,7 +46,7 @@ export default async function Page() {
                     </span>
                   </Badge>
                 </Link>
-                <PublicTag isPublic={isPublic} />
+                <PublicTag shared={shared} />
                 <EditTag id={id} name={name} />
                 <DeleteTag id={id} />
               </div>

@@ -33,8 +33,8 @@ export async function GET(request: NextRequest) {
       const { data: tagData, error: tagError } = await supabaseAdmin
         .from('tags')
         .select()
-        .eq('public', true)
-        .eq('public_hash', parsedHash)
+        .eq('shared', true)
+        .eq('shared_hash', parsedHash)
         .returns<Tag[]>();
 
       if (!tagData || tagData?.length === 0) {

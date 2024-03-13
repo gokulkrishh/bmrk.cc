@@ -5,7 +5,7 @@ import Header from './header';
 export default function Loading() {
   return (
     <>
-      <Header />
+      <Header loading headerText={`Tag:`} />
       <div className="min-h-dvh sm:border-r sm:border-l sm:border-border">
         <CardSkeleton />
         <CardSkeleton />

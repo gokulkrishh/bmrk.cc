@@ -101,8 +101,8 @@ export type Database = {
           created_at: string;
           id: number;
           name: string;
-          public: boolean | null;
-          public_hash: string | null;
+          shared: boolean | null;
+          shared_hash: string | null;
           updated_at: string;
           user_id: string;
         };
@@ -110,8 +110,8 @@ export type Database = {
           created_at?: string;
           id?: never;
           name: string;
-          public?: boolean | null;
-          public_hash?: string | null;
+          shared?: boolean | null;
+          shared_hash?: string | null;
           updated_at?: string;
           user_id: string;
         };
@@ -119,8 +119,8 @@ export type Database = {
           created_at?: string;
           id?: never;
           name?: string;
-          public?: boolean | null;
-          public_hash?: string | null;
+          shared?: boolean | null;
+          shared_hash?: string | null;
           updated_at?: string;
           user_id?: string;
         };
