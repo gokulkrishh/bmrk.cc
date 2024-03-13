@@ -10,11 +10,11 @@ import ShareIcon from './share-icon';
 export default function Header({
   headerText,
   icon: Icon = null,
-  showShare = false,
+  shareIcon: ShareIcon = null,
 }: {
   headerText?: string;
   icon?: React.ReactNode;
-  showShare?: boolean;
+  shareIcon?: React.ReactNode;
 }) {
   return (
     <div className="border-b border-border sm:border-r w-full items-center flex justify-between">
@@ -34,8 +34,10 @@ export default function Header({
           </span>
         </h2>
       </div>
-      {showShare ? <ShareIcon /> : null}
-      <Profile className="max-sm:flex hidden mr-3" />
+      <div className="flex items-center">
+        {ShareIcon}
+        <Profile className="max-sm:flex hidden mr-3" />
+      </div>
     </div>
   );
 }

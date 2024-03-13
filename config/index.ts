@@ -17,6 +17,7 @@ export const urls = {
   app: `${protocol}app.${home}`,
   api: `${protocol}app.${home}/api`,
   nonAppApi: `${protocol}${home}/api`,
+  shared: `${protocol}${home}/shared`,
   twitter: 'https://twitter.com/gokul_i',
   github: 'https://github.com/gokulkrishh/bmrk.cc',
   extensions: {

@@ -4,8 +4,11 @@ import { getTags } from 'app/actions/tags';
 import CardList from 'components/card-list';
 import Header from 'components/header';
 import { EmptyTagState, PublicIcon } from 'components/icons';
+import ShareIcon from 'components/share-icon';
 
 import { filterByTagName } from 'lib/data';
+
+import { Tag } from 'types/data';
 
 const title = 'Bookmark it.';
 const description =
@@ -32,17 +35,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
   ]);
 
   const filteredBookmarks = filterByTagName(bookmarks, tagName);
-  const currentTag = tags.find((tag) => tag.name === tagName);
+  const tag = tags.find((tag) => tag.name === tagName) || null;
 
   return (
     <>
       <Header
         icon={
-          currentTag?.public ? (
+          tag?.public ? (
             <PublicIcon className="h-3 w-3 relative -top-0.5" />
           ) : null
         }
-        showShare
+        shareIcon={tag?.public ? <ShareIcon tag={tag} /> : null}
         headerText={`Tag: ${tagName}`}
       />
       <div className="h-full sm:border-r border-border pb-24">

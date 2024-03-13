@@ -3,7 +3,7 @@ import { getSharedBookmarks } from 'app/actions/shared';
 import CardDate from 'components/card/date';
 import CardInfo from 'components/card/info';
 import CardTimeline from 'components/card/timeline';
-import { EmptyBookmarkSharedState } from 'components/icons';
+import { EmptyBookmarkSharedState, PublicIcon } from 'components/icons';
 import { Badge } from 'components/ui/badge';
 
 import { groupByDate } from 'lib/data';
@@ -38,10 +38,14 @@ export default async function Page({ params }: { params: { tag: string } }) {
   const hash = decodeURIComponent(tag);
   const bookmarks = await getSharedBookmarks(hash);
   const data = groupByDate(bookmarks);
+  const tagName = bookmarks[0].bookmarks_tags?.map((tag) => tag.tags.name);
 
   return (
     <>
-      <Header />
+      <Header
+        headerText={`Tag: ${tagName}`}
+        icon={<PublicIcon className="h-3 w-3 relative -top-0.5" />}
+      />
       <div className="h-full sm:border-r sm:border-border pb-24">
         {bookmarks?.length ? (
           <div className="h-full border-border pb-24">

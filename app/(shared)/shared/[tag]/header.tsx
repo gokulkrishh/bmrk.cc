@@ -6,7 +6,13 @@ import { Logo } from 'components/icons';
 
 import { formatDate } from 'lib/date';
 
-export default function Header() {
+export default function Header({
+  headerText = 'Bookmark It.',
+  icon: Icon = null,
+}: {
+  headerText?: string;
+  icon?: React.ReactNode;
+}) {
   return (
     <div className="border-b sm:border-l border-border sm:border-r w-full items-center flex justify-between">
       <div className="flex w-full items-center justify-between">
@@ -14,7 +20,9 @@ export default function Header() {
           <Logo className="w-[36px] h-[36px]" />
         </Link>
         <h2 className="w-full font-medium flex flex-col p-3 tracking-wide">
-          Bookmark It.
+          <span className="flex items-center gap-1">
+            {headerText} {Icon}
+          </span>
           <span
             className="text-xs mt-0.5 font-normal text-muted-foreground"
             suppressHydrationWarning
