@@ -141,6 +141,15 @@ BEGIN
 END;
 $$ language plpgsql;
 
+create
+or replace function update_user_bookmarks_usage (user_id uuid, count int) returns void as $$
+BEGIN
+    UPDATE users
+    SET usage = usage || jsonb_build_object('bookmarks', count)
+    WHERE id = user_id;
+END;
+$$ language plpgsql;
+
 -- Create a moddtime extension to automatically update the updated_at column
 create extension if not exists moddatetime schema extensions;
 
