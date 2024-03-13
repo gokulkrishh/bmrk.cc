@@ -24,7 +24,7 @@ export const getTags = async () => {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from('tags')
-    .select('id, name')
+    .select('id, name, public')
     .eq('user_id', user.id)
     .order('name', { ascending: true })
     .returns<Tag[]>();

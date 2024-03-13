@@ -3,7 +3,7 @@ import { getTags } from 'app/actions/tags';
 
 import CardList from 'components/card-list';
 import Header from 'components/header';
-import { EmptyTagState } from 'components/icons';
+import { EmptyTagState, PublicIcon } from 'components/icons';
 
 import { filterByTagName } from 'lib/data';
 
@@ -32,10 +32,19 @@ export default async function Page({ params }: { params: { slug: string } }) {
   ]);
 
   const filteredBookmarks = filterByTagName(bookmarks, tagName);
+  const currentTag = tags.find((tag) => tag.name === tagName);
 
   return (
     <>
-      <Header headerText={`Tag: ${tagName}`} />
+      <Header
+        icon={
+          currentTag?.public ? (
+            <PublicIcon className="h-3 w-3 relative -top-0.5" />
+          ) : null
+        }
+        showShare
+        headerText={`Tag: ${tagName}`}
+      />
       <div className="h-full sm:border-r border-border pb-24">
         {bookmarks.length ? (
           <CardList bookmarks={filteredBookmarks} tags={tags} />
