@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { Link1Icon } from '@radix-ui/react-icons';
 import { urls } from 'config';
 import { Link } from 'lucide-react';
 import { toast } from 'sonner';
@@ -80,7 +81,7 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
                   await navigator.clipboard.writeText(url);
                   setTimeout(() => setIsCopied(false), 3000);
                 }}
-                className="items-center w-32 h-[40px] tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 px-3 transition-colors bg-primary-foreground hover:bg-accent"
+                className="items-center shrink-0 w-24 h-[40px] tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 px-1 transition-colors bg-primary-foreground hover:bg-accent"
               >
                 {isCopied ? 'Copied' : 'Copy link'}
               </button>

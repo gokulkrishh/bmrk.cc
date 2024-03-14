@@ -36,7 +36,7 @@ export default function ShareIcon({
               navigator.clipboard.writeText(
                 `${urls.shared}/${tag.shared_hash}`,
               );
-              toast.success('Link copied to clipboard');
+              toast.success('Sharable link copied to clipboard');
             }}
             className="rounded-full flex w-8 h-8 hover:bg-accent active:bg-accent items-center justify-center"
           >
