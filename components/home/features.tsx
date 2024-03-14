@@ -36,6 +36,12 @@ const featuresList = [
     screenshotUrl: `/demo/fav.png`,
   },
   {
+    name: 'Share your bookmarks collection',
+    description: 'Share your bookmarks collection with just one-click.',
+    videoUrl: `/demo/share.mp4`,
+    screenshotUrl: `/demo/share.png`,
+  },
+  {
     name: 'One-Click Bookmarking',
     description:
       'Bookmark any site with One-Click and enjoy seamless browsing without leaving your tab – try our Chrome extension!',
