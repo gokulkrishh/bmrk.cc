@@ -55,6 +55,12 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
       } else {
         await decrementShareCount();
       }
+      if (data?.shared) {
+        await navigator.clipboard.writeText(
+          `${urls.shared}/${data.shared_hash ?? ''}`,
+        );
+        toast.success('Sharable link is copied to clipboard');
+      }
       setRandomHash(data?.shared_hash as string);
       setShared(data?.shared as boolean);
     } catch {
@@ -72,7 +78,7 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
             Share
           </DialogTitle>
           <p className="text-sm text-muted-foreground w-[90%] text-left">
-            Share your bookmarks to anyone with in one-click
+            Share your bookmarks to anyone with one-click
           </p>
         </DialogHeader>
         <div className="flex w-full flex-col">
@@ -90,7 +96,7 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
                 onClick={async () => {
                   setIsCopied(true);
                   await navigator.clipboard.writeText(url);
-                  toast.success('Sharable link copied to clipboard');
+                  toast.success('Sharable link is copied to clipboard');
                   setTimeout(() => setIsCopied(false), 3000);
                 }}
                 className="items-center shrink-0 w-24 h-[40px] tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 text-sm flex justify-center py-2 px-1 transition-colors bg-accent hover:bg-accent/60 active:bg-accent/60"
