@@ -13,7 +13,11 @@ const dateOptions = {
   year: 'numeric',
 } as Intl.DateTimeFormatOptions;
 
-export default function ExportButton({ data }: { data: BookmarkModified[] }) {
+export default function ExportButton({
+  data,
+}: {
+  data: BookmarkModified[] | undefined;
+}) {
   if (!data?.length) {
     return null;
   }

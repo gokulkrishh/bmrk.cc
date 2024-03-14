@@ -20,7 +20,7 @@ export default function Header({
   headerText?: string;
   icon?: React.ReactNode;
   loading?: boolean;
-  data: BookmarkModified[];
+  data?: BookmarkModified[];
 }) {
   return (
     <div className="border-b sm:border-l border-border sm:border-r w-full items-center flex justify-between">
