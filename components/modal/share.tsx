@@ -66,7 +66,7 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
 
   return (
     <Dialog open={open} onOpenChange={(hide) => onHide?.(hide)}>
-      <DialogContent className="max-w-md w-[calc(200%-20px)] px-4 bg-background rounded-xl">
+      <DialogContent className="max-w-md max-sm:max-w-sm w-[calc(200%-20px)] px-4 bg-background rounded-xl">
         <DialogHeader>
           <DialogTitle className="tracking-normal flex-col flex text-left">
             Share
