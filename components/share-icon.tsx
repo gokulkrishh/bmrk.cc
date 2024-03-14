@@ -38,7 +38,7 @@ export default function ShareIcon({
               );
               toast.success('Link copied to clipboard');
             }}
-            className="rounded-full flex w-8 h-8 hover:bg-accent active:bg-accent max-sm:flex items-center justify-center"
+            className="rounded-full flex w-8 h-8 hover:bg-accent active:bg-accent items-center justify-center"
           >
             <Link className="h-4 w-4 shrink-0 text-neutral-700 dark:text-neutral-400" />
           </TooltipTrigger>
@@ -55,7 +55,7 @@ export default function ShareIcon({
           onClick={() => {
             setOpenModal(true);
           }}
-          className="rounded-full flex w-8 h-8 hover:bg-accent active:bg-accent max-sm:flex items-center justify-center"
+          className="rounded-full flex w-8 h-8 hover:bg-accent active:bg-accent items-center justify-center"
         >
           <SharePublicIcon className="h-5 w-5 shrink-0" />
         </TooltipTrigger>

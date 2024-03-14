@@ -31,7 +31,7 @@ export default function DeleteTag({ id }: { id: Tag['id'] }) {
       onClick={async () => {
         await onDelete(id);
       }}
-      className="rounded-full flex w-7 h-7 group hover:bg-red-100 active:bg-red-100 dark:hover:bg-red-800/50 dark:active:bg-red-800/50 max-sm:flex items-center justify-center"
+      className="rounded-full flex w-7 h-7 group hover:bg-red-100 active:bg-red-100 dark:hover:bg-red-800/50 dark:active:bg-red-800/50 items-center justify-center"
     >
       {loading ? (
         <Loader className="h-4 w-4 text-black group-hover:text-black dark:text-white" />

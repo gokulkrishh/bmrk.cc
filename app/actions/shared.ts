@@ -34,7 +34,9 @@ export const getSharedBookmarks = async (hash: string) => {
 export async function updateSharedTag(tag: Tag, shared: boolean) {
   const user = await getAuthUser();
   if (!user) {
-    return new Error('User is not authenticated.');
+    return {
+      error: new Error('User is not authenticated.'),
+    };
   }
 
   const supabase = await createClient();
@@ -48,11 +50,7 @@ export async function updateSharedTag(tag: Tag, shared: boolean) {
     .returns<TagInsert[]>()
     .single();
 
-  if (error) {
-    return new Error('Unable to update sharable url.');
-  }
-
   revalidateTag('supabase');
 
-  return data;
+  return { error, data };
 }

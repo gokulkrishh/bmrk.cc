@@ -39,11 +39,14 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
   const generateSharableUrl = async () => {
     try {
       setLoading(true);
-      const data = await updateSharedTag(tag, !shared);
-      setRandomHash(data!.shared_hash ?? '');
-      setShared(data!.shared ?? '');
-    } catch (error) {
-      toast.error(error?.toString() || 'Error occurried.');
+      const { error, data } = await updateSharedTag(tag, !shared);
+      if (error) {
+        throw error;
+      }
+      setRandomHash(data?.shared_hash as string);
+      setShared(data?.shared as boolean);
+    } catch {
+      toast.error('Error occurried, try again.');
     } finally {
       setLoading(false);
     }
@@ -51,13 +54,13 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
 
   return (
     <Dialog open={open} onOpenChange={(hide) => onHide?.(hide)}>
-      <DialogContent className="max-w-md w-[calc(100%-20px)] bg-background rounded-xl">
+      <DialogContent className="max-w-md w-[calc(100%-20px)] px-4 bg-background rounded-xl">
         <DialogHeader>
-          <DialogTitle className="tracking-normal flex-col flex">
-            Share link
+          <DialogTitle className="tracking-normal flex-col flex text-left">
+            Share
           </DialogTitle>
-          <p className="text-sm text-muted-foreground">
-            Anyone with the link can view this page.
+          <p className="text-sm text-muted-foreground w-[90%] text-left">
+            Anyone with the below link can view your bookmarks.
           </p>
         </DialogHeader>
         <div className="flex w-full flex-col">
@@ -77,7 +80,7 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
                   await navigator.clipboard.writeText(url);
                   setTimeout(() => setIsCopied(false), 3000);
                 }}
-                className="inline-flex transition-all cursor-pointer w-24 items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-accent text-secondary-foreground hover:bg-accent/60 h-10 px-4 py-2 shrink-0"
+                className="items-center w-32 h-[40px] tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 px-3 transition-colors bg-primary-foreground hover:bg-accent"
               >
                 {isCopied ? 'Copied' : 'Copy link'}
               </button>
@@ -85,13 +88,13 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
           </div>
           <div className="flex mt-6 justify-between items-center">
             <div className="flex items-center">
-              <span className="rounded-full w-9 h-9 border border-input inline-flex justify-center items-center">
+              <span className="rounded-full w-9 h-9 border border-border inline-flex justify-center items-center">
                 <Link className="w-4 h-4 text-primary " />
               </span>
               <div className="flex flex-col ml-2">
                 <h4 className="text-sm">Public access</h4>
                 <p className="text-muted-foreground text-xs mt-0.5">
-                  Anyone with a link can view
+                  Bookmarks sharing is turned {shared ? 'on' : 'off'}.
                 </p>
               </div>
             </div>

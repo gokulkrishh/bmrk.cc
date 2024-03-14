@@ -22,7 +22,7 @@ export default function EditTag({ id, name }: EditTagProps) {
         onClick={() => {
           setOpen(true);
         }}
-        className="rounded-full ml-1 flex w-7 h-7 hover:bg-blue-100 active:bg-blue-100 max-sm:flex items-center justify-center"
+        className="rounded-full ml-1 flex w-7 h-7 hover:bg-blue-100 active:bg-blue-100 items-center justify-center"
       >
         <Edit3 className="text-blue-500" size={16} />
       </button>

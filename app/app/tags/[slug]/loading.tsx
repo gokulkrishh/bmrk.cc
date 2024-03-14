@@ -4,7 +4,7 @@ import Header from 'components/header';
 export default function Loading() {
   return (
     <>
-      <Header headerText={`Tag:`} />
+      <Header loading headerText={`Tag:`} />
       <div className="min-h-dvh sm:border-r border-border">
         <CardSkeleton />
         <CardSkeleton />

@@ -8,8 +8,6 @@ import ShareIcon from 'components/share-icon';
 
 import { filterByTagName } from 'lib/data';
 
-import { Tag } from 'types/data';
-
 const title = 'Bookmark it.';
 const description =
   'Bookmark It. is an open-source bookmark manager to organize, discover and personalize your bookmarking experience';
