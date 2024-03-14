@@ -96,7 +96,7 @@ export default async function Plans() {
         <div className="flex justify-between mt-3 border-t">
           <div className="w-full border-r p-4 pb-6">
             <h3 className="font-medium mb-2 text-sm flex items-center">
-              Tags <PlanTooltip text="Number of tags created." />
+              Tags <PlanTooltip text="Number of tags created" />
             </h3>
             <div className="flex w-full justify-between">
               <span className="flex items-center mb-2 text-sm tabular-nums">
@@ -112,7 +112,7 @@ export default async function Plans() {
           <div className="w-full p-4 pb-6 border-r">
             <h3 className="font-medium mb-2 text-sm flex items-center">
               Favorites{' '}
-              <PlanTooltip text="Number of bookmarks marked as favorite." />
+              <PlanTooltip text="Number of bookmarks marked as favorite" />
             </h3>
             <div className="flex w-full justify-between">
               <span className="mb-2 text-sm tabular-nums">
@@ -129,8 +129,8 @@ export default async function Plans() {
           </div>
           <div className="w-full p-4 pb-6">
             <h3 className="font-medium mb-2 text-sm flex items-center">
-              Share
-              <PlanTooltip text="Number of times a tag was shared publicly." />
+              Sharing
+              <PlanTooltip text="Number of times tags was shared publicly" />
             </h3>
             <div className="flex w-full justify-between">
               <span className="mb-2 text-sm tabular-nums">
@@ -148,7 +148,7 @@ export default async function Plans() {
 
       {isFreePlan || isPlanExpired ? (
         <div className="flex w-full p-3.5 justify-between items-center border-t">
-          <p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground text-sm text-balance">
             For more usage limits, upgrade to the Pro plan.
           </p>
           <PlanUpgradeButton />

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Download, Info } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { getBookmarks, getBookmarksAsCSV } from 'app/actions/bookmarks';
@@ -16,7 +16,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from 'components/ui/dropdown-menu';
-import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
 import { exportAsCSV, exportAsHTML } from 'lib/bookmarks';
 import { isProPlan } from 'lib/data';

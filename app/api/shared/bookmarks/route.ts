@@ -15,6 +15,7 @@ const supabaseAdmin = createClient<Database>(
 
 export async function GET(request: NextRequest) {
   const hash = request.nextUrl.searchParams.get('hash');
+  const download = request.nextUrl.searchParams.get('download');
 
   if (!hash) {
     return new Response('Missing hash', { status: 400 });
@@ -63,6 +64,21 @@ export async function GET(request: NextRequest) {
       }
 
       const bookmarkIds = bookmarksTags.map((bookmark) => bookmark.bookmark_id);
+
+      if (download === 'csv') {
+        await supabaseAdmin
+          .from('bookmarks')
+          .select(`*, bookmarks_tags (tags!inner (id,name))`)
+          .in('id', bookmarkIds)
+          .in(
+            'bookmarks_tags.tag_id',
+            tagData.map((tag) => tag.id),
+          )
+          .order('created_at', { ascending: false })
+          .returns<string>()
+          .csv();
+        return Response.json('Download will start in a few', { status: 200 });
+      }
 
       const { data, error } = await supabaseAdmin
         .from('bookmarks')

@@ -35,6 +35,7 @@ export default async function Page({ params }: { params: { tag: string } }) {
   return (
     <>
       <Header
+        data={bookmarks}
         headerText={`Tag: ${tagName}`}
         icon={<PublicIcon className="h-3 w-3 relative -top-0.5" />}
       />

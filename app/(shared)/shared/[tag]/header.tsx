@@ -7,14 +7,20 @@ import { Skeleton } from 'components/ui/skeleton';
 
 import { formatDate } from 'lib/date';
 
+import { BookmarkModified } from 'types/data';
+
+import ExportButton from './export';
+
 export default function Header({
   headerText = 'Bookmark It.',
   icon: Icon = null,
   loading = false,
+  data,
 }: {
   headerText?: string;
   icon?: React.ReactNode;
   loading?: boolean;
+  data: BookmarkModified[];
 }) {
   return (
     <div className="border-b sm:border-l border-border sm:border-r w-full items-center flex justify-between">
@@ -34,6 +40,7 @@ export default function Header({
             {formatDate(new Date())}
           </span>
         </h2>
+        <ExportButton data={data} />
       </div>
     </div>
   );

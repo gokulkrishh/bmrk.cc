@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 
 import { Tag } from 'types/data';
 
-import { SharePublicIcon } from './icons';
+import { SharePublicIcon, SharedPublicIcon } from './icons';
 import ShareModal from './modal/share';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
@@ -57,7 +57,11 @@ export default function ShareIcon({
           }}
           className="rounded-full flex w-8 h-8 hover:bg-accent active:bg-accent items-center justify-center"
         >
-          <SharePublicIcon className="h-5 w-5 shrink-0" />
+          {tag.shared ? (
+            <SharedPublicIcon className="h-5 w-5 shrink-0" />
+          ) : (
+            <SharePublicIcon className="h-5 w-5 shrink-0" />
+          )}
         </TooltipTrigger>
         <TooltipContent
           side="bottom"

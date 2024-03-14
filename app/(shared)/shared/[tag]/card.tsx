@@ -49,7 +49,7 @@ export default function Card({
                     </div>
                   </div>
                   <CardMedia data={bookmark} />
-                  <div className="justify-between mb-2 flex items-center w-full">
+                  <div className="justify-between mb-2 h-[36px] flex items-center w-full">
                     <div className="tracking-wide items-center text-muted-foreground text-xs gap-2 flex w-full">
                       <div
                         className={`flex gap-y-1.5 items-center overflow-x-scroll max-sm:max-w-[200px] max-w-[350px] w-full hidden-scrollbar mask-start-and-end`}
@@ -59,7 +59,7 @@ export default function Card({
                             return (
                               <Badge
                                 key={id}
-                                className={`font-normal transition-all bg-primary-foreground py-1 w-max hover:bg-primary-foreground cursor-default`}
+                                className={`border hover:bg-accent/80 dark:hover:bg-accent dark:active:bg-accent transition-colors focus:bg-accent/80 rounded-full mr-2 font-normal py-1 w-max`}
                                 variant="secondary"
                               >
                                 {name}
