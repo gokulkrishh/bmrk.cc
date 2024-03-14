@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: { tag: string } }) {
   const hash = decodeURIComponent(tag);
   const bookmarks = await getSharedBookmarks(hash);
   const data = groupByDate(bookmarks);
-  const tagName = bookmarks[0].bookmarks_tags?.map((tag) => tag.tags.name);
+  const tagName = bookmarks[0]?.bookmarks_tags?.map((tag) => tag.tags.name);
 
   return (
     <>

@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 
-import { Link1Icon } from '@radix-ui/react-icons';
 import { urls } from 'config';
 import { Link } from 'lucide-react';
 import { toast } from 'sonner';
