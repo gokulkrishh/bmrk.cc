@@ -104,6 +104,11 @@ export default function PaymentModal({
               {plans.pro.limit.favorites} favorite bookmarks
             </div>
             <div className="dark:text-white text-primary flex items-center font-normal">
+              <CheckIcon className="text-green-500" /> Share{' '}
+              {plans.pro.limit.share} tags with bookmarks publicly
+            </div>
+
+            <div className="dark:text-white text-primary flex items-center font-normal">
               <CheckIcon className="text-green-500" /> Export bookmarks as
               CSV/HTML
             </div>

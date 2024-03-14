@@ -5,9 +5,10 @@ import { getTags, getTagsWithBookmarkIds } from 'app/actions/tags';
 
 import CardList from 'components/card-list';
 import Header from 'components/header';
-import { EmptyTagsState } from 'components/icons';
+import { EmptyTagsState, PublicIcon } from 'components/icons';
 import DeleteTag from 'components/tag/delete-tag';
 import EditTag from 'components/tag/edit-tag';
+import PublicTag from 'components/tag/public-tag';
 import { Badge } from 'components/ui/badge';
 
 const title = 'Bookmark it. | Tags';
@@ -32,23 +33,27 @@ export default async function Page() {
       <div className="min-h-dvh sm:border-r border-border pb-24">
         {tags.length ? (
           <div className="flex flex-row gap-2 items-end px-4 max-h-[8rem] overflow-y-scroll scrollbar flex-wrap py-3 border-b border-border">
-            {tags.map(({ id, name }) => (
-              <div key={id} className="inline-flex w-auto items-center">
-                <Link
-                  className="flex rounded-full items-center w-auto hover:bg-accent/80 dark:hover:bg-accent dark:active:bg-accent transition-colors focus:bg-accent/80"
-                  href={`/tags/${name}`}
-                >
-                  <Badge className="font-normal py-1.5" variant="secondary">
-                    {name}
-                    <span className="font-medium ml-1">
-                      ({groupedByTagId[id]?.length ?? 0})
-                    </span>
-                  </Badge>
-                </Link>
-                <EditTag id={id} name={name} />
-                <DeleteTag id={id} />
-              </div>
-            ))}
+            {tags.map((tag) => {
+              const { id, name } = tag;
+              return (
+                <div key={id} className="inline-flex w-auto items-center">
+                  <Link
+                    className="flex rounded-full items-center w-auto hover:bg-accent/80 dark:hover:bg-accent dark:active:bg-accent transition-colors focus:bg-accent/80"
+                    href={`/tags/${name}`}
+                  >
+                    <Badge className="font-normal py-1.5" variant="secondary">
+                      {name}
+                      <span className="font-medium ml-1">
+                        ({groupedByTagId[id]?.length ?? 0})
+                      </span>
+                    </Badge>
+                  </Link>
+                  <PublicTag tag={tag} />
+                  <EditTag id={id} name={name} />
+                  <DeleteTag id={id} />
+                </div>
+              );
+            })}
           </div>
         ) : null}
         <>

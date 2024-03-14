@@ -46,7 +46,7 @@ export default function Pricing() {
                   $0 <span className="text-base">/ year</span>
                 </p>
                 <span className="text-sm text-muted-foreground">
-                  Free forever.
+                  Free forever
                 </span>
               </div>
               <div className="flex flex-col gap-2.5 tracking-wide">
@@ -76,6 +76,10 @@ export default function Pricing() {
                 <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-primary" />{' '}
                   {plans.free.limit.favorites} favorite bookmarks
+                </p>
+                <p className="text-gray-600 flex items-center font-normal">
+                  <CheckIcon className="text-primary" />
+                  Share {plans.free.limit.share} tag with bookmarks publicly
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-primary" /> Theme Customizations
@@ -144,6 +148,10 @@ export default function Pricing() {
                 <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-green-500" />{' '}
                   {plans.pro.limit.favorites} favorite bookmarks
+                </p>
+                <p className="text-gray-600 flex items-center font-normal">
+                  <CheckIcon className="text-green-500" />
+                  Share {plans.pro.limit.share} tags with bookmarks publicly
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-green-500" /> Export bookmarks as

@@ -1,15 +1,16 @@
 import CardSkeleton from 'components/card/skeleton';
-import Header from 'components/header';
+
+import Header from './header';
 
 export default function Loading() {
   return (
     <>
       <Header loading headerText={`Tag:`} />
-      <div className="min-h-dvh sm:border-r border-border">
+      <div className="min-h-dvh sm:border-r sm:border-l sm:border-border">
         <CardSkeleton />
         <CardSkeleton />
         <CardSkeleton />
-        <CardSkeleton className="border-b border-border" />
+        <CardSkeleton className="sm:border-b border-border" />
       </div>
     </>
   );

@@ -10,36 +10,46 @@ export async function GET(request: Request) {
   const code = searchParams.get('code');
 
   if (code) {
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          get(name: string) {
-            return cookieStore.get(name)?.value;
-          },
-          set(name: string, value: string, options: CookieOptions) {
-            cookieStore.set({ name, value, ...options });
-          },
-          remove(name: string, options: CookieOptions) {
-            cookieStore.set({ name, value: '', ...options });
+    try {
+      const supabase = createServerClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        {
+          cookies: {
+            get(name: string) {
+              return cookieStore.get(name)?.value;
+            },
+            set(name: string, value: string, options: CookieOptions) {
+              cookieStore.set({ name, value, ...options });
+            },
+            remove(name: string, options: CookieOptions) {
+              cookieStore.set({ name, value: '', ...options });
+            },
           },
         },
-      },
-    );
-    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
-    const { user } = data;
-    const { data: userData } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', user?.id)
-      .single();
-    if (!error) {
+      );
+      const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+      if (error) {
+        throw new Error('Error during code exchange');
+      }
+      const { user } = data;
+      const { data: userData, error: userError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', user?.id)
+        .single();
+
+      if (userError) {
+        throw new Error('Error fetching user data');
+      }
+
       if (!userData?.has_welcomed) {
         return NextResponse.redirect(urls.intro);
       }
       return NextResponse.redirect(urls.app);
+    } catch {
+      return NextResponse.redirect(urls.account);
     }
   }
-  return NextResponse.redirect(urls.home);
+  return NextResponse.redirect(urls.account);
 }

@@ -81,3 +81,8 @@ export const getFavoriteUsage = (userData: UserModified) => {
     (userData.usage.favorites / currentPlan.limit.favorites) * 100,
   );
 };
+
+export const getShareUsage = (userData: UserModified) => {
+  const currentPlan = getUserPlan(userData);
+  return Math.floor((userData.share_count / currentPlan.limit.share) * 100);
+};

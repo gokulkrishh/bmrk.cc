@@ -24,7 +24,7 @@ function FavButtonIcon({ is_fav }: { is_fav: BookmarkModified['is_fav'] }) {
       disabled={pending}
       type="submit"
       className={cn(
-        `rounded-full transition-colors group/fav flex w-9 h-9 hover:border hover:border-yellow-300 hover:bg-yellow-100 active:bg-yellow-100 max-sm:flex items-center justify-center mr-2`,
+        `rounded-full transition-colors group/fav flex w-9 h-9 hover:border hover:border-yellow-300 hover:bg-yellow-100 active:bg-yellow-100 items-center justify-center mr-2`,
       )}
     >
       {pending ? (

@@ -50,6 +50,7 @@ export type PlanDetailsType = {
     favorites: number;
     sessions: number;
     imports: number;
+    share: number;
   };
   pricing: {
     monthly: number;

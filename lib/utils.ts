@@ -3,11 +3,6 @@ import { NextRequest } from 'next/server';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-import { UserModified } from 'types/data';
-
-import { getAdjustedBillingCycleDate } from './date';
-import createClient from './supabase/server';
-
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -65,8 +60,6 @@ export const generateImportTagName = (): string => {
   const seconds = now.getSeconds().toString().padStart(2, '0');
   return `imported-on-${day}-${month}-${year}-${hours}-${minutes}-${seconds}`;
 };
-
-const unitlist = ['', 'K', 'M', 'G'];
 
 export const formatNumber = (value: number) => {
   const formatter = Intl.NumberFormat('en', { notation: 'compact' });
