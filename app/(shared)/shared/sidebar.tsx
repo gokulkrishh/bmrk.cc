@@ -26,13 +26,13 @@ export default function Sidebar() {
           <Logo className="w-[38px] h-[38px] group-active:scale-95 duration-150 transition-transform" />
           <span className="sr-only">Home page</span>
         </Link>
-        <Link
+        <button
           className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary hover:bg-accent"
-          href="/"
+          onClick={handleOpen}
           title="Home"
         >
           <HomeIcon className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
-        </Link>
+        </button>
         <button
           onClick={handleOpen}
           className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary hover:bg-accent"
