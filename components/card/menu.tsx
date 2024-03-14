@@ -224,7 +224,7 @@ export default function CardMenu({
             onClick={async () => {
               await onDelete();
             }}
-            className="!text-red-600 focus:bg-red-100 active:bg-red-100 dark:focus:bg-red-300 dark:active:bg-red-300"
+            className="!text-red-600 focus:bg-red-100 active:bg-red-100 dark:focus:bg-red-800/30 dark:active:bg-red-800/30"
           >
             <Trash2Icon className="h-4 w-4  mr-2.5" /> Delete
           </DropdownMenuItem>

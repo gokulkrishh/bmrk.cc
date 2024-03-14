@@ -13,6 +13,7 @@ import {
 import { checkAuth } from 'lib/auth';
 import { bookmarkParser } from 'lib/bookmarks';
 import { checkBookmarkLimit, checkTagLimit, isProPlan } from 'lib/data';
+import { nanoid } from 'lib/share';
 import createClient from 'lib/supabase/server';
 
 import { BookmarkInsert } from 'types/data';
@@ -168,6 +169,43 @@ export async function DELETE(request: NextRequest) {
         JSON.stringify({ message: 'Bookmarks are deleted successfully' }),
         { status: 200 },
       );
+    } catch (error) {
+      return new Response(
+        JSON.stringify({
+          message: error?.toString() || 'Error occurried.',
+        }),
+        { status: 500 },
+      );
+    }
+  });
+}
+
+export async function PATCH(request: NextRequest) {
+  return await checkAuth(async () => {
+    try {
+      const { shared, id, name } = await request.json();
+      if (!id) {
+        return new Response('id is missing.', { status: 400 });
+      }
+      if (!name) {
+        return new Response('name is missing.', { status: 400 });
+      }
+      const supabase = await createClient();
+      const hash = nanoid();
+      const { error, data } = await supabase
+        .from('tags')
+        .update({ shared_hash: shared ? `${name}-${hash}` : null, shared })
+        .eq('id', id)
+        .select('shared,shared_hash')
+        .single();
+
+      if (error) {
+        throw new Error('Unable to update tag publicly, try again');
+      }
+
+      return new Response(JSON.stringify({ ...data }), {
+        status: 200,
+      });
     } catch (error) {
       return new Response(
         JSON.stringify({

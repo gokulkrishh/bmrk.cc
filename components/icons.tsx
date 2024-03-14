@@ -1,4 +1,4 @@
-import { StarIcon, TagIcon, TagsIcon } from 'lucide-react';
+import { Hourglass, StarIcon, TagIcon, TagsIcon } from 'lucide-react';
 
 import { cn } from 'lib/utils';
 
@@ -189,10 +189,10 @@ export const EmptyFavoriteState = ({ className }: { className?: string }) => {
     <div className="flex flex-col h-80 justify-center items-center">
       <StarIcon className="text-primary w-8 h-8" />
       <h3 className="text-primary mt-3 tracking-wide font-medium">
-        You don{"'"}t have any favorites yet!
+        No favorites yet!
       </h3>
       <p className="mt-2 text-muted-foreground text-center">
-        Add a favorite by clicking the star icon in the bookmark.
+        To add favorite, click star icon in the bookmark.
       </p>
     </div>
   );
@@ -227,6 +227,99 @@ export const EmptyTagState = ({
       </h3>
       <p className="mt-2 text-muted-foreground text-center">
         Assign this tag to your bookmarks to see it here.
+      </p>
+    </div>
+  );
+};
+
+export const EmptyBookmarkSharedState = ({
+  className,
+}: {
+  className?: string;
+}) => {
+  return (
+    <div className="flex flex-col h-80 justify-center items-center">
+      <svg
+        className={cn('text-primary', className)}
+        width="20"
+        height="26"
+        viewBox="0 0 20 26"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 20.2782V6.20199C0 3.27834 0 1.81652 0.90826 0.90826C1.81652 0 3.27834 0 6.20198 0H13.798C16.7217 0 18.1835 0 19.0917 0.90826C20 1.81652 20 3.27834 20 6.20199V20.247C20 22.6326 20 23.8254 19.2252 24.2731C18.4504 24.7207 17.417 24.125 15.3503 22.9336L15.3503 22.9336L11.5982 20.7706C10.8465 20.3373 10.4707 20.1207 10.0579 20.1196C9.64508 20.1186 9.26816 20.3333 8.51433 20.7628L8.51432 20.7629L4.63614 22.9725C2.57394 24.1475 1.54284 24.735 0.771421 24.2867C0 23.8383 0 22.6516 0 20.2782Z"
+          fill="currentColor"
+        />
+      </svg>
+      <h3 className="text-primary mt-3 tracking-wide font-medium">
+        No Bookmarks
+      </h3>
+      <p className="mt-2 text-muted-foreground text-center">
+        This tag doesn{"'"}t have any shared bookmarks yet!
+      </p>
+    </div>
+  );
+};
+
+export const RateLimitState = ({ className }: { className?: string }) => {
+  return (
+    <div className="flex flex-col h-80 justify-center items-center">
+      <Hourglass className="text-primary w-8 h-8" />
+      <h3 className="text-primary mt-3 tracking-wide font-medium">
+        Hold on, too many requests!
+      </h3>
+      <p className="mt-2 text-muted-foreground text-center">
+        Wait for few seconds and refresh.
+      </p>
+    </div>
+  );
+};
+
+export const PublicIcon = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 16 16"
+    className={`fill-neutral-800 dark:fill-neutral-200 ${className}`}
+  >
+    <path d="M5,7 C6.11,7 7,6.1 7,5 C7,3.9 6.11,3 5,3 C3.9,3 3,3.9 3,5 C3,6.1 3.9,7 5,7 L5,7 Z M11,7 C12.11,7 13,6.1 13,5 C13,3.9 12.11,3 11,3 C9.89,3 9,3.9 9,5 C9,6.1 9.9,7 11,7 L11,7 Z M5,8.2 C3.33,8.2 0,9.03 0,10.7 L0,12 L10,12 L10,10.7 C10,9.03 6.67,8.2 5,8.2 L5,8.2 Z M11,8.2 C10.75,8.2 10.46,8.22 10.16,8.26 C10.95,8.86 11.5,9.66 11.5,10.7 L11.5,12 L16,12 L16,10.7 C16,9.03 12.67,8.2 11,8.2 L11,8.2 Z"></path>
+  </svg>
+);
+
+export const SharePublicIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={`fill-neutral-700 dark:fill-neutral-400 ${className}`}
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+    <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+  </svg>
+);
+
+export const SharedPublicIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={`fill-neutral-700 dark:fill-neutral-400 ${className}`}
+    width="16"
+    height="16"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+    <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+  </svg>
+);
+
+export const NotFoundIcon = ({ className }: { className?: string }) => {
+  return (
+    <div className="flex flex-col h-80 justify-center items-center">
+      <h3 className="text-primary mt-3 tracking-wide text-xl font-medium">
+        404
+      </h3>
+      <p className="mt-2 text-muted-foreground text-center">
+        Could not find requested resource.
       </p>
     </div>
   );

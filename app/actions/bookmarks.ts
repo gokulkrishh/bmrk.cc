@@ -186,7 +186,7 @@ export const getBookmarksForTag = async (slug: string) => {
     .from('bookmarks')
     .select(`*, bookmarks_tags (tags!inner (id,name))`)
     .eq('user_id', user.id)
-    .order('updated_at', { ascending: false })
+    .order('created_at', { ascending: false })
     .returns<BookmarkModified[]>();
 
   if (error) {

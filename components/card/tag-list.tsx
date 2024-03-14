@@ -9,6 +9,7 @@ import { addTagToBookmark, createTag } from 'app/actions/tags';
 import { incrementTagUsage } from 'app/actions/user';
 
 import { useUser } from 'components/context/user';
+import { PublicIcon } from 'components/icons';
 import {
   Command,
   CommandGroup,
@@ -16,6 +17,7 @@ import {
   CommandItem,
   CommandList,
 } from 'components/ui/command';
+import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
 import { cn } from 'lib/utils';
 
@@ -172,9 +174,17 @@ export default function TagList({ data, tags }: TagListProps) {
                         : 'bg-background text-tranparent',
                     )}
                   >
-                    {isChecked ? <CheckIcon className={cn('h-4 w-4')} /> : null}
+                    {isChecked ? <CheckIcon className="h-4 w-4" /> : null}
                   </div>
-                  <span>{tag.name}</span>
+                  <div className="flex w-full items-center justify-between">
+                    <span>{tag.name}</span>
+                    {tag.shared ? (
+                      <>
+                        <PublicIcon className="h-4 w-4" />
+                        <span className="sr-only">Shared publically</span>
+                      </>
+                    ) : null}
+                  </div>
                 </CommandItem>
               );
             })}

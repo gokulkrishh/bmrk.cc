@@ -17,6 +17,7 @@ create table users (
   has_welcomed boolean default false,
   preview_image boolean default false,
   upload_count int default 0 not null,
+  share_count int default 0 not null,
   usage jsonb default '{"bookmarks": 0, "tags": 0, "favorites": 0, "sessions": 0}',
   plan_status text default 'free',
   billing_cycle_start_date timestamp default current_timestamp not null,
@@ -55,8 +56,8 @@ create table
     user_id uuid references users on delete cascade not null,
     is_fav boolean default false,
     created_at timestamp with time zone default current_timestamp not null,
-    updated_at timestamp with time zone default current_timestamp not null
-    preview_image boolean default false,
+    updated_at timestamp with time zone default current_timestamp not null,
+    preview_image boolean default true
   );
 
 -- Set up Row Level Security (RLS)
@@ -74,7 +75,9 @@ create table
     name text not null,
     user_id uuid references users on delete cascade not null,
     created_at timestamp with time zone default current_timestamp not null,
-    updated_at timestamp with time zone default current_timestamp not null
+    updated_at timestamp with time zone default current_timestamp not null,
+    shared boolean default false,
+    shared_hash text default null
   );
 
 -- Set up Row Level Security (RLS)
@@ -139,6 +142,33 @@ BEGIN
 END;
 $$ language plpgsql;
 
+create
+or replace function update_user_bookmarks_usage (user_id uuid, count int) returns void as $$
+BEGIN
+    UPDATE users
+    SET usage = usage || jsonb_build_object('bookmarks', count)
+    WHERE id = user_id;
+END;
+$$ language plpgsql;
+
+create
+or replace function increment_share_count (user_id uuid) returns void as $$
+BEGIN
+  UPDATE users
+  SET share_count = share_count + 1
+  WHERE id = user_id;
+END;
+$$ language plpgsql;
+
+create
+or replace function decrement_share_count (user_id uuid) returns void as $$
+BEGIN
+  UPDATE users
+  SET share_count = share_count - 1
+  WHERE id = user_id;
+END;
+$$ language plpgsql;
+
 -- Create a moddtime extension to automatically update the updated_at column
 create extension if not exists moddatetime schema extensions;
 
@@ -149,7 +179,6 @@ create trigger
 on bookmarks
 for each row execute
   procedure moddatetime(updated_at);
-
 
 create trigger
   handle_updated_at_users before update

@@ -9,6 +9,7 @@ import { Progress } from 'components/ui/progress';
 import {
   getBookmarkUsage,
   getFavoriteUsage,
+  getShareUsage,
   getTagUsage,
   getUserPlan,
   isProPlan,
@@ -36,11 +37,12 @@ export default async function Plans() {
 
   const isFreePlan = !isProPlan(user);
   const isPlanExpired = isProPlanExpired(user);
-  const { bookmarks, favorites, tags } = getUserPlan(user).limit;
+  const { bookmarks, favorites, tags, share } = getUserPlan(user).limit;
 
   const bookmarkPercentage = getBookmarkUsage(user);
   const tagPercentage = getTagUsage(user);
   const favoritePercentage = getFavoriteUsage(user);
+  const sharePercentage = getShareUsage(user);
   const { first, last } = getFirstAndLastDate(user.billing_cycle_start_date);
   const isWithInTwoMonths = isWithinTwoMonths(
     new Date(user.billing_cycle_start_date),
@@ -94,7 +96,7 @@ export default async function Plans() {
         <div className="flex justify-between mt-3 border-t">
           <div className="w-full border-r p-4 pb-6">
             <h3 className="font-medium mb-2 text-sm flex items-center">
-              Tags <PlanTooltip text="Number of tags created." />
+              Tags <PlanTooltip text="Number of tags created" />
             </h3>
             <div className="flex w-full justify-between">
               <span className="flex items-center mb-2 text-sm tabular-nums">
@@ -107,10 +109,10 @@ export default async function Plans() {
             </div>
             <Progress className="h-3 mt-1" value={tagPercentage} />
           </div>
-          <div className="w-full p-4 pb-6">
+          <div className="w-full p-4 pb-6 border-r">
             <h3 className="font-medium mb-2 text-sm flex items-center">
               Favorites{' '}
-              <PlanTooltip text="Number of bookmarks marked as favorite." />
+              <PlanTooltip text="Number of bookmarks marked as favorite" />
             </h3>
             <div className="flex w-full justify-between">
               <span className="mb-2 text-sm tabular-nums">
@@ -125,12 +127,28 @@ export default async function Plans() {
             </div>
             <Progress className="h-3 mt-1" value={favoritePercentage} />
           </div>
+          <div className="w-full p-4 pb-6">
+            <h3 className="font-medium mb-2 text-sm flex items-center">
+              Sharing
+              <PlanTooltip text="Number of times tags was shared publicly" />
+            </h3>
+            <div className="flex w-full justify-between">
+              <span className="mb-2 text-sm tabular-nums">
+                {user.share_count}
+                <span className="text-muted-foreground ml-1">/ {share}</span>
+                <span className="text-muted-foreground  text-xs ml-1.5">
+                  ({sharePercentage}%)
+                </span>
+              </span>
+            </div>
+            <Progress className="h-3 mt-1" value={sharePercentage} />
+          </div>
         </div>
       </div>
 
       {isFreePlan || isPlanExpired ? (
         <div className="flex w-full p-3.5 justify-between items-center border-t">
-          <p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground text-sm text-balance">
             For more usage limits, upgrade to the Pro plan.
           </p>
           <PlanUpgradeButton />

@@ -1,33 +1,37 @@
 import Link from 'next/link';
 
+import { urls } from 'config';
+
 import { Logo } from 'components/icons';
+import { Skeleton } from 'components/ui/skeleton';
 
 import { formatDate } from 'lib/date';
 
-import Profile from './profile';
-import { Skeleton } from './ui/skeleton';
+import { BookmarkModified } from 'types/data';
+
+import ExportButton from './export';
 
 export default function Header({
-  headerText,
+  headerText = 'Bookmark It.',
   icon: Icon = null,
-  shareIcon: ShareIcon = null,
   loading = false,
+  data,
 }: {
   headerText?: string;
-  loading?: boolean;
   icon?: React.ReactNode;
-  shareIcon?: React.ReactNode;
+  loading?: boolean;
+  data?: BookmarkModified[];
 }) {
   return (
-    <div className="border-b border-border sm:border-r w-full items-center flex justify-between">
-      <div className="flex items-center">
-        <Link href="/" className="active:opacity-85 ml-2 block sm:hidden">
+    <div className="border-b sm:border-l border-border sm:border-r w-full items-center flex justify-between">
+      <div className="flex w-full items-center justify-between">
+        <Link href={urls.app} className="active:opacity-85 ml-2 sm:hidden">
           <Logo className="w-[36px] h-[36px]" />
         </Link>
         <h2 className="w-full font-medium flex flex-col p-3 tracking-wide">
           <span className="flex items-center gap-1">
-            {headerText ?? 'Bookmark It.'}{' '}
-            {loading ? <Skeleton className="w-20 h-4" /> : null} {Icon}
+            {headerText} {Icon}{' '}
+            {loading ? <Skeleton className="w-20 h-4" /> : null}
           </span>
           <span
             className="text-xs mt-0.5 font-normal text-muted-foreground"
@@ -36,10 +40,7 @@ export default function Header({
             {formatDate(new Date())}
           </span>
         </h2>
-      </div>
-      <div className="flex items-center">
-        {ShareIcon}
-        <Profile className="max-sm:flex hidden mr-3" />
+        <ExportButton data={data} />
       </div>
     </div>
   );

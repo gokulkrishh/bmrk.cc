@@ -16,6 +16,8 @@ export const urls = {
   settings: `${protocol}app.${home}/settings`,
   app: `${protocol}app.${home}`,
   api: `${protocol}app.${home}/api`,
+  nonAppApi: `${protocol}${home}/api`,
+  shared: `${protocol}${home}/shared`,
   twitter: 'https://twitter.com/gokul_i',
   github: 'https://github.com/gokulkrishh/bmrk.cc',
   extensions: {
@@ -34,6 +36,7 @@ export const plans: PlansType = {
       favorites: 15,
       sessions: 0,
       imports: 1,
+      share: 1,
     },
     pricing: {
       monthly: 0,
@@ -49,6 +52,7 @@ export const plans: PlansType = {
       favorites: 50,
       sessions: 0,
       imports: 5,
+      share: 10,
     },
     pricing: {
       monthly: 2.49,

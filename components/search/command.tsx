@@ -59,16 +59,18 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
       <CommandList className="w-full">
         <CommandGroup heading="All Bookmarks">
           {loading ? (
-            <CommandLoading>
-              <div className="flex justify-center my-6">
-                <Loader />
-              </div>
-            </CommandLoading>
+            <CommandItem className="w-full justify-center flex items-center">
+              <CommandLoading>
+                <div className="flex justify-center my-6">
+                  <Loader />
+                </div>
+              </CommandLoading>
+            </CommandItem>
           ) : null}
           {data.map((bookmark: BookmarkModified) => {
-            const tags = bookmark.bookmarks_tags
-              .map(({ tags: { name } }) => name)
-              .join('-');
+            const tags = bookmark.bookmarks_tags.map(
+              ({ tags: { name } }) => name,
+            );
             return (
               <CommandItem
                 className="flex flex-col items-start w-full"
@@ -76,7 +78,7 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
                   openBookmark(`${bookmark.url}?utm_source=bmrk.cc`);
                 }}
                 key={`${bookmark.id}`}
-                value={`${bookmark.title}-${bookmark.url}-${tags}`}
+                keywords={[bookmark.title ?? '', bookmark.url, ...tags]}
               >
                 <div className="flex gap-2 items-start text-pimary-foreground w-full">
                   <CardFavicon
@@ -120,22 +122,22 @@ function SearchCommand({ open, setOpen }: SearchCommandProps) {
             );
           })}
         </CommandGroup>
-        <CommandEmpty>No result.</CommandEmpty>
+        {!loading ? <CommandEmpty>No result.</CommandEmpty> : null}
       </CommandList>
       <CommandSeparator className="max-sm:hidden" />
       <div className="py-2 px-4 max-sm:hidden flex items-center justify-between bg-popover">
         <div>
           <span className="text-xs text-muted-foreground">Navigate</span>{' '}
-          <kbd className="pointer-events-none h-6 w-6 px-1 pb-0.5 text-base ml-1.5 border border-input inline-flex justify-center select-none items-center rounded-md font-mono">
+          <kbd className="pointer-events-none text-primary/70 h-6 w-6 px-1 pb-0.5 text-base ml-1.5 border border-input inline-flex justify-center select-none items-center rounded-md font-mono">
             ↓
           </kbd>
-          <kbd className="pointer-events-none h-6 w-6 px-1 pb-0.5 text-base ml-2 border border-input inline-flex justify-center select-none items-center rounded-md font-mono">
+          <kbd className="pointer-events-none text-primary/70 h-6 w-6 px-1 pb-0.5 text-base ml-2 border border-input inline-flex justify-center select-none items-center rounded-md font-mono">
             ↑
           </kbd>
         </div>
         <div>
           <span className="text-xs text-muted-foreground">Open with</span>{' '}
-          <kbd className="pointer-events-none h-6 w-6 px-1 pb-1 text-base ml-1.5 border border-input inline-flex justify-center select-none items-center rounded-md font-mono">
+          <kbd className="pointer-events-none text-primary/70 h-6 w-6 px-1 pb-1 text-base ml-1.5 border border-input inline-flex justify-center select-none items-center rounded-md font-mono">
             ↵
           </kbd>
         </div>

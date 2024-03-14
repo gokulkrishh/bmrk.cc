@@ -142,3 +142,35 @@ export const incrementUploadCount = async (count: number = 1) => {
     return new Error('Unable to increment upload count.');
   }
 };
+
+export const incrementShareCount = async (count: number = 1) => {
+  const user = await getAuthUser();
+  if (!user) {
+    return new Error('Unable to increment usage.');
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase.rpc('increment_share_count', {
+    user_id: user.id,
+  });
+
+  if (error) {
+    return new Error('Unable to increment share count.');
+  }
+};
+
+export const decrementShareCount = async (count: number = 1) => {
+  const user = await getAuthUser();
+  if (!user) {
+    return new Error('Unable to decrement usage.');
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase.rpc('decrement_share_count', {
+    user_id: user.id,
+  });
+
+  if (error) {
+    return new Error('Unable to decrement share count.');
+  }
+};
