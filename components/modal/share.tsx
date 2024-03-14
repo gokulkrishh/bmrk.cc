@@ -55,12 +55,6 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
       } else {
         await decrementShareCount();
       }
-      if (data?.shared) {
-        await navigator.clipboard.writeText(
-          `${urls.shared}/${data.shared_hash ?? ''}`,
-        );
-        toast.success('Sharable link is copied to clipboard');
-      }
       setRandomHash(data?.shared_hash as string);
       setShared(data?.shared as boolean);
     } catch {
