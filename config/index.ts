@@ -36,6 +36,7 @@ export const plans: PlansType = {
       favorites: 15,
       sessions: 0,
       imports: 1,
+      share: 1,
     },
     pricing: {
       monthly: 0,
@@ -51,6 +52,7 @@ export const plans: PlansType = {
       favorites: 50,
       sessions: 0,
       imports: 5,
+      share: 10,
     },
     pricing: {
       monthly: 2.49,

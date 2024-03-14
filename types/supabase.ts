@@ -17,7 +17,7 @@ export type Database = {
           is_fav: boolean | null;
           metadata: Json | null;
           preview_image: boolean | null;
-          title: string | null;
+          title: string;
           updated_at: string;
           url: string;
           user_id: string;
@@ -29,7 +29,7 @@ export type Database = {
           is_fav?: boolean | null;
           metadata?: Json | null;
           preview_image?: boolean | null;
-          title?: string | null;
+          title: string;
           updated_at?: string;
           url: string;
           user_id: string;
@@ -41,7 +41,7 @@ export type Database = {
           is_fav?: boolean | null;
           metadata?: Json | null;
           preview_image?: boolean | null;
-          title?: string | null;
+          title?: string;
           updated_at?: string;
           url?: string;
           user_id?: string;
@@ -146,6 +146,7 @@ export type Database = {
           order_info: Json | null;
           plan_status: string | null;
           preview_image: boolean | null;
+          share_count: number;
           updated_at: string | null;
           upload_count: number;
           usage: Json | null;
@@ -161,6 +162,7 @@ export type Database = {
           order_info?: Json | null;
           plan_status?: string | null;
           preview_image?: boolean | null;
+          share_count?: number;
           updated_at?: string | null;
           upload_count?: number;
           usage?: Json | null;
@@ -176,6 +178,7 @@ export type Database = {
           order_info?: Json | null;
           plan_status?: string | null;
           preview_image?: boolean | null;
+          share_count?: number;
           updated_at?: string | null;
           upload_count?: number;
           usage?: Json | null;
@@ -195,6 +198,12 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      decrement_share_count: {
+        Args: {
+          user_id: string;
+        };
+        Returns: undefined;
+      };
       increment_bookmarks_usage: {
         Args: {
           user_id: string;
@@ -209,6 +218,20 @@ export type Database = {
         };
         Returns: undefined;
       };
+      increment_share_count:
+        | {
+            Args: {
+              user_id: string;
+            };
+            Returns: undefined;
+          }
+        | {
+            Args: {
+              user_id: string;
+              count: number;
+            };
+            Returns: undefined;
+          };
       increment_tags_usage: {
         Args: {
           user_id: string;
