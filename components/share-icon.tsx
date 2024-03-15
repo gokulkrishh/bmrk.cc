@@ -34,7 +34,7 @@ export default function ShareIcon({
           <TooltipTrigger
             onClick={() => {
               navigator.clipboard.writeText(
-                `${urls.shared}/${tag.shared_hash}`,
+                `${urls.shared}/${encodeURIComponent(tag.shared_hash ?? '')}`,
               );
               toast.success('Sharable link is copied to clipboard');
             }}

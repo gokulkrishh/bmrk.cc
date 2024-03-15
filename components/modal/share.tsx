@@ -37,7 +37,7 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
   const [shared, setShared] = useState(tag.shared || false);
   const { user, currentPlan } = useUser();
 
-  let url = `${urls.shared}/${randomHash ?? ''}`;
+  let url = `${urls.shared}/${encodeURIComponent(randomHash ?? '')}`;
 
   const generateSharableUrl = async () => {
     try {
