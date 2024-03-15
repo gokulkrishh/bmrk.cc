@@ -1,4 +1,4 @@
-import { getTags } from 'app//actions/tags';
+import { getTags } from 'app/actions/tags';
 import { getBookmarks } from 'app/actions/bookmarks';
 
 import AddBookmarkInput from 'components/bookmark/add-input';
