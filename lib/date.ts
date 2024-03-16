@@ -1,7 +1,3 @@
-import { plans } from 'config';
-
-import { UserModified } from 'types/data';
-
 const dateOptions = {
   year: 'numeric',
   month: 'long',

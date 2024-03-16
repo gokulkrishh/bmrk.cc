@@ -5,7 +5,7 @@ import { SyntheticEvent, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
-import { messages, plans } from 'config';
+import { messages } from 'config';
 import { ArrowUpCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
