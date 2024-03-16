@@ -81,7 +81,7 @@ export default function SharePopover({
       <PopoverContent
         sideOffset={5}
         onOpenAutoFocus={(e) => e.preventDefault()}
-        className="md:w-96 w-80 mx-2 rounded-xl"
+        className="md:w-96 w-[calc(23rem-30px)] mx-2 rounded-xl"
       >
         <div className="flex w-full flex-col">
           <PopoverPrimitive.Close />
