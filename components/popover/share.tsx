@@ -71,7 +71,7 @@ export default function SharePopover({
     <Popover onOpenChange={(opened) => setOpen(opened)}>
       <PopoverTrigger
         className={cn(
-          `rounded-full transition-all flex px-4 w-fit py-1.5 border border-transparent hover:border-border hover:bg-accent active:bg-accent items-center justify-center mr-3`,
+          `rounded-full transition-all flex px-4 w-fit items-center justify-center mr-2.5 tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border text-primary border border-transparent focus:outline-0 text-sm py-2 hover:border-border active:border-border hover:bg-accent/60 active:bg-accent/60`,
           className,
           { 'bg-accent': open },
         )}
