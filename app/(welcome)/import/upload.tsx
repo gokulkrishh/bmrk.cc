@@ -4,7 +4,7 @@ import UploadForm from 'components/form/upload';
 
 export default function UploadBookmarks() {
   return (
-    <div className="flex mt-10 flex-col items-center justify-center max-w-sm w-full">
+    <div className="flex mt-10 flex-col items-center justify-center max-w-md w-full">
       <UploadForm
         SubmitBtn={({
           children,

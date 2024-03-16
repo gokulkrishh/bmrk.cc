@@ -117,7 +117,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
 
   return (
     <form
-      className="flex flex-col max-w-[calc(100%-30px)] w-full"
+      className="flex flex-col max-w-[calc(100%-30px)] w-full md:max-w-md"
       onSubmit={(event: SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
         onSubmit();
