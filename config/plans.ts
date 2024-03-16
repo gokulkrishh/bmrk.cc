@@ -1,3 +1,5 @@
+import { PlansType } from 'types/data';
+
 export const plans: PlansType = {
   free: {
     type: 'free',
