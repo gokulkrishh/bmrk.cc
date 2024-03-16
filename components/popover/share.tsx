@@ -10,7 +10,6 @@ import { updateSharedTag } from 'app/actions/shared';
 import { decrementShareCount, incrementShareCount } from 'app/actions/user';
 
 import { useUser } from 'components/context/user';
-import { SharePublicIcon, SharedPublicIcon } from 'components/icons';
 import Loader from 'components/loader';
 import { Input } from 'components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover';
@@ -21,10 +20,16 @@ import { cn } from 'lib/utils';
 import { Tag } from 'types/data';
 
 type SharePopoverProp = {
+  className?: string;
+  children?: React.ReactNode;
   tag: Tag | null;
 };
 
-export default function SharePopover({ tag }: SharePopoverProp) {
+export default function SharePopover({
+  tag,
+  children,
+  className,
+}: SharePopoverProp) {
   const [isCopied, setIsCopied] = useState(false);
   const [loading, setLoading] = useState(false);
   const [randomHash, setRandomHash] = useState(tag?.shared_hash || '');
@@ -62,8 +67,13 @@ export default function SharePopover({ tag }: SharePopoverProp) {
 
   return (
     <Popover>
-      <PopoverTrigger className="rounded-full transition-all flex px-4 w-fit py-1.5 border border-transparent hover:border-border hover:bg-accent active:bg-accent items-center justify-center mr-3">
-        Share
+      <PopoverTrigger
+        className={cn(
+          `rounded-full transition-all flex px-4 w-fit py-1.5 border border-transparent hover:border-border hover:bg-accent active:bg-accent items-center justify-center mr-3`,
+          className,
+        )}
+      >
+        {children || 'Share'}
       </PopoverTrigger>
       <PopoverContent className="md:w-96 w-80 mr-2 rounded-xl">
         <div className="flex w-full flex-col">
