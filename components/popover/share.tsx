@@ -84,8 +84,6 @@ export default function SharePopover({
         className="md:w-96 w-[calc(23rem-30px)] mx-2 rounded-xl"
       >
         <div className="flex w-full flex-col">
-          <PopoverPrimitive.Close />
-          <PopoverPrimitive.Arrow />
           <div className="flex">
             <div className="flex space-x-2 w-full items-center gap-1">
               <Input
