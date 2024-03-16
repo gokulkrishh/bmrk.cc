@@ -59,7 +59,7 @@ export default function Card({
                             return (
                               <Badge
                                 key={id}
-                                className={`border hover:bg-accent/80 dark:hover:bg-accent dark:active:bg-accent transition-colors focus:bg-accent/80 rounded-full mr-2 font-normal py-1 w-max`}
+                                className={`border bg-primary-foreground border-border hover:bg-accent/80 dark:hover:bg-accent dark:active:bg-accent transition-colors focus:bg-accent/80 rounded-full mr-2 font-normal py-1 h-[28px] w-max`}
                                 variant="secondary"
                               >
                                 {name}
