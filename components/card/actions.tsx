@@ -1,5 +1,7 @@
 'use client';
 
+import { startTransition, useOptimistic } from 'react';
+
 import { StarFilledIcon, StarIcon } from '@radix-ui/react-icons';
 import { useFormStatus } from 'react-dom';
 import { toast } from 'sonner';
@@ -12,7 +14,6 @@ import { cn } from 'lib/utils';
 
 import { BookmarkModified, Tag } from 'types/data';
 
-import Loader from '../loader';
 import AddTag from './add-tag';
 import TagBadge from './tag-badge';
 
@@ -21,18 +22,15 @@ function FavButtonIcon({ is_fav }: { is_fav: BookmarkModified['is_fav'] }) {
   return (
     <button
       aria-label="favorite"
-      disabled={pending}
       type="submit"
       className={cn(
-        `rounded-full transition-colors group/fav flex w-9 h-9 hover:border hover:border-yellow-300 hover:bg-yellow-100 active:bg-yellow-100 items-center justify-center mr-2`,
+        `rounded-full transition-all group/fav flex w-9 h-9 items-center justify-center mr-2`,
       )}
     >
-      {pending ? (
-        <Loader className="text-muted-foreground dark:group-hover/fav:text-muted h-4 w-4" />
-      ) : is_fav ? (
-        <StarFilledIcon className="h-4 w-4 text-yellow-500 " />
+      {is_fav ? (
+        <StarFilledIcon className="h-4 w-4 text-yellow-500 animate-circle-done" />
       ) : (
-        <StarIcon className="h-4 w-4 text-muted-foreground group-hover/fav:text-black" />
+        <StarIcon className="h-4 w-4 text-muted-foreground group-hover/fav:text-muted-foreground animate-circle-undone" />
       )}
     </button>
   );
@@ -45,7 +43,9 @@ type CardActionsType = {
 
 export default function CardActions({ data, tags }: CardActionsType) {
   const { user, currentPlan } = useUser();
-  const { is_fav } = data;
+  const [optimisticData, setOptimisticData] =
+    useOptimistic<BookmarkModified>(data);
+
   return (
     <div className="justify-between mb-2 flex items-center w-full">
       <div className="tracking-wide items-center text-muted-foreground text-xs gap-2 flex w-full">
@@ -58,15 +58,21 @@ export default function CardActions({ data, tags }: CardActionsType) {
           action={async () => {
             if (
               user?.usage.favorites >= currentPlan.limit.favorites &&
-              !data.is_fav
+              !optimisticData.is_fav
             ) {
               toast.error(`Favorites limit reached! Upgrade to add more.`);
               return;
             }
-            await addToFav(data.id, !data.is_fav);
+            startTransition(() =>
+              setOptimisticData({
+                ...optimisticData,
+                is_fav: !optimisticData.is_fav,
+              }),
+            );
+            await addToFav(optimisticData.id, !optimisticData.is_fav);
           }}
         >
-          <FavButtonIcon is_fav={is_fav} />
+          <FavButtonIcon is_fav={optimisticData.is_fav} />
         </form>
       </div>
     </div>
