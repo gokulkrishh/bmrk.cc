@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { createClient } from '@supabase/supabase-js';
-import { plans } from 'config';
+import { plans } from 'config/plans';
 
 import { isProPlanExpired } from 'lib/data';
 import {

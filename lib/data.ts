@@ -1,4 +1,4 @@
-import { plans } from 'config';
+import { plans } from 'config/plans';
 import groupBy from 'object.groupby';
 
 import { BookmarkModified, UserModified } from 'types/data';

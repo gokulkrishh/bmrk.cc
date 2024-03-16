@@ -1,4 +1,4 @@
-import { PlansType } from 'types/data';
+import { plans } from './plans';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -23,41 +23,6 @@ export const urls = {
   extensions: {
     chrome:
       'https://chromewebstore.google.com/detail/bookmark-it/fgnmdiklfcddmhmmmppepijecbljfjbm?utm_source=bmrk.cc',
-  },
-};
-
-export const plans: PlansType = {
-  free: {
-    type: 'free',
-    name: 'Free',
-    limit: {
-      bookmarks: 25,
-      tags: 15,
-      favorites: 15,
-      sessions: 0,
-      imports: 1,
-      share: 1,
-    },
-    pricing: {
-      monthly: 0,
-      yearly: 0,
-    },
-  },
-  pro: {
-    type: 'pro',
-    name: 'Pro',
-    limit: {
-      bookmarks: 100,
-      tags: 50,
-      favorites: 50,
-      sessions: 0,
-      imports: 5,
-      share: 10,
-    },
-    pricing: {
-      monthly: 2.49,
-      yearly: 24,
-    },
   },
 };
 

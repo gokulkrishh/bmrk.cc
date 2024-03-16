@@ -4,7 +4,8 @@ import { useState } from 'react';
 
 import Script from 'next/script';
 
-import { plans, urls } from 'config';
+import { urls } from 'config';
+import { plans } from 'config/plans';
 import { toast } from 'sonner';
 
 import PaymentModal from 'components/modal/payment';

@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 
-import { messages, plans } from 'config';
+import { messages } from 'config';
+import { plans } from 'config/plans';
 import { ArrowRight } from 'lucide-react';
 
 import { CheckIcon, Logo } from 'components/icons';

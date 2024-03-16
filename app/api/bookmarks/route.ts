@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
 
-import { messages, plans } from 'config';
+import { messages } from 'config';
+import { plans } from 'config/plans';
 import { parse } from 'node-html-parser';
 
 import { createTagForImport } from 'app/actions/tags';

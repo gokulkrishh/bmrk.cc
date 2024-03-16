@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useMemo } from 'react';
 
-import { plans } from 'config';
+import { plans } from 'config/plans';
 
 import { isProPlan, isProPlanExpired } from 'lib/data';
 
