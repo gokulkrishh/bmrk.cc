@@ -10,7 +10,6 @@ import { ArrowUpCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { useUser } from 'components/context/user';
-import FeatureToolip from 'components/features/feature-tooltip';
 import Loader from 'components/loader';
 import PlanTooltip from 'components/settings/plan-tooltip';
 import { Input } from 'components/ui/input';
@@ -118,7 +117,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
 
   return (
     <form
-      className="flex flex-col w-full"
+      className="flex flex-col max-w-[calc(100%-30px)] w-full"
       onSubmit={(event: SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
         onSubmit();
