@@ -5,10 +5,10 @@ import { getTags, getTagsWithBookmarkIds } from 'app/actions/tags';
 
 import CardList from 'components/card-list';
 import Header from 'components/header';
-import { EmptyTagsState, PublicIcon } from 'components/icons';
+import { EmptyTagsState } from 'components/icons';
+import SharePopover from 'components/popover/share';
 import DeleteTag from 'components/tag/delete-tag';
 import EditTag from 'components/tag/edit-tag';
-import PublicTag from 'components/tag/public-tag';
 import { Badge } from 'components/ui/badge';
 
 const title = 'Bookmark it. | Tags';
@@ -48,7 +48,7 @@ export default async function Page() {
                       </span>
                     </Badge>
                   </Link>
-                  <PublicTag tag={tag} />
+                  <SharePopover tag={tag} />
                   <EditTag id={id} name={name} />
                   <DeleteTag id={id} />
                 </div>

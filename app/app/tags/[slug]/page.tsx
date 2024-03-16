@@ -4,7 +4,7 @@ import { getTags } from 'app/actions/tags';
 import CardList from 'components/card-list';
 import Header from 'components/header';
 import { EmptyTagState, PublicIcon } from 'components/icons';
-import ShareIcon from 'components/share-icon';
+import SharePopover from 'components/popover/share';
 
 import { filterByTagName } from 'lib/data';
 
@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <PublicIcon className="h-3 w-3 relative -top-0.5" />
           ) : null
         }
-        shareIcon={<ShareIcon tag={tag} />}
+        shareIcon={<SharePopover tag={tag} />}
         headerText={`Tag: ${tagName}`}
       />
       <div className="h-full sm:border-r border-border pb-24">

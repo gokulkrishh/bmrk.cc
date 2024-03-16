@@ -10,34 +10,30 @@ import { updateSharedTag } from 'app/actions/shared';
 import { decrementShareCount, incrementShareCount } from 'app/actions/user';
 
 import { useUser } from 'components/context/user';
+import { SharePublicIcon, SharedPublicIcon } from 'components/icons';
 import Loader from 'components/loader';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from 'components/ui/dialog';
 import { Input } from 'components/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover';
 import { Switch } from 'components/ui/switch';
 
 import { cn } from 'lib/utils';
 
 import { Tag } from 'types/data';
 
-type ShareModalProp = {
-  open: boolean;
-  onHide?: (open: boolean) => void;
-  tag: Tag;
+type SharePopoverProp = {
+  tag: Tag | null;
 };
 
-export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
+export default function SharePopover({ tag }: SharePopoverProp) {
   const [isCopied, setIsCopied] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [randomHash, setRandomHash] = useState(tag.shared_hash || '');
-  const [shared, setShared] = useState(tag.shared || false);
+  const [randomHash, setRandomHash] = useState(tag?.shared_hash || '');
+  const [shared, setShared] = useState(tag?.shared || false);
   const { user, currentPlan } = useUser();
 
-  let url = `${urls.shared}/${encodeURIComponent(randomHash ?? '')}`;
+  if (!tag) return null;
+
+  let url = `${urls.shared}/${encodeURIComponent(randomHash ?? tag.name)}`;
 
   const generateSharableUrl = async () => {
     try {
@@ -65,25 +61,22 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
   };
 
   return (
-    <Dialog open={open} onOpenChange={(hide) => onHide?.(hide)}>
-      <DialogContent className="max-w-md max-sm:max-w-sm w-[calc(200%-20px)] px-4 bg-background rounded-xl">
-        <DialogHeader>
-          <DialogTitle className="tracking-normal flex-col flex text-left">
-            Share
-          </DialogTitle>
-          <p className="text-sm text-muted-foreground w-[90%] text-left">
-            Share your bookmarks to anyone with one-click
-          </p>
-        </DialogHeader>
+    <Popover>
+      <PopoverTrigger className="rounded-full transition-all flex px-4 w-fit py-1.5 border border-transparent hover:border-border hover:bg-accent active:bg-accent items-center justify-center mr-3">
+        Share
+      </PopoverTrigger>
+      <PopoverContent className="md:w-96 w-80 mr-2 rounded-xl">
         <div className="flex w-full flex-col">
           <div className="flex">
             <div className="flex space-x-2 w-full items-center gap-1">
               <Input
+                autoFocus={false}
                 className={cn('mt-0 h-[40px]', {
-                  'blur-text': !shared,
+                  'select-none': !shared,
                 })}
                 value={url}
                 readOnly
+                disabled={!shared}
               />
               <button
                 disabled={loading || !shared}
@@ -93,9 +86,9 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
                   toast.success('Sharable link is copied to clipboard');
                   setTimeout(() => setIsCopied(false), 3000);
                 }}
-                className="items-center shrink-0 w-24 h-[40px] tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 text-sm flex justify-center py-2 px-1 transition-colors bg-accent hover:bg-accent/60 active:bg-accent/60"
+                className="items-center shrink-0 w-20 px-4 tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 text-sm flex justify-center py-2 transition-colors bg-accent hover:bg-accent/60 active:bg-accent/60"
               >
-                {isCopied ? 'Copied' : 'Copy link'}
+                {isCopied ? 'Copied' : 'Copy'}
               </button>
             </div>
           </div>
@@ -107,7 +100,7 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
               <div className="flex flex-col ml-3">
                 <h4 className="text-sm">Public access</h4>
                 <p className="text-muted-foreground text-xs mt-0.5">
-                  Bookmarks sharing is turned {shared ? 'on' : 'off'}.
+                  Any one with the link can view
                 </p>
               </div>
             </div>
@@ -122,7 +115,7 @@ export default function ShareModal({ open, onHide, tag }: ShareModalProp) {
             </div>
           </div>
         </div>
-      </DialogContent>
-    </Dialog>
+      </PopoverContent>
+    </Popover>
   );
 }
