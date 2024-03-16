@@ -43,7 +43,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
   const hiddenInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  const allowedSize = 200;
+  const allowedSize = 500;
   const fileSize = Math.ceil(fileDetails.size / 1024);
   const isFileAllowed = fileSize <= allowedSize;
   const isFileTypeAllowed = fileDetails.type === 'text/html';
