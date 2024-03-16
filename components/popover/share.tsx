@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import * as PopoverPrimitive from '@radix-ui/react-popover';
 import { urls } from 'config';
 import { Link } from 'lucide-react';
 import { toast } from 'sonner';
@@ -30,6 +31,7 @@ export default function SharePopover({
   children,
   className,
 }: SharePopoverProp) {
+  const [open, setOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [loading, setLoading] = useState(false);
   const [randomHash, setRandomHash] = useState(tag?.shared_hash || '');
@@ -66,17 +68,24 @@ export default function SharePopover({
   };
 
   return (
-    <Popover>
+    <Popover onOpenChange={(opened) => setOpen(opened)}>
       <PopoverTrigger
         className={cn(
           `rounded-full transition-all flex px-4 w-fit py-1.5 border border-transparent hover:border-border hover:bg-accent active:bg-accent items-center justify-center mr-3`,
           className,
+          { 'bg-accent': open },
         )}
       >
         {children || 'Share'}
       </PopoverTrigger>
-      <PopoverContent className="md:w-96 w-80 mr-2 rounded-xl">
+      <PopoverContent
+        sideOffset={5}
+        onOpenAutoFocus={(e) => e.preventDefault()}
+        className="md:w-96 w-80 mx-2 rounded-xl"
+      >
         <div className="flex w-full flex-col">
+          <PopoverPrimitive.Close />
+          <PopoverPrimitive.Arrow />
           <div className="flex">
             <div className="flex space-x-2 w-full items-center gap-1">
               <Input
@@ -96,7 +105,7 @@ export default function SharePopover({
                   toast.success('Sharable link is copied to clipboard');
                   setTimeout(() => setIsCopied(false), 3000);
                 }}
-                className="items-center shrink-0 w-20 px-4 tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 text-sm flex justify-center py-2 transition-colors bg-accent hover:bg-accent/60 active:bg-accent/60"
+                className="items-center shrink-0 w-[4.6rem] px-2 tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 text-sm flex justify-center py-2 transition-colors bg-accent hover:bg-accent/60 active:bg-accent/60"
               >
                 {isCopied ? 'Copied' : 'Copy'}
               </button>
