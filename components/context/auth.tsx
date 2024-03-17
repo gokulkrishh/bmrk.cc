@@ -9,7 +9,7 @@ import {
   SupabaseClient,
   User as authUser,
 } from '@supabase/supabase-js';
-import { urls } from 'config';
+import { urls } from 'config/urls';
 
 import createClient from 'lib/supabase/client';
 

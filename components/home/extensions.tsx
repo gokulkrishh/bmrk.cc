@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { urls } from 'config';
+import { urls } from 'config/urls';
 
 import { useIntersectionObserver } from 'components/hooks/useInteraction';
 

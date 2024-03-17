@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import * as PopoverPrimitive from '@radix-ui/react-popover';
-import { urls } from 'config';
+import { urls } from 'config/urls';
 import { Link } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -40,7 +40,7 @@ export default function SharePopover({
 
   if (!tag) return null;
 
-  let url = `${urls.shared}/${encodeURIComponent(randomHash ?? tag.name)}`;
+  let url = `${urls.home}/${encodeURIComponent(randomHash ?? tag.name)}`;
 
   const generateSharableUrl = async () => {
     try {

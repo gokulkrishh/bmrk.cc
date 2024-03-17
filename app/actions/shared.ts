@@ -3,7 +3,7 @@
 import { revalidateTag } from 'next/cache';
 import { notFound } from 'next/navigation';
 
-import { urls } from 'config';
+import { urls } from 'config/urls';
 
 import { nanoid } from 'lib/share';
 import createClient from 'lib/supabase/server';

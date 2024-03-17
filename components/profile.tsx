@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { urls } from 'config';
+import { urls } from 'config/urls';
 import { Bug, HelpCircleIcon, LogOut, Settings } from 'lucide-react';
 
 import { cn } from 'lib/utils';

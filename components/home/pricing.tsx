@@ -4,8 +4,9 @@ import { useState } from 'react';
 
 import Link from 'next/link';
 
-import { messages, urls } from 'config';
+import { messages } from 'config/messages';
 import { plans } from 'config/plans';
+import { urls } from 'config/urls';
 import { ArrowRight } from 'lucide-react';
 
 import { CheckIcon } from 'components/icons';

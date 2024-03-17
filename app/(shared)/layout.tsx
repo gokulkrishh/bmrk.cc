@@ -1,16 +1,13 @@
 import { Viewport } from 'next';
-import Link from 'next/link';
 
-import { urls } from 'config';
 import NextTopLoader from 'nextjs-toploader';
 
 import { ThemeProvider } from 'components/context/theme';
-import { Logo } from 'components/icons';
 import { Toaster } from 'components/ui/sonner';
 import { TooltipProvider } from 'components/ui/tooltip';
 
 import '../globals.css';
-import Sidebar from './shared/sidebar';
+import Sidebar from './sidebar';
 
 export const viewport: Viewport = {
   themeColor: [

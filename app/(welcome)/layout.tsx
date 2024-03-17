@@ -1,6 +1,6 @@
 import { permanentRedirect } from 'next/navigation';
 
-import { urls } from 'config';
+import { urls } from 'config/urls';
 import NextTopLoader from 'nextjs-toploader';
 
 import { getAuthUser, getUser } from 'app/actions/user';

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { User } from '@supabase/supabase-js';
-import { urls } from 'config';
+import { urls } from 'config/urls';
 import { AppWindowIcon, LogOut } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';

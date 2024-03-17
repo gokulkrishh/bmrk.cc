@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 
-import { messages } from 'config';
+import { messages } from 'config/messages';
 import { plans } from 'config/plans';
 import { parse } from 'node-html-parser';
 

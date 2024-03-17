@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { urls } from 'config';
+import { urls } from 'config/urls';
 
 import GitButton from 'components/git-button';
 import Extensions from 'components/home/extensions';

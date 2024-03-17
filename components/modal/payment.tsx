@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { messages } from 'config';
+import { messages } from 'config/messages';
 import { plans } from 'config/plans';
 import { ArrowRight } from 'lucide-react';
 

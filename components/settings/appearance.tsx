@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { messages } from 'config';
+import { messages } from 'config/messages';
 import { toast } from 'sonner';
 
 import { setImagePreview } from 'app/actions/user';

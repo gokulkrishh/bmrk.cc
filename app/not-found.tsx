@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { urls } from 'config';
+import { urls } from 'config/urls';
 
 import { ThemeProvider } from 'components/context/theme';
 

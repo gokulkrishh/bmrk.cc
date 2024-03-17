@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server';
 
 import { type CookieOptions, createServerClient } from '@supabase/ssr';
-import { urls } from 'config/index';
+import { urls } from 'config/urls';
 
 export async function middleware(request: NextRequest) {
   const hostname = request.headers.get('host');

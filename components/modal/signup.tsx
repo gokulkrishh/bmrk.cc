@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import { DialogDescription } from '@radix-ui/react-dialog';
-import { urls } from 'config';
+import { urls } from 'config/urls';
 
 import { GoogleIcon, Logo } from 'components/icons';
 import Loader from 'components/loader';

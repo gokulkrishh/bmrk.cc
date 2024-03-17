@@ -2,15 +2,11 @@
 
 import { useState } from 'react';
 
-import Link from 'next/link';
-
-import { urls } from 'config';
+import { urls } from 'config/urls';
 import { Plus, Search, StarIcon, Tags } from 'lucide-react';
 
 import { HomeIcon, Logo } from 'components/icons';
 import AccountModal from 'components/modal/signup';
-
-import { cn } from 'lib/utils';
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -28,7 +24,7 @@ export default function Sidebar() {
           <span className="sr-only">Home page</span>
         </a>
         <a
-          className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary hover:bg-accent"
+          className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary/50 hover:bg-accent"
           href={urls.home}
           title="Home"
         >
@@ -36,19 +32,19 @@ export default function Sidebar() {
         </a>
         <button
           onClick={handleOpen}
-          className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary hover:bg-accent"
+          className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary/50 hover:bg-accent"
         >
           <Search className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
         </button>
         <button
           onClick={handleOpen}
-          className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary hover:bg-accent max-sm:order-4"
+          className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary/50 hover:bg-accent max-sm:order-4"
           title="Favorites"
         >
           <StarIcon className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
         </button>
         <button
-          className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary hover:bg-accent max-sm:order-5"
+          className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary/50 hover:bg-accent max-sm:order-5"
           onClick={handleOpen}
           title="Tags"
         >

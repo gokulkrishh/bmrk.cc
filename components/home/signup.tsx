@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { urls } from 'config';
+import { urls } from 'config/urls';
 import { ArrowRight } from 'lucide-react';
 
 import GitButton from 'components/git-button';

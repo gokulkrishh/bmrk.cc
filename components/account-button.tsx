@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { urls } from 'config';
+import { urls } from 'config/urls';
 
 import createClient from 'lib/supabase/client';
 import { cn } from 'lib/utils';

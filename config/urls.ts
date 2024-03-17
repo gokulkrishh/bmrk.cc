@@ -1,5 +1,3 @@
-import { plans } from './plans';
-
 const isProduction = process.env.NODE_ENV === 'production';
 
 const domain = 'bmrk.cc';
@@ -17,23 +15,10 @@ export const urls = {
   app: `${protocol}app.${home}`,
   api: `${protocol}app.${home}/api`,
   nonAppApi: `${protocol}${home}/api`,
-  shared: `${protocol}${home}/shared`,
   twitter: 'https://twitter.com/gokul_i',
   github: 'https://github.com/gokulkrishh/bmrk.cc',
   extensions: {
     chrome:
       'https://chromewebstore.google.com/detail/bookmark-it/fgnmdiklfcddmhmmmppepijecbljfjbm?utm_source=bmrk.cc',
   },
-};
-
-export const messages = {
-  bookmarkLimit: (plan: string = plans.free.name) =>
-    `Bookmarks in the import exceeds the allowed usage limit.`,
-  tagLimit: (plan: string = plans.free.name) =>
-    `Tags count exceeds the allowed monthly usage limit.`,
-  usageLimitRenewal: `Usage limit auto-renews on monthly basis`,
-  maxFileSize: `Maximum file size is 500 KB`,
-  importLimitWarning: (count: number = 1) =>
-    `Importing ${count} time${count > 1 ? 's' : ''} – doesn't count towards your monthly usage. After that usage will be counted.`,
-  imagePreview: `Upgrade to pro plan to support continued free access for everyone else.`,
 };

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { urls } from 'config';
+import { urls } from 'config/urls';
 import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 

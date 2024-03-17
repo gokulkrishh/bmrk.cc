@@ -4,7 +4,7 @@ import { ThemeProvider } from 'components/context/theme';
 import { NotFoundIcon } from 'components/icons';
 
 import '../globals.css';
-import Header from './shared/[tag]/header';
+import Header from './[tag]/header';
 
 const title = 'Bookmark it. | Not Found';
 const description =

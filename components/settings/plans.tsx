@@ -1,6 +1,7 @@
 import { permanentRedirect } from 'next/navigation';
 
-import { messages, urls } from 'config';
+import { messages } from 'config/messages';
+import { urls } from 'config/urls';
 
 import { getUser } from 'app/actions/user';
 

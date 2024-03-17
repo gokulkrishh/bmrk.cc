@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { urls } from 'config';
+import { urls } from 'config/urls';
 
 import AccountButton from 'components/account-button';
 import { Logo } from 'components/icons';
