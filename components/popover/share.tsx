@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import * as PopoverPrimitive from '@radix-ui/react-popover';
-import { urls } from 'config/urls';
+import { protocol, urls } from 'config/urls';
 import { Link } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -34,7 +34,7 @@ export default function SharePopover({
   const [open, setOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [randomHash, setRandomHash] = useState(tag?.shared_hash || '');
+  const [randomHash, setRandomHash] = useState(tag?.shared_hash || tag?.name);
   const [shared, setShared] = useState(tag?.shared || false);
   const { user, currentPlan } = useUser();
 
@@ -91,7 +91,7 @@ export default function SharePopover({
                 className={cn('mt-0 h-[40px]', {
                   'select-none': !shared,
                 })}
-                value={url}
+                value={url.replace(protocol, '')}
                 readOnly
                 disabled={!shared}
               />

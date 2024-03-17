@@ -3,7 +3,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const domain = 'bmrk.cc';
 const local = 'localhost:3000';
 const home = isProduction ? domain : local;
-const protocol = isProduction ? 'https://' : 'http://';
+export const protocol = isProduction ? 'https://' : 'http://';
 
 export const urls = {
   homeWithoutProtocol: home,
