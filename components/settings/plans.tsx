@@ -94,8 +94,8 @@ export default async function Plans() {
           </div>
           <Progress className="h-3 mt-1" value={bookmarkPercentage} />
         </div>
-        <div className="flex justify-between mt-3 border-t">
-          <div className="w-full border-r p-4 pb-6">
+        <div className="flex flex-col md:flex-row justify-between mt-3 border-t">
+          <div className="w-full md:border-r max-sm:border-b p-4 pb-6">
             <h3 className="font-medium mb-2 text-sm flex items-center">
               Tags <PlanTooltip text="Number of tags created" />
             </h3>
@@ -110,7 +110,7 @@ export default async function Plans() {
             </div>
             <Progress className="h-3 mt-1" value={tagPercentage} />
           </div>
-          <div className="w-full p-4 pb-6 border-r">
+          <div className="w-full p-4 pb-6 md:border-r max-sm:border-b">
             <h3 className="font-medium mb-2 text-sm flex items-center">
               Favorites{' '}
               <PlanTooltip text="Number of bookmarks marked as favorite" />
