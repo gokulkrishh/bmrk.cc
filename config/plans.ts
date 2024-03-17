@@ -22,8 +22,8 @@ export const plans: PlansType = {
     name: 'Pro',
     limit: {
       bookmarks: 100,
-      tags: 50,
-      favorites: 50,
+      tags: 100,
+      favorites: 100,
       sessions: 0,
       imports: 5,
       share: 10,

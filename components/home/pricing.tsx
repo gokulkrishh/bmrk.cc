@@ -81,7 +81,7 @@ export default function Pricing() {
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-primary" />
-                  Share {plans.free.limit.share} tag with bookmarks publicly
+                  Share upto {plans.free.limit.share} tag publicly
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-primary" /> Theme Customizations
@@ -153,7 +153,7 @@ export default function Pricing() {
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-green-500" />
-                  Share {plans.pro.limit.share} tags with bookmarks publicly
+                  Share upto {plans.pro.limit.share} tags publicly
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
                   <CheckIcon className="text-green-500" /> Export bookmarks as
