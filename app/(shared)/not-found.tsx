@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 
 import { ThemeProvider } from 'components/context/theme';
-import { NotFoundIcon } from 'components/icons';
 
-import '../globals.css';
-import Header from './[tag]/header';
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const title = 'Bookmark it. | Not Found';
 const description =
@@ -17,16 +16,24 @@ export const metadata: Metadata = {
 
 export default async function NotFound() {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
-      <Header />
-      <div className="min-h-dvh flex items-center flex-col border-r border-l border-border">
-        <NotFoundIcon />
-      </div>
-    </ThemeProvider>
+    <html suppressHydrationWarning>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <body className={`${inter.className} flex h-full bg-background`}>
+          <div className="max-w-[600px] m-auto flex min-h-dvh w-full">
+            <div className="flex justify-center items-center flex-col text-center w-full">
+              <h2 className="text-5xl font-bold">404</h2>
+              <p className="mt-2 text-lg text-muted-foreground">
+                Could not find requested resource.
+              </p>
+            </div>
+          </div>
+        </body>
+      </ThemeProvider>
+    </html>
   );
 }

@@ -6,7 +6,7 @@ import { ThemeProvider } from 'components/context/theme';
 import { Toaster } from 'components/ui/sonner';
 import { TooltipProvider } from 'components/ui/tooltip';
 
-import '../globals.css';
+import '../../globals.css';
 import Sidebar from './sidebar';
 
 export const viewport: Viewport = {
