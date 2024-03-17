@@ -30,7 +30,7 @@ function FavButtonIcon({ is_fav }: { is_fav: BookmarkModified['is_fav'] }) {
       {is_fav ? (
         <StarFilledIcon className="h-4 w-4 text-yellow-500 animate-circle-done" />
       ) : (
-        <StarIcon className="h-4 w-4 text-muted-foreground group-hover/fav:text-muted-foreground animate-circle-undone" />
+        <StarIcon className="h-4 w-4 text-muted-foreground group-hover/fav:text-muted-foreground" />
       )}
     </button>
   );
