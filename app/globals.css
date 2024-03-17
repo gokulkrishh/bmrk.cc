@@ -208,3 +208,16 @@
 .animate-circle-undone {
   animation: circle-undone 0.3s backwards;
 }
+
+.loading-spinner {
+  animation: loading-spinner 0.85s linear infinite;
+}
+
+@keyframes loading-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}

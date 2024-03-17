@@ -148,7 +148,7 @@ export const CheckIcon = ({ className }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="currentColor"
     aria-hidden="true"
-    className={cn('mr-1.5 h-5 w-5 text-green-600', className)}
+    className={cn('mr-2 h-5 w-5 text-green-600', className)}
   >
     <path
       fillRule="evenodd"

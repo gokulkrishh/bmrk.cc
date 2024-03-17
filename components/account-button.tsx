@@ -38,7 +38,11 @@ export default function AccountButton() {
       )}
       onClick={onClick}
     >
-      {loading ? <Loader className="mr-2" /> : <GoogleIcon />}
+      {loading ? (
+        <Loader className="mr-2 text-white dark:text-black" />
+      ) : (
+        <GoogleIcon />
+      )}
       Continue with Google
     </button>
   );

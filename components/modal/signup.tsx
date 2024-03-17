@@ -37,7 +37,11 @@ const Button = ({ loading, Icon, btnText, clickHandler }: ButtonProp) => {
       )}
       onClick={clickHandler}
     >
-      {loading ? <Loader className="mr-2" /> : <Icon />}
+      {loading ? (
+        <Loader className="mr-2 text-white dark:text-black" />
+      ) : (
+        <Icon />
+      )}
       Continue with {btnText}
     </button>
   );
