@@ -19,8 +19,6 @@ export const revalidate = 3600;
 
 export async function generateMetadata({ params }: MetadataType) {
   const { tag } = params;
-  console.log('params', params);
-
   return {
     title: `${title} | Shared ${decodeURIComponent(tag)}`,
     description,

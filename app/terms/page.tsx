@@ -16,7 +16,7 @@ export default function TermsPage() {
               src="/icons/icon.svg"
               width={40}
               height={40}
-              alt="Bookmark it"
+              alt=" it"
               className="mr-2.5 rounded-full"
               priority
             />
@@ -129,7 +129,7 @@ export default function TermsPage() {
           Changes to This Terms and Conditions
         </h3>
         <p className="my-1 leading-7">
-          Bookmar It. may update our Terms and Conditions from time to time.
+          Bookmark It. may update our Terms and Conditions from time to time.
           Thus, you are advised to review this page periodically for any
           changes. I will notify you of any changes by posting the new Terms and
           Conditions on this page.
