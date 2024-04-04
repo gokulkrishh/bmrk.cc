@@ -127,22 +127,24 @@ export const EmptyBookmarkState = ({ className }: { className?: string }) => {
   return (
     <div className="flex flex-col h-80 justify-center items-center">
       <svg
-        className={cn('text-primary', className)}
-        width="20"
-        height="26"
-        viewBox="0 0 20 26"
-        fill="none"
+        className={cn('text-primary w-10 h-10', className)}
         xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        color={'currentColor'}
+        fill={'none'}
       >
         <path
-          d="M0 20.2782V6.20199C0 3.27834 0 1.81652 0.90826 0.90826C1.81652 0 3.27834 0 6.20198 0H13.798C16.7217 0 18.1835 0 19.0917 0.90826C20 1.81652 20 3.27834 20 6.20199V20.247C20 22.6326 20 23.8254 19.2252 24.2731C18.4504 24.7207 17.417 24.125 15.3503 22.9336L15.3503 22.9336L11.5982 20.7706C10.8465 20.3373 10.4707 20.1207 10.0579 20.1196C9.64508 20.1186 9.26816 20.3333 8.51433 20.7628L8.51432 20.7629L4.63614 22.9725C2.57394 24.1475 1.54284 24.735 0.771421 24.2867C0 23.8383 0 22.6516 0 20.2782Z"
-          fill="currentColor"
+          d="M4 17.9808V9.70753C4 6.07416 4 4.25748 5.17157 3.12874C6.34315 2 8.22876 2 12 2C15.7712 2 17.6569 2 18.8284 3.12874C20 4.25748 20 6.07416 20 9.70753V17.9808C20 20.2867 20 21.4396 19.2272 21.8523C17.7305 22.6514 14.9232 19.9852 13.59 19.1824C12.8168 18.7168 12.4302 18.484 12 18.484C11.5698 18.484 11.1832 18.7168 10.41 19.1824C9.0768 19.9852 6.26947 22.6514 4.77285 21.8523C4 21.4396 4 20.2867 4 17.9808Z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
       <h3 className="text-primary mt-3 tracking-wide font-medium">
         You don{"'"}t have any bookmarks yet!
       </h3>
-      <p className="mt-2 text-muted-foreground text-center">
+      <p className="mt-1 text-sm text-muted-foreground text-center">
         Just paste or type the url in input box above.
       </p>
     </div>
@@ -152,11 +154,11 @@ export const EmptyBookmarkState = ({ className }: { className?: string }) => {
 export const EmptyFavoriteState = ({ className }: { className?: string }) => {
   return (
     <div className="flex flex-col h-80 justify-center items-center">
-      <FavIcon className="text-primary w-8 h-8" />
+      <FavIcon className="text-primary w-10 h-10" />
       <h3 className="text-primary mt-3 tracking-wide font-medium">
         No favorites yet!
       </h3>
-      <p className="mt-2 text-muted-foreground text-center">
+      <p className="mt-1 text-sm text-muted-foreground text-center">
         To add favorite, click star icon in the bookmark.
       </p>
     </div>
@@ -174,11 +176,11 @@ export const EmptyTagState = ({
     <div
       className={`flex flex-col h-80 justify-center items-center px-4 text-center ${className}`}
     >
-      <TagsIcon className="text-primary w-8 h-8" />
+      <TagsIcon className="text-primary w-10 h-10" />
       <h3 className="text-primary mt-3 tracking-wide font-medium">
         You don{"'"}t any bookmarks on {tagName} tag yet!
       </h3>
-      <p className="mt-2 text-muted-foreground text-center">
+      <p className="mt-2 text-sm text-muted-foreground text-center">
         Assign this tag to your bookmarks to see it here.
       </p>
     </div>
@@ -193,7 +195,7 @@ export const EmptyBookmarkSharedState = ({
   return (
     <div className="flex flex-col h-80 justify-center items-center">
       <svg
-        className={cn('text-primary', className)}
+        className={cn('text-primary w-10 h-10', className)}
         width="20"
         height="26"
         viewBox="0 0 20 26"
@@ -208,7 +210,7 @@ export const EmptyBookmarkSharedState = ({
       <h3 className="text-primary mt-3 tracking-wide font-medium">
         No Bookmarks
       </h3>
-      <p className="mt-2 text-muted-foreground text-center">
+      <p className="mt-1 text-sm text-muted-foreground text-center">
         This tag doesn{"'"}t have any shared bookmarks yet!
       </p>
     </div>
@@ -242,7 +244,7 @@ export const HouseGlassIcon = ({ className }: { className?: string }) => (
 export const RateLimitState = ({ className }: { className?: string }) => {
   return (
     <div className="flex flex-col h-80 justify-center items-center">
-      <HouseGlassIcon className="text-primary w-8 h-8" />
+      <HouseGlassIcon className="text-primary w-10 h-10" />
       <h3 className="text-primary mt-3 tracking-wide font-medium">
         Hold on, too many requests!
       </h3>
@@ -779,7 +781,7 @@ export const EmptyTagsState = ({ className }: { className?: string }) => {
       <h3 className="text-primary mt-3 tracking-wide font-medium">
         You don{"'"}t have bookmarks with tags yet!
       </h3>
-      <p className="mt-2 text-muted-foreground text-center">
+      <p className="mt-1 text-sm text-muted-foreground text-center">
         Create tags and assign to organize your bookmarks.
       </p>
     </div>
