@@ -53,7 +53,7 @@ export default async function Page() {
                       className="!py-1 px-2 ml-2 !w-7 !h-7 !rounded-full text-xs mr-0"
                       tag={tag}
                     >
-                      <PublicIcon className="w-5 h-5 shrink-0" />
+                      <PublicIcon className="w-4 h-4 shrink-0" />
                     </SharePopover>
                   ) : null}
                   <EditTag id={id} name={name} />

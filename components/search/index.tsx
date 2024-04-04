@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 
-import { SearchIcon as Search } from 'lucide-react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 import { useAuth } from 'components/context/auth';
+import { SearchIcon as Search } from 'components/icons';
 import AccountModal from 'components/modal/signup';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 

@@ -3,7 +3,8 @@
 import * as React from 'react';
 
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { X } from 'lucide-react';
+
+import { CloseIcon } from 'components/icons';
 
 import { cn } from 'lib/utils';
 
@@ -46,7 +47,7 @@ const DialogContent = React.forwardRef<
     >
       {children}
       <DialogPrimitive.Close className="absolute flex justify-center items-center h-6 w-6 rounded-full right-2 top-2.5 opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:bg-accent-foreground/20 bg-accent-foreground/10 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-        <X className="h-3.5 w-3.5" />
+        <CloseIcon className="h-3.5 w-3.5" />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>

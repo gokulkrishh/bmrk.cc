@@ -1,26 +1,25 @@
-import Link from 'next/link';
+'use client';
 
-import { Settings, StarIcon, Tags } from 'lucide-react';
+import Link from 'next/link';
 
 import { cn } from 'lib/utils';
 
 import AddIcon from './add-icon';
-import { HomeIcon, Logo } from './icons';
+import { FavIcon, HomeIcon, Logo, SettingsIcon, TagsIcon } from './icons';
 import NavLink from './nav-link';
 import Profile from './profile';
 import SearchIcon from './search';
 
 const SettingsLink = ({ className }: { className?: string }) => (
   <NavLink
+    Icon={(props: any) => <SettingsIcon {...props} />}
     className={cn(
       `rounded-xl max-sm:hidden mt-2 p-2.5 transition-colors hover:bg-accent order-5`,
       className,
     )}
     href="/settings"
     title="Settings"
-  >
-    <Settings className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
-  </NavLink>
+  />
 );
 
 export default function Sidebar() {
@@ -34,20 +33,26 @@ export default function Sidebar() {
           <Logo className="w-[38px] h-[38px] group-active:scale-95 duration-150 transition-transform" />
           <span className="sr-only">Home page</span>
         </Link>
-        <NavLink href={'/'} title="Home">
-          <HomeIcon className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
-        </NavLink>
+        <NavLink
+          Icon={(props: any) => <HomeIcon {...props} />}
+          href={'/'}
+          title="Home"
+        />
         <SearchIcon />
         <NavLink
+          Icon={(props: any) => <FavIcon {...props} />}
           className="max-sm:order-4"
           href={'/favorites'}
           title="Favorites"
-        >
-          <StarIcon className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
-        </NavLink>
-        <NavLink className="max-sm:order-4" href={'/tags'} title="Tags">
-          <Tags className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
-        </NavLink>
+        />
+
+        <NavLink
+          Icon={(props: any) => <TagsIcon {...props} />}
+          className="max-sm:order-4"
+          href={'/tags'}
+          title="Tags"
+        />
+
         <AddIcon className="max-sm:order-3 sm:mt-2" />
       </div>
       <div className="hidden sm:flex sm:flex-col items-center max-sm:gap-6 max-sm:ml-4 gap-3 sm:mb-4">

@@ -2,16 +2,7 @@
 
 import { useState } from 'react';
 
-import { UpdateIcon } from '@radix-ui/react-icons';
-import {
-  Edit,
-  Eye,
-  EyeOff,
-  Link,
-  Share,
-  StarIcon,
-  Trash2Icon,
-} from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { toast } from 'sonner';
 
 import {
@@ -22,7 +13,15 @@ import {
 import { getOg } from 'app/actions/og';
 import { incrementBookmarkUsage, incrementFavUsage } from 'app/actions/user';
 
-import { MoreIcon } from 'components/icons';
+import {
+  DeleteIcon,
+  EditIcon,
+  FavIcon,
+  LinkIcon,
+  MoreIcon,
+  RefreshIcon,
+  ShareIcon,
+} from 'components/icons';
 import EditBookmark from 'components/modal/edit-bookmark';
 import {
   DropdownMenu,
@@ -167,7 +166,7 @@ export default function CardMenu({
             }}
             disabled={loading}
           >
-            <Edit className="h-4 w-4  mr-2.5" /> Edit
+            <EditIcon className="h-4 w-4 mr-2" /> Edit
           </DropdownMenuItem>
           <DropdownMenuItem
             disabled={loading}
@@ -176,7 +175,7 @@ export default function CardMenu({
               toast.success('Link copied to clipboard.');
             }}
           >
-            <Link className="h-4 w-4  mr-2.5" /> Copy link
+            <LinkIcon className="h-4 w-4 mr-2" /> Copy link
           </DropdownMenuItem>
           <DropdownMenuItem
             disabled={loading}
@@ -184,7 +183,7 @@ export default function CardMenu({
               await onRefresh();
             }}
           >
-            <UpdateIcon className="h-4 w-4  mr-2.5" /> Refresh
+            <RefreshIcon className="h-4 w-4 mr-2" /> Refresh
           </DropdownMenuItem>
           <DropdownMenuItem
             disabled={loading}
@@ -193,9 +192,9 @@ export default function CardMenu({
             }}
           >
             {data.preview_image ? (
-              <EyeOff className="h-4 w-4  mr-2.5" />
+              <EyeOff strokeWidth={1.5} className="h-4 w-4 mr-2" />
             ) : (
-              <Eye className="h-4 w-4  mr-2.5" />
+              <Eye strokeWidth={1.5} className="h-4 w-4 mr-2" />
             )}
             {data.preview_image ? 'Hide' : 'Show'} preview
           </DropdownMenuItem>
@@ -206,7 +205,7 @@ export default function CardMenu({
                 await onFav();
               }}
             >
-              <StarIcon className="h-4 w-4  mr-2.5" />{' '}
+              <FavIcon className="h-4 w-4 mr-2" />{' '}
               {data.is_fav ? 'Remove' : 'Add'} favorite
             </DropdownMenuItem>
           ) : null}
@@ -216,7 +215,7 @@ export default function CardMenu({
                 await share();
               }}
             >
-              <Share className="h-4 w-4  mr-2.5" /> Share
+              <ShareIcon className="h-4 w-4 mr-2" /> Share
             </DropdownMenuItem>
           ) : null}
           <DropdownMenuItem
@@ -226,7 +225,7 @@ export default function CardMenu({
             }}
             className="!text-red-600 focus:bg-red-100 active:bg-red-100 dark:focus:bg-red-800/30 dark:active:bg-red-800/30"
           >
-            <Trash2Icon className="h-4 w-4  mr-2.5" /> Delete
+            <DeleteIcon className="h-4 w-4 mr-2" /> Delete
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

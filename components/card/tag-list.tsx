@@ -2,14 +2,13 @@
 
 import { startTransition, useEffect, useOptimistic, useState } from 'react';
 
-import { CheckIcon } from '@radix-ui/react-icons';
 import { toast } from 'sonner';
 
 import { addTagToBookmark, createTag } from 'app/actions/tags';
 import { incrementTagUsage } from 'app/actions/user';
 
 import { useUser } from 'components/context/user';
-import { PublicIcon } from 'components/icons';
+import { CheckIcon, PublicIcon } from 'components/icons';
 import {
   Command,
   CommandGroup,
@@ -17,7 +16,6 @@ import {
   CommandItem,
   CommandList,
 } from 'components/ui/command';
-import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
 import { cn } from 'lib/utils';
 
@@ -174,7 +172,11 @@ export default function TagList({ data, tags }: TagListProps) {
                         : 'bg-background text-tranparent',
                     )}
                   >
-                    {isChecked ? <CheckIcon className="h-4 w-4" /> : null}
+                    {isChecked ? (
+                      <CheckIcon className="h-4 w-4" />
+                    ) : (
+                      <CheckIcon className="h-4 w-4 text-transparent" />
+                    )}
                   </div>
                   <div className="flex w-full items-center justify-between">
                     <span>{tag.name}</span>

@@ -4,18 +4,17 @@ import { SyntheticEvent, useRef, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 import { messages } from 'config/messages';
-import { ArrowUpCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { useUser } from 'components/context/user';
+import { HelpIcon, UploadArrowIcon } from 'components/icons';
 import Loader from 'components/loader';
 import PlanTooltip from 'components/settings/plan-tooltip';
 import { Input } from 'components/ui/input';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
-import { checkBookmarkLimit, isProPlanExpired } from 'lib/data';
+import { checkBookmarkLimit } from 'lib/data';
 import { cn, getBrowserName } from 'lib/utils';
 
 type UploadModalProps = {
@@ -139,7 +138,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
           onChange={onFileChange}
         />
         <div className="flex w-full justify-center flex-col items-center">
-          <ArrowUpCircle strokeWidth={1} className="w-10 h-10" />
+          <UploadArrowIcon className="w-10 h-10" />
           <p className="text-sm mt-2 font-medium">Click to browse</p>
         </div>
         <div className="text-sm flex flex-col mt-2 text-muted-foreground text-center px-4">
@@ -180,7 +179,7 @@ export default function UploadForm({ onHide, SubmitBtn }: UploadModalProps) {
                       window.open(link, '_blank');
                     }}
                   >
-                    <QuestionMarkCircledIcon className="w-3.5 h-3.5" />
+                    <HelpIcon className="w-3.5 h-3.5" />
                   </TooltipTrigger>
                   <TooltipContent className="text-white dark:text-black">
                     Click me to know how to export your bookmarks

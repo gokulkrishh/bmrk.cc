@@ -3,10 +3,10 @@
 import { useState } from 'react';
 
 import { urls } from 'config/urls';
-import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { useAuth } from 'components/context/auth';
+import { DeleteIcon } from 'components/icons';
 import DeleteAccountModal from 'components/modal/delete-account';
 import { Skeleton } from 'components/ui/skeleton';
 
@@ -64,7 +64,7 @@ export default function DeleteAccount() {
             className="items-center h-[40px] tracking-wide rounded-full text-red-700 dark:text-white dark:bg-red-600 dark:hover:bg-red-700 dark:hover:border-red-700 dark:border-red-600 border border-red-300 focus:outline-0 active:bg-accent/80 text-sm flex justify-center py-2 px-3 transition-colors bg-background hover:border-red-300/80 hover:bg-red-300/80 focus:bg-red-300/80"
             onClick={() => setOpen(true)}
           >
-            <Trash2 className="w-3.5 h-3.5 mr-2" /> Delete
+            <DeleteIcon className="w-3.5 h-3.5 mr-1.5" /> Delete
           </button>
         ) : null}
         {open ? (

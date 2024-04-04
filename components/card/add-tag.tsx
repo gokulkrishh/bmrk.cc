@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import { Tags } from 'lucide-react';
-
+import { TagsIcon } from 'components/icons';
 import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover';
 
 import { cn } from 'lib/utils';
@@ -27,11 +26,11 @@ export default function AddTag({ data, tags }: AddTagProps) {
         <button
           aria-label="tags"
           className={cn(
-            `flex items-center -ml-1.5 justify-center gap-1 rounded-full shrink-0 w-9 h-9 hover:bg-blue-100 hover:border hover:border-blue-200 active:bg-blue-100`,
+            `flex items-center -ml-1.5 border border-transparent justify-center gap-1 rounded-full shrink-0 w-9 h-9 hover:bg-blue-800/20 dark:hover:bg-blue-800/30 active:bg-blue-800/20 dark:active:bg-blue-800/30 dark:hover:border-blue-800/30 hover:border-blue-800/20`,
             { '!opacity-100': open },
           )}
         >
-          <Tags className="w-4 h-4 text-blue-500" />
+          <TagsIcon className="w-4 h-4 text-blue-500" />
         </button>
       </PopoverTrigger>
       <PopoverContent className="w-52 bg-background rounded-lg shadow-2xl p-0">

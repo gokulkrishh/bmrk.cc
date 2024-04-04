@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 
-import { Info } from 'lucide-react';
-
 import { useUser } from 'components/context/user';
+import { InfoIcon } from 'components/icons';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
 import { isProPlan, isProPlanExpired } from 'lib/data';
@@ -36,7 +35,7 @@ export default function FeatureToolip({
         }}
         asChild
       >
-        <Info className="w-3.5 h-3.5 ml-2 text-muted-foreground" />
+        <InfoIcon className="w-3.5 h-3.5 ml-2 text-muted-foreground" />
       </TooltipTrigger>
       <TooltipContent side="top" className="text-white dark:text-black">
         {text ?? 'This feature is available only in Pro plan.'}

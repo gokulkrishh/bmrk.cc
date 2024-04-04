@@ -3,12 +3,17 @@
 import Link from 'next/link';
 
 import { urls } from 'config/urls';
-import { Bug, HelpCircleIcon, LogOut, Settings } from 'lucide-react';
 
 import { cn } from 'lib/utils';
 
 import { useAuth } from './context/auth';
-import { ExtensionsIcon } from './icons';
+import {
+  BugIcon,
+  ExtensionsIcon,
+  HelpIcon,
+  LogoutIcon,
+  SettingsIcon,
+} from './icons';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import {
   DropdownMenu,
@@ -51,7 +56,7 @@ export default function Profile({ className }: { className?: string }) {
               window.open(urls.extensions.chrome, '_blank');
             }}
           >
-            <ExtensionsIcon className="h-4 w-4 mr-2.5 text-primary" />{' '}
+            <ExtensionsIcon className="h-4 w-4 mr-2 text-primary" />{' '}
             <span className="mr-2">Extensions</span>
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -63,7 +68,7 @@ export default function Profile({ className }: { className?: string }) {
               );
             }}
           >
-            <Bug className="h-4 w-4 mr-2.5" /> File a bug
+            <BugIcon className="h-4 w-4 mr-2" /> File a bug
           </DropdownMenuItem>
           <DropdownMenuItem
             className="flex items-center cursor-pointer"
@@ -71,18 +76,18 @@ export default function Profile({ className }: { className?: string }) {
               window.open(helpMailLink, '_blank');
             }}
           >
-            <HelpCircleIcon className="h-4 w-4 mr-2.5" /> Help
+            <HelpIcon className="h-4 w-4 mr-2" /> Help
           </DropdownMenuItem>
           <DropdownMenuItem className="hidden max-sm:block">
             <Link className="flex items-center" href="/settings">
-              <Settings className="h-4 w-4 mr-2.5" /> Settings
+              <SettingsIcon className="h-4 w-4 mr-2" /> Settings
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem
             className="flex items-center cursor-pointer"
             onClick={signOut}
           >
-            <LogOut className="h-4 w-4 mr-2.5" /> Logout
+            <LogoutIcon className="h-4 w-4 mr-2" /> Logout
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

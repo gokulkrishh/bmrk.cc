@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 
-import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { deleteTag } from 'app/actions/tags';
 import { incrementTagUsage } from 'app/actions/user';
 
+import { DeleteIcon } from 'components/icons';
 import Loader from 'components/loader';
 
 import { Tag } from 'types/data';
@@ -36,7 +36,7 @@ export default function DeleteTag({ id }: { id: Tag['id'] }) {
       {loading ? (
         <Loader className="text-black group-hover:text-black dark:text-white" />
       ) : (
-        <Trash2 className="text-red-500" size={16} />
+        <DeleteIcon className="text-red-500 w-4 h-4" />
       )}
     </button>
   );

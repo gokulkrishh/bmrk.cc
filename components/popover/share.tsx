@@ -4,13 +4,13 @@ import { useState } from 'react';
 
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import { protocol, urls } from 'config/urls';
-import { Link } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { updateSharedTag } from 'app/actions/shared';
 import { decrementShareCount, incrementShareCount } from 'app/actions/user';
 
 import { useUser } from 'components/context/user';
+import { LinkIcon } from 'components/icons';
 import Loader from 'components/loader';
 import { Input } from 'components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover';
@@ -71,7 +71,7 @@ export default function SharePopover({
     <Popover onOpenChange={(opened) => setOpen(opened)}>
       <PopoverTrigger
         className={cn(
-          `rounded-full transition-all flex px-4 w-fit items-center justify-center mr-2.5 tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border text-primary border border-transparent focus:outline-0 text-sm py-2 hover:border-border active:border-border hover:bg-accent/60 active:bg-accent/60`,
+          `rounded-full transition-all flex px-4 w-fit items-center justify-center mr-2 tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border text-primary border border-transparent focus:outline-0 text-sm py-2 hover:border-border active:border-border hover:bg-accent/60 active:bg-accent/60`,
           className,
           { 'bg-accent': open },
         )}
@@ -112,7 +112,7 @@ export default function SharePopover({
           <div className="flex mt-6 justify-between items-center">
             <div className="flex items-center">
               <span className="rounded-full bg-neutral-100 w-9 h-9 border border-neutral-200 inline-flex justify-center items-center">
-                <Link className="w-4 h-4 text-neutral-600 " />
+                <LinkIcon className="w-4 h-4 text-black " />
               </span>
               <div className="flex flex-col ml-3">
                 <h4 className="text-sm">Public access</h4>

@@ -6,8 +6,9 @@ import Link from 'next/link';
 
 import { User } from '@supabase/supabase-js';
 import { urls } from 'config/urls';
-import { AppWindowIcon, LogOut } from 'lucide-react';
+import { AppWindowIcon } from 'lucide-react';
 
+import { LogoutIcon } from 'components/icons';
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar';
 import {
   DropdownMenu,
@@ -63,11 +64,11 @@ export default function HomeAccount() {
         <DropdownMenuContent className="mr-2">
           <DropdownMenuItem>
             <Link className="flex items-center" href="/app">
-              <AppWindowIcon className="h-4 w-4 mr-2.5" /> App
+              <AppWindowIcon className="h-4 w-4 mr-2" /> App
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem className="flex items-center" onClick={signOut}>
-            <LogOut className="h-4 w-4 mr-2.5" /> Logout
+            <LogoutIcon className="h-4 w-4 mr-2" /> Logout
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

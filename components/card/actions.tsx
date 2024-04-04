@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import { addToFav } from 'app/actions/bookmarks';
 
 import { useUser } from 'components/context/user';
+import { FavIcon } from 'components/icons';
 
 import { cn } from 'lib/utils';
 
@@ -27,11 +28,15 @@ function FavButtonIcon({ is_fav }: { is_fav: BookmarkModified['is_fav'] }) {
         `rounded-full transition-all group/fav flex w-9 h-9 items-center justify-center mr-2`,
       )}
     >
-      {is_fav ? (
-        <StarFilledIcon className="h-4 w-4 text-yellow-500 animate-circle-done" />
-      ) : (
-        <StarIcon className="h-4 w-4 text-muted-foreground group-hover/fav:text-muted-foreground" />
-      )}
+      <FavIcon
+        isActive={Boolean(is_fav)}
+        className={cn(`h-4 w-4`, {
+          'text-yellow-500 group-hover/fav:text-yellow-500/90 animate-circle-done':
+            Boolean(is_fav),
+          'text-muted-foreground group-hover/fav:text-muted-foreground animate-circle-undone':
+            !Boolean(is_fav),
+        })}
+      />
     </button>
   );
 }

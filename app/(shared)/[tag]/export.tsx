@@ -1,6 +1,6 @@
 'use client';
 
-import { Download } from 'lucide-react';
+import { ExportIcon } from 'components/icons';
 
 import { exportAsHTML } from 'lib/bookmarks';
 import { formatDate } from 'lib/date';
@@ -33,7 +33,7 @@ export default function ExportButton({
         );
       }}
     >
-      <Download className="w-3.5 h-3.5 mr-2" /> Export
+      <ExportIcon className="w-4 h-4 mr-1.5" /> Export
     </button>
   );
 }

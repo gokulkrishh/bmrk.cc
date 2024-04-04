@@ -5,6 +5,7 @@ import CardList from 'components/card-list';
 import Header from 'components/header';
 import { EmptyTagState, PublicIcon } from 'components/icons';
 import SharePopover from 'components/popover/share';
+import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
 import { filterByTagName } from 'lib/data';
 

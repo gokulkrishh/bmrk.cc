@@ -2,9 +2,7 @@
 
 import { useState } from 'react';
 
-import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
-import { Info } from 'lucide-react';
-
+import { HelpIcon, InfoIcon } from 'components/icons';
 import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
 
 import { cn } from 'lib/utils';
@@ -32,9 +30,9 @@ export default function PlanTooltip({
         asChild
       >
         {type ? (
-          <Info className="w-3.5 h-3.5 ml-2 text-muted-foreground" />
+          <InfoIcon className="w-3.5 h-3.5 ml-2 text-muted-foreground" />
         ) : (
-          <QuestionMarkCircledIcon className="w-3.5 h-3.5 ml-1.5 cursor-pointer text-muted-foreground" />
+          <HelpIcon className="w-3.5 h-3.5 ml-1.5 cursor-pointer text-muted-foreground" />
         )}
       </TooltipTrigger>
       <TooltipContent

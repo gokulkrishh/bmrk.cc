@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 
-import { Download } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { getBookmarks, getBookmarksAsCSV } from 'app/actions/bookmarks';
 
 import { useUser } from 'components/context/user';
 import FeatureToolip from 'components/features/feature-tooltip';
+import { ExportIcon } from 'components/icons';
 import Loader from 'components/loader';
 import {
   DropdownMenu,
@@ -84,9 +84,9 @@ export default function ExportBookmarks() {
             className="items-center h-[40px] tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 px-3 transition-colors bg-primary-foreground hover:bg-accent"
           >
             {loadingHTML || loadingCSV ? (
-              <Loader className="w-4 h-4 mr-2" />
+              <Loader className="w-4 h-4 mr-1.5" />
             ) : (
-              <Download className="w-3.5 h-3.5 mr-2" />
+              <ExportIcon className="w-4 h-4 mr-1.5" />
             )}{' '}
             Export
           </DropdownMenuTrigger>
@@ -101,10 +101,10 @@ export default function ExportBookmarks() {
               }}
             >
               {loadingHTML ? (
-                <Loader className="text-pimary-foreground w-3.5 h-3.5 mr-2" />
+                <Loader className="text-pimary-foreground w-3.5 h-3.5 mr-1.5" />
               ) : (
                 <svg
-                  className="w-3.5 h-3.5 mr-2"
+                  className="w-3.5 h-3.5 mr-1.5"
                   width="44"
                   height="44"
                   viewBox="0 0 24 24"
@@ -138,10 +138,10 @@ export default function ExportBookmarks() {
               }}
             >
               {loadingCSV ? (
-                <Loader className="text-pimary-foreground w-3.5 h-3.5 mr-2" />
+                <Loader className="text-pimary-foreground w-3.5 h-3.5 mr-1.5" />
               ) : (
                 <svg
-                  className="w-3.5 h-3.5 mr-2"
+                  className="w-3.5 h-3.5 mr-1.5"
                   width="44"
                   height="44"
                   viewBox="0 0 24 24"

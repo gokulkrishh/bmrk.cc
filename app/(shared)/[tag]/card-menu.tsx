@@ -1,9 +1,8 @@
 'use client';
 
-import { Link, Share } from 'lucide-react';
 import { toast } from 'sonner';
 
-import { MoreIcon } from 'components/icons';
+import { LinkIcon, MoreIcon, ShareIcon } from 'components/icons';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -58,7 +57,7 @@ export default function CardMenu({ data, className }: CardMenuProps) {
               toast.success('Link copied to clipboard.');
             }}
           >
-            <Link className="h-4 w-4  mr-2.5" /> Copy link
+            <LinkIcon className="h-4 w-4 mr-2" /> Copy link
           </DropdownMenuItem>
           {typeof window !== 'undefined' && navigator && !!navigator?.share ? (
             <DropdownMenuItem
@@ -66,7 +65,7 @@ export default function CardMenu({ data, className }: CardMenuProps) {
                 await share();
               }}
             >
-              <Share className="h-4 w-4  mr-2.5" /> Share
+              <ShareIcon className="h-4 w-4 mr-2" /> Share
             </DropdownMenuItem>
           ) : null}
         </DropdownMenuContent>

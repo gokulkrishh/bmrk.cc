@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 
-import { Plus } from 'lucide-react';
 import { useHotkeys } from 'react-hotkeys-hook';
+
+import { AddIcon as Add } from 'components/icons';
 
 import { cn } from 'lib/utils';
 
@@ -33,7 +34,7 @@ export default function AddIcon({ className }: { className?: string }) {
               className,
             )}
           >
-            <Plus className="text-white w-6 h-6" />
+            <Add className="text-white w-6 h-6" />
           </button>
         </TooltipTrigger>
         <TooltipContent

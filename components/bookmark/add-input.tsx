@@ -2,7 +2,6 @@
 
 import { ClipboardEvent, SyntheticEvent, useState } from 'react';
 
-import { Upload } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { createBookmark } from 'app/actions/bookmarks';
@@ -10,6 +9,7 @@ import { getOg } from 'app/actions/og';
 import { incrementBookmarkUsage } from 'app/actions/user';
 
 import { useUser } from 'components/context/user';
+import { UploadIcon } from 'components/icons';
 import Loader from 'components/loader';
 import UploadModal from 'components/modal/upload';
 import { Input } from 'components/ui/input';
@@ -120,7 +120,7 @@ export default function AddBookmarkInput({
           <button
             aria-label="Upload bookmarks"
             className={cn(
-              `w-8 h-8 group transition-colors duration-200 rounded-full hover:bg-accent hover:border hover:border-input active:bg-accent -left-1.5 relative top-2 inline-flex items-center justify-center`,
+              `w-8 h-8 group border border-transparent transition-colors duration-200 rounded-full hover:bg-blue-800/20 dark:hover:bg-blue-800/30 active:bg-blue-800/20 dark:active:bg-blue-800/30 dark:hover:border-blue-800/30 hover:border-blue-800/20  -left-1.5 relative top-3 inline-flex items-center justify-center`,
               btnClassname,
             )}
             type="button"
@@ -130,7 +130,7 @@ export default function AddBookmarkInput({
           >
             <Tooltip delayDuration={500}>
               <TooltipTrigger asChild>
-                <Upload className="w-[19px] h-[19px] transition-colors duration-200 text-muted-foreground group-hover:text-primary group-active:text-primary" />
+                <UploadIcon className="w-4 h-4 transition-colors duration-200 text-blue-500 group-hover:text-blue-600 group-active:text-blue-600" />
               </TooltipTrigger>
               <TooltipContent
                 side="bottom"

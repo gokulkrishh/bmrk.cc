@@ -4,11 +4,11 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { useAuth } from 'components/context/auth';
 import { useUser } from 'components/context/user';
+import { DeleteIcon } from 'components/icons';
 import DeleteDataModal from 'components/modal/delete-data';
 import { Skeleton } from 'components/ui/skeleton';
 
@@ -75,7 +75,7 @@ export default function DeleteData() {
             className="items-center h-[40px] disabled:hover:bg-background disabled:hover:dark:border-red-700 disabled:hover:dark:bg-red-600 disabled:cursor-not-allowed disabled:opacity-65  tracking-wide rounded-full text-red-700 dark:text-white dark:bg-red-600 dark:hover:bg-red-500 dark:hover:border-red-500 dark:border-red-700 border border-red-300 focus:outline-0 focus:bg-accent/80 active:bg-accent/80 text-sm flex justify-center py-2 px-3 transition-colors bg-background hover:border-red-300/80 hover:bg-red-300/80"
             onClick={() => !isDisabled && setOpen(true)}
           >
-            <Trash2 className="w-3.5 h-3.5 mr-2" /> Delete
+            <DeleteIcon className="w-3.5 h-3.5 mr-1.5" /> Delete
           </button>
         ) : null}
         {open ? (
