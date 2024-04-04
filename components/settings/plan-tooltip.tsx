@@ -27,7 +27,6 @@ export default function PlanTooltip({
         onBlur={() => {
           setOpen(false);
         }}
-        asChild
       >
         {type ? (
           <InfoIcon className="w-3.5 h-3.5 ml-2 text-muted-foreground" />

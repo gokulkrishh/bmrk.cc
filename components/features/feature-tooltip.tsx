@@ -33,7 +33,6 @@ export default function FeatureToolip({
         onBlur={() => {
           setOpen(false);
         }}
-        asChild
       >
         <InfoIcon className="w-3.5 h-3.5 ml-2 text-muted-foreground" />
       </TooltipTrigger>
