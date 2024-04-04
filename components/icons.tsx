@@ -180,7 +180,7 @@ export const EmptyTagState = ({
       <h3 className="text-primary mt-3 tracking-wide font-medium">
         You don{"'"}t any bookmarks on {tagName} tag yet!
       </h3>
-      <p className="mt-2 text-sm text-muted-foreground text-center">
+      <p className="mt-1 text-sm text-muted-foreground text-center">
         Assign this tag to your bookmarks to see it here.
       </p>
     </div>
@@ -248,7 +248,7 @@ export const RateLimitState = ({ className }: { className?: string }) => {
       <h3 className="text-primary mt-3 tracking-wide font-medium">
         Hold on, too many requests!
       </h3>
-      <p className="mt-2 text-muted-foreground text-center">
+      <p className="mt-1 text-sm text-muted-foreground text-center">
         Wait for few seconds and refresh.
       </p>
     </div>
@@ -306,7 +306,7 @@ export const NotFoundIcon = ({ className }: { className?: string }) => {
       <h3 className="text-primary mt-3 tracking-wide text-xl font-medium">
         404
       </h3>
-      <p className="mt-2 text-muted-foreground text-center">
+      <p className="mt-1 text-sm text-muted-foreground text-center">
         Could not find requested resource.
       </p>
     </div>
