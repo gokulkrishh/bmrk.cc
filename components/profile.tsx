@@ -9,6 +9,7 @@ import { cn } from 'lib/utils';
 import { useAuth } from './context/auth';
 import {
   BugIcon,
+  DeleteIcon,
   ExtensionsIcon,
   HelpIcon,
   LogoutIcon,
