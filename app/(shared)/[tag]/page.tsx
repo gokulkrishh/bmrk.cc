@@ -1,6 +1,7 @@
 import { getSharedBookmarks } from 'app/actions/shared';
 
-import { EmptyBookmarkSharedState, PublicIcon } from 'components/icons';
+import { EmptyBookmarkSharedState } from 'components/icons';
+import { PublicIconWithTooltip } from 'components/public-icon-with-tooltip';
 
 import { groupByDate } from 'lib/data';
 
@@ -37,7 +38,7 @@ export default async function Page({ params }: { params: { tag: string } }) {
       <Header
         data={bookmarks}
         headerText={`Tag: ${tagName}`}
-        icon={<PublicIcon className="h-3 w-3 relative -top-0.5" />}
+        icon={<PublicIconWithTooltip className="h-3 w-3 relative -top-0.5" />}
       />
       <div className="h-full sm:border-r sm:border-border pb-24">
         {bookmarks?.length ? (

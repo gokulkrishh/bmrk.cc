@@ -3,9 +3,9 @@ import { getTags } from 'app/actions/tags';
 
 import CardList from 'components/card-list';
 import Header from 'components/header';
-import { EmptyTagState, PublicIcon } from 'components/icons';
+import { EmptyTagState } from 'components/icons';
 import SharePopover from 'components/popover/share';
-import { Tooltip, TooltipContent, TooltipTrigger } from 'components/ui/tooltip';
+import { PublicIconWithTooltip } from 'components/public-icon-with-tooltip';
 
 import { filterByTagName } from 'lib/data';
 
@@ -41,7 +41,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <Header
         icon={
           tag?.shared ? (
-            <PublicIcon className="h-3 w-3 relative -top-0.5" />
+            <PublicIconWithTooltip className="h-3 w-3 relative -top-0.5" />
           ) : null
         }
         shareIcon={<SharePopover tag={tag} />}

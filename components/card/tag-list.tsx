@@ -8,7 +8,8 @@ import { addTagToBookmark, createTag } from 'app/actions/tags';
 import { incrementTagUsage } from 'app/actions/user';
 
 import { useUser } from 'components/context/user';
-import { CheckIcon, PublicIcon } from 'components/icons';
+import { CheckIcon } from 'components/icons';
+import { PublicIconWithTooltip } from 'components/public-icon-with-tooltip';
 import {
   Command,
   CommandGroup,
@@ -182,7 +183,7 @@ export default function TagList({ data, tags }: TagListProps) {
                     <span>{tag.name}</span>
                     {tag.shared ? (
                       <>
-                        <PublicIcon className="h-4 w-4" />
+                        <PublicIconWithTooltip className="h-4 w-4" />
                         <span className="sr-only">Shared publically</span>
                       </>
                     ) : null}

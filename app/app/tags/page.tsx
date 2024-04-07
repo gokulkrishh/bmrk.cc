@@ -5,8 +5,9 @@ import { getTags, getTagsWithBookmarkIds } from 'app/actions/tags';
 
 import CardList from 'components/card-list';
 import Header from 'components/header';
-import { EmptyTagsState, PublicIcon } from 'components/icons';
+import { EmptyTagsState } from 'components/icons';
 import SharePopover from 'components/popover/share';
+import { PublicIconWithTooltip } from 'components/public-icon-with-tooltip';
 import DeleteTag from 'components/tag/delete-tag';
 import EditTag from 'components/tag/edit-tag';
 import { Badge } from 'components/ui/badge';
@@ -53,7 +54,7 @@ export default async function Page() {
                       className="!py-1 px-2 ml-2 !w-7 !h-7 !rounded-full text-xs mr-0"
                       tag={tag}
                     >
-                      <PublicIcon className="w-4 h-4 shrink-0" />
+                      <PublicIconWithTooltip className="w-4 h-4 shrink-0" />
                     </SharePopover>
                   ) : null}
                   <EditTag id={id} name={name} />

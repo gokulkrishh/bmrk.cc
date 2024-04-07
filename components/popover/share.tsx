@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 
-import * as PopoverPrimitive from '@radix-ui/react-popover';
 import { protocol, urls } from 'config/urls';
 import { toast } from 'sonner';
 
@@ -10,7 +9,7 @@ import { updateSharedTag } from 'app/actions/shared';
 import { decrementShareCount, incrementShareCount } from 'app/actions/user';
 
 import { useUser } from 'components/context/user';
-import { LinkIcon } from 'components/icons';
+import { PublicShareIcon } from 'components/icons';
 import Loader from 'components/loader';
 import { Input } from 'components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover';
@@ -112,7 +111,7 @@ export default function SharePopover({
           <div className="flex mt-6 justify-between items-center">
             <div className="flex items-center">
               <span className="rounded-full bg-neutral-100 w-9 h-9 border border-neutral-200 inline-flex justify-center items-center">
-                <LinkIcon className="w-4 h-4 text-black " />
+                <PublicShareIcon className="w-4 h-4 text-black " />
               </span>
               <div className="flex flex-col ml-3">
                 <h4 className="text-sm">Public access</h4>

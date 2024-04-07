@@ -1,7 +1,5 @@
 import { cn } from 'lib/utils';
 
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
-
 export function ExternalLinkIcon({ className = '' }: { className?: string }) {
   return (
     <svg
@@ -255,49 +253,38 @@ export const RateLimitState = ({ className }: { className?: string }) => {
   );
 };
 
-export const PublicIcon = ({ className }: { className?: string }) => (
-  <Tooltip>
-    <TooltipTrigger>
-      <svg
-        className={className}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        width={24}
-        height={24}
-        color={'currentColor'}
-        fill={'none'}
-      >
-        <circle
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <path
-          d="M8 12C8 18 12 22 12 22C12 22 16 18 16 12C16 6 12 2 12 2C12 2 8 6 8 12Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M21 15H3"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M21 9H3"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </TooltipTrigger>
-    <TooltipContent>This tag has been shared publically</TooltipContent>
-  </Tooltip>
+export const PublicShareIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width={24}
+    height={24}
+    color={'currentColor'}
+    fill={'none'}
+  >
+    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
+    <path
+      d="M8 12C8 18 12 22 12 22C12 22 16 18 16 12C16 6 12 2 12 2C12 2 8 6 8 12Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M21 15H3"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M21 9H3"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
 );
 
 export const NotFoundIcon = ({ className }: { className?: string }) => {
