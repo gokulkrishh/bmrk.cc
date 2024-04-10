@@ -24,7 +24,7 @@ export default function ExportButton({
 
   return (
     <button
-      className="items-center mr-3 h-[36px] tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border rounded-full text-primary border border-border focus:outline-0 active:bg-accent text-sm flex justify-center py-2 px-3 transition-colors bg-primary-foreground hover:bg-accent"
+      className="rounded-full transition-all flex px-4 w-fit items-center justify-center mr-2 tracking-wide disabled:opacity-70 disabled:cursor-not-allowed disabled:bg-accent disabled:border-border text-primary border border-transparent focus:outline-0 text-sm py-2 hover:border-border active:border-border hover:bg-accent/60 active:bg-accent/60"
       disabled={data.length === 0}
       onClick={() => {
         exportAsHTML(
@@ -33,7 +33,7 @@ export default function ExportButton({
         );
       }}
     >
-      <ExportIcon className="w-4 h-4 mr-1.5" /> Export
+      Export
     </button>
   );
 }

@@ -117,29 +117,24 @@ export default function AddBookmarkInput({
           />
         </div>
         <div className={`flex mb-3 justify-between`}>
-          <button
-            aria-label="Upload bookmarks"
-            className={cn(
-              `w-8 h-8 group border border-transparent transition-colors duration-200 rounded-full hover:bg-blue-800/20 dark:hover:bg-blue-800/30 active:bg-blue-800/20 dark:active:bg-blue-800/30 dark:hover:border-blue-800/30 hover:border-blue-800/20  -left-1.5 relative top-3 inline-flex items-center justify-center`,
-              btnClassname,
-            )}
-            type="button"
-            onClick={() => {
-              setOpen(true);
-            }}
-          >
-            <Tooltip delayDuration={500}>
-              <TooltipTrigger asChild>
-                <UploadIcon className="w-4 h-4 transition-colors duration-200 text-blue-500 group-hover:text-blue-600 group-active:text-blue-600" />
-              </TooltipTrigger>
-              <TooltipContent
-                side="bottom"
-                className="flex items-center mt-2 text-white dark:text-black"
-              >
-                Upload bookmarks
-              </TooltipContent>
-            </Tooltip>
-          </button>
+          <Tooltip delayDuration={500}>
+            <TooltipTrigger
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                setOpen(true);
+              }}
+              className="w-8 h-8 group border border-transparent transition-colors duration-200 rounded-full hover:bg-blue-800/20 dark:hover:bg-blue-800/30 active:bg-blue-800/20 dark:active:bg-blue-800/30 dark:hover:border-blue-800/30 hover:border-blue-800/20  -left-1.5 relative top-3 inline-flex items-center justify-center "
+            >
+              <UploadIcon className="w-4 h-4 transition-colors duration-200 text-blue-500 group-hover:text-blue-600 group-active:text-blue-600" />
+            </TooltipTrigger>
+            <TooltipContent
+              side="bottom"
+              className="flex items-center mt-1 text-white dark:text-black"
+            >
+              Upload your bookmarks
+            </TooltipContent>
+          </Tooltip>
 
           <button
             type="submit"

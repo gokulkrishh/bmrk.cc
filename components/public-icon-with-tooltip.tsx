@@ -14,7 +14,8 @@ export const PublicIconWithTooltip = ({
   return (
     <Tooltip open={open} onOpenChange={setOpen}>
       <TooltipTrigger
-        onClick={() => {
+        onClick={(event) => {
+          event.stopPropagation();
           setOpen(true);
         }}
         onBlur={() => {

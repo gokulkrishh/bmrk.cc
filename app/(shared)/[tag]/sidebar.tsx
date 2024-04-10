@@ -36,35 +36,35 @@ export default function Sidebar() {
         >
           <HomeIcon className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
         </a>
-        <button
-          onClick={handleOpen}
+        <a
           className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary/50 hover:bg-accent"
+          href={urls.account}
+          title="Home"
         >
           <SearchIcon className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
-        </button>
-        <button
-          onClick={handleOpen}
+        </a>
+        <a
+          href={urls.account}
           className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary/50 hover:bg-accent max-sm:order-4"
           title="Favorites"
         >
           <FavIcon className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
-        </button>
-        <button
-          className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary/50 hover:bg-accent max-sm:order-5"
-          onClick={handleOpen}
+        </a>
+        <a
+          href={urls.account}
+          className="p-2.5 inline-block max-md:p-3 rounded-xl group transition-colors text-center text-primary/50 hover:bg-accent max-sm:order-4"
           title="Tags"
         >
           <TagsIcon className="w-6 h-6 text-pimary-foreground group-hover:scale-95 duration-150 transition-transform" />
-        </button>
-        <button
-          onClick={handleOpen}
-          aria-label="Add"
+        </a>
+        <a
+          href={urls.account}
           className={
             'rounded-full flex justify-center p-2 max-sm:p-3 text-white bg-blue-600 hover:bg-blue-500 max-sm:order-3 sm:mt-2'
           }
         >
           <AddIcon className="text-white w-6 h-6" />
-        </button>
+        </a>
         {open ? <AccountModal open={open} onHide={setOpen} /> : null}
       </div>
     </nav>
