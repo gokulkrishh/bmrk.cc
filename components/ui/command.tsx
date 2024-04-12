@@ -134,7 +134,6 @@ const CommandLoading = CommandPrimitive.Loading;
 
 export {
   Command,
-  CommandDialog,
   CommandLoading,
   CommandInput,
   CommandList,
