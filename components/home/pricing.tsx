@@ -8,7 +8,7 @@ import { messages } from 'config/messages';
 import { plans } from 'config/plans';
 import { urls } from 'config/urls';
 
-import { ArrowRightIcon, CheckIcon } from 'components/icons';
+import { ArrowRightIcon, PriceCheckIcon } from 'components/icons';
 import PlanTooltip from 'components/settings/plan-tooltip';
 import { TooltipProvider } from 'components/ui/tooltip';
 
@@ -55,38 +55,39 @@ export default function Pricing() {
                   What{"'"}s included:
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-primary" />{' '}
+                  <PriceCheckIcon className="text-primary" />{' '}
                   {plans.free.limit.bookmarks} bookmarks/mo{' '}
                   <PlanTooltip
-                    className="ml-1 relative -top-1"
+                    className="!ml-0.5 relative -top-1"
                     text={messages.usageLimitRenewal}
                   />
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-primary" />
+                  <PriceCheckIcon className="text-primary" />
                   {plans.free.limit.imports} time unlimited bookmarks import.
                   <PlanTooltip
-                    className="ml-1 relative -top-1"
+                    className="!ml-0.5 relative -top-1"
                     text={messages.importLimitWarning(plans.free.limit.imports)}
                   />
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-primary" /> {plans.free.limit.tags}{' '}
-                  tags
+                  <PriceCheckIcon className="text-primary" />{' '}
+                  {plans.free.limit.tags} tags
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-primary" />{' '}
+                  <PriceCheckIcon className="text-primary" />{' '}
                   {plans.free.limit.favorites} favorite bookmarks
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-primary" />
+                  <PriceCheckIcon className="text-primary" />
                   Share upto {plans.free.limit.share} tag publicly
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-primary" /> Theme Customizations
+                  <PriceCheckIcon className="text-primary" /> Theme
+                  Customizations
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-primary" /> One-Click Browser
+                  <PriceCheckIcon className="text-primary" /> One-Click Browser
                   Extensions
                 </p>
               </div>
@@ -127,39 +128,39 @@ export default function Pricing() {
                   Everything in Free, plus:
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-green-500" />{' '}
+                  <PriceCheckIcon className="text-blue-600" />{' '}
                   {plans.pro.limit.bookmarks} bookmarks/mo{' '}
                   <PlanTooltip
-                    className="ml-1 relative -top-1"
+                    className="!ml-0.5 relative -top-1"
                     text={messages.usageLimitRenewal}
                   />
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-green-500" />
+                  <PriceCheckIcon className="text-blue-600" />
                   {plans.pro.limit.imports} times unlimited bookmarks import.
                   <PlanTooltip
-                    className="ml-1 relative -top-1"
+                    className="!ml-0.5 relative -top-1"
                     text={messages.importLimitWarning(plans.pro.limit.imports)}
                   />
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-green-500" />{' '}
+                  <PriceCheckIcon className="text-blue-600" />{' '}
                   {plans.pro.limit.tags} tags
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-green-500" />{' '}
+                  <PriceCheckIcon className="text-blue-600" />{' '}
                   {plans.pro.limit.favorites} favorite bookmarks
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-green-500" />
+                  <PriceCheckIcon className="text-blue-600" />
                   Share upto {plans.pro.limit.share} tags publicly
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-green-500" /> Export bookmarks as
-                  CSV/HTML
+                  <PriceCheckIcon className="text-blue-600" /> Export bookmarks
+                  as CSV/HTML
                 </p>
                 <p className="text-gray-600 flex items-center font-normal">
-                  <CheckIcon className="text-green-500" /> Email Support
+                  <PriceCheckIcon className="text-blue-600" /> Email Support
                 </p>
               </div>
               <div className="mt-6 mb-2">

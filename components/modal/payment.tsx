@@ -5,8 +5,7 @@ import { useState } from 'react';
 import { messages } from 'config/messages';
 import { plans } from 'config/plans';
 
-import { ArrowRightIcon, CheckIcon, Logo } from 'components/icons';
-import Loader from 'components/loader';
+import { ArrowRightIcon, Logo, PriceCheckIcon } from 'components/icons';
 import PlanTooltip from 'components/settings/plan-tooltip';
 import { Badge } from 'components/ui/badge';
 import {
@@ -80,40 +79,40 @@ export default function PaymentModal({
               </Badge>
             </div>
             <div className="dark:text-white text-primary mt-2 flex items-center font-normal">
-              <CheckIcon className="text-green-500" />{' '}
+              <PriceCheckIcon className="text-blue-600" />
               {plans.pro.limit.bookmarks} bookmarks/mo{' '}
               <PlanTooltip
-                className="ml-1 relative -top-1"
+                className="!ml-1 relative -top-1"
                 text={messages.usageLimitRenewal}
               />
             </div>
             <div className="dark:text-white text-primary flex items-center font-normal">
-              <CheckIcon className="text-green-500" />
+              <PriceCheckIcon className="text-blue-600" />
               {plans.pro.limit.imports} times unlimited bookmarks import.
               <PlanTooltip
-                className="ml-1 relative -top-1"
+                className="!ml-1 relative -top-1"
                 text={messages.importLimitWarning(plans.pro.limit.imports)}
               />
             </div>
             <div className="dark:text-white text-primary flex items-center font-normal">
-              <CheckIcon className="text-green-500" /> {plans.pro.limit.tags}{' '}
-              tags
+              <PriceCheckIcon className="text-blue-600" />{' '}
+              {plans.pro.limit.tags} tags
             </div>
             <div className="dark:text-white text-primary flex items-center font-normal">
-              <CheckIcon className="text-green-500" />{' '}
+              <PriceCheckIcon className="text-blue-600" />
               {plans.pro.limit.favorites} favorite bookmarks
             </div>
             <div className="dark:text-white text-primary flex items-center font-normal">
-              <CheckIcon className="text-green-500" /> Share{' '}
+              <PriceCheckIcon className="text-blue-600" />
               {plans.pro.limit.share} tags with bookmarks publicly
             </div>
 
             <div className="dark:text-white text-primary flex items-center font-normal">
-              <CheckIcon className="text-green-500" /> Export bookmarks as
-              CSV/HTML
+              <PriceCheckIcon className="text-blue-600" />
+              Export bookmarks as CSV/HTML
             </div>
             <div className="dark:text-white text-primary flex items-center font-normal">
-              <CheckIcon className="text-green-500" /> Email Support
+              <PriceCheckIcon className="text-blue-600" /> Email Support
             </div>
           </div>
           <DialogFooter className="w-full flex mb-6 px-6 mt-1">
