@@ -7,6 +7,8 @@ import { ratelimit } from 'lib/api';
 import { BookmarkModified, Tag } from 'types/data';
 import { Database } from 'types/supabase';
 
+export const runtime = 'edge';
+
 const supabaseAdmin = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
   process.env.SUPABASE_SERVICE_ROLE_KEY ?? '',
