@@ -103,3 +103,10 @@ export const isWithinTwoMonths = (dateToCheck: Date): boolean => {
 
   return dateToCheck >= today && dateToCheck <= twoMonthsAhead;
 };
+
+export const isBeforeTwoDay = (dateToCheck: Date): boolean => {
+  const today = new Date();
+  const TwoDayAgo = new Date();
+  TwoDayAgo.setDate(today.getDate() - 2);
+  return dateToCheck >= TwoDayAgo && dateToCheck <= today;
+};

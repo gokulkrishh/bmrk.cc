@@ -18,6 +18,7 @@ import {
   CommandList,
 } from 'components/ui/command';
 
+import { isBeforeTwoDay } from 'lib/date';
 import { cn } from 'lib/utils';
 
 import { BookmarkModified, Tag, TagInsert } from 'types/data';
@@ -140,6 +141,25 @@ export default function TagList({ data, tags }: TagListProps) {
     }
   };
 
+  const recentTagsMap = tags
+    .filter((tag: Tag) => isBeforeTwoDay(new Date(tag.created_at)))
+    .reduce(
+      (acc, tag) => {
+        if (!acc[tag.id]) {
+          acc[tag.id] = tag;
+        }
+        return acc;
+      },
+      {} as Record<string, Tag>,
+    );
+
+  const recentTags = Object.values(recentTagsMap).sort(
+    (a, b) =>
+      new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+  );
+
+  const otherTags = tags.filter((tag: Tag) => !recentTagsMap[tag.id]);
+
   return (
     <Command>
       <CommandInput
@@ -147,10 +167,11 @@ export default function TagList({ data, tags }: TagListProps) {
         onValueChange={setSearchText}
         placeholder="Create or Search tags"
       />
+
       <CommandList className="max-h-56 overflow-y-auto max-w-[250px] w-full">
-        {tags.length ? (
-          <CommandGroup heading="All tags">
-            {tags.map((tag: Tag) => {
+        {recentTags.length ? (
+          <CommandGroup heading="Recent tags">
+            {recentTags.map((tag: Tag) => {
               const isChecked = Boolean(
                 optimisticData?.bookmarks_tags?.find(
                   ({ tags: { id } }) => id == tag.id,
@@ -192,9 +213,56 @@ export default function TagList({ data, tags }: TagListProps) {
               );
             })}
           </CommandGroup>
-        ) : (
+        ) : null}
+      </CommandList>
+      <CommandList className="max-h-56 overflow-y-auto max-w-[250px] w-full">
+        {otherTags.length ? (
+          <CommandGroup heading="All tags">
+            {otherTags.map((tag: Tag) => {
+              const isChecked = Boolean(
+                optimisticData?.bookmarks_tags?.find(
+                  ({ tags: { id } }) => id == tag.id,
+                ),
+              );
+              return (
+                <CommandItem
+                  disabled={loading}
+                  key={tag.id}
+                  onSelect={async () => {
+                    await onUpdate(tag, isChecked);
+                  }}
+                  value={tag.name}
+                >
+                  <div
+                    className={cn(
+                      'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-blue-600 dark:border-white',
+                      isChecked
+                        ? 'bg-blue-700 dark:bg-white text-primary-foreground'
+                        : 'bg-background text-tranparent',
+                    )}
+                  >
+                    {isChecked ? (
+                      <CheckIcon className="h-4 w-4" />
+                    ) : (
+                      <CheckIcon className="h-4 w-4 text-transparent" />
+                    )}
+                  </div>
+                  <div className="flex w-full items-center justify-between">
+                    <span>{tag.name}</span>
+                    {tag.shared ? (
+                      <>
+                        <PublicIconWithTooltip className="h-4 w-4" />
+                        <span className="sr-only">Shared publically</span>
+                      </>
+                    ) : null}
+                  </div>
+                </CommandItem>
+              );
+            })}
+          </CommandGroup>
+        ) : !recentTags.length && !otherTags.length ? (
           <div className="text-sm flex py-4 justify-center">No tags.</div>
-        )}
+        ) : null}
       </CommandList>
       {searchText.length && !tags.find(({ name }) => name === searchText) ? (
         <CommandList>
