@@ -16,8 +16,6 @@ type MetadataType = {
   params: { tag: string };
 };
 
-export const runtime = 'edge';
-
 export const revalidate = 3600;
 
 export async function generateMetadata({ params }: MetadataType) {
