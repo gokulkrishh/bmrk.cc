@@ -147,6 +147,7 @@ export default function TagList({ data, tags }: TagListProps) {
         isBeforeTwoDay(new Date(tag.created_at)) ||
         isBeforeTwoDay(new Date(tag.updated_at)),
     )
+    .slice(0, 2)
     .reduce(
       (acc, tag) => {
         if (!acc[tag.id]) {
