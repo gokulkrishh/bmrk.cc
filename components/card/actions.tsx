@@ -2,8 +2,6 @@
 
 import { startTransition, useOptimistic } from 'react';
 
-import { StarFilledIcon, StarIcon } from '@radix-ui/react-icons';
-import { useFormStatus } from 'react-dom';
 import { toast } from 'sonner';
 
 import { addToFav } from 'app/actions/bookmarks';
@@ -19,22 +17,22 @@ import AddTag from './add-tag';
 import TagBadge from './tag-badge';
 
 function FavButtonIcon({ is_fav }: { is_fav: BookmarkModified['is_fav'] }) {
-  const { pending } = useFormStatus();
+  const isFav = Boolean(is_fav);
   return (
     <button
-      aria-label="favorite"
+      aria-label={`${!isFav ? `Mark as favorite` : 'Remove from favorite'}`}
       type="submit"
-      className={cn(
-        `rounded-full transition-all group/fav flex w-9 h-9 items-center justify-center mr-2`,
-      )}
+      className={
+        'rounded-full transition-all group/fav flex w-9 h-9 items-center justify-center mr-2'
+      }
     >
       <FavIcon
-        isActive={Boolean(is_fav)}
+        isActive={isFav}
         className={cn(`h-4 w-4`, {
           'text-yellow-500 group-hover/fav:text-yellow-500/90 animate-circle-done':
-            Boolean(is_fav),
-          'text-muted-foreground group-hover/fav:text-muted-foreground animate-circle-undone':
-            !Boolean(is_fav),
+            isFav,
+          'text-muted-foreground group-hover/fav:text-yellow-500/90 animate-circle-undone':
+            !isFav,
         })}
       />
     </button>

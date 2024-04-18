@@ -23,7 +23,8 @@
       "config/*": ["./config/*"],
       "lib/*": ["./lib/*"],
       "types/*": ["./types/*"]
-    }
+    },
+    "target": "ES2017"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

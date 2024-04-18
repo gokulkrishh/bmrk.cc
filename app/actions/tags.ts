@@ -82,6 +82,13 @@ export const addTagToBookmark = async (
       user_id: user.id,
     });
 
+    await supabase
+      .from('tags')
+      .update({
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', tagId);
+
     if (error) {
       return new Error('Unable to remove tag from bookmark.');
     }

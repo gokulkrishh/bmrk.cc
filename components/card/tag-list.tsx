@@ -142,7 +142,11 @@ export default function TagList({ data, tags }: TagListProps) {
   };
 
   const recentTagsMap = tags
-    .filter((tag: Tag) => isBeforeTwoDay(new Date(tag.created_at)))
+    .filter(
+      (tag: Tag) =>
+        isBeforeTwoDay(new Date(tag.created_at)) ||
+        isBeforeTwoDay(new Date(tag.updated_at)),
+    )
     .reduce(
       (acc, tag) => {
         if (!acc[tag.id]) {
@@ -155,7 +159,7 @@ export default function TagList({ data, tags }: TagListProps) {
 
   const recentTags = Object.values(recentTagsMap).sort(
     (a, b) =>
-      new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+      new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime(),
   );
 
   const otherTags = tags.filter((tag: Tag) => !recentTagsMap[tag.id]);
@@ -179,7 +183,6 @@ export default function TagList({ data, tags }: TagListProps) {
               );
               return (
                 <CommandItem
-                  disabled={loading}
                   key={tag.id}
                   onSelect={async () => {
                     await onUpdate(tag, isChecked);
@@ -226,7 +229,6 @@ export default function TagList({ data, tags }: TagListProps) {
               );
               return (
                 <CommandItem
-                  disabled={loading}
                   key={tag.id}
                   onSelect={async () => {
                     await onUpdate(tag, isChecked);
@@ -268,7 +270,6 @@ export default function TagList({ data, tags }: TagListProps) {
         <CommandList>
           <CommandGroup heading="Click to create">
             <CommandItem
-              disabled={loading}
               className="flex justify-between cursor-pointer"
               onSelect={async () => {
                 await onCreate();
