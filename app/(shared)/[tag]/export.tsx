@@ -1,7 +1,5 @@
 'use client';
 
-import { ExportIcon } from 'components/icons';
-
 import { exportAsHTML } from 'lib/bookmarks';
 import { formatDate } from 'lib/date';
 

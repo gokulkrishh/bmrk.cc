@@ -21,9 +21,9 @@ export default function EditTag({ id, name }: EditTagProps) {
         onClick={() => {
           setOpen(true);
         }}
-        className="rounded-full ml-1 flex w-7 h-7 hover:bg-blue-100 active:bg-blue-100 items-center justify-center"
+        className="flex px-1 w-7 h-7 hover:bg-blue-100 active:bg-blue-100 items-center justify-center"
       >
-        <EditIcon className="text-blue-500 w-4 h-4" />
+        <EditIcon className="text-blue-500 w-3.5 h-3.5" />
       </button>
       {open ? (
         <EditTagModal open={true} setOpen={setOpen} id={id} name={name} />
