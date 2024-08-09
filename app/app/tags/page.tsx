@@ -61,7 +61,7 @@ export default async function Page() {
                       </SharePopover>
                     ) : null}
                     <EditTag id={id} name={name} />
-                    <DeleteTag id={id} />
+                    <DeleteTag id={id} name={name} />
                   </div>
                 </Badge>
               );
