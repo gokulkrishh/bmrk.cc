@@ -8,7 +8,7 @@ import { addTagToBookmark, createTag } from 'app/actions/tags';
 import { incrementTagUsage } from 'app/actions/user';
 
 import { useUser } from 'components/context/user';
-import { CheckIcon } from 'components/icons';
+import { AddCircleIcon, CheckIcon } from 'components/icons';
 import { PublicIconWithTooltip } from 'components/public-icon-with-tooltip';
 import {
   Command,
@@ -271,13 +271,13 @@ export default function TagList({ data, tags }: TagListProps) {
         <CommandList>
           <CommandGroup heading="Click to create">
             <CommandItem
-              className="flex justify-between cursor-pointer"
+              className="flex items-center cursor-pointer"
               onSelect={async () => {
                 await onCreate();
               }}
               value={searchText}
             >
-              {searchText}
+              <AddCircleIcon className="h-4 w-4 mr-2 opacity-50" /> {searchText}
             </CommandItem>
           </CommandGroup>
         </CommandList>
