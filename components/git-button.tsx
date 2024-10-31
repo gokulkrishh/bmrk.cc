@@ -21,11 +21,11 @@ async function getStarCount(): Promise<number | null> {
     if (response.ok) {
       return data.stargazers_count;
     } else {
-      return 0;
+      return 246;
     }
   } catch (error) {
     console.error('Error:', error);
-    return 0;
+    return 246;
   }
 }
 
