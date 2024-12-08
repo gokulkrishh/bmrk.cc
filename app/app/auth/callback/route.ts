@@ -5,7 +5,7 @@ import { type CookieOptions, createServerClient } from '@supabase/ssr';
 import { urls } from 'config/urls';
 
 export async function GET(request: Request) {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const { searchParams } = new URL(request.url);
   const code = searchParams.get('code');
 

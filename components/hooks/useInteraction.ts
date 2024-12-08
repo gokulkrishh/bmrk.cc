@@ -109,9 +109,9 @@ export function useIntersectionObserver(
     entry: undefined,
   }));
 
-  const callbackRef = useRef<ObserverCallback>();
+  const callbackRef = useRef<ObserverCallback | null>(null);
 
-  callbackRef.current = options?.onChange;
+  callbackRef.current = options?.onChange ?? null;
 
   const frozen = state.entry?.isIntersecting && freezeOnceVisible;
 

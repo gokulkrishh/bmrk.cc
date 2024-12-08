@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
   }
 
   const parsedHash = decodeURIComponent(hash ?? '');
-  const ip = request.ip ?? '127.0.0.1';
+  let ip = request.headers.get("x-real-ip") ?? '127.0.0.1' as string;
   const { success } = await ratelimit.limit(ip);
 
   if (!success) {
