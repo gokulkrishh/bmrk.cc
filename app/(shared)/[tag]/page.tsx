@@ -12,13 +12,14 @@ const title = 'Bookmark it.';
 const description =
   'Bookmark It. is an open-source bookmark manager to organize, discover and personalize your bookmarking experience';
 
-type MetadataType = {
-  params: { tag: string };
-};
-
 export const revalidate = 3600;
 
-export async function generateMetadata({ params }: MetadataType) {
+type Props = {
+  params: Promise<{ tag: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export async function generateMetadata({ params }: Props) {
   const { tag } = await params;
   return {
     title: `${title} | Shared ${decodeURIComponent(tag)}`,
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: MetadataType) {
   };
 }
 
-export default async function Page({ params }: { params: { tag: string } }) {
+export default async function Page({ params }: Props) {
   const { tag } = await params;
   const hash = decodeURIComponent(tag);
   const bookmarks = await getSharedBookmarks(hash);
