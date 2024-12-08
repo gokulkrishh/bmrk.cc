@@ -1,13 +1,11 @@
 import { cookies } from 'next/headers';
 
-import { type CookieOptions, createServerClient } from '@supabase/ssr';
+import { createServerClient } from '@supabase/ssr';
 
 import { Database } from 'types/supabase';
 
-import { createFetch } from './cache';
-
-export default function createClient(cacheTags: string[] = []) {
-  const cookieStore = cookies();
+export default async function createClient(cacheTags: string[] = []) {
+  const cookieStore = await cookies();
 
   return createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -28,11 +26,6 @@ export default function createClient(cacheTags: string[] = []) {
             // user sessions.
           }
         },
-      },
-      global: {
-        fetch: createFetch({
-          next: { tags: ['supabase', ...cacheTags] },
-        }),
       },
     },
   );

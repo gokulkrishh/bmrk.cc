@@ -15,7 +15,6 @@ const nextConfig = {
     minimumCacheTTL: 60,
   },
   experimental: {
-    ppr: true,
     reactCompiler: true,
   },
   async headers() {
