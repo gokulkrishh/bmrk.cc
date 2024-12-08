@@ -19,7 +19,7 @@ type MetadataType = {
 export const revalidate = 3600;
 
 export async function generateMetadata({ params }: MetadataType) {
-  const { tag } = params;
+  const { tag } = await params;
   return {
     title: `${title} | Shared ${decodeURIComponent(tag)}`,
     description,
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: MetadataType) {
 }
 
 export default async function Page({ params }: { params: { tag: string } }) {
-  const { tag } = params;
+  const { tag } = await params;
   const hash = decodeURIComponent(tag);
   const bookmarks = await getSharedBookmarks(hash);
   const data = groupByDate(bookmarks);
