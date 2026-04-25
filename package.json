@@ -62,7 +62,7 @@
     "eslint": "^9.16.0",
     "eslint-config-next": "15.0.4",
     "node-html-parser": "^6.1.13",
-    "postcss": "^8.4.49",
+    "postcss": "^8.5.10",
     "postcss-nesting": "^13.0.1",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
