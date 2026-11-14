@@ -44,7 +44,7 @@
     "react-dom": "19.0.0",
     "react-hotkeys-hook": "^4.6.1",
     "react-tweet": "^3.2.1",
-    "sharp": "^0.33.5",
+    "sharp": "^0.35.5",
     "sonner": "1.7.1",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
